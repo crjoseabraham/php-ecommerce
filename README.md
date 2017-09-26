@@ -13,3 +13,9 @@ Developed using PHP, Javascript, HTML & CSS
 ● Responsive design.
 
 ● Rating stars system (you can only rate an item ONCE per session).
+
+
+Preview:
+
+
+![Preview](https://preview.ibb.co/iC56Dk/shopping_cart_preview.jpg)
