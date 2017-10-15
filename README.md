@@ -4,13 +4,15 @@
 Developed using PHP, Javascript, HTML & CSS
 
 
+● Developed using Object Oriented Programming.
+
 ● All functions work with AJAX, meaning everything works without refreshing the page.
 
 ● Add items to the cart or delete them.
 
-● Process purchases with a 100$ budget using session variables.
+● Process purchases with a 1000$ budget using session variables.
 
-● Responsive design.
+● Fully responsive.
 
 ● Rating stars system (you can only rate an item ONCE per session).
 
