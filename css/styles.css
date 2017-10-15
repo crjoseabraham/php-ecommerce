@@ -1,255 +1,336 @@
-@font-face { font-family: Roboto-Regular; src: url('../fonts/Roboto-Regular.ttf'); }
-@font-face { font-family: Roboto-Bold; font-weight:800; src: url('../fonts/Roboto-Bold.ttf');}
-
-html {
-    position: relative;
-    min-height: 100%;
-    padding-bottom: 125px;
-    overflow-x: hidden;
+@font-face
+{
+  font-family: Roboto-Regular; src: url('../fonts/Roboto-Regular.ttf');
+}
+@font-face
+{
+  font-family: Roboto-Bold; font-weight:800; src: url('../fonts/Roboto-Bold.ttf');
+}
+html, body
+{
+  height: 100%;
+  margin: 0;
+}
+body 
+{
+  background: #f4f4f4;  
+  padding-bottom: 200px;
+}
+* 
+{
+  font-family: Roboto-Regular;
+}
+h1, h2, h3, h4, h5
+{
+  font-family: Roboto-Bold; margin:10px;
+}
+hr
+{
+  border: 1px solid #f5f5f5;
 }
 
-body {
-  margin: 0 0 100px;
-  background: #e2e1e0; /* For browsers that do not support gradients */
-  background-image: linear-gradient( 135deg, #8e9eab 10%, #eef2f3 100%);
-  background: -webkit-linear-gradient(left top, #8e9eab 10%, #eef2f3 100%); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(bottom right, #8e9eab 10%, #eef2f3 100%); /* For Opera 11.1 to 12.0 */  
+input[class*="toggle"] {
+   display: none;
 }
 
-* {font-family: Roboto-Regular;}
-h1, h2, h3, h4, h5 {font-family: Roboto-Bold; margin:10px;}
+input[class*="toggle"]:checked ~ .products { 
+    left: 0;
+}
 
-input[type="text"], input[type="number"] {
-  padding: 5px;
+input[class*="toggle"]:checked ~ .cart-details { 
+    display:block;
+    z-index: 5;
+    width: 100%;
+}
+
+.toggle-label {
+    z-index: 9999;
+    position: fixed;
+    top: 4px;
+    left: 12px;
+    background-color: transparent;    
+    color: #fff;    
+    -moz-transition: left 0.3s ease;
+    transition: left 0.3s ease;
+    padding: 0px;
+    font-size: 24px;
+}
+
+.toggle-label {
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .toggle-label 
+    {
+        display:none !important;
+    }
+}
+
+input[type="text"], input[type="number"]
+{
+  padding: 3px;
   border: none;
   border-bottom: solid 2px #c9c9c9;
   transition: border 0.3s;
-  width: 45%;
+  width: 60%;
   background: transparent;
-  color: #fff;
 }
 input[type="text"]:focus, input[type="text"].focus,
-input[type="number"]:focus, input[type="number"].focus {
+input[type="number"]:focus, input[type="number"].focus 
+{
   border-bottom: solid 2px #969696;
 }
-
-button {
-  width: 45%;
-  padding: 5px;
+button
+{
+  width: 100%;
+  padding: 3px;
   color: #fff;
   border: none;
   border-radius: 3px;
   cursor: pointer;
 }
-
-table {
-    border-collapse: collapse;
-    width: 100%;
+table
+{
+  border-collapse: collapse;
+  width: 100%;
 }
-
-th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+thead
+{
+  color: #fff;
+  background: #000;
+  text-align: left;
 }
-
-select {
+td
+{
+  font-size:14px;
+  padding: 3px;
+  border-bottom: 1px solid #e0e0e0;
+}
+tbody > tr:hover
+{
+  background: #e0e0e0;
+}
+select
+{
   padding: 10px;
   font-size: 15px;
   width: 100%;
   border: 2px solid black;
   background: #fff;
 }
-
-select::-ms-expand {
-    display: none;
+select::-ms-expand
+{
+  display: none;
 }
-
-article {
-  width: 45%;
+article
+{
+  width: 20%;
   margin-left: 10px;
   margin-top: 10px;
   float: left;
-  border:none;
+  border:1px solid #e0e0e0;
   background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  overflow: hidden;
 }
 
-footer {
-  color: #95a5a6;
-  background-color: #34495e;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 20px;
-  width: 100%;
-  overflow:hidden;
-  padding: 20px 20px;
-  font-size: 12px;
-  line-height: 15px;
-}
-
-.navbar {
-  padding: 2px 10px;
-  margin-bottom: 20px;
-  height: auto;
-  border:none;
+.navbar
+{
+  height: 40px;
   background: #000;
   color: #fff;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}
-
-#display-cash {
-  padding: 10px 15px 10px 15px;
-  border-radius: 50px;
-  color: #000;
-  font-family: Roboto-Regular !important;
-  background: #fff;
-}
-
-.container {
+  position: fixed;
   width: 100%;
-  margin: 0 auto;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
-
-.products {
-  width:50%;
-  float: left;
+#display-cash
+{
+    color: #fff;
+    font-size: 18px;
+    line-height: 35px;
+    height: 35px;
+    padding: 0 25px 0 25px;
+    margin: 2px 0 0 45px;
 }
-
-.cart-details {
-  width:40%;
-  float: left;
+.container
+{
+  width: 100%;
+  margin-top: 40px;
 }
-
-.product-img {
+.cart-details
+{
+  width: 25%;
+  position: fixed;
+  top: 40px;
+  left: 0;
+  bottom: 0;
+  border-right: 1px solid #e0e0e0;
+  background-color: #fff;
+  -moz-transition: left 0.3s ease;
+  transition: left 0.3s ease;
+}
+.products
+{
+  width: 75%;
+  height: auto;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  bottom: 0;
+  left: 25%;
+  -moz-transition: left 0.3s ease;
+  transition: left 0.3s ease;
+}
+.product-img
+{
   width:100%;  
-  border-bottom: 2px inset #c9c9c9;
+  border-bottom: 1px solid #e8e8e8;
   box-sizing: border-box;
 }
-
-.product-img img {
+.product-img img
+{
   width: 100%;
   box-sizing: border-box;
 }
-
-.price-tag {
+.price-tag
+{
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
   border:none;
-  color: #fff;
-  background: #000;
-}
-
-@media only screen and (max-width: 768px) {
-    [class*="products"] {
-        width: 95%;
-    }
-
-    [class*="cart-details"] {
-        width: 95%;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    article {
-        width: 95%;
-    }
-    #title {
-      display: none;
-    }
-    [class*="cart-details"] {
-        width: 95%;
-    }
-}
-.add-btn {
-  background-color: #ecf0f1;
-  box-shadow: 0 3px #bdc3c7;
   color: #000;
+  font-size: 0.8em;
+}
+@media only screen and (max-width: 768px)
+{
+  [class*="products"]
+  {
+    width: 95%;
+    left: 0;
+  }
+  [class*="cart-details"]
+  {
+   display: none;
+  }  
+  article
+  {
+    width: 25%;
+  }
+}
+@media screen and (max-width: 480px)
+{
+  article
+  {
+    width: 45%;
+  }  
 }
 
+@media screen and (max-width: 580px)
+{
+  .copyright
+  {
+    display: none;
+  } 
+}
+.add-btn
+{
+  background-color:dodgerblue;
+  box-shadow: 0 3px #0358a2;
+  color: #fff;
+  width: 30px;
+}
 .add-btn:hover,
 .add-btn.hover,
 .add-btn:active,
-.add-btn.active {
-  background-color: #bdc3c7;
+.add-btn.active
+{
+  background-color: #0099ff;
 }
-
 .add-btn:active,
-.add-btn.active {  
-  box-shadow: 0 3px #bdc3c7;
+.add-btn.active
+{
+  box-shadow: 0 3px #0358a2;
   transform: translateY(1px);
 }
-
-.remove-btn {
+.remove-btn
+{
   background-color: #e74c3c;
-  box-shadow: 0 3px #c0392b;
+  padding: 1px !important;
 }
-
 .remove-btn:hover,
 .remove-btn.hover,
 .remove-btn:active,
-.remove-btn.active {
+.remove-btn.active
+{
   background-color: #fc8e83;
 }
-
 .remove-btn:active,
-.remove-btn.active {  
-  box-shadow: 0 3px #c0392b;
+.remove-btn.active
+{
   transform: translateY(1px);
 }
-
-.pay-btn {
-  background-color: #95a5a6;
-  box-shadow: 0 3px #7f8c8d;
+.pay-btn
+{
+  background-color: dodgerblue;  
   width: 100%;
   text-transform: uppercase;
   letter-spacing: 1px;
   line-height: 25px;
 }
-
 .pay-btn:hover,
 .pay-btn.hover,
 .pay-btn:active,
-.pay-btn.active {
-  background-color: #bdc3c7;
+.pay-btn.active
+{
+  background-color: #0099ff;
 }
-
 .pay-btn:active,
-.pay-btn.active {  
-  box-shadow: 0 3px #7f8c8d;
+.pay-btn.active
+{  
   transform: translateY(1px);
 }
-.details-table {
-  padding: 5px;
+.details-table
+{
+  border: 1px solid;
+  height: 200px;
+  margin: 10px 20px 0px 20px;
+  overflow: auto;
 }
-
-.shipping {
-  width: 50%;
+.badge
+{
+  padding: 4px;
+  font-size: 13px;
+  background: yellow;
+  font-weight: normal;
   margin: 0 auto;
+    
 }
-
-.stars {
+.shipping
+{
+  margin: 10px 20px 0px 20px;
+}
+.stars
+{
   unicode-bidi: bidi-override;
   direction: rtl;
   width: 8em;
 }
-
-.stars input {
+.stars input
+{
   position: absolute;
   left: -999999px;
 }
-
-.stars label {
+.stars label
+{
   display: inline-block;
   font-size: 0;
 }
-
-.stars > label:before {
+.stars > label:before
+{
   position: relative;
-  font: 24px/1 FontAwesome;
+  font: 18px/1 FontAwesome;
   display: block;
   content: "\f005";
   color: #ccc;
@@ -257,11 +338,11 @@ footer {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 .stars > label:hover:before,
 .stars > label:hover ~ label:before,
 .stars > label.selected:before,
-.stars > label.selected ~ label:before {
+.stars > label.selected ~ label:before
+{
   cursor: pointer;
   color: #f0ad4e;
   background: -webkit-linear-gradient(-45deg, #FFE985 0%, #FA742B 100%);
