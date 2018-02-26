@@ -1,3 +1,5 @@
+Live demo: http://shoppingcart.zz.com.ve/
+
 Worked with OOP, AJAX, PHP SESSIONS 
 
 Preview:
