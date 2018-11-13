@@ -22,7 +22,7 @@ Database
   id, name, price, raiting
 > Rating
   id, product_id, rating_values, session_id
-> Chart details
+> Cart details
   product_id, product_name, quantity, product_price, total
 
 
