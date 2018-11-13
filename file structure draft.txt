@@ -1,0 +1,30 @@
+shoppingcart
+|_ app
+|  |_ controller/
+|  |_ model/
+|  |_ view/
+|  |_ Router.php
+|_ config
+|  |_ constants.php
+|  |_ Controller.php
+|  |_ Database.php
+|  |_ helpers.php
+|_ public
+|  |_ css/
+|  |_ img/
+|  |_ js/
+|  |_ index.php
+|  |_ .htaccess
+|_ .htaccess
+
+Database
+> Product
+  id, name, price, raiting
+> Rating
+  id, product_id, rating_values, session_id
+> Chart details
+  product_id, product_name, quantity, product_price, total
+
+
+
+
