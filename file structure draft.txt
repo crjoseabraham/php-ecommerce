@@ -25,6 +25,10 @@ Database
 > Cart details
   product_id, product_name, quantity, product_price, total
 
+Router
+1. Get URL
+2. Split to get controller and action
+3. Do stuff
 
 
 
