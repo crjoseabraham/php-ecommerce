@@ -1,8 +1,11 @@
 <?php 
 /**
- * 
+ *  Cart Class Controller
+ *	Performs all actions refered to the cart: show list, add to cart,
+ *	delete from cart and process payment
  */
-class Product
+
+class Cart extends Controller
 {
 	
 	public function __construct()
