@@ -1,0 +1,36 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-family: sans-serif;
+	font-size: 62.5%;
+}
+
+
+.products-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.product-card {
+	font-size: 2rem;
+	max-width: 25rem;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+	padding: 1.5rem;
+	margin: 1rem;
+}
+
+.product-card__img {
+	max-width: 20rem;
+	height: auto;
+}
+
+.product-card__product-details {
+	display: flex;
+	justify-content: space-between;
+}
