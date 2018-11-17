@@ -17,7 +17,9 @@
 			<p class="product-card__product-name"> <?= $item['description']; ?> </p>
 			<span class="product-card__product-price"> $<?= $item['price']; ?> </span>
 		</div>
-		<form action="" class="product-card__form">
+		<form action="cart/add" class="product-card__form" method="post">
+			<input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
+			<input type="hidden" name="product_price" value="<?= $item['price']; ?>">
 			<input type="number" class="product-card__quantity" name="quantity">
 			<button type="submit"> Add </button>
 		</form>
