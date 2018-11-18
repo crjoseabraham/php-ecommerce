@@ -18,7 +18,7 @@ abstract class Controller
 	/**
 	* Load a view
 	*/
-	public function loadView ($view, $data = [])
+	public function loadView ($view, $data = []) : void
 	{
 		# Check if view file exists
 		if (file_exists(APPROOT . '\\app\\views\\' . $view . '.php')) 

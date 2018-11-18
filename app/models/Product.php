@@ -13,7 +13,11 @@ class Product
 		$this->db = new Database;
 	}
 
-	public function getItems()
+	/**
+	* Select all items from 'product' table
+	* @return array 
+	*/
+	public function getItems() : array
 	{
 		$this->db->query("SELECT * FROM product");
 		return $this->db->resultSet();

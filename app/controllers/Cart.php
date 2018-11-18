@@ -12,7 +12,10 @@ class Cart extends Controller
 		$this->cartModel = $this->createModel('CartActions');
 	}
 
-	public function add()
+	/**
+	*	Sanitize $_POST data before sending it to the model
+	*/
+	public function add() : void
 	{
 		if (isset($_POST)) {
 			$subtotal = $_POST['quantity'] * $_POST['product_price'];

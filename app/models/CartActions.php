@@ -12,7 +12,13 @@ class CartActions
 		$this->db = new Database;
 	}
 
-	public function addItem($id, $quantity, $subtotal)
+	/**
+	 *  Insert item into database's table 'cart_details'
+	 * 	@param int 	Product ID
+	 * 	@param int 	Quantity to add
+	 *	@param float 	Quantity * Product's price
+	 */
+	public function addItem(int $id, int $quantity, float $subtotal) : bool
 	{
 		$this->db->query("INSERT INTO cart_details VALUES (:id, :q, :subt)");
 		$this->db->bind(':id', $id);

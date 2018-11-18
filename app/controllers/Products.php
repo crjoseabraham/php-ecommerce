@@ -11,7 +11,10 @@ class Products extends Controller
 		$this->productModel = $this->createModel('Product');
 	}
 
-	public function home()
+	/**
+	 *  Load index view
+	 */
+	public function home() : void
 	{
 		$items = $this->productModel->getItems();
 		$this->loadView('index', $items);
