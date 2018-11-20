@@ -14,16 +14,14 @@ class CartActions
 
 	/**
 	 *  Insert item into database's table 'cart_details'
-	 * 	@param int 	Product ID
-	 * 	@param int 	Quantity to add
-	 *	@param float 	Quantity * Product's price
+	 * 	@param array 	Product ID, Quantity to add, Subtotal
 	 */
-	public function addItem(int $id, int $quantity, float $subtotal) : bool
+	public function addItem(array $data) : bool
 	{
 		$this->db->query("INSERT INTO cart_details VALUES (:id, :q, :subt)");
-		$this->db->bind(':id', $id);
-		$this->db->bind(':q', $quantity);
-		$this->db->bind(':subt', $subtotal);
+		$this->db->bind(':id', $data['id']);
+		$this->db->bind(':q', $data['quantity']);
+		$this->db->bind(':subt', $data['subtotal']);
 		if ($this->db->execute()) {
 			return true;
 		} else {
