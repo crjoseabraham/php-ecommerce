@@ -13,6 +13,10 @@ class Cart extends Controller
 		$this->productModel = $this->createModel('Product');
 	}
 
+	public function __call($name, $arguments) {
+		header('Location: ' . URLROOT);
+	}
+
 	/**
 	*	Sanitize $_POST data before sending it to the model
 	*/
@@ -32,6 +36,7 @@ class Cart extends Controller
 				$data = $this->setErrorMessage("Invalid value");
 				$this->loadView('index', $data);
 			}
+			
 			// If insertion was susccessful
 			if ($this->cartModel->addItem($data))
 				header('Location: ' . URLROOT);

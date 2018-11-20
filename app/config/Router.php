@@ -22,7 +22,7 @@ class Router
       $this->controller = ucwords($uri[0]);
       unset($uri[0]);
     } else {
-    // If not then make controller to redirect to index.php
+    // If not then redirect to home
       $this->controller = 'Products';
     }
 
@@ -31,14 +31,11 @@ class Router
     // Create new instance of class
     $this->controller = new $this->controller;
 
-    // CHECK IF METHOD WAS PASSED AND IF IT EXISTS
+    // CHECK IF METHOD WAS PASSED AND EXISTS IN CLASS
 		if (isset($uri[1]) && method_exists($this->controller, $uri[1])) {
       $this->action = $uri[1];
       unset($uri[1]);
     } else {
-    # --- [ NOTE ]: THIS IS ONLY FOR A VERY SMALL PROJECT LIKE THIS
-    # SINCE ALL THE POSSIBLE URLs FOR THIS PROJECT ARE "{controller}/{method}"
-    # IF YOU WRITE ONLY "{controller}/" IT WILL REDIRECT TO HOMEPAGE
       $this->action = 'home';
     }
 
