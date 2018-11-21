@@ -32,16 +32,19 @@ class Cart extends Controller
 
 			// Check that post quantity is integer
 			$pattern = '/^\d[^\.]*$/';
-			if (!preg_match_all($pattern, $_POST['quantity'])) {
+			if (!preg_match_all($pattern, $data['quantity'])) {
 				$data = $this->setErrorMessage("Invalid value");
 				$this->loadView('index', $data);
 			}
 			
-			// If insertion was susccessful
-			if ($this->cartModel->addItem($data))
-				header('Location: ' . URLROOT);
-			else 
-				die("Something went wrong");
+			// If value > 0 insert
+			if ($_POST['quantity'] > 0) {
+				if ($this->cartModel->addItem($data))
+					header('Location: ' . URLROOT);
+				else 
+					die("Something went wrong");
+			}
+			
 		} else {
 			// If quantity = '', redirects to homepage adding error message
 			$data = $this->setErrorMessage("This field is required");
