@@ -28,4 +28,10 @@ class CartActions
 			return false;
 		}
 	}
+
+	public function getCart() : array
+	{
+		$this->db->query("SELECT * FROM cart_details");
+		return $this->db->resultSet();
+	}
 }

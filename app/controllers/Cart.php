@@ -71,4 +71,10 @@ class Cart extends Controller
 		}
 		return $data;
 	}
+
+	public function showCart()
+	{
+		$cartItems = $this->cartModel->getCart();
+		$this->loadView('cart', $cartItems);
+	}
 }
