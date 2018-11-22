@@ -12,6 +12,12 @@ class CartActions
 		$this->db = new Database;
 	}
 
+	public function getCart() : array
+	{
+		$this->db->query("SELECT * FROM cart_details");
+		return $this->db->resultSet();
+	}
+
 	/**
 	 *  Insert item into database's table 'cart_details'
 	 * 	@param array 	Product ID, Quantity to add, Subtotal
@@ -45,11 +51,5 @@ class CartActions
 		} else {
 			return false;
 		}
-	}
-
-	public function getCart() : array
-	{
-		$this->db->query("SELECT * FROM cart_details");
-		return $this->db->resultSet();
 	}
 }

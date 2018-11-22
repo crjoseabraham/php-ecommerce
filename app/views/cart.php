@@ -1,3 +1,4 @@
+<?php $total = 0; ?>
 <table>
 	<thead>
 		<th>ID</th>
@@ -8,6 +9,7 @@
 
 	<tbody>
 	<?php foreach ($cartItems as $item) : ?>
+		<?php $total += $item['subtotal']; ?>
 		<tr>
 			<td> <?= $item['cart_product_id']; ?> </td>
 			<td> 
@@ -23,3 +25,5 @@
 	<?php endforeach; ?>
 	</tbody>
 </table>
+<br><br>
+<?= $total; ?>

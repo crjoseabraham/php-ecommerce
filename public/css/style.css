@@ -42,6 +42,10 @@ html {
 	height: auto;
 }
 
+input[type=number] {
+	width: 75%;
+}
+
 .product-card__product-details {
 	display: flex;
 	justify-content: space-between;
