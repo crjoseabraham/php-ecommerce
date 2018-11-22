@@ -11,14 +11,12 @@ class Products extends Controller
 		$this->productModel = $this->createModel('Product');
 		$this->cartModel = $this->createModel('CartActions');
 	}
-
+	
 	/**
 	 *  Load index view
 	 */
 	public function home() : void
 	{
-		$products = $this->productModel->getItems();
-		$cartItems = $this->cartModel->getCart();
-		$this->loadView('index', $products, $cartItems);
+		$this->loadView('index', $this->productModel->getItems(), $this->cartModel->getCart());
 	}
 }

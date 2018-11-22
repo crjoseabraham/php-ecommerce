@@ -9,8 +9,8 @@ class Cart extends Controller
 	
 	public function __construct()
 	{
-		$this->cartModel = $this->createModel('CartActions');
 		$this->productModel = $this->createModel('Product');
+ 		$this->cartModel = $this->createModel('CartActions');
 	}
 
 	public function __call($name, $arguments) {
@@ -18,6 +18,7 @@ class Cart extends Controller
 	}
 
 	/**
+	* Add item to cart
 	*	Sanitize $_POST data before sending it to the model
 	*/
 	public function add() : void
@@ -34,7 +35,7 @@ class Cart extends Controller
 			$pattern = '/^\d[^\.]*$/';
 			if (!preg_match_all($pattern, $data['quantity'])) {
 				$data = $this->setErrorMessage("Invalid value");
-				$this->loadView('index', $data);
+				$this->loadView('index', $data, $this->cartModel->getCart());
 			}
 			
 			// If value > 0 insert
@@ -44,11 +45,9 @@ class Cart extends Controller
 				else 
 					die("Something went wrong");
 			}
-			
 		} else {
-			// If quantity = '', redirects to homepage adding error message
-			$data = $this->setErrorMessage("This field is required");
-			$this->loadView('index', $data);
+			// If quantity = '', redirects to homepage
+			header('Location: ' . URLROOT);
 		}
 	}
 
@@ -58,6 +57,7 @@ class Cart extends Controller
 	}
 
 	/**
+	* Set Error Message
 	* Get all items, find the one where the error message should be, and set the message
 	* @param string 	Message to show
 	* @return array 	Data with error message
@@ -70,11 +70,5 @@ class Cart extends Controller
 				$item['quantity_err'] = "*$message";
 		}
 		return $data;
-	}
-
-	public function showCart()
-	{
-		$cartItems = $this->cartModel->getCart();
-		$this->loadView('cart', $cartItems);
 	}
 }
