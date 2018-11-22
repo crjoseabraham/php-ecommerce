@@ -20,6 +20,7 @@ class Cart extends Controller
 	/**
 	* Add item to cart
 	*	Sanitize $_POST data before sending it to the model
+	* @return void
 	*/
 	public function add() : void
 	{
@@ -51,9 +52,20 @@ class Cart extends Controller
 		}
 	}
 
-	public function delete(array $params)
+	/**
+	* Delete item from cart
+	* @return void
+	*/ 
+	public function delete() : void
 	{
-		echo "Delete";
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			if ($this->cartModel->deleteItem($_POST['product_id'])) 
+				header('Location: ' . URLROOT);
+			else
+				echo "Something went wrong";
+		} else {
+			echo "GET";
+		}
 	}
 
 	/**
