@@ -18,6 +18,24 @@ class CartActions
 	 */
 	public function addItem(array $data) : bool
 	{
+		// First check if the item is already in the cart
+		$cartItems = $this->getCart();
+		foreach ($cartItems as $item) {
+			// If so, then replace database data with $data
+			if ($item['cart_product_id'] === $data['id']) {
+				$this->db->query("UPDATE cart_details SET quantity = :q, subtotal = :subt WHERE cart_product_id = :id");
+				$this->db->bind(':q', $data['quantity']);
+				$this->db->bind(':subt', $data['subtotal']);
+				$this->db->bind(':id', $data['id']);
+				if ($this->db->execute()) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+
+		// Otherwise, add new record to cart table
 		$this->db->query("INSERT INTO cart_details VALUES (:id, :q, :subt)");
 		$this->db->bind(':id', $data['id']);
 		$this->db->bind(':q', $data['quantity']);
