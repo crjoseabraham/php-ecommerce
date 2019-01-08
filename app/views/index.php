@@ -40,4 +40,3 @@
 	</div> <!-- Container -->
 </body>
 </html>
-*/
