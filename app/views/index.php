@@ -37,10 +37,10 @@
 				<form action="<?= URLROOT; ?>/rate" class="product-card__rating" method="post">
 					<input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
 					<input type="submit" name="rating_value" value="5" class="product-card__star"/>
-          <input type="submit" name="rating_value" value="4" class="product-card__star"/>
-         	<input type="submit" name="rating_value" value="3" class="product-card__star"/>
-          <input type="submit" name="rating_value" value="2" class="product-card__star"/>
-          <input type="submit" name="rating_value" value="1" class="product-card__star"/>
+					<input type="submit" name="rating_value" value="4" class="product-card__star"/>
+					<input type="submit" name="rating_value" value="3" class="product-card__star"/>
+					<input type="submit" name="rating_value" value="2" class="product-card__star"/>
+					<input type="submit" name="rating_value" value="1" class="product-card__star"/>
 				</form>
 				<p class="product-card__rating"> Rating: <?= $product['rating']; ?> </p>
 			</div>
