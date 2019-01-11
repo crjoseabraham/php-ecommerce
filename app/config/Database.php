@@ -94,4 +94,13 @@ class Database
     $this->execute();  
     return $this->statement->fetchAll(PDO::FETCH_ASSOC);  
   }
+
+  /**
+   * Fetch a single value.
+   */
+  public function resultSingleValue() 
+  {  
+    $this->execute();  
+    return $this->statement->fetchColumn();  
+  }
 }
