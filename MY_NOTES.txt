@@ -24,6 +24,10 @@ Database
   id, product_id, rating_values, session_id
 > Cart details
   product_id, product_name, quantity, product_price, total
+> Receipt
+	receipt_code, user_id, shipping_costs, total_amount, date_time
+> Receipt details
+	id, receipt_code, receipt_product_id, quantity
 
 Router
 1. Get URL
