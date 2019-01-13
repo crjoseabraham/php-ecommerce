@@ -47,5 +47,7 @@
 			<?php endforeach; ?>
 		</div> <!-- Products Container -->
 	</div> <!-- Container -->
+
+<script src="<?= URLROOT; ?>/js/app.js"></script>
 </body>
 </html>
