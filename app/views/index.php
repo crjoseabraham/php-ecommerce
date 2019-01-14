@@ -6,7 +6,8 @@
 	<link rel="stylesheet" href="<?= URLROOT; ?>/css/style.css">
 </head>
 <body>
-	<h1> Home Page </h1>
+	<h1> Home Page </h1> <br>
+	<big>Current Money: <?= $_SESSION['cash']; ?></big>
 	<hr>
 	<div class="container">
 		<div class="cart-container">

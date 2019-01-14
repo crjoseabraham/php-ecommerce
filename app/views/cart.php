@@ -35,13 +35,14 @@
 	</table>
 	<hr>
 	<b>Select transport type:</b>
-	<select name="transport-type" id="transport-type">
-		<option value="0"> Pick up </option>
-		<option value="4"> UPS (+4$)</option>
-	</select>
+	<form action="<?= URLROOT; ?>/payment/process" method="post">
+		<select name="transport-type" id="transport-type">
+			<option value="0"> Pick up </option>
+			<option value="4"> UPS (+4$)</option>
+		</select>
 
-</div>
-
-<div class="cart__amount">
-	<b> Total: </b> $<span id="cart__total"><?= $total; ?></span>
+		<div class="cart__amount">
+		<b> Total: </b> $<span id="cart__total"><?= $total; ?></span>
+		</div>
+	</form>
 </div>
