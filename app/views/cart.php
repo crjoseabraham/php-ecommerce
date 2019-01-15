@@ -25,7 +25,7 @@
 				<td> $<?= $item['subtotal']; ?> </td>
 				<td>
 					<form action="<?= URLROOT; ?>/cart/delete" method="post">
-						<input type="hidden" name="product_id" value="<?= $item['cart_product_id']; ?>">
+						<input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
 						<button type="submit"> Remove </button>
 					</form>
 				</td>

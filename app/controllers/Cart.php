@@ -59,7 +59,7 @@ class Cart extends Controller
 	public function delete() : void
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			if ($this->cartModel->deleteItem($_POST['product_id'])) 
+			if ($this->cartModel->deleteItem(intval($_POST['product_id']))) 
 				header('Location: ' . URLROOT);
 			else
 				echo "Something went wrong";
