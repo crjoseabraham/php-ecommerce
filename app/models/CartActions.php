@@ -18,7 +18,7 @@ class CartActions
 	*/ 
 	public function getCart() : array
 	{
-		$this->db->query("SELECT * FROM cart_details");
+		$this->db->query("SELECT * FROM cart_items");
 		return $this->db->resultSet();
 	}
 
@@ -33,7 +33,8 @@ class CartActions
 			return true;		
 
 		// Otherwise, add new record to cart table
-		$this->db->query("INSERT INTO cart_details VALUES (:id, :q, :subt)");
+		$this->db->query("INSERT INTO cart_items VALUES (null, :cart, :id, :q, :subt)");
+		$this->db->bind(':cart', $data['cart']);
 		$this->db->bind(':id', $data['id']);
 		$this->db->bind(':q', $data['quantity']);
 		$this->db->bind(':subt', $data['subtotal']);
@@ -57,7 +58,7 @@ class CartActions
 		foreach ($cartItems as $item) {
 			// If exists, then replace database data with $data
 			if ($item['cart_product_id'] === $data['id']) {
-				$this->db->query("UPDATE cart_details SET quantity = :q, subtotal = :subt WHERE cart_product_id = :id");
+				$this->db->query("UPDATE cart_items SET quantity = :q, subtotal = :subt WHERE product_id = :id");
 				$this->db->bind(':q', $data['quantity']);
 				$this->db->bind(':subt', $data['subtotal']);
 				$this->db->bind(':id', $data['id']);
@@ -78,7 +79,7 @@ class CartActions
 	*/ 
 	public function deleteItem(int $product_id) : bool
 	{
-		$this->db->query("DELETE FROM cart_details WHERE cart_product_id = :id");
+		$this->db->query("DELETE FROM cart_items WHERE product_id = :id");
 		$this->db->bind(':id', $product_id);
 		if ($this->db->execute()) {
 			return true;
