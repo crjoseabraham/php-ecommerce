@@ -17,13 +17,18 @@ class Router
     $uri = explode('/', $uri);
     array_shift($uri);
 
-    // CHECK IF CONTROLLER EXISTS
+    // Check if controller exists
     if (isset($uri[0]) && file_exists('../app/controllers/' . ucwords($uri[0]) . '.php')) {
       $this->controller = ucwords($uri[0]);
       unset($uri[0]);
     } else {
-    // If not then redirect to home
-      $this->controller = 'Products';
+      // If not then redirect to homepage, if user is already there then just load the index view
+      if (empty($uri)) {
+        require_once "../app/views/index.php";
+      } else {
+        header("Location: " . URLROOT);
+      }
+      exit();
     }
 
     // Require controller class file
@@ -31,7 +36,7 @@ class Router
     // Create new instance of class
     $this->controller = new $this->controller;
 
-    // CHECK IF METHOD WAS PASSED AND EXISTS IN CLASS
+    // Check if method passed and actually exists
 		if (isset($uri[1]) && method_exists($this->controller, $uri[1])) {
       $this->action = $uri[1];
       unset($uri[1]);

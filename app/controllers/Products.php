@@ -17,6 +17,6 @@ class Products extends Controller
 	 */
 	public function home() : void
 	{
-		$this->loadView('index', $this->productModel->getItems(), $this->cartModel->getCart());
+		$this->loadView('dashboard', $this->productModel->getItems(), $this->cartModel->getCart());
 	}
 }
