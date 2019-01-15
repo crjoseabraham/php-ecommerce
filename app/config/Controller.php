@@ -9,7 +9,7 @@ abstract class Controller
 	/**
 	* Load a model and return an instance of it
 	*/
-	public function createModel ($model)
+	public function createModel (string $model)
 	{
 		require_once APPROOT . '\\app\\models\\' . $model . '.php';
 		return new $model;
@@ -18,7 +18,7 @@ abstract class Controller
 	/**
 	* Load a view
 	*/
-	public function loadView ($view, $products, $cartItems) : void
+	public function loadView (string $view, array $data = []) : void
 	{
 		# Check if view file exists
 		if (file_exists(APPROOT . '\\app\\views\\' . $view . '.php')) 

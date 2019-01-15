@@ -15,7 +15,7 @@
 		</div> <!-- Cart Container -->
 
 		<div class="products-container">
-			<?php foreach ($products as $product) : ?>
+			<?php foreach ($data[0] as $product) : ?>
 			<div class="product-card">
 				<img src="<?= URLROOT . '/' .$product['picture']; ?>" alt="<?= $product['description']; ?>" class="product-card__img">
 				<hr>

@@ -10,13 +10,13 @@
 		</thead>
 
 		<tbody>
-		<?php foreach ($cartItems as $item) : ?>
+		<?php foreach ($data[1] as $item) : ?>
 			<?php $total += $item['subtotal']; ?>
 			<tr>
-				<td> <?= $item['cart_product_id']; ?> </td>
+				<td> <?= $item['product_id']; ?> </td>
 				<td> 
-					<?php	foreach ($products as $product) : ?>
-						<?php if ($product['product_id'] == $item['cart_product_id']) : ?>
+					<?php	foreach ($data[0] as $product) : ?>
+						<?php if ($product['product_id'] == $item['product_id']) : ?>
 							<?= $product['description']; ?>
 						<?php endif; ?>
 					<?php endforeach;	?>
