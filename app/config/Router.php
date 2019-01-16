@@ -41,11 +41,17 @@ class Router
       $this->action = $uri[1];
       unset($uri[1]);
     } else {
-      $this->action = 'home';
+      require_once "../app/views/404.php";
+      exit();
     }
 
     // Get parameters (if passed)
+    // TEMPORAL VALIDATION METHOD -- I'm no receiving params[] yet
     $this->params = $uri ? array_values($uri) : [];
+    if (!empty($this->params)) {
+      require_once "../app/views/404.php";
+      exit();
+    }
 
     // Finally, call the desired method :)
 		call_user_func_array([$this->controller, $this->action], [$this->params]);
