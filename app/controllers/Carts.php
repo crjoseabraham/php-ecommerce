@@ -10,7 +10,7 @@ class Cart extends Controller
 	public function __construct()
 	{
 		$this->productModel = $this->createModel('Product');
- 		$this->cartModel = $this->createModel('CartActions');
+ 		$this->cartModel = $this->createModel('Cart');
 	}
 
 	public function __call($name, $arguments) {
@@ -32,19 +32,19 @@ class Cart extends Controller
 				"subtotal" => ($_POST['quantity'] * $_POST['price'])
 			];
 
-			// Check that post quantity is integer
-			$pattern = '/^\d[^\.]*$/';
-			if (!preg_match_all($pattern, $data['quantity'])) {
-				$data = $this->setErrorMessage("Invalid value");
-				$this->loadView('index', $data, $this->cartModel->getCart());
-			}
-			
-			// If value > 0 insert
+			// If value > 0
 			if ($_POST['quantity'] > 0) {
 				if ($this->cartModel->addItem($data))
 					header('Location: ' . URLROOT);
 				else 
 					die("Something went wrong");
+			}
+
+			// Check that post quantity is integer
+			$pattern = '/^\d[^\.]*$/';
+			if (!preg_match_all($pattern, $data['quantity'])) {
+				$data = $this->setErrorMessage("Invalid value");
+				$this->loadView('index', $data, $this->cartModel->getCart());
 			}
 		} else {
 			// If quantity = '', redirects to homepage

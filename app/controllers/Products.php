@@ -9,7 +9,7 @@ class Products extends Controller
 	public function __construct()
 	{
 		$this->productModel = $this->createModel('Product');
-		$this->cartModel = $this->createModel('CartActions');
+		$this->cartModel = $this->createModel('Cart');
 	}
 
 	public function getItems() : array
@@ -29,6 +29,7 @@ class Products extends Controller
 	 */
 	public function home() : void
 	{
+		session_start();
 		$this->loadView('dashboard', [$this->getItems(), $this->getCart()]);
 	}
 }

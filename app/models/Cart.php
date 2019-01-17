@@ -1,9 +1,9 @@
 <?php 
 /**
- * Cart Actions Model Class
+ * Cart Model Class
  * Performs all requests to the database respect to what's in the shopping cart
  */
-class CartActions
+class Cart
 {
 	private $db;
 	

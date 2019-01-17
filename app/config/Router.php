@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Router class
  * Gets URL and redirects to a view
@@ -22,38 +22,25 @@ class Router
       $this->controller = ucwords($uri[0]);
       unset($uri[0]);
     } else {
-      // If not then redirect to homepage, if user is already there then just load the index view
-      if (empty($uri)) {
-        require_once "../app/views/index.php";
-      } else {
-        header("Location: " . URLROOT);
-      }
-      exit();
+      $this->controller = 'Index';
     }
 
     // Require controller class file
     require_once "../app/controllers/{$this->controller}.php";
-    // Create new instance of class
     $this->controller = new $this->controller;
 
-    // Check if method passed and actually exists
-		if (isset($uri[1]) && method_exists($this->controller, $uri[1])) {
+    // Check method
+    if (isset($uri[1]) && method_exists($this->controller, $uri[1]))
       $this->action = $uri[1];
-      unset($uri[1]);
-    } else {
-      require_once "../app/views/404.php";
-      exit();
-    }
+    else
+      $this->action = 'verify'; 
+
+    unset($uri[1]);
 
     // Get parameters (if passed)
-    // TEMPORAL VALIDATION METHOD -- I'm no receiving params[] yet
-    $this->params = $uri ? array_values($uri) : [];
-    if (!empty($this->params)) {
-      require_once "../app/views/404.php";
-      exit();
-    }
+    // Original $this->params = $uri ? array_values($uri) : [];
 
-    // Finally, call the desired method :)
+    // Call the desired method
 		call_user_func_array([$this->controller, $this->action], [$this->params]);
 	}
 

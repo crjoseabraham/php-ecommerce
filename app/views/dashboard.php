@@ -1,3 +1,7 @@
+<?php 
+	echo !isset($_SESSION) ? "No session started" : "There's a session running <br> ID: " . session_id();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +28,7 @@
 					<span class="product-card__product-price"> $<?= $product['price']; ?> </span>
 				</div>
 				
-				<form action="<?= URLROOT; ?>/cart/add" class="product-card__form" method="post">
+				<form action="<?= URLROOT; ?>/carts/add" class="product-card__form" method="post">
 					<input type="hidden" name="price" value="<?= $product['price']; ?>">
 					<input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
 					<input type="number" name="quantity">
@@ -35,7 +39,7 @@
 					</span>
 				</form>
 
-				<form action="<?= URLROOT; ?>/rate" class="product-card__rating" method="post">
+				<form action="<?= URLROOT; ?>/ratings" class="product-card__rating" method="post">
 					<input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
 					<input type="submit" name="rating_value" value="5" class="product-card__star"/>
 					<input type="submit" name="rating_value" value="4" class="product-card__star"/>
