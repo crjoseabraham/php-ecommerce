@@ -1,5 +1,6 @@
 <?php 
-	echo !isset($_SESSION) ? "No session started" : "There's a session running <br> ID: " . session_id();
+	echo !isset($_SESSION) ? "No session started" : "There's a session running <br> ID: " . session_id() . "<br>";
+	echo "CASH: " . $_SESSION["user_id"];
 ?>
 
 <!DOCTYPE html>

@@ -21,27 +21,31 @@ class Router
     if (isset($uri[0]) && file_exists('../app/controllers/' . ucwords($uri[0]) . '.php')) {
       $this->controller = ucwords($uri[0]);
       unset($uri[0]);
+
+      // Require controller class file
+      require_once "../app/controllers/{$this->controller}.php";
+      $this->controller = new $this->controller;
+
+      // Check method
+      if (isset($uri[1]) && method_exists($this->controller, $uri[1])) {
+        $this->action = $uri[1];
+        unset($uri[1]);
+      } else {
+        echo "Page not found.";
+        exit();
+      }
+
+      // Get parameters (if passed). $this->params = $uri ? array_values($uri) : [];
+
+      // Call the desired method
+      call_user_func_array([$this->controller, $this->action], [$this->params]);
     } else {
-      $this->controller = 'Index';
+      if (isset($_SESSION))
+        session_destroy();
+
+      require_once APPROOT . '\\app\\views\\index.php';
+      exit();
     }
-
-    // Require controller class file
-    require_once "../app/controllers/{$this->controller}.php";
-    $this->controller = new $this->controller;
-
-    // Check method
-    if (isset($uri[1]) && method_exists($this->controller, $uri[1]))
-      $this->action = $uri[1];
-    else
-      $this->action = 'verify'; 
-
-    unset($uri[1]);
-
-    // Get parameters (if passed)
-    // Original $this->params = $uri ? array_values($uri) : [];
-
-    // Call the desired method
-		call_user_func_array([$this->controller, $this->action], [$this->params]);
 	}
 
 	/**

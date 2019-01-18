@@ -6,32 +6,51 @@
 */
 class Sessions extends Controller
 {
-	private $cash = 100;
+	private $cash;
 	
 	public function __construct()
 	{
-		$this->user = $_POST['login_email'];
-		$this->pass = $_POST['login_password'];
 		$this->sessionModel = $this->createModel('Session');
 	}
 
-	public function login() : bool
+	public function login()
 	{
-		$verifiedUser = $this->sessionModel->verify($this->user, $this->pass);
+		$user = $_POST["login_email"];
+		$pass = $_POST["login_password"];
+
+		$verifiedUser = $this->sessionModel->verify($user, $pass);
+
 		if (count($verifiedUser)) {
+			var_dump($verifiedUser);
 			session_start();
-			echo session_id();
-			return true;
+			$_SESSION["user_id"] = $verifiedUser[0]["id"];
+			$_SESSION["is_logged_in"] = true;
+			$_SESSION["session_start_time"] = time();
+			$_SESSION["cash"] = 100;
+
+			if ($this->sessionModel->registerSession($verifiedUser[0]["id"], session_id(), $_SESSION["session_start_time"])) {
+				echo "true";
+				header('Location: ' . URLROOT . '/products/home');
+			} else {
+				echo "false";
+			}
 		} else {
 			//Load view with error messsage
 			echo "Error";
 		}
-		return false;
 	}
 
 	public function home()
 	{
-		session_start();
 		$this->loadView('dashboard');
+	}
+
+	public function isUserLoggedIn() 
+	{
+		if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_logged_in'])) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
