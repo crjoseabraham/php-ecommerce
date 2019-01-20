@@ -10,12 +10,12 @@
 		</thead>
 
 		<tbody>
-		<?php foreach ($data[1] as $item) : ?>
+		<?php foreach ($data["cart"] as $item) : ?>
 			<?php $total += $item['subtotal']; ?>
 			<tr>
 				<td> <?= $item['product_id']; ?> </td>
 				<td> 
-					<?php	foreach ($data[0] as $product) : ?>
+					<?php	foreach ($data["product"] as $product) : ?>
 						<?php if ($product['product_id'] == $item['product_id']) : ?>
 							<?= $product['description']; ?>
 						<?php endif; ?>

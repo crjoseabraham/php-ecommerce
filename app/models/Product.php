@@ -17,7 +17,7 @@ class Product
 	* Select all items from 'product' table
 	* @return array 
 	*/
-	public function getItems() : array
+	public function getProducts() : array
 	{
 		$this->db->query("SELECT * FROM product");
 		return $this->db->resultSet();

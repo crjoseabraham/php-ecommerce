@@ -1,6 +1,9 @@
 <?php 
-	echo isset($_SESSION) ? "There's a session already started" : "No session started";
-	echo "<br>";
+	if (isset($_SESSION)) {
+		echo '<pre style="font-size: 18px;">';
+		var_dump($_SESSION);
+		echo '</pre>';
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +21,7 @@
 
 <body>	
 	<div class="login__form">
-		<form action="<?= URLROOT; ?>/sessions/login" method="post">
+		<form action="<?= URLROOT; ?>/index/login" method="post">
 			<label for="login_email"> <h1>Email:</h1> </label>
 			<input type="email" name="login_email" id="login_email">
 			<br>

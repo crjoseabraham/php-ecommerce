@@ -16,9 +16,16 @@ class Cart
 	* Get all items in the cart
 	* @return array 	All items
 	*/ 
-	public function getCart() : array
+	public function getCart($user_id) : array
 	{
-		$this->db->query("SELECT * FROM cart_items");
+		// First get cart associated to user's id, then get the corresponding cart
+		$this->db->query("SELECT * FROM cart WHERE user_id = :userid");
+		$this->db->bind(":userid", $user_id);
+
+		$cartID = $this->db->resultSingleValue();
+
+		$this->db->query("SELECT * FROM cart_items WHERE cart_id = :cartid");
+		$this->db->bind(":cartid", $cartID);
 		return $this->db->resultSet();
 	}
 
