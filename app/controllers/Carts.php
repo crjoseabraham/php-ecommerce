@@ -9,8 +9,14 @@ class Cart extends Controller
 	
 	public function __construct()
 	{
-		$this->productModel = $this->createModel('Product');
- 		$this->cartModel = $this->createModel('Cart');
+		$this->product = $this->createModel('Product');
+ 		$this->cart = $this->createModel('Cart');
+ 		parent::__construct();
+
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+
 	}
 
 	public function __call($name, $arguments) {
@@ -19,37 +25,27 @@ class Cart extends Controller
 
 	/**
 	* Add item to cart
-	*	Sanitize $_POST data before sending it to the model
+	* Sanitize $_POST data before sending it to the model
 	* @return void
 	*/
 	public function add() : void
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['quantity'])) 
 		{
-			$data = [
-				"id" => $_POST['product_id'],
-				"quantity" => $_POST['quantity'],
-				"subtotal" => ($_POST['quantity'] * $_POST['price'])
-			];
+			if ($_POST['quantity'] > 0) && intval($data['quantity']) {
+				$data = [
+					"user_id" => $_SESSION['user_id'];
+					"product_id" => $_POST['product_id'],
+					"quantity" => $_POST['quantity']
+				];
 
-			// If value > 0
-			if ($_POST['quantity'] > 0) {
-				if ($this->cartModel->addItem($data))
-					header('Location: ' . URLROOT);
-				else 
-					die("Something went wrong");
+				echo ($this->cart->addItem($data)) ? "Proceed" : "Error";
 			}
-
-			// Check that post quantity is integer
-			$pattern = '/^\d[^\.]*$/';
-			if (!preg_match_all($pattern, $data['quantity'])) {
-				$data = $this->setErrorMessage("Invalid value");
-				$this->loadView('index', $data, $this->cartModel->getCart());
-			}
-		} else {
-			// If quantity = '', redirects to homepage
-			header('Location: ' . URLROOT);
+			else
+				echo "Invalid value.";			
 		}
+
+		header('Location: ' . URLROOT);
 	}
 
 	/**
@@ -59,7 +55,7 @@ class Cart extends Controller
 	public function delete() : void
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			if ($this->cartModel->deleteItem(intval($_POST['product_id']))) 
+			if ($this->cart->deleteItem(intval($_POST['product_id']))) 
 				header('Location: ' . URLROOT);
 			else
 				echo "Something went wrong";
@@ -76,7 +72,7 @@ class Cart extends Controller
 	*/ 
 	private function setErrorMessage(string $message) : array
 	{
-		$data = $this->productModel->getItems();
+		$data = $this->product->getItems();
 		foreach ($data as &$item) {
 			if ($item['product_id'] == $_POST['product_id']) 
 				$item['quantity_err'] = "*$message";

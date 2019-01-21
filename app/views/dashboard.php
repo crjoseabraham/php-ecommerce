@@ -1,11 +1,3 @@
-<?php 
-	if (isset($_SESSION)) {
-		echo '<pre style="font-size: 18px;">';
-		var_dump($_SESSION);
-		echo '</pre>';
-	}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -8,14 +8,9 @@
 		</div>
 		
 		<form action="<?= URLROOT; ?>/carts/add" class="product-card__form" method="post">
-			<input type="hidden" name="price" value="<?= $product['price']; ?>">
 			<input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
 			<input type="number" name="quantity">
 			<button type="submit"> Add </button>
-			<br>
-			<span class="product-card__error">
-				<?= !empty($product['quantity_err']) ? $product['quantity_err'] : ''; ?>
-			</span>
 		</form>
 
 		<form action="<?= URLROOT; ?>/ratings" class="product-card__rating" method="post">

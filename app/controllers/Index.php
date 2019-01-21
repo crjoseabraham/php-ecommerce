@@ -13,6 +13,10 @@ class Index extends Controller
 		$this->cart = $this->createModel('Cart');
 		$this->product = $this->createModel('Product');
 		parent::__construct();
+		session_start();
+		if (!$this->session->isUserLoggedIn()) {
+			session_regenerate_id();
+		}
 	}
 
 	public function login() 
@@ -20,29 +24,28 @@ class Index extends Controller
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$user = $_POST["login_email"];
 			$pass = $_POST["login_password"];
-			$verifiedUser = $this->user->verifyUserData($user, $pass);
+			$verifiedUserId = $this->user->verifyUserData($user, $pass);
 
-			if (count($verifiedUser)) {
-				$this->session->login($verifiedUser["id"]);
-				$this->session->registerSession($verifiedUser["id"], session_id(), $_SESSION["session_start_time"]);
-			} else {
-				//Load view with error messsage
-				echo "This is 'else' of count($verifiedUser) line 20 Index.php";
-				exit();
+			if (!$this->session->isSessionActive($verifiedUserId)) {
+				$this->session->login($verifiedUserId);
+				$this->session->registerSessionLogin($verifiedUserId, session_id(), date("Y-m-d H:i:s"));
 			}
 		}
 
-		$this->home();
+		header('Location: ' . URLROOT . '/index/home');
 	}
 
 	public function logout()
 	{
-		$this->session->logout();
-		header('Location: ' . URLROOT);
+		if ($this->session->isUserLoggedIn()) {
+			if (!$this->session->logout()) echo "Something went wrong when session->logout()";
+		}
+
+		header('Location: ' . URLROOT . '/index/home');
 	}
 
 	public function home()
-	{
+	{	// && $this->session->isSessionActive($_SESSION["user_id"])
 		if ($this->session->isUserLoggedIn()) {
 			$data = [];
 			$data["cart"] = $this->cart->getCart($this->session->getSessionValue('user_id'));
@@ -51,8 +54,7 @@ class Index extends Controller
 
 			$this->loadView('dashboard', $data);
 		} else {
-			var_dump($_SESSION);
-			exit();
+			$this->loadView('index');
 		}		
 	}
 }

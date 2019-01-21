@@ -30,9 +30,9 @@ class Cart
 	}
 
 	/**
-	 *  Insert item into database's table 'cart_details'
-	 * 	@param array 	Product ID, Quantity to add, Subtotal
-	 */
+	*  Insert item into database's table 'cart_details'
+	* 	@param array 	Product ID, Quantity to add, Subtotal
+	*/
 	public function addItem(array $data) : bool
 	{
 		// First check if the item is already in the cart
@@ -61,20 +61,19 @@ class Cart
 	*/ 
 	private function updateItem(array $data) : bool
 	{
-		$cartItems = $this->getCart();
-		foreach ($cartItems as $item) {
-			// If exists, then replace database data with $data
-			if ($item['cart_product_id'] === $data['id']) {
-				$this->db->query("UPDATE cart_items SET quantity = :q, subtotal = :subt WHERE product_id = :id");
-				$this->db->bind(':q', $data['quantity']);
-				$this->db->bind(':subt', $data['subtotal']);
-				$this->db->bind(':id', $data['id']);
-				if ($this->db->execute()) 
-					return true;
-				else 
-					return false;
-			}
-		}
+		// First get cart associated to user's id, then get the corresponding cart
+		$this->db->query("SELECT * FROM cart WHERE user_id = :userid");
+		$this->db->bind(":userid", $user_id);
+
+		$cartID = $this->db->resultSingleValue();
+
+		$this->db->query("UPDATE cart_items SET quantity = :q, subtotal = :subt WHERE product_id = :productid AND cart_id = :cartid");
+		$this->db->bind(':q', $data['quantity']);
+		$this->db->bind(':subt', $data['subtotal']);
+		$this->db->bind(':productid', $data['product_id']);
+		$this->db->bind(':cartid', $cartID);
+		if ($this->db->execute()) 
+			return true;
 
 		return false;
 	}

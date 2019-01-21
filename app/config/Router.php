@@ -4,7 +4,7 @@
  * Gets URL and redirects to a view
  */
 
-class Router
+class Router extends Controller
 {
 	private $controller;
 	private $action;
@@ -12,6 +12,7 @@ class Router
 
 	public function __construct()
 	{
+    parent::__construct();
 		$uri = $this->getURI();
     $uri = explode('/', $uri);
     array_shift($uri);
@@ -27,16 +28,14 @@ class Router
         $this->action = $uri[1];
         unset($uri[1]);
       } else {
-        echo "Page not found.";
-        exit();
+        header('Location: ' . URLROOT . '/index/home');
       }
 
       // Get parameters (if passed). $this->params = $uri ? array_values($uri) : [];
 
       call_user_func_array([$this->controller, $this->action], [$this->params]);
     } else {
-      require_once APPROOT . '\\app\\views\\index.php';
-      exit();
+      header('Location: ' . URLROOT . '/index/home');
     }
 	}
 
