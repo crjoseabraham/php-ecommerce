@@ -20,21 +20,18 @@ class Rating
 	* @param int 'ratingValue' -> Value from 1 to 5 that user selected
 	* @return bool
 	*/
-	public function addRating(int $id, int $ratingValue) : bool
+	public function addRating(int $id, int $ratingValue, string $session_id) : bool
 	{
-		$this->db->query("INSERT INTO rating VALUES (null, :id, :val, null)");
+		$this->db->query("INSERT INTO rating VALUES (null, :id, :val, :session)");
 		$this->db->bind(':id', $id);
 		$this->db->bind(':val', $ratingValue);
+		$this->db->bind(':session', $session_id);
 		if ($this->db->execute()) {
-			if($this->updateRating($this->getAverage($id), $id))
-			{
-				return true;
-			} else {
-				return false;
-			}			
-		} else {
-			return false;
+			$this->updateRating($this->getAverage($id), $id);
+			return true;
 		}
+
+		return false;
 	}
 
 	/**
@@ -64,5 +61,16 @@ class Rating
 			return true;
 		else 
 			return false;
+	}
+
+	public function checkRepeatedVote(int $product_id, string $session_id) : bool
+	{
+		//Check if user already voted that item in current session
+		$this->db->query("SELECT * FROM rating WHERE rating_product_id = :id AND session_id = :session");
+		$this->db->bind(':id', $product_id);
+		$this->db->bind(':session', $session_id);
+		if (!$this->db->resultSingleValue())
+			return false;
+		return true;
 	}
 }

@@ -45,7 +45,7 @@ class Index extends Controller
 	}
 
 	public function home()
-	{	// && $this->session->isSessionActive($_SESSION["user_id"])
+	{
 		if ($this->session->isUserLoggedIn()) {
 			$data = [];
 			$data["cart"] = $this->cart->getCart($this->session->getSessionValue('user_id'));

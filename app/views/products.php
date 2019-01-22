@@ -13,7 +13,7 @@
 			<button type="submit"> Add </button>
 		</form>
 
-		<form action="<?= URLROOT; ?>/ratings" class="product-card__rating" method="post">
+		<form action="<?= URLROOT; ?>/ratings/vote" class="product-card__rating" method="post">
 			<input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
 			<input type="submit" name="rating_value" value="5" class="product-card__star"/>
 			<input type="submit" name="rating_value" value="4" class="product-card__star"/>
