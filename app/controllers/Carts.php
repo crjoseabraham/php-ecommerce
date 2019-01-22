@@ -4,7 +4,7 @@
  *	Performs all actions refered to the cart: show list, add to cart,
  *	delete from cart and process payment
  */
-class Cart extends Controller
+class Carts extends Controller
 {
 	
 	public function __construct()
@@ -18,28 +18,29 @@ class Cart extends Controller
 		}
 
 	}
-
-	public function __call($name, $arguments) {
-		header('Location: ' . URLROOT);
-	}
-
-	/**
+	
+	/**	
 	* Add item to cart
 	* Sanitize $_POST data before sending it to the model
 	* @return void
 	*/
 	public function add() : void
 	{
-		if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['quantity'])) 
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 		{
-			if ($_POST['quantity'] > 0) && intval($data['quantity']) {
+			if (intval($_POST['quantity']) > 0) {
+				$cartId = $this->getCartId($_SESSION['user_id']);
+				$price = $this->product->getProductAtt($_POST['product_id'], 'price');
+
 				$data = [
-					"user_id" => $_SESSION['user_id'];
-					"product_id" => $_POST['product_id'],
-					"quantity" => $_POST['quantity']
+					"user" => $_SESSION['user_id'],
+					"cart" => $cartId,
+					"product" => $_POST['product_id'],
+					"quantity" => $_POST['quantity'],
+					"subtotal" => $_POST['quantity'] * $price 
 				];
 
-				echo ($this->cart->addItem($data)) ? "Proceed" : "Error";
+				$this->cart->addItem($data);
 			}
 			else
 				echo "Invalid value.";			
@@ -62,6 +63,11 @@ class Cart extends Controller
 		} else {
 			echo "GET";
 		}
+	}
+
+	public function getCartId($userId)
+	{
+		return $this->cart->getCartIdByUser($userId);
 	}
 
 	/**

@@ -18,37 +18,35 @@ class Cart
 	*/ 
 	public function getCart($user_id) : array
 	{
-		// First get cart associated to user's id, then get the corresponding cart
-		$this->db->query("SELECT * FROM cart WHERE user_id = :userid");
-		$this->db->bind(":userid", $user_id);
-
-		$cartID = $this->db->resultSingleValue();
-
+		$cartId = $this->getCartIdByUser($user_id);
 		$this->db->query("SELECT * FROM cart_items WHERE cart_id = :cartid");
-		$this->db->bind(":cartid", $cartID);
+		$this->db->bind(":cartid", $cartId);
 		return $this->db->resultSet();
+	}
+
+	public function getCartIdByUser($user_id) : string
+	{
+		$this->db->query("SELECT id FROM cart WHERE user_id = :userid");
+		$this->db->bind(":userid", $user_id);
+		return $this->db->resultSingleValue();
 	}
 
 	/**
 	*  Insert item into database's table 'cart_details'
-	* 	@param array 	Product ID, Quantity to add, Subtotal
+	*  @param array 	Product ID, Quantity to add, Subtotal
 	*/
-	public function addItem(array $data) : bool
+	public function addItem(array $data)
 	{
-		// First check if the item is already in the cart
-		if ($this->updateItem($data))
-			return true;		
-
-		// Otherwise, add new record to cart table
-		$this->db->query("INSERT INTO cart_items VALUES (null, :cart, :id, :q, :subt)");
-		$this->db->bind(':cart', $data['cart']);
-		$this->db->bind(':id', $data['id']);
-		$this->db->bind(':q', $data['quantity']);
-		$this->db->bind(':subt', $data['subtotal']);
-		if ($this->db->execute()) {
-			return true;
+		// First check if the item isn't already in the cart
+		if (!$this->isItemInCart($data)) {
+			$this->db->query("INSERT INTO cart_items VALUES (null, :cart, :product, :q, :subt)");
+			$this->db->bind(':cart', $data['cart']);
+			$this->db->bind(':product', $data['product']);
+			$this->db->bind(':q', $data['quantity']);
+			$this->db->bind(':subt', $data['subtotal']);
+			$this->db->execute();
 		} else {
-			return false;
+			$this->updateItem($data);
 		}
 	}
 
@@ -59,23 +57,14 @@ class Cart
 	* @param string 	Message to show
 	* @return array 	Data with error message
 	*/ 
-	private function updateItem(array $data) : bool
+	private function updateItem(array $data)
 	{
-		// First get cart associated to user's id, then get the corresponding cart
-		$this->db->query("SELECT * FROM cart WHERE user_id = :userid");
-		$this->db->bind(":userid", $user_id);
-
-		$cartID = $this->db->resultSingleValue();
-
 		$this->db->query("UPDATE cart_items SET quantity = :q, subtotal = :subt WHERE product_id = :productid AND cart_id = :cartid");
 		$this->db->bind(':q', $data['quantity']);
 		$this->db->bind(':subt', $data['subtotal']);
-		$this->db->bind(':productid', $data['product_id']);
-		$this->db->bind(':cartid', $cartID);
-		if ($this->db->execute()) 
-			return true;
-
-		return false;
+		$this->db->bind(':productid', $data['product']);
+		$this->db->bind(':cartid', $data['cart']);
+		$this->db->execute();
 	}
 
 	/**
@@ -92,5 +81,13 @@ class Cart
 		} else {
 			return false;
 		}
+	}
+
+	public function isItemInCart($data) : bool
+	{
+		$this->db->query("SELECT * FROM cart_items WHERE product_id = :product AND cart_id = :cart");
+		$this->db->bind(':product', $data['product']);
+		$this->db->bind(':cart', $data['cart']);
+		return !!$this->db->resultSingleValue();
 	}
 }
