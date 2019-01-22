@@ -37,17 +37,12 @@ class Cart
 	*/
 	public function addItem(array $data)
 	{
-		// First check if the item isn't already in the cart
-		if (!$this->isItemInCart($data)) {
-			$this->db->query("INSERT INTO cart_items VALUES (null, :cart, :product, :q, :subt)");
-			$this->db->bind(':cart', $data['cart']);
-			$this->db->bind(':product', $data['product']);
-			$this->db->bind(':q', $data['quantity']);
-			$this->db->bind(':subt', $data['subtotal']);
-			$this->db->execute();
-		} else {
-			$this->updateItem($data);
-		}
+		$this->db->query("INSERT INTO cart_items VALUES (null, :cart, :product, :q, :subt)");
+		$this->db->bind(':cart', $data['cart']);
+		$this->db->bind(':product', $data['product']);
+		$this->db->bind(':q', $data['quantity']);
+		$this->db->bind(':subt', $data['subtotal']);
+		$this->db->execute();
 	}
 
 	/**
@@ -57,7 +52,7 @@ class Cart
 	* @param string 	Message to show
 	* @return array 	Data with error message
 	*/ 
-	private function updateItem(array $data)
+	public function updateItem(array $data)
 	{
 		$this->db->query("UPDATE cart_items SET quantity = :q, subtotal = :subt WHERE product_id = :productid AND cart_id = :cartid");
 		$this->db->bind(':q', $data['quantity']);

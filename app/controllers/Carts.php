@@ -18,7 +18,7 @@ class Carts extends Controller
 		}
 
 	}
-	
+
 	/**	
 	* Add item to cart
 	* Sanitize $_POST data before sending it to the model
@@ -40,7 +40,10 @@ class Carts extends Controller
 					"subtotal" => $_POST['quantity'] * $price 
 				];
 
-				$this->cart->addItem($data);
+				if ($this->cart->isItemInCart($data))
+					$this->cart->updateItem($data);
+				else
+					$this->cart->addItem($data);
 			}
 			else
 				echo "Invalid value.";			
