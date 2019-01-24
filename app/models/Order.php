@@ -53,7 +53,7 @@ class Order
 
 	public function getOrderItems($orderId)
 	{
-		$this->db->query("SELECT * FROM `order_items` WHERE order_id = :id");
+		$this->db->query("SELECT * FROM `order_items` WHERE order_id = :id ORDER BY product_id ASC");
 		$this->db->bind(':id', $orderId);
 		return $this->db->resultSet();
 	}
