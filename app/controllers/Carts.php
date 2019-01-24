@@ -11,7 +11,7 @@ class Carts extends Controller
 	{
 		$this->product = $this->createModel('Product');
  		$this->cart = $this->createModel('Cart');
- 		$this->payment = $this->createModel('Payment');
+ 		$this->order = $this->createModel('Order');
  		parent::__construct();
 
 		if (!isset($_SESSION)) {
@@ -85,17 +85,25 @@ class Carts extends Controller
 		$_SESSION['cash'] = 100;
 		if (	$_SERVER['REQUEST_METHOD'] === 'POST' 
 			&& 	($_POST['transport-type'] === '0' ||	$_POST['transport-type'] === '4')) {
-			// 1. Get POST data
-			$transport_costs = intval($_POST['transport-type']);
+			// 1. Get all data
+			$data = [
+				'user' => $_SESSION['user_id'],
+				'cart' => $this->getCartId($_SESSION['user_id']),
+				'transport' => intval($_POST['transport-type']),
+				'datetime' => date("Y-m-d H:i:s")
+			];
+
 			// 2. Get total amount
-			$subtotal = $this->cart->getSubtotalSum($this->cart->getCartIdByUser($_SESSION['user_id']));
-			$total = round(($subtotal + $transport_costs), 2);
+			$subtotal = $this->cart->getSubtotalSum($this->cart->getCartIdByUser($data['user']));
+			$data['total'] = round(($subtotal + $data['transport']), 2);
+
 			// 3. If $_SESSION['cash'] < $total_amount) then... If not, show alert
-			if ($total < $_SESSION['cash']) {
-				$_SESSION['cash'] = $_SESSION['cash'] - $total;
+			if ($data['total'] < $_SESSION['cash']) {
+				$_SESSION['cash'] -= $data['total'];
+
 				// 4. Register data
 				echo "<pre>";
-				var_dump($this->payment->registerOrder($_SESSION['user_id'], date("Y-m-d H:i:s"), $total));
+				var_dump($this->order->registerOrder($data));
 				die();
 			}
 			else
