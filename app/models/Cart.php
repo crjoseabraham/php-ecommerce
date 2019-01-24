@@ -78,6 +78,13 @@ class Cart
 		}
 	}
 
+	public function emptyCart(int $cart_id) : void
+	{
+		$this->db->query("DELETE FROM cart_items WHERE cart_id = :cart");
+		$this->db->bind(':cart', $cart_id);
+		$this->db->execute();
+	}
+
 	public function isItemInCart($data) : bool
 	{
 		$this->db->query("SELECT * FROM cart_items WHERE product_id = :product AND cart_id = :cart");

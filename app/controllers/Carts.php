@@ -82,7 +82,6 @@ class Carts extends Controller
 
 	public function pay()
 	{
-		$_SESSION['cash'] = 100;
 		if (	$_SERVER['REQUEST_METHOD'] === 'POST' 
 			&& 	($_POST['transport-type'] === '0' ||	$_POST['transport-type'] === '4')) {
 			// 1. Get all data
@@ -102,9 +101,13 @@ class Carts extends Controller
 				$_SESSION['cash'] -= $data['total'];
 
 				// 4. Register data
-				echo "<pre>";
-				var_dump($this->order->registerOrder($data));
-				die();
+				if ($this->order->registerOrder($data))
+					$this->order->setOrderItems($data['cart']);
+				else 
+					die("Order couldn't be registered");
+
+				// 5. Empty cart
+				$this->cart->emptyCart($data['cart']);
 			}
 			else
 				die("Not enough money");
