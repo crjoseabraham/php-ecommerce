@@ -80,17 +80,17 @@ class Carts extends Controller
 		return $this->cart->getCartIdByUser($userId);
 	}
 
-	public function payment()
+	public function pay()
 	{
 		$_SESSION['cash'] = 100;
 		if (	$_SERVER['REQUEST_METHOD'] === 'POST' 
 			&& 	($_POST['transport-type'] === '0' ||	$_POST['transport-type'] === '4')) {
 			// 1. Get POST data
 			$transport_costs = intval($_POST['transport-type']);
-		// 2. Get total amount
+			// 2. Get total amount
 			$subtotal = $this->cart->getSubtotalSum($this->cart->getCartIdByUser($_SESSION['user_id']));
-			$total = $subtotal + $transport_costs;
-		// 3. If $_SESSION['cash'] < $total_amount) then... If not, show alert
+			$total = round(($subtotal + $transport_costs), 2);
+			// 3. If $_SESSION['cash'] < $total_amount) then... If not, show alert
 			if ($total < $_SESSION['cash']) {
 				$_SESSION['cash'] = $_SESSION['cash'] - $total;
 				// 4. Register data

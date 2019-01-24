@@ -17,14 +17,13 @@ class Payment
 		$this->db = new Database;
 	}
 
-	public function registerOrder(int $user_id, string $datetime, float $total_amount)
+	public function registerOrder(int $user_id, string $created_at, float $total_amount)
 	{
-		$this->db->query("INSERT INTO order VALUES (null, :user, :created, :total)");
+		$this->db->query("INSERT INTO `order` VALUES (null, :user, :created, :total)");
 		$this->db->bind(':user', $user_id);
-		$this->db->bind(':created', $datetime);
+		$this->db->bind(':created', $created_at);
 		$this->db->bind(':total', $total_amount);
-		if ($this->db->execute())
-			return true;
+		if ($this->db->execute()) return true;
 		return false;
 	}
 }

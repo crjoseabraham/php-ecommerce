@@ -35,7 +35,7 @@
 	</table>
 	<hr>
 	<b>Select transport type:</b>
-	<form action="<?= URLROOT; ?>/carts/payment" method="post">
+	<form action="<?= URLROOT; ?>/carts/pay" method="post">
 		<select name="transport-type" id="transport-type">
 			<option value="0"> Pick up </option>
 			<option value="4"> UPS (+4$)</option>
