@@ -15,6 +15,10 @@
 			<?php include 'cart.php'; ?>
 		</div>
 
+		<div class="receipts-container">
+			<?php include 'receipts.php'; ?>
+		</div>
+
 		<div class="products-container">
 			<?php include 'products.php' ?>
 		</div>

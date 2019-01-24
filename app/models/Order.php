@@ -43,4 +43,18 @@ class Order
 			return true;
 		return false;
 	}
+
+	public function getOrder($orderId)
+	{
+		$this->db->query("SELECT * FROM `order` WHERE order_id = :id");
+		$this->db->bind(':id', $orderId);
+		return $this->db->resultSingle();
+	}
+
+	public function getOrderItems($orderId)
+	{
+		$this->db->query("SELECT * FROM `order_items` WHERE order_id = :id");
+		$this->db->bind(':id', $orderId);
+		return $this->db->resultSet();
+	}
 }

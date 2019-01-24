@@ -31,6 +31,12 @@ class Cart
 		return $this->db->resultSingleValue();
 	}
 
+	public function showColumns() : array
+	{
+		$this->db->query("SHOW COLUMNS FROM cart_items");
+		return $this->db->resultSet();
+	}
+
 	/**
 	*  Insert item into database's table 'cart_details'
 	*  @param array 	Product ID, Quantity to add, Subtotal

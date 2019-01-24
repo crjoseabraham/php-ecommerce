@@ -12,7 +12,7 @@
 	</style>
 </head>
 
-<body>	
+<body>
 	<div class="login__form">
 		<form action="<?= URLROOT; ?>/index/login" method="post">
 			<label for="login_email"> <h1>Email:</h1> </label>
