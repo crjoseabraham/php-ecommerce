@@ -35,7 +35,7 @@
 	</table>
 	<hr>
 	<b>Select transport type:</b>
-	<form action="<?= URLROOT; ?>/payment/process" method="post">
+	<form action="<?= URLROOT; ?>/carts/payment" method="post">
 		<select name="transport-type" id="transport-type">
 			<option value="0"> Pick up </option>
 			<option value="4"> UPS (+4$)</option>
@@ -44,5 +44,7 @@
 		<div class="cart__amount">
 		<b> Total: </b> $<span id="cart__total"><?= $total; ?></span>
 		</div>
+
+		<button type="submit"> Pay </button>
 	</form>
 </div>

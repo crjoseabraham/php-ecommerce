@@ -85,4 +85,11 @@ class Cart
 		$this->db->bind(':cart', $data['cart']);
 		return !!$this->db->resultSingleValue();
 	}
+
+	public function getSubtotalSum($cart_id) : float
+	{
+		$this->db->query("SELECT SUM(subtotal) FROM cart_items WHERE cart_id = :id");
+		$this->db->bind(':id', $cart_id);
+		return floatval($this->db->resultSingleValue());
+	}
 }
