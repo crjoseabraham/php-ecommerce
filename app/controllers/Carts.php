@@ -94,6 +94,7 @@ class Carts extends Controller
 
 			// 2. Get total amount
 			$subtotal = $this->cart->getSubtotalSum($this->cart->getCartIdByUser($data['user']));
+			if (!$subtotal) die("No items in cart"); 
 			$data['total'] = round(($subtotal + $data['transport']), 2);
 
 			// 3. If $_SESSION['cash'] < $total_amount) then... If not, show alert
