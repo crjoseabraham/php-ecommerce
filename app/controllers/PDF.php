@@ -30,7 +30,7 @@ class PDF extends FPDF
 	public function printReceipt()
 	{
 		$user = $this->session->getSessionValue('user_id');
-		$order['order_data'] = $this->order->getOrder(38);
+		$order['order_data'] = $this->order->getOrder($_POST['print_orderId']);
 		$order['order_items'] = $this->order->getOrderItems($order['order_data']['order_id']);
 
 		$this->AddPage();

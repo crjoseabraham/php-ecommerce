@@ -12,6 +12,7 @@ class Index extends Controller
 	{
 		$this->cart = $this->createModel('Cart');
 		$this->product = $this->createModel('Product');
+		$this->order = $this->createModel('Order');
 		parent::__construct();
 		session_start();
 		if (!$this->session->isUserLoggedIn()) {
@@ -51,6 +52,7 @@ class Index extends Controller
 			$data["cart"] = $this->cart->getCart($this->session->getSessionValue('user_id'));
 			$data["product"] = $this->product->getProducts();
 			$data["user"] = $this->user->getUserById($this->session->getSessionValue('user_id'));
+			$data["receipt"] = $this->order->getOrdersByUser($this->session->getSessionValue('user_id'));
 
 			$this->loadView('dashboard', $data);
 		} else {

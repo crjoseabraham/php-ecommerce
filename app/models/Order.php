@@ -51,6 +51,13 @@ class Order
 		return $this->db->resultSingle();
 	}
 
+	public function getOrdersByUser($userId)
+	{
+		$this->db->query("SELECT * FROM `order` WHERE user_id = :id");
+		$this->db->bind(':id', $userId);
+		return $this->db->resultSet();
+	}
+
 	public function getOrderItems($orderId)
 	{
 		$this->db->query("SELECT * FROM `order_items` WHERE order_id = :id ORDER BY product_id ASC");

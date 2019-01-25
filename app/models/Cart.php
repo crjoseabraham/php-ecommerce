@@ -43,7 +43,7 @@ class Cart
 	*/
 	public function addItem(array $data)
 	{
-		$this->db->query("INSERT INTO cart_items VALUES (null, :cart, :product, :q, :subt)");
+		$this->db->query("INSERT INTO cart_items VALUES (:cart, :product, :q, :subt)");
 		$this->db->bind(':cart', $data['cart']);
 		$this->db->bind(':product', $data['product']);
 		$this->db->bind(':q', $data['quantity']);
