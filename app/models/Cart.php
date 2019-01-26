@@ -105,4 +105,11 @@ class Cart
 		$this->db->bind(':id', $cart_id);
 		return floatval($this->db->resultSingleValue());
 	}
+
+	public function createNewUserCart(array $user)
+	{
+		$this->db->query("INSERT INTO cart (user_id) VALUES (:user)");
+		$this->db->bind(':user', $user['id']);
+		$this->db->execute();
+	}
 }

@@ -7,6 +7,7 @@ class Index extends Controller
 {
 	private $cart;
 	private $product;
+	private $userData;
 
 	public function __construct()
 	{
@@ -23,14 +24,20 @@ class Index extends Controller
 	public function login() 
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$user = $_POST["login_email"];
-			$pass = $_POST["login_password"];
-			$verifiedUserId = $this->user->verifyUserData($user, $pass);
+			// Get user data by submitted email - Email gets verified here already
+			$this->userData = $this->user->getUserByEmail($_POST['login_email']);
+			if (!$this->userData) die("Email not found");
 
-			if (!$this->session->isSessionActive($verifiedUserId)) {
-				$this->session->login($verifiedUserId);
-				$this->session->registerSessionLogin($verifiedUserId, session_id(), date("Y-m-d H:i:s"));
-			}
+			// Now verify that submittedPassword match userData
+			$correctPassword = $this->user->verifyPassword($_POST['login_password'], $this->userData['password']);
+
+			if($correctPassword)
+			{
+				if (!$this->session->isSessionActive($this->userData['id'])) {
+					$this->session->login($this->userData['id']);
+					$this->session->registerSessionLogin($this->userData['id'], session_id(), date("Y-m-d H:i:s"));
+				}
+			} else die("Incorrect");
 		}
 
 		header('Location: ' . URLROOT . '/index/home');
@@ -43,6 +50,28 @@ class Index extends Controller
 		}
 
 		header('Location: ' . URLROOT . '/index/home');
+	}
+
+	public function signup()
+	{
+		if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$this->session->isUserLoggedIn()) {
+			// SANITIZE EMAIL & PASSWORD
+			$email = $this->user->validateEmail($_POST['signup_email']);
+			$password = $this->user->validatePassword($_POST['signup_password'], $_POST['signup_confirm_password']);
+
+			if(!$password)
+				die("Invalid Password");
+
+			// CHECK IF EMAIL IS NOT TAKEN
+			if ($this->user->isEmailAvailable($email))
+			{
+				if($this->user->registerNewUser($email, $this->user->encryptPassword($password), date('Y-m-d H:i:s')))
+					$this->cart->createNewUserCart($this->user->getUserByEmail($email));
+			} else
+				die("Email is taken");
+			
+			header('Location: ' . URLROOT);
+		}
 	}
 
 	public function home()
