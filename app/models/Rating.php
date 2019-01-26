@@ -63,9 +63,14 @@ class Rating
 			return false;
 	}
 
+	/**
+	 * Check if user already voted that item in current session
+	 * @param  int    $product_id Product ID
+	 * @param  string $session_id Session ID
+	 * @return boolean
+	 */
 	public function checkRepeatedVote(int $product_id, string $session_id) : bool
 	{
-		//Check if user already voted that item in current session
 		$this->db->query("SELECT * FROM rating WHERE rating_product_id = :id AND session_id = :session");
 		$this->db->bind(':id', $product_id);
 		$this->db->bind(':session', $session_id);

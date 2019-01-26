@@ -1,8 +1,4 @@
 <?php 
-# Start session
-#session_start();
-# Set session money
-#if (!isset($_SESSION['cash'])) $_SESSION['cash'] = 100;
 # Database params
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');

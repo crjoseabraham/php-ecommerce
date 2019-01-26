@@ -16,19 +16,22 @@ class Index extends Controller
 		$this->order = $this->createModel('Order');
 		parent::__construct();
 		session_start();
-		if (!$this->session->isUserLoggedIn()) {
+		if (!$this->session->isUserLoggedIn())
 			session_regenerate_id();
-		}
 	}
 
-	public function login() 
+	/**
+	 * Login Controller
+	 * @return void
+	 */
+	public function login() : void
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			// Get user data by submitted email - Email gets verified here already
+			// 1. Get user data by submitted email - Email gets verified here already
 			$this->userData = $this->user->getUserByEmail($_POST['login_email']);
 			if (!$this->userData) die("Email not found");
 
-			// Now verify that submittedPassword match userData
+			// 2. Now verify that submittedPassword match userData
 			$correctPassword = $this->user->verifyPassword($_POST['login_password'], $this->userData['password']);
 
 			if($correctPassword)
@@ -43,38 +46,51 @@ class Index extends Controller
 		header('Location: ' . URLROOT . '/index/home');
 	}
 
-	public function logout()
+	/**
+	 * Logout Controller
+	 * @return void
+	 */
+	public function logout() : void
 	{
 		if ($this->session->isUserLoggedIn()) {
-			if (!$this->session->logout()) echo "Something went wrong when session->logout()";
+			if (!$this->session->logout()) die("Something went wrong when session->logout()");
 		}
 
 		header('Location: ' . URLROOT . '/index/home');
 	}
 
-	public function signup()
+	/**
+	 * User Registration Controller
+	 * @return void
+	 */
+	public function signup() : void
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$this->session->isUserLoggedIn()) {
-			// SANITIZE EMAIL & PASSWORD
+			// 1. Sanitize email & password
 			$email = $this->user->validateEmail($_POST['signup_email']);
 			$password = $this->user->validatePassword($_POST['signup_password'], $_POST['signup_confirm_password']);
 
 			if(!$password)
 				die("Invalid Password");
 
-			// CHECK IF EMAIL IS NOT TAKEN
+			// 2. Check if email is not already registered
 			if ($this->user->isEmailAvailable($email))
 			{
 				if($this->user->registerNewUser($email, $this->user->encryptPassword($password), date('Y-m-d H:i:s')))
 					$this->cart->createNewUserCart($this->user->getUserByEmail($email));
 			} else
 				die("Email is taken");
-			
-			header('Location: ' . URLROOT);
 		}
+
+		header('Location: ' . URLROOT);
 	}
 
-	public function home()
+	/**
+	 * Home controller
+	 * Load home view depending if user's logged in or not
+	 * @return void
+	 */
+	public function home() : void
 	{
 		if ($this->session->isUserLoggedIn()) {
 			$data = [];
@@ -84,8 +100,7 @@ class Index extends Controller
 			$data["receipt"] = $this->order->getOrdersByUser($this->session->getSessionValue('user_id'));
 
 			$this->loadView('dashboard', $data);
-		} else {
+		} else
 			$this->loadView('index');
-		}		
 	}
 }

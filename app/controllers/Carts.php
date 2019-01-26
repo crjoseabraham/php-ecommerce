@@ -14,17 +14,25 @@ class Carts extends Controller
  		$this->order = $this->createModel('Order');
  		parent::__construct();
 
-		if (!isset($_SESSION)) {
+		if (!isset($_SESSION))
 			session_start();
-		}
+	}
 
+	/**
+	 * Get cart ID by sending user's ID
+	 * @param  string $userId User ID
+	 * @return string 				Cart ID
+	 */
+	public function getCartId($userId) : string
+	{
+		return $this->cart->getCartIdByUser($userId);
 	}
 
 	/**	
-	* Add item to cart
-	* Sanitize $_POST data before sending it to the model
-	* @return void
-	*/
+	 * Add item to cart
+	 * Sanitize $_POST data before sending it to the model
+	 * @return void
+	 */
 	public function add() : void
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') 
@@ -47,44 +55,33 @@ class Carts extends Controller
 					$this->cart->addItem($data);
 			}
 			else
-				echo "Invalid value.";			
+				die("Invalid value.");
 		}
 
 		header('Location: ' . URLROOT);
 	}
 
 	/**
-	* Delete item from cart
-	* @return void
-	*/ 
+	 * Delete item from cart
+	 * @return void
+	 */ 
 	public function delete() : void
 	{
-		/*
-		if ($_SERVER['REQUEST_METHOD'] === 'POST') 
-			$this->cart->deleteItem(intval($_POST['product_id']))
-
-		header('Location: ' . URLROOT);
-		 */
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			if ($this->cart->deleteItem(intval($_POST['product_id']))) 
 				header('Location: ' . URLROOT);
 			else
-				echo "Something went wrong";
-		} else {
-			echo "GET";
+				die("Something went wrong. Item could not be deleted");
 		}
 	}
 
-	public function getCartId($userId)
-	{
-		return $this->cart->getCartIdByUser($userId);
-	}
-
+	/**
+	 * Process payment
+	 * @return void
+	 */
 	public function pay()
 	{
-		if (	$_SERVER['REQUEST_METHOD'] === 'POST' 
-			&& 	($_POST['transport-type'] === '0' ||	$_POST['transport-type'] === '4')) {
-			// 1. Get all data
+		if ( $_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['transport-type'] === '0' ||	$_POST['transport-type'] === '4')) {
 			$data = [
 				'user' => $_SESSION['user_id'],
 				'cart' => $this->getCartId($_SESSION['user_id']),
@@ -92,45 +89,26 @@ class Carts extends Controller
 				'datetime' => date("Y-m-d H:i:s")
 			];
 
-			// 2. Get total amount
+			// 1. Get total amount
 			$subtotal = $this->cart->getSubtotalSum($this->cart->getCartIdByUser($data['user']));
 			if (!$subtotal) die("No items in cart"); 
 			$data['total'] = round(($subtotal + $data['transport']), 2);
 
-			// 3. If $_SESSION['cash'] < $total_amount) then... If not, show alert
+			// 2. If total is less than user's cash then payment can proceed
 			if ($data['total'] < $_SESSION['cash']) {
 				$_SESSION['cash'] -= $data['total'];
 
-				// 4. Register data
+			// 3. Register purchase order
 				if ($this->order->registerOrder($data))
 					$this->order->setOrderItems($data['cart']);
 				else 
 					die("Order couldn't be registered");
 
-				// 5. Empty cart
+			// 4. Empty cart
 				$this->cart->emptyCart($data['cart']);
-			}
-			else
-				die("Not enough money");
-		} else
-				die("You have to select transport type");
+			}	else die("Not enough money");
+		}	else die("You have to select transport type");
 
 		header('Location: ' . URLROOT); 
-	}
-
-	/**
-	* Set Error Message
-	* Get all items, find the one where the error message should be, and set the message
-	* @param string 	Message to show
-	* @return array 	Data with error message
-	*/ 
-	private function setErrorMessage(string $message) : array
-	{
-		$data = $this->product->getItems();
-		foreach ($data as &$item) {
-			if ($item['product_id'] == $_POST['product_id']) 
-				$item['quantity_err'] = "*$message";
-		}
-		return $data;
 	}
 }

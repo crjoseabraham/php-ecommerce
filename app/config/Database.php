@@ -30,11 +30,11 @@ class Database
   	}
 	}
 
-	/**
-	*	Prepare a statement
-	* @param string 	The query
-	* @return void
-	*/
+  /**
+   * Prepare a statement
+   * @param  string $query SQL Query
+   * @return void
+   */
 	public function query (string $query) : void
 	{
 		$this->statement = $this->handler->prepare($query);
@@ -42,6 +42,10 @@ class Database
 
   /**
    * Bind values
+   * @param  [type] $param Parameter to bind e.g ':email', ':user_id'
+   * @param  [type] $value Parameter value
+   * @param  null $type    Actually, I never passed this argument :D
+   * @return void
    */
   public function bind($param, $value, $type = null) 
   {
@@ -66,7 +70,8 @@ class Database
   }
 
   /**
-   * Execute a prepared statement.
+   * Execute a prepare statement
+   * @return bool  true if success, false if execution failed
    */
   public function execute() 
   {  
@@ -79,6 +84,7 @@ class Database
   
   /**
    * Fetch a single row as a result of a query.
+   * @return  array   Row result of the query
    */
   public function resultSingle() 
   {  
@@ -88,6 +94,7 @@ class Database
 
   /**
    * Fetch a set of rows as a result of a query.
+   * @return  array Arrays array containing more data
    */
   public function resultSet() 
   {  
@@ -97,6 +104,7 @@ class Database
 
   /**
    * Fetch a single value.
+   * @return  [type] Returns a single value, could be any type
    */
   public function resultSingleValue() 
   {  

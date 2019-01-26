@@ -2,7 +2,8 @@
 require_once APPROOT . '\\libs\\fpdf.php';
 
 /**
- * PDF
+ * PDF Class
+ * Renders PDF to show order's details (receipt)
  */
 class PDF extends FPDF
 {	
@@ -22,12 +23,15 @@ class PDF extends FPDF
 		parent::__construct();
 
 		session_start();
-		if (!$this->session->isUserLoggedIn()) {
+		if (!$this->session->isUserLoggedIn())
 			session_regenerate_id();
-		}
 	}
 
-	public function printReceipt()
+	/**
+	 * Print receipt
+	 * @return void
+	 */
+	public function printReceipt() : void
 	{
 		$user = $this->session->getSessionValue('user_id');
 		$order['order_data'] = $this->order->getOrder($_POST['print_orderId']);

@@ -13,8 +13,22 @@ class Cart
 	}
 
 	/**
-	* Get all items in the cart
-	* @return array 	All items
+	 * After User is registered, this function is called
+	 * to create new user's cart
+	 * @param  array  $user User data
+	 * @return void
+	 */
+	public function createNewUserCart(array $user) : void
+	{
+		$this->db->query("INSERT INTO cart (user_id) VALUES (:user)");
+		$this->db->bind(':user', $user['id']);
+		$this->db->execute();
+	}
+
+	/**
+	* Get all items in user's cart
+	* @param string $user_id User's ID to retrieve corresponding cart
+	* @return array All items
 	*/ 
 	public function getCart($user_id) : array
 	{
@@ -24,6 +38,11 @@ class Cart
 		return $this->db->resultSet();
 	}
 
+	/**
+	* Get cart ID based on user's id
+	* @param 	string $user_id User's ID to retrieve corresponding cart ID
+	* @return 	string 			Cart ID 
+	*/
 	public function getCartIdByUser($user_id) : string
 	{
 		$this->db->query("SELECT id FROM cart WHERE user_id = :userid");
@@ -31,17 +50,11 @@ class Cart
 		return $this->db->resultSingleValue();
 	}
 
-	public function showColumns() : array
-	{
-		$this->db->query("SHOW COLUMNS FROM cart_items");
-		return $this->db->resultSet();
-	}
-
 	/**
 	*  Insert item into database's table 'cart_details'
 	*  @param array 	Product ID, Quantity to add, Subtotal
 	*/
-	public function addItem(array $data)
+	public function addItem(array $data) : void
 	{
 		$this->db->query("INSERT INTO cart_items VALUES (:cart, :product, :q, :subt)");
 		$this->db->bind(':cart', $data['cart']);
@@ -56,9 +69,9 @@ class Cart
 	* If user submits data for an item that is already in the cart
 	* then update data instead of inserting it
 	* @param string 	Message to show
-	* @return array 	Data with error message
+	* @return void
 	*/ 
-	public function updateItem(array $data)
+	public function updateItem(array $data) : void
 	{
 		$this->db->query("UPDATE cart_items SET quantity = :q, subtotal = :subt WHERE product_id = :productid AND cart_id = :cartid");
 		$this->db->bind(':q', $data['quantity']);
@@ -84,13 +97,23 @@ class Cart
 		}
 	}
 
-	public function emptyCart(int $cart_id) : void
+	/**
+	 * Sum all 'subtotal' values from user's cart to get purchase total
+	 * @param  string $cart_id 	Cart ID
+	 * @return float 			Purchase total amount
+	 */
+	public function getSubtotalSum($cart_id) : float
 	{
-		$this->db->query("DELETE FROM cart_items WHERE cart_id = :cart");
-		$this->db->bind(':cart', $cart_id);
-		$this->db->execute();
+		$this->db->query("SELECT SUM(subtotal) FROM cart_items WHERE cart_id = :id");
+		$this->db->bind(':id', $cart_id);
+		return floatval($this->db->resultSingleValue());
 	}
 
+	/**
+	 * Check if X item is already on user's cart
+	 * @param  array 	$data 	Product ID, Cart ID
+	 * @return boolean			true if item is in cart, false if not
+	 */
 	public function isItemInCart($data) : bool
 	{
 		$this->db->query("SELECT * FROM cart_items WHERE product_id = :product AND cart_id = :cart");
@@ -99,17 +122,15 @@ class Cart
 		return !!$this->db->resultSingleValue();
 	}
 
-	public function getSubtotalSum($cart_id) : float
+	/**
+	 * Empty cart
+	 * @param  int    $cart_id Cart ID
+	 * @return void
+	 */
+	public function emptyCart(int $cart_id) : void
 	{
-		$this->db->query("SELECT SUM(subtotal) FROM cart_items WHERE cart_id = :id");
-		$this->db->bind(':id', $cart_id);
-		return floatval($this->db->resultSingleValue());
-	}
-
-	public function createNewUserCart(array $user)
-	{
-		$this->db->query("INSERT INTO cart (user_id) VALUES (:user)");
-		$this->db->bind(':user', $user['id']);
+		$this->db->query("DELETE FROM cart_items WHERE cart_id = :cart");
+		$this->db->bind(':cart', $cart_id);
 		$this->db->execute();
 	}
 }
