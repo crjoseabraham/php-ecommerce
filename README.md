@@ -5,7 +5,7 @@ A very basic shopping cart I coded for a job interview, the code was spaghetti b
 
 # !! This is a screenshot of how it looked long time ago
 
-As I am currently doing a complete rework of this project *I've been focusing on functionality* and understanding the principles of OOP and MVC more than UI (for the moment). *Once I'm done with the backend I'll start working on the frontend.*
+As I am currently doing a complete rework of this project *I've been focusing on functionality* and understanding the principles of OOP and MVC more than UI (for the moment). *Once I'm done with the backend I'll start working on the frontend.* For now, it only has enough CSS so I can appreciate things a little better.
 
 This is a preview of what it looked like some time ago.
 
