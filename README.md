@@ -12,7 +12,3 @@ As I am currently doing a complete rework of this project *I've been focusing on
 There's a 'test' account stored in the database  
 - User: test@gmail.com  
 - Password: 123Abc
-
-## !! This is a screenshot of how it looked long time ago
-
-![Preview](https://monosnap.com/file/0hxL1xmyhAy2shQcfZe2ld0HtsyvIt.png)
