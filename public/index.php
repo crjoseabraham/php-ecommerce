@@ -11,9 +11,9 @@
  * This project started as a challenge for a job interview where I had to create a very basic
  * shopping cart app with PHP applying Object Oriented Programming and Sessions.
  * I fulfilled the requirements, but it was so bad coded that I felt the need to do a complete refactor
- * My goal was re-learn the fundamentals of PHP, Object Oriented Programming (OOP), MVC architecture,
+ * My goal was to teach myself the fundamentals of PHP, Object Oriented Programming (OOP), MVC architecture,
  * routing and PHP Sessions and how to work with all these together in order to make a real functional
- * web application without diving into frameworks or libraries (well, I used FPDF but don't tell anyone).
+ * web application without diving into frameworks or libraries yet (well, I used FPDF but don't tell anyone).
  */
 
 require dirname(__DIR__) . '/app/config/constants.php';
