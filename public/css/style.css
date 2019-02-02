@@ -24,7 +24,7 @@ body {
 	display: flex;
 	flex-flow: row wrap;
 	width: 100vw;
-	height: 100vh
+	height: 100vh;
 }
 
 /* LOGIN/REGISTRATION PAGE */
