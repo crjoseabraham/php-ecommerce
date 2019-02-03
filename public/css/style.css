@@ -4,6 +4,7 @@
 	--main-amaranth: #fc3051;
 	--main-yellow: #ffd012;
 	--main-white: #fff;
+	--main-green: #16c60c;
 	--light-grey: #e5e5e5;
 }
 
@@ -24,7 +25,7 @@ body {
 	display: flex;
 	flex-flow: row wrap;
 	width: 100vw;
-	height: 100vh
+	height: 100vh;
 }
 
 /* LOGIN/REGISTRATION PAGE */
@@ -216,6 +217,8 @@ input[type=checkbox]:checked ~ .index__form--login {
 	flex: 1 1 30%;
 	background-color: var(--main-white);
 	color: var(--main-dark);
+	display: flex;
+	flex-direction: column;
 }
 
 .sidebar__top-bar {
@@ -225,6 +228,53 @@ input[type=checkbox]:checked ~ .index__form--login {
 	border-bottom: 1px solid var(--main-dark);
 	height: 4rem;
 	padding: 0 2rem;
+}
+
+.sidebar__cart-details {
+	align-self: center;
+	font-family: 'Varela Round', sans-serif;
+}
+
+.sidebar__cart-details h1 {
+	font-size: 2.4rem;
+	text-align: center;
+	padding-top: 4rem;
+}
+
+.sidebar__cart-details table {
+	margin-top: 2rem;
+	padding: 1rem;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.sidebar__cart-details table thead {
+	font-size: 1.6rem;
+	border: 1px solid black;
+}
+
+.sidebar__cart-details table tbody {
+	font-family: 'Lato', sans-serif;
+	font-size: 1.4rem;
+}
+
+.sidebar__cart-details table th,
+.sidebar__cart-details table td {
+	padding-left: 3rem;
+}
+
+.sidebar__cart-details table td {
+	padding-top: 1.5rem;
+}
+
+.cart-details__remove {
+	background-color: transparent;
+	color: #FF0000;
+	border: 1px solid #FF0000;
+	border-radius: 50%;
+	width: 2rem;
+	height: 2rem;
+	cursor: pointer;
 }
 
 .products {
@@ -274,7 +324,10 @@ input[type=checkbox]:checked ~ .index__form--login {
 }
 
 .product-card__form input[type=number] {
-	max-width: 5rem;
+	font-family: 'Varela Round', sans-serif;
+	font-size: 1.6rem;
+	padding: 0 .5rem;
+	max-width: 4rem;
 	height: 3.2rem;
 	-moz-appearance: textfield;
 	border: 1px solid #ccc;
@@ -289,13 +342,14 @@ input[type=checkbox]:checked ~ .index__form--login {
 }
 
 .product-card__form button[type=submit] {
-	color: var(--main-white);
+	color: var(--main-green);
 	font-family: 'Varela Round', sans-serif;
 	height: 3.2rem;
+	cursor: pointer;
 	transform: translate(-4px, -1px);
 	padding: 0 .5rem;
-	border: 1px solid var(--main-amaranth);
-	background-color: var(--main-amaranth);
+	border: 1px solid var(--main-green);
+	background-color: transparent;
 	border-top-right-radius: 4px;
 	border-bottom-right-radius: 4px;
 }

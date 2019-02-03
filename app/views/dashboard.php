@@ -13,19 +13,36 @@
 			<p> <?= $_SESSION['cash']; ?> </p>
 			<p> <a href="<?= URLROOT; ?>/index/logout"> Logout </a> </p>
 		</div>
-		sidebar
+
+		<?php include 'cart.php'; ?>
+
+		<div class="sidebar__transport">
+			
+			<!-- Select transport type:
+
+			<form action="<?= URLROOT; ?>/carts/pay" method="post">
+				<select name="transport-type" id="transport-type">
+					<option value="0"> Pick up </option>
+					<option value="4"> UPS (+4$)</option>
+				</select>
+
+				<div class="cart__amount">
+				<b> Total: </b> $<span id="cart__total"><?= $total; ?></span>
+				</div>
+
+				<button type="submit"> Pay </button>
+			</form> -->
+		</div>
 	</section>
 	
 	<section class="products">
 		<?php include 'products.php' ?>
 	</section>
 
-	<!-- <strong>Current Money: <?= $_SESSION['cash']; ?></strong> <br>
-	<strong><a href="<?= URLROOT; ?>/index/logout"> Logout </a></strong>
-	<hr>
+	<!-- 
 	<div class="container">
 		<div class="cart-container">
-			<?php include 'cart.php'; ?>
+			
 		</div>
 
 		<div class="receipts-container">
