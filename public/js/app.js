@@ -1,13 +1,31 @@
 /**
  * Update total amount with the transport type costs
  */
+const selectTransport = document.getElementsByName('transport-type');
+const initialSubtotal = (document.getElementById("cart__total") !== null) ? parseFloat(document.getElementById("cart__total").innerHTML) : 0;
 
-const selectTransport = document.getElementById("transport-type");
-const initialSubtotal = parseFloat(document.getElementById("cart__total").innerHTML);
+selectTransport.forEach(thisOption => {
+	thisOption.addEventListener('change', () => {
+		let total = initialSubtotal + parseFloat(thisOption.value);
+		document.getElementById("cart__total").innerHTML = total;
+	});
+});
 
-selectTransport.onchange = () => {
-    let transportValue = selectTransport.options[selectTransport.selectedIndex].value;
-    transportValue = parseFloat(transportValue);
-    let total = initialSubtotal + transportValue; 
-    document.getElementById("cart__total").innerHTML = total;
-}
+/**
+ * Arrow buttons functionality
+ * + or - number of items to add
+ */
+const arrowButtons = document.querySelectorAll('.product-card__arrow-button');
+
+arrowButtons.forEach(thisButton => {
+	thisButton.addEventListener('click', () =>  {
+		if (thisButton.classList.contains('arrow-button--up')) {
+			let inputField = thisButton.nextElementSibling.nextElementSibling.nextElementSibling;
+			inputField.value++;
+		} else {
+			let inputField = thisButton.nextElementSibling.nextElementSibling;
+			if (inputField.value > 0)
+				inputField.value--;
+		}
+	});
+});

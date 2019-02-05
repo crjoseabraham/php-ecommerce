@@ -214,11 +214,15 @@ input[type=checkbox]:checked ~ .index__form--login {
 
 /* DASHBOARD PAGE */
 .sidebar {
-	flex: 1 1 30%;
+	flex: 1 1 20%;
 	background-color: var(--main-white);
 	color: var(--main-dark);
 	display: flex;
-	flex-direction: column;
+	flex-flow: column nowrap;
+}
+
+.sidebar > div {
+	border: 1px solid black;
 }
 
 .sidebar__top-bar {
@@ -231,19 +235,14 @@ input[type=checkbox]:checked ~ .index__form--login {
 }
 
 .sidebar__cart-details {
-	align-self: center;
 	font-family: 'Varela Round', sans-serif;
 }
 
 .sidebar__cart-details h1 {
 	font-size: 2.4rem;
-	text-align: center;
-	padding-top: 4rem;
 }
 
 .sidebar__cart-details table {
-	margin-top: 2rem;
-	padding: 1rem;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
 }
@@ -258,36 +257,42 @@ input[type=checkbox]:checked ~ .index__form--login {
 	font-size: 1.4rem;
 }
 
-.sidebar__cart-details table th,
-.sidebar__cart-details table td {
+.sidebar__cart-details table th:not(:first-child),
+.sidebar__cart-details table td:not(:first-child) {
 	padding-left: 3rem;
 }
 
 .sidebar__cart-details table td {
-	padding-top: 1.5rem;
+	padding-top: 0.5rem;
 }
 
 .cart-details__remove {
 	background-color: transparent;
 	color: #FF0000;
-	border: 1px solid #FF0000;
+	font-size: 1.2rem;
+	border: 2px solid #FF0000;
 	border-radius: 50%;
 	width: 2rem;
 	height: 2rem;
 	cursor: pointer;
+	transition: all .2s;
+}
+
+.cart-details__remove:hover {
+	color: var(--main-white);
+	background-color: #FF0000;
 }
 
 .products {
 	flex: 1 1 70%;
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-around;
 }
 
 .products__product-card {
 	background-color: var(--main-white);
 	flex: 0 1 20rem;
-	height: 27rem;
+	max-height: 30rem;
 	margin: 1.5rem;
 	transition: all .2s;
 	border-radius: 5px;
@@ -323,6 +328,37 @@ input[type=checkbox]:checked ~ .index__form--login {
 	padding-top: 2px;
 }
 
+.product-card__form {
+	display: flex;
+ 	flex-flow: column wrap;
+	width: 11rem;
+	height: 3rem;
+	align-content: flex-end;
+}
+
+.product-card__arrow-button {
+	width: 2.5rem;
+	font-size: 1rem;
+	color: #000;
+	background-color: var(--main-yellow);
+	border: 1px solid #e1b400;
+	height: 50%;
+	cursor: pointer;
+	transition: all .2s;
+}
+
+.product-card__arrow-button:hover {
+	background-color: #e1b400;
+}
+
+.product-card__arrow-button.arrow-button--up {
+	border-top-left-radius: 5px;
+}
+
+.product-card__arrow-button.arrow-button--down {
+	border-bottom-left-radius: 5px;
+}
+
 .product-card__form input[type=number] {
 	font-family: 'Varela Round', sans-serif;
 	font-size: 1.6rem;
@@ -331,8 +367,6 @@ input[type=checkbox]:checked ~ .index__form--login {
 	height: 3.2rem;
 	-moz-appearance: textfield;
 	border: 1px solid #ccc;
-	border-top-left-radius: 4px;
-	border-bottom-left-radius: 4px;
 }
 
 .product-card__form input[type=number]::-webkit-outer-spin-button, 
@@ -342,16 +376,22 @@ input[type=checkbox]:checked ~ .index__form--login {
 }
 
 .product-card__form button[type=submit] {
-	color: var(--main-green);
+	color: #fff;
+	background-color: var(--main-green);
 	font-family: 'Varela Round', sans-serif;
-	height: 3.2rem;
+	height: 3rem;
+	width: 2.5rem;
 	cursor: pointer;
-	transform: translate(-4px, -1px);
 	padding: 0 .5rem;
 	border: 1px solid var(--main-green);
-	background-color: transparent;
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	transition: all .2s;
+}
+
+.product-card__form button[type=submit]:hover {
+	background-color: #088e01;
+	border: 1px solid #088e01;
 }
 
 .product-card__rating-container {

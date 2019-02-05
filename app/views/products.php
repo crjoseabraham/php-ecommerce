@@ -8,9 +8,11 @@
 			</div>
 
 			<form action="<?= URLROOT; ?>/carts/add" class="product-card__form" method="post">
+				<button type="button" class="product-card__arrow-button arrow-button--up"> ▲ </button>
+				<button type="button" class="product-card__arrow-button arrow-button--down"> ▼ </button>
 				<input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
 				<input type="number" name="quantity" value="0">
-				<button type="submit"> Add </button>
+				<button type="submit"> 🞥 </button>
 			</form>
 		</div>
 

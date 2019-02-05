@@ -10,29 +10,27 @@
 <body>
 	<section class="sidebar">
 		<div class="sidebar__top-bar">
-			<p> <?= $_SESSION['cash']; ?> </p>
+			<p> Available: $<?= $_SESSION['cash']; ?> </p>
 			<p> <a href="<?= URLROOT; ?>/index/logout"> Logout </a> </p>
 		</div>
 
-		<?php include 'cart.php'; ?>
+		<?php if (!empty($data['cart'])) : ?>
 
-		<div class="sidebar__transport">
+			<?php include 'cart.php'; ?>			
 			
-			<!-- Select transport type:
+		<?php else : ?>
 
-			<form action="<?= URLROOT; ?>/carts/pay" method="post">
-				<select name="transport-type" id="transport-type">
-					<option value="0"> Pick up </option>
-					<option value="4"> UPS (+4$)</option>
-				</select>
+			<div class="sidebar__cart-not-found">
+				<h1>(·.·)</h1>
+				Your cart is empty <br>
+			</div>
 
-				<div class="cart__amount">
-				<b> Total: </b> $<span id="cart__total"><?= $total; ?></span>
-				</div>
+		<?php endif; ?>
 
-				<button type="submit"> Pay </button>
-			</form> -->
+		<div class="sidebar__receipts">
+			<?php include 'receipts.php'; ?>
 		</div>
+
 	</section>
 	
 	<section class="products">
@@ -43,10 +41,6 @@
 	<div class="container">
 		<div class="cart-container">
 			
-		</div>
-
-		<div class="receipts-container">
-			<?php include 'receipts.php'; ?>
 		</div>
 
 		<div class="products-container">
