@@ -215,6 +215,7 @@ input[type=checkbox]:checked ~ .index__form--login {
 /* DASHBOARD PAGE */
 .sidebar {
 	flex: 1 1 20%;
+	font-family: 'Lato', sans-serif;
 	background-color: var(--main-white);
 	color: var(--main-dark);
 	display: flex;
@@ -230,12 +231,46 @@ input[type=checkbox]:checked ~ .index__form--login {
 	justify-content: space-between;
 	align-items: center;
 	border-bottom: 1px solid var(--main-dark);
-	height: 4rem;
-	padding: 0 2rem;
+	padding: 1rem 2rem;
 }
 
-.sidebar__cart-details {
-	font-family: 'Varela Round', sans-serif;
+.sidebar__top-bar > .bill {
+	border-radius: 4px;
+	border: 1px solid var(--main-green);
+	color: var(--main-green);
+	padding: .8rem;
+	font-size: 1.8rem;
+}
+
+.sidebar__top-bar > .logout-link {
+
+}
+
+.sidebar__top-bar > .logout-link a {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-between;
+	color: #da0b2c;
+	text-decoration: none;
+	font-size: 1.4rem;
+	padding: 1rem;
+	border: 1px solid #da0b2c;
+	border-radius: 4px;
+	transition: all .2s;
+}
+
+.sidebar__top-bar > .logout-link a:hover {
+	color: var(--main-white);
+	background-color: #ff7a7a;
+}
+
+.sidebar__top-bar > .logout-link img {
+	max-width: 1.5rem;
+}
+
+.sidebar__top-bar > .logout-link a > p {
+	padding-left: 1rem;
 }
 
 .sidebar__cart-details h1 {
@@ -253,7 +288,6 @@ input[type=checkbox]:checked ~ .index__form--login {
 }
 
 .sidebar__cart-details table tbody {
-	font-family: 'Lato', sans-serif;
 	font-size: 1.4rem;
 }
 

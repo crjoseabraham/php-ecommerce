@@ -10,8 +10,13 @@
 <body>
 	<section class="sidebar">
 		<div class="sidebar__top-bar">
-			<p> Available: $<?= $_SESSION['cash']; ?> </p>
-			<p> <a href="<?= URLROOT; ?>/index/logout"> Logout </a> </p>
+			<div class="bill"> Balance: $<?= $_SESSION['cash']; ?> </div>
+			<div class="logout-link">
+				<a href="<?= URLROOT; ?>/index/logout">
+					<img src="<?= URLROOT; ?>/img/power-button.png" alt="Log Out">
+					<p> Log Out </p>
+				</a> 
+			</div>
 		</div>
 
 		<?php if (!empty($data['cart'])) : ?>
