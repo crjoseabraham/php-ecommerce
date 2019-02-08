@@ -222,6 +222,12 @@ input[type=checkbox]:checked ~ .index__form--login {
 	flex-flow: column nowrap;
 }
 
+.sidebar h1 {
+	font-size: 1.8rem;
+	padding-bottom: 1rem;
+	text-transform: uppercase;
+}
+
 .sidebar > div {
 	border: 1px solid black;
 }
@@ -234,23 +240,20 @@ input[type=checkbox]:checked ~ .index__form--login {
 	padding: 1rem 2rem;
 }
 
-.sidebar__top-bar > .bill {
+.sidebar__top-bar > .balance {
 	border-radius: 4px;
 	border: 1px solid var(--main-green);
 	color: var(--main-green);
-	padding: .8rem;
-	font-size: 1.8rem;
+	padding: 1rem;
+	font-size: 1.4rem;
+}
+
+.sidebar__top-bar > .balance:hover {
+	background-color: var(--main-green);
+	color: var(--main-white);
 }
 
 .sidebar__top-bar > .logout-link {
-
-}
-
-.sidebar__top-bar > .logout-link a {
-	display: flex;
-	flex-flow: row nowrap;
-	align-items: center;
-	justify-content: space-between;
 	color: #da0b2c;
 	text-decoration: none;
 	font-size: 1.4rem;
@@ -260,31 +263,24 @@ input[type=checkbox]:checked ~ .index__form--login {
 	transition: all .2s;
 }
 
-.sidebar__top-bar > .logout-link a:hover {
+.sidebar__top-bar > .logout-link:hover {
 	color: var(--main-white);
-	background-color: #ff7a7a;
+	background-color: #da0b2c;
 }
 
-.sidebar__top-bar > .logout-link img {
-	max-width: 1.5rem;
+.sidebar__cart-details {
+	text-align: center;
+	padding: 2rem 0;
 }
 
-.sidebar__top-bar > .logout-link a > p {
-	padding-left: 1rem;
-}
-
-.sidebar__cart-details h1 {
-	font-size: 2.4rem;
-}
-
-.sidebar__cart-details table {
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
+.sidebar__cart-details table,
+.sidebar__receipts table {
+	margin: 0 auto;
 }
 
 .sidebar__cart-details table thead {
-	font-size: 1.6rem;
-	border: 1px solid black;
+	font-size: 1.2rem;
+	text-transform: uppercase;
 }
 
 .sidebar__cart-details table tbody {
@@ -293,7 +289,7 @@ input[type=checkbox]:checked ~ .index__form--login {
 
 .sidebar__cart-details table th:not(:first-child),
 .sidebar__cart-details table td:not(:first-child) {
-	padding-left: 3rem;
+	padding-left: 1rem;
 }
 
 .sidebar__cart-details table td {
@@ -301,13 +297,13 @@ input[type=checkbox]:checked ~ .index__form--login {
 }
 
 .cart-details__remove {
-	background-color: transparent;
-	color: #FF0000;
-	font-size: 1.2rem;
-	border: 2px solid #FF0000;
-	border-radius: 50%;
-	width: 2rem;
-	height: 2rem;
+	background-color: #ff7777;
+	color: var(--main-white);
+	padding: .2rem;
+	font-size: 1rem;
+	border: 1px solid #FF0000;
+	
+	border-radius: 4px;
 	cursor: pointer;
 	transition: all .2s;
 }

@@ -15,10 +15,10 @@
 				<td>
 					<form action="<?= URLROOT; ?>/carts/delete" method="post">
 						<input type="hidden" name="product_id" value="<?= $item['product_id']; ?>">
-						<button type="submit" class="cart-details__remove"> 🞭 </button>
+						<button type="submit" class="cart-details__remove"> Remove </button>
 					</form>
 				</td>
-				<td> (<?= $item['quantity']; ?>) x   
+				<td> <?= $item['quantity']; ?> x   
 					<?php	foreach ($data["product"] as $product) : ?>
 						<?php if ($product['product_id'] == $item['product_id']) : ?>
 							<?= $product['description']; ?>
@@ -33,7 +33,7 @@
 </div>
 
 <div class="sidebar__transport">
-	Select transport type:
+	<h1>Select transport type:</h1>
 
 	<form action="<?= URLROOT; ?>/carts/pay" method="post">
 		<label for="pickup"> Pick Up (No additional costs) <br> <img src="<?= URLROOT; ?>/public/img/shopper.png"> </label>
