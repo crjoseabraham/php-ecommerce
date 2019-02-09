@@ -612,15 +612,11 @@ input[type=checkbox]:checked ~ .index__form--login {
 	html { font-size: 59%; }
 }
 
-@media only screen and (max-width: 694px) {
-	html { font-size: 50%; }
+@media only screen and (max-width: 613px) {
+	html { font-size: 52%; }
 }
 
-@media only screen and (max-width: 600px) {
-	html { font-size: 48%; }
-}
-
-@media only screen and (max-width: 560px) {
+@media only screen and (max-width: 612px) {
 	.products { flex: 1 1 auto; justify-content: center; }
 	.sidebar { flex: 1 1 auto; }
 	.sidebar__content { display: none; }
