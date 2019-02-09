@@ -222,6 +222,11 @@ input[type=checkbox]:checked ~ .index__form--login {
 	flex-flow: column nowrap;
 }
 
+.sidebar > div:not(:first-child) {
+	border-bottom: 1px solid #ccc;
+	padding: 2rem 0;
+}
+
 .sidebar h1 {
 	font-size: 1.8rem;
 	padding-bottom: 1rem;
