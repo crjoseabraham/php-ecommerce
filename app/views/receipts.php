@@ -1,16 +1,16 @@
 <table>
 	<thead>
-		<th>ID</th>
+		<th>Reference</th>
 		<th>Date</th>
 		<th>Total</th>
-		<th> &nbsp; </th>
+		<th>Receipt</th>
 	</thead>
 	<tbody>
 		<?php foreach ($data["receipt"] as $receipt) : ?>
 			<tr>
 				<td> <?= $receipt["order_id"]; ?> </td>
-				<td> <?= $receipt["created_at"]; ?> </td>
-				<td> <?= $receipt["total"]; ?> </td>
+				<td> <?= substr($receipt["created_at"], 0, 10); ?> </td>
+				<td> $<?= $receipt["total"]; ?> </td>
 				<td> 
 					<form action="<?= URLROOT; ?>/PDF/printReceipt" method="post">
 						<input type="hidden" name="print_orderId" value="<?= $receipt["order_id"]; ?>">

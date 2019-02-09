@@ -21,13 +21,14 @@
 		<?php else : ?>
 
 			<div class="sidebar__cart-not-found">
-				<h1>(·.·)</h1>
+				<h1>( ·.·)</h1>
 				Your cart is empty <br>
 			</div>
 
 		<?php endif; ?>
 
 		<div class="sidebar__receipts">
+			<h1>Purchase history</h1>
 			<?php include 'receipts.php'; ?>
 		</div>
 

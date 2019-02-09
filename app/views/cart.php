@@ -43,7 +43,7 @@
 		<label for="ups" class="ups"> Delivery <br> (Adds $4) </label>
 
 		<div class="cart__amount">
-		<b> Total: </b> $<span id="cart__total"><?= $total; ?></span>
+			Total: $<span id="cart__total"><?= $total; ?></span>
 		</div>
 
 		<button type="submit"> Pay </button>
