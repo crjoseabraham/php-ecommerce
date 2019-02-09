@@ -29,3 +29,13 @@ arrowButtons.forEach(thisButton => {
 		}
 	});
 });
+
+/**
+ * Responsive button
+ * Shows cart when 'checked'
+ */
+const responsiveCheckbox = document.getElementById('responsive');
+
+responsiveCheckbox.addEventListener('change', () => {
+	document.querySelector('.sidebar__content').style.display = (responsiveCheckbox.checked) ? 'block' : 'none';
+});
