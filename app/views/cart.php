@@ -36,11 +36,11 @@
 	<h1>Select transport type:</h1>
 
 	<form action="<?= URLROOT; ?>/carts/pay" method="post">
-		<label for="pickup"> Pick Up (No additional costs) <br> <img src="<?= URLROOT; ?>/public/img/shopper.png"> </label>
 		<input type="radio" name="transport-type" id="pickup" value="0" checked>
+		<label for="pickup" class="pickup"> Pick Up <br> (No additional costs) </label>
 
-		<label for="ups"> Delivery (Adds $5) <br> <img src="<?= URLROOT; ?>/public/img/present.png"> </label>
 		<input type="radio" name="transport-type" id="ups" value="4">
+		<label for="ups" class="ups"> Delivery <br> (Adds $4) </label>
 
 		<div class="cart__amount">
 		<b> Total: </b> $<span id="cart__total"><?= $total; ?></span>
