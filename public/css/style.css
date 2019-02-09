@@ -26,6 +26,7 @@ body {
 	flex-flow: row wrap;
 	width: 100vw;
 	height: 100vh;
+	overflow-x: hidden;
 }
 
 /* LOGIN/REGISTRATION PAGE */
@@ -220,6 +221,7 @@ input[type=checkbox]:checked ~ .index__form--login {
 	color: var(--main-dark);
 	display: flex;
 	flex-flow: column nowrap;
+	border-right: 1px solid #ccc;
 }
 
 .sidebar > div:not(:first-child) {
@@ -241,31 +243,32 @@ input[type=checkbox]:checked ~ .index__form--login {
 }
 
 .sidebar__top-bar > .balance {
-	border-radius: 4px;
-	border: 1px solid var(--main-green);
 	color: var(--main-green);
-	padding: 1rem;
-	font-size: 1.4rem;
 }
 
 .sidebar__top-bar > .balance:hover {
 	background-color: var(--main-green);
 	color: var(--main-white);
+	border: 1px solid var(--main-green);
 }
 
 .sidebar__top-bar > .logout-link {
-	color: #da0b2c;
+	color: var(--main-amaranth);
 	text-decoration: none;
-	font-size: 1.4rem;
-	padding: 1rem;
-	border: 1px solid #da0b2c;
-	border-radius: 4px;
-	transition: all .2s;
 }
 
 .sidebar__top-bar > .logout-link:hover {
 	color: var(--main-white);
-	background-color: #da0b2c;
+	background-color: var(--main-amaranth);
+	border: 1px solid var(--main-amaranth);
+}
+
+.sidebar__top-bar > .balance,
+.sidebar__top-bar > .logout-link {
+	padding: 1rem;
+	font-size: 1.4rem;
+	border: 1px solid currentColor;
+	transition: all .2s;
 }
 
 .sidebar__cart-not-found {
@@ -284,7 +287,7 @@ input[type=checkbox]:checked ~ .index__form--login {
 
 .sidebar__cart-details table,
 .sidebar__receipts table {
-	margin: 0 auto;
+	width: 100%;
 }
 
 .sidebar__cart-details table thead {
@@ -306,19 +309,20 @@ input[type=checkbox]:checked ~ .index__form--login {
 }
 
 .cart-details__remove {
-	background-color: #ff7777;
-	color: var(--main-white);
+	background-color: transparent;
+	color: var(--main-amaranth);
 	padding: .2rem;
 	font-size: 1rem;
-	border: 1px solid #FF0000;
-	border-radius: 4px;
+	border: 1px solid currentColor;
 	cursor: pointer;
 	transition: all .2s;
+	text-transform: uppercase;
 }
 
 .cart-details__remove:hover {
 	color: var(--main-white);
-	background-color: #FF0000;
+	background-color: var(--main-amaranth);
+	border: 1px solid var(--main-amaranth);
 }
 
 .sidebar__transport {
@@ -331,6 +335,9 @@ input[type=checkbox]:checked ~ .index__form--login {
 
 .sidebar__transport > form {
 	position: relative;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
 }
 
 .sidebar__transport > form > input[type=radio] {
@@ -341,36 +348,34 @@ input[type=checkbox]:checked ~ .index__form--login {
 
 .sidebar__transport > form > label {
 	cursor: pointer;
-	width: 12rem;
-	height: 9rem;
-	display: inline-flex;
-	flex-flow: column nowrap;
-	align-items: center;
+	width: 20rem;
 	font-size: 1.2rem;
-	padding-top: .5rem;
+	padding: 1rem 0 1rem 5rem;
+	height: 6rem;
 }
 
 .sidebar__transport > form > input[type=radio]#pickup:checked + label.pickup  {
-	background: url('../public/img/shopper-checked.png') no-repeat bottom center;
+	background: url('../public/img/shopper-checked.png') no-repeat;
 }
 
 .sidebar__transport > form > input[type=radio]#ups:checked + label.ups {
-	background: url('../public/img/delivery-truck-checked.png') no-repeat bottom center;
+	background: url('../public/img/delivery-truck-checked.png') no-repeat;
 }
 
 .sidebar__transport > form > input[type=radio]#pickup + label.pickup {
-	background: url('../public/img/shopper-light.png') no-repeat bottom center;
+	background: url('../public/img/shopper-light.png') no-repeat;
 }
 
 .sidebar__transport > form > input[type=radio]#ups + label.ups {
-	background: url('../public/img/delivery-truck-light.png') no-repeat bottom center;
-	margin-left: .5rem;
+	background: url('../public/img/delivery-truck-light.png') no-repeat;
+	margin-top: 1rem;
 }
 
 .sidebar__transport > form > input[type=radio]#pickup:checked + label.pickup,
 .sidebar__transport > form > input[type=radio]#ups:checked + label.ups {
 	color: #006df1;
 	background-size: 5rem;
+	background-position-x: 1rem;
 	border: 2px solid #006df1;
 	border-radius: 4px;
 }
@@ -379,6 +384,7 @@ input[type=checkbox]:checked ~ .index__form--login {
 .sidebar__transport > form > input[type=radio]#ups + label.ups {
 	color: #ccc;
 	background-size: 5rem;
+	background-position-x: 1rem;
 	border: 2px solid #ccc;
 	border-radius: 4px;
 }
@@ -386,19 +392,18 @@ input[type=checkbox]:checked ~ .index__form--login {
 .sidebar__transport .cart__amount {
 	font-size: 1.8rem;
 	text-transform: uppercase;
-	padding-top: 2rem;
-	display: inline-block;
+	margin-top: 2rem;
 	border-bottom: 2px solid var(--main-amaranth);
+	border-top: 2px solid var(--main-amaranth);
 	font-weight: 800;
 }
 
 .sidebar__transport button[type=submit] {
 	font-size: 1.8rem;
-	margin-left: 4rem;
-	background-color: var(--main-purple);
-	color: var(--main-white);
-	border: none;
-	border-radius: 4px;
+	margin-top: 2rem;
+	color: var(--main-green);
+	background-color: transparent;
+	border: 1px solid currentColor;
 	padding: 1rem;
 	cursor: pointer;
 	transition: all .2s;
@@ -406,11 +411,12 @@ input[type=checkbox]:checked ~ .index__form--login {
 }
 
 .sidebar__transport button[type=submit]:hover {
-	background-color: #2c47a3c7;
+	background-color: var(--main-green);
+	border: 1px solid var(--main-green);
+	color: var(--main-white);
 }
 
 .sidebar__receipts {
-	padding-top: 6rem;
 	text-align: center;
 }
 
@@ -426,22 +432,24 @@ input[type=checkbox]:checked ~ .index__form--login {
 }
 
 .sidebar__receipts button[type=submit] {
-	background-color: #e1b400;
-	color: var(--main-white);
+	background-color: transparent;
+	color: var(--main-purple);
 	padding: .2rem;
 	font-size: 1rem;
-	border: 1px solid #e1b400;
-	border-radius: 4px;
+	border: 1px solid currentColor;
 	cursor: pointer;
 	transition: all .2s;
+	text-transform: uppercase;
 }
 
 .sidebar__receipts button[type=submit]:hover {
 	color: var(--main-white);
-	background-color: var(--main-yellow);
+	background-color: var(--main-purple);
+	border: 1px solid var(--main-purple);
 }
 
 .products {
+	background-color: #eee;
 	flex: 1 1 70%;
 	display: flex;
 	flex-flow: row wrap;
@@ -453,7 +461,7 @@ input[type=checkbox]:checked ~ .index__form--login {
 	max-height: 30rem;
 	margin: 1.5rem;
 	transition: all .2s;
-	border-radius: 5px;
+	border: 1px solid #ccc;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: top center;
@@ -495,26 +503,24 @@ input[type=checkbox]:checked ~ .index__form--login {
 }
 
 .product-card__arrow-button {
-	width: 2.5rem;
+	width: 2rem;
 	font-size: 1rem;
-	color: #000;
-	background-color: var(--main-yellow);
-	border: 1px solid #e1b400;
+	color: var(--main-yellow);
+	background-color: transparent;
+	border: 1px solid currentColor;
 	height: 50%;
 	cursor: pointer;
 	transition: all .2s;
 }
 
 .product-card__arrow-button:hover {
-	background-color: #e1b400;
+	background-color: var(--main-yellow);
+	color: var(--main-white);
+	border: 1px solid var(--main-yellow);
 }
 
 .product-card__arrow-button.arrow-button--up {
-	border-top-left-radius: 5px;
-}
-
-.product-card__arrow-button.arrow-button--down {
-	border-bottom-left-radius: 5px;
+	transform: translateY(1px);
 }
 
 .product-card__form input[type=number] {
@@ -522,9 +528,10 @@ input[type=checkbox]:checked ~ .index__form--login {
 	font-size: 1.6rem;
 	padding: 0 .5rem;
 	max-width: 4rem;
-	height: 3.2rem;
+	height: 3rem;
 	-moz-appearance: textfield;
 	border: 1px solid #ccc;
+	transform: translate(1px, 1px);
 }
 
 .product-card__form input[type=number]::-webkit-outer-spin-button, 
@@ -534,22 +541,22 @@ input[type=checkbox]:checked ~ .index__form--login {
 }
 
 .product-card__form button[type=submit] {
-	color: #fff;
-	background-color: var(--main-green);
+	color: var(--main-green);
+	background-color: transparent;
 	font-family: 'Varela Round', sans-serif;
 	height: 3rem;
 	width: 2.5rem;
 	cursor: pointer;
 	padding: 0 .5rem;
-	border: 1px solid var(--main-green);
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border: 1px solid currentColor;
+	transform: translate(2px, 1px);
 	transition: all .2s;
 }
 
 .product-card__form button[type=submit]:hover {
-	background-color: #088e01;
-	border: 1px solid #088e01;
+	background-color: var(--main-green);
+	color: var(--main-white);
+	border: 1px solid var(--main-green);
 }
 
 .product-card__rating-container {
@@ -566,7 +573,7 @@ input[type=checkbox]:checked ~ .index__form--login {
 .product-card__rating label {
 	font-size: 2rem;
 	cursor: pointer;
-	color: #777;
+	color: #ccc;
 	transition: all .2s;
 }
 

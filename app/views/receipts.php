@@ -1,9 +1,11 @@
 <table>
 	<thead>
-		<th>Reference</th>
-		<th>Date</th>
-		<th>Total</th>
-		<th>Receipt</th>
+		<tr>
+			<th>Reference</th>
+			<th>Date</th>
+			<th>Total</th>
+			<th>Receipt</th>
+		</tr>
 	</thead>
 	<tbody>
 		<?php foreach ($data["receipt"] as $receipt) : ?>
