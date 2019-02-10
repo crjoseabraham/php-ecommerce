@@ -52,8 +52,11 @@ class Index extends Controller
 	 */
 	public function logout() : void
 	{
-		if ($this->session->isUserLoggedIn()) {
-			if (!$this->session->logout()) die("Something went wrong when session->logout()");
+		if ($this->session->isUserLoggedIn() !== false) {
+			$this->session->restoreSession();
+			
+			if (!$this->session->logout()) 
+				die("Something went wrong when session->logout");
 		}
 
 		header('Location: ' . URLROOT . '/index/home');
@@ -92,12 +95,14 @@ class Index extends Controller
 	 */
 	public function home() : void
 	{
-		if ($this->session->isUserLoggedIn()) {
+		$isUserLoggedInData = $this->session->isUserLoggedIn();
+		if ($isUserLoggedInData !== false) {
+			$this->session->restoreSession();
 			$data = [];
-			$data["cart"] = $this->cart->getCart($this->session->getSessionValue('user_id'));
+			$data["cart"] = $this->cart->getCart($isUserLoggedInData['user_id']);
 			$data["product"] = $this->product->getProducts();
-			$data["user"] = $this->user->getUserById($this->session->getSessionValue('user_id'));
-			$data["receipt"] = $this->order->getOrdersByUser($this->session->getSessionValue('user_id'));
+			$data["user"] = $this->user->getUserById($isUserLoggedInData['user_id']);
+			$data["receipt"] = $this->order->getOrdersByUser($isUserLoggedInData['user_id']);
 
 			$this->loadView('dashboard', $data);
 		} else

@@ -43,14 +43,28 @@ class Session
 
 	/**
 	 * Check if there's a session running
-	 * @return boolean
+	 * @return array 	If there's a session active
+	 * @return boolean  If not active session was found
 	 */
-	public function isUserLoggedIn() : bool
+	public function isUserLoggedIn()
 	{
-		if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_logged_in']))
+		$this->db->query("SELECT session_id, user_id FROM session WHERE status = 1");
+		if ($this->db->execute())
+			return $this->db->resultSingle();
+		else
 			return false;
-		else 
-			return true;
+	}
+
+	/**
+	 * Restore an unclosed session
+	 * @return  void
+	 */
+	public function restoreSession() : void
+	{
+		$isUserLoggedIn = $this->isUserLoggedIn();
+		session_destroy();
+		$this->login($isUserLoggedIn['user_id']);
+		session_id($isUserLoggedIn['session_id']);
 	}
 
 	/**
