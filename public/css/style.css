@@ -315,11 +315,6 @@ input[type=checkbox]:checked ~ .index__form--login {
 	font-size: 1.4rem;
 }
 
-.sidebar__cart-details table th:not(:first-child),
-.sidebar__cart-details table td:not(:first-child) {
-	padding-left: 1rem;
-}
-
 .sidebar__cart-details table td {
 	padding-top: 0.5rem;
 }
@@ -434,6 +429,7 @@ input[type=checkbox]:checked ~ .index__form--login {
 
 .sidebar__receipts {
 	text-align: center;
+	padding-top: 2rem;
 }
 
 .sidebar__receipts table th {

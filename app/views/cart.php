@@ -3,7 +3,7 @@
 	<h1> Cart details </h1>
 	<table>
 		<thead>
-			<th>&nbsp;</th>
+			<th>Remove item</th>
 			<th>Description</th>
 			<th>Subtotal</th>
 		</thead>

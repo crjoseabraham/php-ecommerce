@@ -22,19 +22,19 @@
 			<form action="<?= URLROOT; ?>/ratings/vote" class="product-card__rating" method="post">
 			<input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
 
-			<label for="product<?= $product['product_id']; ?>-1">★</label>
+			<label for="product<?= $product['product_id']; ?>-1" class="star">★</label>
 			<input type="submit" name="rating_value" value="1" class="product-card__star" id="product<?= $product['product_id']; ?>-1"/>
 
-			<label for="product<?= $product['product_id']; ?>-2">★</label>
+			<label for="product<?= $product['product_id']; ?>-2" class="star">★</label>
 			<input type="submit" name="rating_value" value="2" class="product-card__star" id="product<?= $product['product_id']; ?>-2"/>
 
-			<label for="product<?= $product['product_id']; ?>-3">★</label>
+			<label for="product<?= $product['product_id']; ?>-3" class="star">★</label>
 			<input type="submit" name="rating_value" value="3" class="product-card__star" id="product<?= $product['product_id']; ?>-3"/>
 
-			<label for="product<?= $product['product_id']; ?>-4">★</label>
+			<label for="product<?= $product['product_id']; ?>-4" class="star">★</label>
 			<input type="submit" name="rating_value" value="4" class="product-card__star" id="product<?= $product['product_id']; ?>-4"/>
 
-			<label for="product<?= $product['product_id']; ?>-5">★</label>
+			<label for="product<?= $product['product_id']; ?>-5" class="star">★</label>
 			<input type="submit" name="rating_value" value="5" class="product-card__star" id="product<?= $product['product_id']; ?>-5"/>
 			</form>
 		</div>
