@@ -56,18 +56,6 @@ class Session
 	}
 
 	/**
-	 * Restore an unclosed session
-	 * @return  void
-	 */
-	public function restoreSession() : void
-	{
-		$isUserLoggedIn = $this->isUserLoggedIn();
-		session_destroy();
-		$this->login($isUserLoggedIn['user_id']);
-		session_id($isUserLoggedIn['session_id']);
-	}
-
-	/**
 	 * Register session data when logging in
 	 * @param  string $user_id            User ID
 	 * @param  string $session_id         Session ID
@@ -104,11 +92,11 @@ class Session
 	/**
 	 * Check if User has already a session running
 	 * @param  string  $user_id User ID
-	 * @return bool
+	 * @return string  ID of unclosed Session
 	 */
-	public function isSessionActive(string $user_id) : bool
+	public function isSessionActive(string $user_id) : string
 	{
-		$this->db->query("SELECT status FROM `session` WHERE user_id = :userid AND status = 1");
+		$this->db->query("SELECT session_id FROM `session` WHERE user_id = :userid AND status = 1");
 		$this->db->bind(':userid', $user_id);
 		return $this->db->resultSingleValue();
 	}

@@ -28,19 +28,23 @@ class Index extends Controller
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			// 1. Get user data by submitted email - Email gets verified here already
-			$this->userData = $this->user->getUserByEmail($_POST['login_email']);
-			if (!$this->userData) die("Email not found");
+			$this->userData = $this->user->getUserByEmail(strtolower($_POST['login_email']));
 
 			// 2. Now verify that submittedPassword match userData
 			$correctPassword = $this->user->verifyPassword($_POST['login_password'], $this->userData['password']);
 
-			if($correctPassword)
-			{
-				if (!$this->session->isSessionActive($this->userData['id'])) {
-					$this->session->login($this->userData['id']);
-					$this->session->registerSessionLogin($this->userData['id'], session_id(), date("Y-m-d H:i:s"));
-				}
-			} else die("Incorrect");
+			if(!$correctPassword || !$this->userData)
+				die("Incorrect email or password.");
+			else {
+				// 3. If user left session unclosed, close it
+				$oldSessionId = $this->session->isSessionActive($this->userData['id']);
+				if (isset($oldSessionId))
+					$this->session->registerSessionLogout($oldSessionId, date('Y-m-d H:i:s'));
+
+				// 4. Create SESSION data
+				$this->session->login($this->userData['id']);
+				$this->session->registerSessionLogin($this->userData['id'], session_id(), date("Y-m-d H:i:s"));
+			}
 		}
 
 		header('Location: ' . URLROOT . '/index/home');
@@ -52,12 +56,8 @@ class Index extends Controller
 	 */
 	public function logout() : void
 	{
-		if ($this->session->isUserLoggedIn() !== false) {
-			$this->session->restoreSession();
-			
-			if (!$this->session->logout()) 
-				die("Something went wrong when session->logout");
-		}
+		if (!$this->session->logout())
+			die("Something went wrong when session->logout");
 
 		header('Location: ' . URLROOT . '/index/home');
 	}
@@ -95,14 +95,12 @@ class Index extends Controller
 	 */
 	public function home() : void
 	{
-		$isUserLoggedInData = $this->session->isUserLoggedIn();
-		if ($isUserLoggedInData !== false) {
-			$this->session->restoreSession();
+		if (isset($_SESSION['user_id']) && $_SESSION['is_logged_in']) {
 			$data = [];
-			$data["cart"] = $this->cart->getCart($isUserLoggedInData['user_id']);
+			$data["cart"] = $this->cart->getCart($this->session->getSessionValue('user_id'));
 			$data["product"] = $this->product->getProducts();
-			$data["user"] = $this->user->getUserById($isUserLoggedInData['user_id']);
-			$data["receipt"] = $this->order->getOrdersByUser($isUserLoggedInData['user_id']);
+			$data["user"] = $this->user->getUserById($this->session->getSessionValue('user_id'));
+			$data["receipt"] = $this->order->getOrdersByUser($this->session->getSessionValue('user_id'));
 
 			$this->loadView('dashboard', $data);
 		} else
