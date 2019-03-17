@@ -22,7 +22,7 @@ abstract class Controller
 	 */
 	public function createModel (string $model)
 	{
-		require_once APPROOT . '\\app\\models\\' . $model . '.php';
+		require_once APPROOT . '/app/models/' . $model . '.php';
 		return new $model;
 	}
 
@@ -35,8 +35,8 @@ abstract class Controller
 	public function loadView (string $view, array $data = []) : void
 	{
 		# Check if view file exists
-		if (file_exists(APPROOT . '\\app\\views\\' . $view . '.php'))
-			require_once APPROOT . '\\app\\views\\' . $view . '.php';
+		if (file_exists(APPROOT . '/app/views/' . $view . '.php'))
+			require_once APPROOT . '/app/views/' . $view . '.php';
 		else
 			die('Not found');
 	}

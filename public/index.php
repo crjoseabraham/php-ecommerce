@@ -16,10 +16,11 @@
  * web application without diving into frameworks or libraries yet (well, I used FPDF but don't tell anyone).
  */
 
+
 require dirname(__DIR__) . '/app/config/constants.php';
 
 spl_autoload_register(function ($className) {
-	require_once APPROOT . "\\app\\config\\{$className}.php";
+	require_once APPROOT . "/app/config/{$className}.php";
 });
 
 $init = new Router;
