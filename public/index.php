@@ -6,7 +6,7 @@
  *
  * @version 2.0
  * @author	José Abraham Castillo
- * @link	https://github.com/taniarascia/laconia
+ * @link	https://github.com/crjoseabraham/shoppingcart
  *
  * This project started as a challenge for a job interview where I had to create a very basic
  * shopping cart app with PHP applying Object Oriented Programming and Sessions.
