@@ -1,0 +1,19 @@
+{
+    "name": "abraham/shoppingcart",
+    "description": "Shopping cart app with vanilla PHP",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Jose Abraham Castillo",
+            "email": "crjoseabraham@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "config/constants.php",
+            "config/utilities.php"
+        ],
+        "classmap": ["src/"]
+    },
+    "require": {}
+}
