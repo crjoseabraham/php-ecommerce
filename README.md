@@ -1,5 +1,5 @@
 
-# Basic shopping cart with PHP & MVC
+# Basic shopping cart with PHP & MVC (Version 2.0)
 
 A very basic shopping cart I coded for a job interview, the code was spaghetti before so I decided to make a complete refactor in order to teach myself some modern concepts like OOP, MVC architecture, work with sessions and PDF reports.
 
