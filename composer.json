@@ -13,7 +13,11 @@
             "config/constants.php",
             "config/utilities.php"
         ],
-        "classmap": ["src/"]
+        "psr-4": {
+            "App\\": "src/app"
+        }
     },
-    "require": {}
+    "require": {
+        "twig/twig": "^2.0"
+    }
 }
