@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Quattrocento|Quattrocento+Sans');
+
+// Variables
+$font-heading: 'Quattrocento', serif;
+$font-body: 'Quattrocento Sans', sans-serif;
+$font-color: #4a4a4a;
+$primary: #4E73DF;
+$secondary: #858796;
+$success: #1CC88A;
+$info: #36B9CC;
+$warning: #F6C23E;
+$danger: #E74A3B;
+
+html
+{
+  font-size: 62.5%;
+}
+
+*, *::after, *::before
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body
+{
+  font-family: $font-body;
+  font-size: 1.8rem;
+  color: $font-color;
+}
+
+a, a:link, a:visited
+{
+  color: $font-color;
+  text-decoration: none;
+}
+
+// Buttons
+.btn
+{
+  border-radius: 4px;
+  padding: 1rem 1.5rem;
+  display: inline-flex;
+
+  &-default { border: 1px solid #CCC; }
+  &-default:hover { border: 1px solid $font-color; }
+
+  &:not(&-default) { color: #FFF !important; }
+
+  &-primary { border: 1px solid $primary; background-color: $primary; }
+  &-primary:hover { border: 1px solid darken($primary, 10%); background-color: darken($primary, 10%); }
+
+  &-success { border: 1px solid $success; background-color: $success; }
+  &-success:hover { border: 1px solid darken($success, 10%); background-color: darken($success, 10%); }
+
+  &-info { border: 1px solid $info; background-color: $info; }
+  &-info:hover { border: 1px solid darken($info, 10%); background-color: darken($info, 10%); }
+
+  &-warning { border: 1px solid $warning; background-color: $warning; }
+  &-warning:hover { border: 1px solid darken($warning, 10%); background-color: darken($warning, 10%); }
+
+  &-danger { border: 1px solid $danger; background-color: $danger; }
+  &-danger:hover { border: 1px solid darken($danger, 10%); background-color: darken($danger, 10%); }
+}

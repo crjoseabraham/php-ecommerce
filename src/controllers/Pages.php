@@ -6,11 +6,11 @@ class Pages
 
   public function index()
   {
-    echo 'index';
+    renderView('index.html');
   }
-  
-  public function about()
+
+  public function store()
   {
-    echo "about";
+    renderView('store.html');
   }
 }

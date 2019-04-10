@@ -149,6 +149,6 @@ class Router
           ]
         ]
     ];
-    renderView('index.html', $products);
+    renderView('test.html', $products);
   }
 }

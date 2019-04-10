@@ -1,6 +1,7 @@
 <?php
 $router->get('', 'Pages@index');
-$router->get('about', 'Pages@about');
+$router->get('home', 'Pages@index');
+$router->get('store', 'Pages@store');
 $router->get('login', 'Pages@login');
 $router->get('register', 'Pages@register');
 $router->get('purchase-details', 'Pages@purchaseDetails');

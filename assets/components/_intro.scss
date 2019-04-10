@@ -1,0 +1,31 @@
+.introduction
+{
+  display: flex;
+  justify-content: center;
+
+  & > .container
+  {
+    max-width: 70rem;
+    padding: 3rem;
+
+    & > h1
+    {
+      padding: 2rem 0;
+    }
+
+    & > p
+    {
+      line-height: 1.5;
+
+      & > a
+      {
+        color: $primary !important;
+      }
+    }
+
+    & > .btn
+    {
+      margin-top: 2rem;
+    }
+  }
+}

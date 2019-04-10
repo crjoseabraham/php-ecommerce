@@ -1,0 +1,41 @@
+.navbar
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  background-color: #000;
+
+  &-container
+  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-basis: 70rem;
+    padding: 0 3rem;
+  }
+
+  & a
+  {
+    color: #FFF;
+
+    &.btn-default:hover
+    {
+      background-color: #FFF;
+      border: 1px solid #FFF;
+      color: $font-color !important;
+    }
+
+  }
+
+  & ul
+  {
+    list-style: none;
+    display: flex;
+
+    & > li:not(:first-child)
+    {
+      padding-left: 1.5rem;
+    }
+  }
+}

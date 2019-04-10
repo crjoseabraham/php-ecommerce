@@ -18,7 +18,7 @@ function getMethod() : string
 }
 
 // Function to load a template
-function renderView($file, $data) : void
+function renderView($file, $data = []) : void
 {
   // Specify our Twig templates location
   $loader = new Twig_Loader_Filesystem(dirname(__DIR__) . '/src/views');

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Twig Example</title>
+    </head>
+    <body>
+    <h1> {{ data.title }} </h1>
+    <table border="1" style="width: 80%;">
+        <thead>
+            <tr>
+                <td>Product</td>
+                <td>Description</td>
+                <td>Value</td>
+                <td>Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in data.products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.value }}</td>
+                    <td>{{ product.date_register|date("m/d/Y") }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </body>
+</html>
