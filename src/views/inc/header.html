@@ -8,25 +8,30 @@
   <title> Shopping Cart App</title>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-container">
-      <div class="navbar-left">
-        <ul>
-          <li><a href="home"> Home</a></li>
-          <li><a href="store"> Store</a></li>
-        </ul>
-      </div>
+  <div class="container">
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-left">
+          <ul>
+            <li><a href="home"> Home</a></li>
+            <li><a href="store"> Store</a></li>
+          </ul>
+        </div>
 
-      <div class="navbar-right">
-        <ul>
-          <li><a href="login" class="btn btn-default">Login</a></li>
-          <li><a href="register" class="btn btn-primary">Register</a></li>
-        </ul>
+        <div class="navbar-right">
+          <ul>
+            <li><a href="login" class="btn btn-default">Login</a></li>
+            <li><a href="register" class="btn btn-primary">Register</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-  {% block content %}
+    </nav>
+    {% block content %}
 
-  {% endblock %}
+    {% endblock %}
+    <footer>
+      Made by <a href="https://github.com/crjoseabraham" class="info">Jose Abraham Castillo</a>
+    </footer>
+  </div>
 </body>
 </html>

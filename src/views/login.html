@@ -1,0 +1,17 @@
+{% extends "inc/header.html" %}
+
+{% block content %}
+<section class="login">
+  <div class="container">
+    <h1>Sign In</h1>
+    <p>Don't have an account? <a href="register" class="secondary">Sign Up</a> </p>
+    <form method="post" class="login-form">
+      <input type="text" name="user" id="user" placeholder="Username or email">
+      <input type="password" name="password" id="pass" placeholder="Password">
+
+      <button type="submit" class="btn btn-primary"> Log in </button>
+    </form>
+    <a href="forgot-password"> Forgot password? </a>
+  </div>
+</section>
+{% endblock %}

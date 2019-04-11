@@ -1,5 +1,29 @@
 {% extends "inc/header.html" %}
 
 {% block content %}
-  This is the store :)
+<section class="store">
+  <div class="container">
+    <div class="cart">The cart goes here</div>
+    <div class="products">
+      <div class="products__card"> <!-- CARD -->
+        <div class="img-here"></div>
+        <h3 class="product-name">Product Name</h3>
+        <p class="price">$0.99</p>
+        <div class="rating">♥♥♥♥♥</div>
+        
+        <form method="post" class="add-product">
+          <input type="number" name="quantity" id="quantity">
+          <button type="submit">Add to cart</button>
+        </form>
+      </div>
+
+
+      <div class="products__card">Card 2</div>
+      <div class="products__card">Card 3</div>
+      <div class="products__card">Card 4</div>
+      <div class="products__card">Card 5</div>
+      <div class="products__card">Card 6</div>
+    </div>
+  </div>
+</section>
 {% endblock %}

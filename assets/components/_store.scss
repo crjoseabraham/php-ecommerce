@@ -1,0 +1,67 @@
+.store
+{
+  padding: 3rem;
+
+  & > .container
+  {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 2rem;
+  }
+
+  & .cart
+  {
+    border: 1px solid $font-color;
+  }
+  & .products
+  {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+
+    &__card
+    {
+      height: 18rem;
+      border: 1px solid $font-color;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+
+      & > *:not(.img-here)
+      {
+        padding-left: 1rem;
+      }
+
+      & > .img-here
+      {
+        background-color: $danger;
+        grid-column: 1 / span 2;
+        grid-row: 1 / -1;
+      }
+
+      & > .product-name
+      {
+        grid-column: 3 / -1;
+      }
+
+      & > .price
+      {
+        grid-column: 3 / -1;
+      }
+
+      & > .rating
+      {
+        grid-column: 3 / -1;
+      }
+
+      & > .add-product
+      {
+        grid-column: 3 / -1;
+        grid-row: 5 / span 2;
+      }
+    }
+  }
+}

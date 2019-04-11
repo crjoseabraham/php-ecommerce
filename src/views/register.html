@@ -1,0 +1,24 @@
+{% extends "inc/header.html" %}
+
+{% block content %}
+<section class="register">
+  <div class="container">
+    <h1>Create an account</h1>
+    <p>Already have an account? <a href="login" class="secondary">Log In</a> </p>
+    <ul>
+    {% for error in data %}
+    <li> {{ error }} </li>
+    {% endfor %}
+    </ul>
+
+    <form action="register" method="post" class="register-form">
+      <input type="text" name="name" placeholder="Name:">
+      <input type="email" name="email" placeholder="Email:">
+      <input type="password" name="password" placeholder="Password:">
+      <input type="password" name="password_confirm" placeholder="Confirm password:">
+
+      <button type="submit" class="btn btn-primary"> Register </button>
+    </form>
+  </div>
+</section>
+{% endblock %}

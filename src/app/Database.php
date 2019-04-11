@@ -1,15 +1,18 @@
 <?php 
+namespace App;
+
+use \PDO;
 /**
  *  Database Class
  *  Start connection to the database
  */
 
-class Database
+class Database extends Config
 {
-	private $host = DB_HOST;
-	private $user = DB_USER;
-	private $pass = DB_PASS;
-	private $name = DB_NAME;
+	private $host = Config::DB_HOST;
+	private $user = Config::DB_USER;
+	private $pass = Config::DB_PASS;
+	private $name = Config::DB_NAME;
 
 	private $handler;
 	private $error;
@@ -24,7 +27,7 @@ class Database
   	];
 
   	try {
-  		$this->handler = new PDO($dsn, $this->user, $this->pass, $options);
+      $this->handler = new PDO($dsn, $this->user, $this->pass, $options);
   	} catch (PDOException $e) {
   		$this->error = $e->getMessage();
   	}

@@ -28,6 +28,23 @@ body
   font-family: $font-body;
   font-size: 1.8rem;
   color: $font-color;
+
+  & > .container
+  {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    & > section
+    {
+      flex: 1;
+    }
+  }
+}
+
+h1
+{
+  font-family: $font-heading;
 }
 
 a, a:link, a:visited
@@ -36,7 +53,22 @@ a, a:link, a:visited
   text-decoration: none;
 }
 
+a.primary { color: $primary !important; }
+a.secondary { color: $secondary !important; }
+a.success { color: $success !important; }
+a.info { color: $info !important; }
+a.warning { color: $warning !important; }
+a.danger { color: $danger !important; }
+
 // Buttons
+button
+{
+  border: none;
+  font-family: $font-body;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
 .btn
 {
   border-radius: 4px;
@@ -46,7 +78,7 @@ a, a:link, a:visited
   &-default { border: 1px solid #CCC; }
   &-default:hover { border: 1px solid $font-color; }
 
-  &:not(&-default) { color: #FFF !important; }
+  &:not(&-default) { color: #FFF; }
 
   &-primary { border: 1px solid $primary; background-color: $primary; }
   &-primary:hover { border: 1px solid darken($primary, 10%); background-color: darken($primary, 10%); }

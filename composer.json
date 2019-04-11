@@ -9,13 +9,10 @@
         }
     ],
     "autoload": {
-        "files": [
-            "config/constants.php",
-            "config/utilities.php"
-        ],
         "psr-4": {
             "App\\": "src/app",
-            "Controller\\": "src/controllers"
+            "Controller\\": "src/controllers",
+            "Model\\": "src/models"
         }
     },
     "require": {

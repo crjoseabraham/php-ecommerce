@@ -1,0 +1,67 @@
+.login, .register
+{
+  display: flex;
+  justify-content: center;
+  background-color: $secondary;
+  padding: 3rem 0;
+
+  & > .container
+  {
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 70rem;
+    padding: 6rem 10rem;
+    line-height: 1.5;
+    box-shadow: 2px 2px .5rem $font-color;
+
+    & > a:last-child
+    {
+      align-self: center;
+      margin-top: 3rem;
+    }
+
+    @media(max-width: 600px)
+    {
+      padding: 6rem 2rem;
+    }
+  }
+
+  & form
+  {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3.5rem;
+
+    & > button[type="submit"]
+    {
+      margin-top: 4rem;
+      align-self: center;
+    }
+  }
+  & input
+  {
+    height: 5rem;
+    padding-left: 2rem;
+    border: none;
+    box-shadow: 2px 2px .4rem $font-color;
+    
+    &::placeholder
+    {
+      font-family: $font-body;
+      font-size: 1.4rem;
+    }
+
+    &:first-child
+    {
+      border-top-left-radius: .6rem;
+      border-top-right-radius: .6rem;
+    }
+
+    &:last-of-type
+    {
+      border-bottom-left-radius: .6rem;
+      border-bottom-right-radius: .6rem;
+    }
+  }
+}
