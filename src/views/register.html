@@ -5,17 +5,20 @@
   <div class="container">
     <h1>Create an account</h1>
     <p>Already have an account? <a href="login" class="secondary">Log In</a> </p>
-    <ul>
-    {% for error in data %}
-    <li> {{ error }} </li>
-    {% endfor %}
+
+    {% if data is not empty%}
+    <ul class="errors">
+      {% for error in data %}
+      <li> {{ error }} </li>
+      {% endfor %}
     </ul>
+    {% endif %}
 
     <form action="register" method="post" class="register-form">
-      <input type="text" name="name" placeholder="Name:">
-      <input type="email" name="email" placeholder="Email:">
-      <input type="password" name="password" placeholder="Password:">
-      <input type="password" name="password_confirm" placeholder="Confirm password:">
+      <input type="text" name="name" placeholder="Name:" autofocus required>
+      <input type="email" name="email" placeholder="Email:" required>
+      <input type="password" name="password" placeholder="Password:" required>
+      <input type="password" name="password_confirm" placeholder="Confirm password:" required>
 
       <button type="submit" class="btn btn-primary"> Register </button>
     </form>

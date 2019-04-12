@@ -84,16 +84,6 @@ class Database extends Config
       $this->error = $e->getMessage();  
     } 
   }
-  
-  /**
-   * Fetch a single row as a result of a query.
-   * @return  array   Row result of the query
-   */
-  public function resultSingle() 
-  {  
-    $this->execute();
-    return $this->statement->fetch(PDO::FETCH_ASSOC);  
-  } 
 
   /**
    * Fetch a set of rows as a result of a query.

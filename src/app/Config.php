@@ -4,11 +4,21 @@ namespace App;
 class Config
 {
   public const URLROOT = 'http://localhost/shoppingcart';
+  // Database config values
   protected const DB_HOST = 'localhost';
   protected const DB_USER = 'root';
   protected const DB_PASS = '';
   protected const DB_NAME = 'shoppingcart';
-
+  // Messages
+  // --- Forms:
+  public const LOGIN_ERROR = 'Email and password combination is wrong';
+  public const NAME_MISSING = 'Name is required';
+  public const EMAIL_INVALID = 'Invalid email';
+  public const EMAIL_EXISTS = 'Email address aleary exists';
+  public const PASSWORD_MATCH = 'Password must match confirmation';
+  public const PASSWORD_TOO_SHORT = 'Password must be at least 6 characters long';
+  public const PASSWORD_NEEDS_LETTER = 'Password needs at least one letter';
+  public const PASSWORD_NEEDS_NUMBER = 'Password needs at least one number';
   /**
    * Get current URI removing the first part
    * Example: by default it would look like this "shoppingcart/controller/action"

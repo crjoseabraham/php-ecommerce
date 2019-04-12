@@ -24,21 +24,20 @@ class Pages
 
   public function register()
   {
-    if (Config::getMethod() === 'GET') 
+    if (Config::getMethod() === 'GET')  
     {
       Config::renderView('register.html');
-    } 
+    }
     elseif (Config::getMethod() === 'POST') 
     {
       $user = new User($_POST);
+
       if ($user->registerUser())
-      {
+        // NEW SESSION
+        // LOAD STORE.html WITH USER LOGGED IN
         echo "Success";
-      }
       else 
-      {
         Config::renderView('register.html', $user->errors);
-      }
     }
   }
 }

@@ -2,6 +2,7 @@
 namespace Model;
 
 use \App\Database;
+use \App\Config;
 
 class User
 {
@@ -46,27 +47,46 @@ class User
     return false;
   }
 
-  private function validateData()
+  /**
+   * Sanitize inputs
+   * @return void
+   */
+  private function validateData() : void
   {
     // Name
     if ($this->name === '')
-      $this->errors[] = 'Name is required';
+      $this->errors[] = Config::NAME_MISSING;
 
     // Email address
     if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false)
-      $this->errors[] = 'Invalid email';
+      $this->errors[] = Config::EMAIL_INVALID;
 
     // Password
     if ($this->password != $this->password_confirm)
-      $this->errors[] = 'Password must match confirmation';
+      $this->errors[] = Config::PASSWORD_MATCH;
 
     if (strlen($this->password) < 6)
-      $this->errors[] = 'Password must be at least 6 characters long';
+      $this->errors[] = Config::PASSWORD_TOO_SHORT;
 
     if (preg_match('/.*[a-z]+.*/i', $this->password) == 0)
-      $this->errors[] = 'Password needs at least one letter';
+      $this->errors[] = Config::PASSWORD_NEEDS_LETTER;
 
     if (preg_match('/.*\d+.*/i', $this->password) == 0)
-      $this->errors[] = 'Password needs at least one number';
+      $this->errors[] = Config::PASSWORD_NEEDS_NUMBER;
+
+    if ($this->emailExists())
+      $this->errors[] = Config::EMAIL_EXISTS;
+  }
+
+  /**
+   * Check if email already exists in the database
+   * @param  string $email Email to check
+   * @return boolean       true if found record, false if not
+   */
+  private function emailExists() : bool
+  {
+    $this->db->query("SELECT * FROM user WHERE email = :email;");
+    $this->db->bind(':email', $this->email);
+    return !!$this->db->resultSet();
   }
 }
