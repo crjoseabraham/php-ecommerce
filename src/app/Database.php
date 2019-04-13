@@ -7,12 +7,12 @@ use \PDO;
  *  Start connection to the database
  */
 
-class Database extends Config
+class Database
 {
-	private $host = Config::DB_HOST;
-	private $user = Config::DB_USER;
-	private $pass = Config::DB_PASS;
-	private $name = Config::DB_NAME;
+	private $host = DB_HOST;
+	private $user = DB_USER;
+	private $pass = DB_PASS;
+	private $name = DB_NAME;
 
 	private $handler;
 	private $error;
@@ -93,6 +93,16 @@ class Database extends Config
   {  
     $this->execute();  
     return $this->statement->fetchAll(PDO::FETCH_ASSOC);  
+  }
+
+  /**
+   * Fetch a single row as a result of a query.
+   * @return  array Array containing more data
+   */
+  public function resultSingleRow() 
+  {  
+    $this->execute();  
+    return $this->statement->fetch(PDO::FETCH_ASSOC);  
   }
 
   /**

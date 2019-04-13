@@ -1,7 +1,6 @@
 <?php
 namespace Controller;
 
-use \App\Config;
 use \Model\User;
 
 class Pages
@@ -9,26 +8,39 @@ class Pages
 
   public function index()
   {
-    Config::renderView('index.html');
+    renderView('index.html');
   }
 
   public function store()
   {
-    Config::renderView('store.html');
+    renderView('store.html');
   }
 
   public function login()
   {
-    Config::renderView('login.html');
+    if (getMethod() === 'GET')
+      renderView('login.html');
+    else
+    {
+      $userModel = new User($_POST);
+      $userData = $userModel->authenticate();
+
+      if (is_array($userData))
+      {
+        echo "Logged in successfully <br> <pre>";
+        var_dump($userData);
+      }
+      else
+        renderView('login.html', $userModel->errors);
+    }
   }
 
   public function register()
   {
-    if (Config::getMethod() === 'GET')  
-    {
-      Config::renderView('register.html');
-    }
-    elseif (Config::getMethod() === 'POST') 
+    if (getMethod() === 'GET')  
+      renderView('register.html');
+
+    else
     {
       $user = new User($_POST);
 
@@ -37,7 +49,7 @@ class Pages
         // LOAD STORE.html WITH USER LOGGED IN
         echo "Success";
       else 
-        Config::renderView('register.html', $user->errors);
+        renderView('register.html', $user->errors);
     }
   }
 }

@@ -9,6 +9,7 @@
         }
     ],
     "autoload": {
+        "files": ["src/app/constants.php"],
         "psr-4": {
             "App\\": "src/app",
             "Controller\\": "src/controllers",

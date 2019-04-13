@@ -26,7 +26,4 @@
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-use App\Router;
-use App\Config;
-
-Router::load(dirname(__DIR__) . '/src/app/routes.php')->redirect(Config::getURI(), Config::getMethod());
+App\Router::load(dirname(__DIR__) . '/src/app/routes.php')->redirect(getURI(), getMethod());
