@@ -1,55 +1,49 @@
 <?php
 namespace Controller;
 
-use \Model\User;
-
+/**
+ * Pages Controller
+ * Only displays the views for the GET requests
+ */
 class Pages
 {
-
-  public function index()
+  /**
+   * Displays main page
+   */
+  public function index() : void
   {
     renderView('index.html');
   }
 
-  public function store()
+  /**
+   * Displays 'Store' page with all products
+   */
+  public function store() : void
   {
     renderView('store.html');
   }
 
-  public function login()
+  /**
+   * Displays login form
+   */
+  public function login() : void
   {
-    if (getMethod() === 'GET')
-      renderView('login.html');
+    // Hide login page if user is already logged in
+    if (\Model\Session::getUser())
+      redirect('/store');
     else
-    {
-      $userModel = new User($_POST);
-      $userData = $userModel->authenticate();
-
-      if (is_array($userData))
-      {
-        echo "Logged in successfully <br> <pre>";
-        var_dump($userData);
-      }
-      else
-        renderView('login.html', $userModel->errors);
-    }
+      renderView('login.html');
   }
 
-  public function register()
+  /**
+   * Displays register form
+   */
+  public function register() : void
   {
-    if (getMethod() === 'GET')  
-      renderView('register.html');
-
+    // Hide register page if user is already logged in
+    if (\Model\Session::getUser())
+      redirect('/store');
     else
-    {
-      $user = new User($_POST);
-
-      if ($user->registerUser())
-        // NEW SESSION
-        // LOAD STORE.html WITH USER LOGGED IN
-        echo "Success";
-      else 
-        renderView('register.html', $user->errors);
-    }
+      renderView('register.html');
   }
 }

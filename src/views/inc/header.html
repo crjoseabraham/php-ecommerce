@@ -20,8 +20,13 @@
 
         <div class="navbar-right">
           <ul>
+            {% if current_user %}
+            <li> Welcome, <a href="#"> {{ current_user.name }} </a> </li>
+            <li> <a href="logout" class="btn btn-danger">Logout</a>
+            {% else %}
             <li><a href="login" class="btn btn-default">Login</a></li>
             <li><a href="register" class="btn btn-primary">Register</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>

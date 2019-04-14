@@ -3,46 +3,42 @@ namespace Model;
 
 use \App\Database;
 
-class User
+class User extends Database
 {
-  private $db;
-  public $errors = [];
+  /**
+   * Error messages
+   * @var array
+   */
+  private static $errors = [];
 
   /**
    * Constructor class
-   * Connects to the database and stores all $_POST data into $this variables
+   * Set $this->email, $this->password, etc. from sent POST data
    * @param array $data   $_POST data
    */
   public function __construct(array $data)
   {
-    $this->db = new Database;
-
-    foreach ($data as $key => $value) {
+    foreach ($data as $key => $value)
       $this->$key = htmlspecialchars($value);
-    }
   }
 
   /**
-   * Login authentication
-   * Compare email and password combination with database records
-   * @return array if records found, false if not.
+   * Return $errors array
+   * @return  array   Array with error messages
    */
-  public function authenticate()
+  public function getErrors() : array
   {
-    if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false)
-    {
-      $this->errors[] = EMAIL_INVALID;
-      return false;
-    }
+    return self::$errors;
+  }
 
-    $user = $this->findByEmail();
-    
-    if (password_verify($this->password, $user['password']))
-      return $user;
-    else
-      $this->errors[] = LOGIN_ERROR;
-
-    return false;
+  /**
+   * Set a new $errors value
+   * @param  string $value The value to be stored in $errors array
+   * @return void
+   */
+  public function setError($value) : void
+  {
+    self::$errors[] = $value;
   }
 
   /**
@@ -53,17 +49,16 @@ class User
   {
     $this->validateData();
 
-    if (empty($this->errors)) 
+    if (empty(self::$errors)) 
     {
+      $db = static::getDB();
       $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
-      $this->db->query("INSERT INTO user (`email`, `name`, `password`) VALUES (:e, :n, :p);");
-      $this->db->bind(':e', $this->email);
-      $this->db->bind(':n', $this->name);
-      $this->db->bind(':p', $hashed_password);
-      if ($this->db->execute())
+      $stmt = $db->prepare("INSERT INTO user (`email`, `name`, `password`) VALUES (:e, :n, :p);");
+      $stmt->bindValue(':e', $this->email, \PDO::PARAM_STR);
+      $stmt->bindValue(':n', $this->name, \PDO::PARAM_STR);
+      $stmt->bindValue(':p', $hashed_password, \PDO::PARAM_STR);
+      if ($stmt->execute())
         return true;
-      else
-        return false;
     }
     
     return false;
@@ -74,11 +69,28 @@ class User
    * @param  string $email Email to check
    * @return               Array if records found, if not returns false
    */
-  private function findByEmail()
+  public function findByEmail($email = '')
   {
-    $this->db->query("SELECT * FROM user WHERE email = :email;");
-    $this->db->bind(':email', $this->email);
-    return $this->db->resultSingleRow() ? $this->db->resultSingleRow() : false;
+    if ($email === '') 
+      $email = $this->email;
+
+    $db = static::getDB();
+    $stmt = $db->prepare("SELECT * FROM user WHERE email = :email;");
+    $stmt->bindValue(':email', $email, \PDO::PARAM_STR);
+    return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_OBJ) : false;
+  }
+
+  /**
+   * Get a user's data by passed id
+   * @param  string $id    ID to check
+   * @return array         Array if records found
+   */
+  public function findById($id)
+  {
+    $db = static::getDB();
+    $stmt = $db->prepare("SELECT * FROM user WHERE id = :id;");
+    $stmt->bindValue(':id', $id, \PDO::PARAM_STR);
+    return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_OBJ) : false;
   }
 
   /**
@@ -89,26 +101,26 @@ class User
   {
     // Name
     if ($this->name === '')
-      $this->errors[] = NAME_MISSING;
+      self::$errors[] = NAME_MISSING;
 
     // Email address
     if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false)
-      $this->errors[] = EMAIL_INVALID;
+      self::$errors[] = EMAIL_INVALID;
 
     // Password
     if ($this->password != $this->password_confirm)
-      $this->errors[] = PASSWORD_MATCH;
+      self::$errors[] = PASSWORD_MATCH;
 
     if (strlen($this->password) < 6)
-      $this->errors[] = PASSWORD_TOO_SHORT;
+      self::$errors[] = PASSWORD_TOO_SHORT;
 
     if (preg_match('/.*[a-z]+.*/i', $this->password) == 0)
-      $this->errors[] = PASSWORD_NEEDS_LETTER;
+      self::$errors[] = PASSWORD_NEEDS_LETTER;
 
     if (preg_match('/.*\d+.*/i', $this->password) == 0)
-      $this->errors[] = PASSWORD_NEEDS_NUMBER;
+      self::$errors[] = PASSWORD_NEEDS_NUMBER;
 
     if ($this->findByEmail() !== false)
-      $this->errors[] = EMAIL_EXISTS;
+      self::$errors[] = EMAIL_EXISTS;
   }
 }
