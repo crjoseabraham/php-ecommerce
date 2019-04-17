@@ -3,25 +3,41 @@
 {% block content %}
 <section class="register">
   <div class="container">
-    <h1>Create an account</h1>
-    <p>Already have an account? <a href="login" class="secondary">Log In</a> </p>
+    <div class="left">
+      <h1>Sign Up</h1>
+      <p>Already have an account? <a href="login" class="link-text">Log In</a> </p>
 
-    {% if data is not empty%}
-    <ul class="errors">
-      {% for error in data %}
-      <li> {{ error }} </li>
-      {% endfor %}
-    </ul>
-    {% endif %}
+      <form action="register" method="post" class="register-form">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" autofocus>
 
-    <form action="register" method="post" class="register-form">
-      <input type="text" name="name" placeholder="Name:" autofocus required>
-      <input type="email" name="email" placeholder="Email:" required>
-      <input type="password" name="password" placeholder="Password:" required>
-      <input type="password" name="password_confirm" placeholder="Confirm password:" required>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email">
 
-      <button type="submit" class="btn btn-primary"> Register </button>
-    </form>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+
+        <label for="password_confirm">Confirm password</label>
+        <input type="password" name="password_confirm" id="password_confirm">
+
+        <button type="submit" class="primary"> Register </button>
+      </form>
+    </div>
+
+    <div class="right">
+      Create an account to start using our services.
+
+      {% if data is not empty%}
+      <div class="warning">
+        <p> There were some problems with your registration: </p>
+        <ul class="errors">
+          {% for error in data %}
+          <li> {{ error }} </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
   </div>
 </section>
 {% endblock %}

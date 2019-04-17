@@ -1,0 +1,26 @@
+.introduction
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 80rem;
+  margin: 0 auto;
+
+  & > .links
+  {
+    padding-top: 2rem;
+  }
+
+  @media (max-width: 768px)
+  {
+    &
+    {
+      padding: 1.5rem 2rem;
+    }
+
+    & > .links > a
+    {
+      font-size: 1.5rem;
+    }
+  }
+}

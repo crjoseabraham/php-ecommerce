@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Quattrocento|Quattrocento+Sans');
+@import url('https://fonts.googleapis.com/css?family=Hind+Madurai:400,700');
 
 // Variables
-$font-heading: 'Quattrocento', serif;
-$font-body: 'Quattrocento Sans', sans-serif;
+$font: 'Hind Madurai', sans-serif;
 $font-color: #4a4a4a;
 $primary: #4E73DF;
 $secondary: #858796;
@@ -10,6 +9,32 @@ $success: #1CC88A;
 $info: #36B9CC;
 $warning: #F6C23E;
 $danger: #E74A3B;
+
+.primary { background-color: $primary; }
+.primary:hover { background-color: darken($primary, 10%); }
+
+.secondary { background-color: $secondary; }
+.secondary:hover { background-color: darken($secondary, 10%); }
+
+.success { background-color: $success; }
+.success:hover { background-color: darken($success, 10%); }
+
+.info { background-color: $info; }
+.info:hover { background-color: darken($info, 10%); }
+
+.warning { background-color: $warning; }
+.warning:hover { background-color: darken($warning, 10%); }
+
+.danger { background-color: $danger; }
+.danger:hover { background-color: darken($danger, 10%); }
+
+.light { background-color: #EEE; color: #000 !important; }
+.light:hover { background-color: darken(#FFF, 10%); }
+
+.bordered { background-color: #FFF; color: #000 !important; border: 1px solid #DBDBDB; }
+.bordered:hover { border: 1px solid #B5B5B5; }
+
+.small { font-size: 1rem; }
 
 html
 {
@@ -25,73 +50,66 @@ html
 
 body
 {
-  font-family: $font-body;
+  font-family: $font;
   font-size: 1.8rem;
   color: $font-color;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+  background-color: #F4F4F4;
+}
 
-  & > .container
-  {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-
-    & > section
-    {
-      flex: 1;
-    }
-  }
+html, body
+{
+  width: 100%;
+  height: 100%;
 }
 
 h1
 {
-  font-family: $font-heading;
+  font-weight: 700;
 }
 
-a, a:link, a:visited
+// Elements
+ul
 {
-  color: $font-color;
-  text-decoration: none;
+  list-style: none;
 }
 
-a.primary { color: $primary !important; }
-a.secondary { color: $secondary !important; }
-a.success { color: $success !important; }
-a.info { color: $info !important; }
-a.warning { color: $warning !important; }
-a.danger { color: $danger !important; }
-
-// Buttons
+// Buttons & Links
 button
 {
   border: none;
-  font-family: $font-body;
-  font-size: 1.8rem;
+  padding: 1rem;
   cursor: pointer;
+  color: #FFF;
+  border-radius: 3px;
 }
 
-.btn
+a, a:visited
 {
-  border-radius: 4px;
-  padding: 1rem 1.5rem;
+  color: #4a4a4a;
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 3px;
   display: inline-flex;
 
-  &-default { border: 1px solid #CCC; }
-  &-default:hover { border: 1px solid $font-color; }
+  &:hover
+  {
+    color: #b5b5b5;
+  }
 
-  &:not(&-default) { color: #FFF; }
+  &.primary, &.secondary, &.success,
+  &.info, &.warning, &.danger
+  {
+    color: #FFF !important;
+  }
 
-  &-primary { border: 1px solid $primary; background-color: $primary; }
-  &-primary:hover { border: 1px solid darken($primary, 10%); background-color: darken($primary, 10%); }
-
-  &-success { border: 1px solid $success; background-color: $success; }
-  &-success:hover { border: 1px solid darken($success, 10%); background-color: darken($success, 10%); }
-
-  &-info { border: 1px solid $info; background-color: $info; }
-  &-info:hover { border: 1px solid darken($info, 10%); background-color: darken($info, 10%); }
-
-  &-warning { border: 1px solid $warning; background-color: $warning; }
-  &-warning:hover { border: 1px solid darken($warning, 10%); background-color: darken($warning, 10%); }
-
-  &-danger { border: 1px solid $danger; background-color: $danger; }
-  &-danger:hover { border: 1px solid darken($danger, 10%); background-color: darken($danger, 10%); }
+  &.link-text
+  {
+    text-transform: none;
+    padding: 0;
+    color: $primary;
+  }
 }

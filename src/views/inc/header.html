@@ -8,35 +8,30 @@
   <title> Shopping Cart App</title>
 </head>
 <body>
-  <div class="container">
-    <nav class="navbar">
-      <div class="navbar-container">
-        <div class="navbar-left">
-          <ul>
-            <li><a href="home"> Home</a></li>
-            <li><a href="store"> Store</a></li>
-          </ul>
-        </div>
+  <nav class="navbar">
+    <a href="home" class="brand"> Shopping Cart App</a>
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn">
+      <span class="navicon"></span>
+    </label>
+    <ul class="menu">
+      <li><a href="home"> Home</a></li>
+      <li><a href="store"> Store</a></li>
+      {% if current_user %}
+      <li> <a href="#" class="link-text"> My Profile </a> </li>
+      <li> <a href="logout" class="secondary">Logout</a>
+      {% else %}
+      <li><a href="login" class="primary">Login</a></li>
+      <li><a href="register" class="light">Register</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% block content %}
 
-        <div class="navbar-right">
-          <ul>
-            {% if current_user %}
-            <li> Welcome, <a href="#"> {{ current_user.name }} </a> </li>
-            <li> <a href="logout" class="btn btn-danger">Logout</a>
-            {% else %}
-            <li><a href="login" class="btn btn-default">Login</a></li>
-            <li><a href="register" class="btn btn-primary">Register</a></li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
-    </nav>
-    {% block content %}
+  {% endblock %}
 
-    {% endblock %}
-    <footer>
-      Made by <a href="https://github.com/crjoseabraham" class="info">Jose Abraham Castillo</a>
-    </footer>
-  </div>
+  <footer>
+    Made by <a href="https://github.com/crjoseabraham" class="link-text">Jose Abraham Castillo</a>
+  </footer>
 </body>
 </html>

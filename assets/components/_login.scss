@@ -1,78 +1,140 @@
-.login, .register
+.login
 {
+  background-image: url('../img/background.jpg');
+  background-size: cover;
   display: flex;
-  justify-content: center;
-  background-color: $secondary;
-  padding: 3rem 0;
+  align-items: center;
 
   & > .container
   {
-    background-color: #FFF;
     display: flex;
-    flex-direction: column;
-    flex-basis: 70rem;
-    padding: 6rem 10rem;
-    line-height: 1.5;
-    box-shadow: 2px 2px .5rem $font-color;
+    width: 70%;
+    height: 40rem;
+    align-items: center;
+    align-content: center;
+    margin: auto;
 
-    & > a:last-child
+    @media (max-width: 1050px)
     {
-      align-self: center;
-      margin-top: 3rem;
-    }
-
-    & > ul.errors
-    {
-      font-size: 1.6rem;
-      color: $danger;
-      line-height: 1.5;
-      padding: 1rem 0;
-      padding-left: 2.5rem;
-      background-color: antiquewhite;
-      border: .4rem double currentColor;
-    }
-
-    @media(max-width: 600px)
-    {
-      padding: 6rem 2rem;
+      & > .left
+      {
+        display: none !important;
+      }
     }
   }
 
-  & form
+  & .left
   {
+    color: #FFF;
+    font-size: 2.8rem !important;
+    padding: 0 4rem;
+    background-color: rgba(78, 115, 233, .7);
+    height: 100%;
     display: flex;
     flex-direction: column;
-    padding-top: 2rem;
+    justify-content: center;
 
-    & > button[type="submit"]
+    & > .warning
     {
-      margin-top: 4rem;
-      align-self: center;
-    }
-  }
-  & input
-  {
-    height: 5rem;
-    padding-left: 2rem;
-    border: none;
-    box-shadow: 2px 2px .4rem $font-color;
-    
-    &::placeholder
-    {
-      font-family: $font-body;
       font-size: 1.4rem;
+      padding: 1rem;
+      background-color: $danger;
     }
 
-    &:first-child
+    & .errors
     {
-      border-top-left-radius: .6rem;
-      border-top-right-radius: .6rem;
+      padding-left: 2rem;
+      list-style: initial !important;
+    }
+  }
+
+  & .right
+  {
+    background-color: #FFF;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 4rem;
+  }
+
+  & .login-form
+  {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 2.5rem;
+
+    & > *:not(:last-child)
+    {
+      flex: 50%;
     }
 
-    &:last-of-type
+    & > label
     {
-      border-bottom-left-radius: .6rem;
-      border-bottom-right-radius: .6rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    & > input
+    {
+      height: 5rem;
+      padding: 1rem;
+      font-size: 1.8rem;
+      font-family: $font;
+      width: 50%;
+      border: none;
+    }
+
+    & > label[for="email"] { order: 0; }
+    & > label[for="password"] { order: 0; }
+    & > input#email { order: 1; }
+    & > input#password { order: 2; }
+    & > button { order: 4; flex: 1;}
+
+    & > input#email
+    {
+      border: 1px solid #ccc;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+
+    & > input#password
+    {
+      border: 1px solid #ccc;
+      border-left: none;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    & > button
+    {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      font-size: 1.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    @media (max-width: 670px)
+    {
+      &
+      {
+        flex-wrap: nowrap;
+        flex-direction: column !important;
+      }
+
+      & > *
+      {
+        order: 0 !important;
+        width: 100% !important;
+      }
+
+      & > input
+      {
+        border: 1px solid #ccc !important;
+        border-radius: 4px;
+      }
     }
   }
 }

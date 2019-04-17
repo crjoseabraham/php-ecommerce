@@ -1,18 +1,18 @@
 {% extends "inc/header.html" %}
 
 {% block content %}
-  <section class="introduction">
-    <div class="container">
-      <h1>Shopping Cart App</h1>
-      <p>
-        This is a personal project made by <a href="https://github.com/crjoseabraham" class="primary"> Jose Abraham Castillo</a> whose goal was to learn some modern topics of PHP like: MVC (Model-View-Controller) pattern, routing, working with sessions, namespaces, composer, a template engine called <a href="https://twig.symfony.com/" class="success"> Twig</a> and tie it all together with a little of modern JavaScript.
-        <br><br>
-        It is a basic app where you can login/register and then select from a list of products perform a "payment" process, you can also rate items from 1 to 5 stars. 
-        <br><br>
-        I did this long time ago as a challenge for a job interview and now I made a complete refactor to teach myself some modern concepts, the app still has some of the rules it had for the interview: <strong>1. You have a $100 budget every session.</strong> And <strong> You can rate a product only once per session.</strong>
-      </p>
-      <a href="store" class="btn btn-primary">Go to the store :)</a>
-      <a href="https://github.com/crjoseabraham/shoppingcart" class="btn btn-default">View Source Code on GitHub</a>
-    </div>
-  </section>
+<section class="introduction">
+  <h1>Shopping Cart App</h1>
+  <p>
+    This is a personal project made by <a href="https://github.com/crjoseabraham" class="link-text"> Jose Abraham Castillo</a> whose goal was to learn some modern topics of PHP like: MVC (Model-View-Controller) pattern, routing, working with sessions, namespaces, composer, a template engine called <a href="https://twig.symfony.com/" class="link-text"> Twig</a> and tie it all together with a little of modern JavaScript.
+    <br><br>
+    It is a basic app where you can login/register and then select from a list of products perform a "payment" process, you can also rate items from 1 to 5 stars. 
+    <br><br>
+    I did this long time ago as a challenge for a job interview and now I made a complete refactor to teach myself some modern concepts, the app still has some of the rules it had for the interview: <strong>1. You have a $100 budget every session.</strong> And <strong> You can rate a product only once per session.</strong>
+  </p>
+  <div class="links">
+    <a href="store" class="primary">Go to the store :)</a>
+    <a href="https://github.com/crjoseabraham/shoppingcart" target="_blank" class="bordered">View Source Code on GitHub</a>
+  </div>
+</section>
 {% endblock %}

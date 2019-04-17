@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 
+use \Model\Product;
 /**
  * Pages Controller
  * Only displays the views for the GET requests
@@ -20,7 +21,7 @@ class Pages
    */
   public function store() : void
   {
-    renderView('store.html');
+    renderView('store.html', Product::getAll());
   }
 
   /**

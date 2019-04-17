@@ -1,0 +1,167 @@
+.register
+{
+  background-image: url('../img/background-2.jpg');
+  background-size: cover;
+  display: flex;
+  align-items: center;
+
+  & > .container
+  {
+    display: flex;
+    width: 70%;
+    height: 80%;
+    align-items: center;
+    align-content: center;
+    margin: auto;
+
+    @media (max-width: 1050px)
+    {
+      & > .right
+      {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 670px)
+    {
+      &
+      {
+        height: 95% !important;
+      }
+    }
+  }
+
+  & .left
+  {
+    padding: 2rem 10rem;
+    background-color: #FFF;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+
+    @media (max-width: 670px)
+    {
+      &
+      {
+        padding: 2rem 3rem !important;
+      }
+    }
+  }
+
+  & .right
+  {
+    font-size: 2.8rem !important;
+    padding: 0 4rem;
+    color: #FFF;
+    background-color: rgba(28, 200, 138, .7);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+
+    & > .warning
+    {
+      font-size: 1.4rem;
+      padding: 1rem;
+      background-color: $danger;
+    }
+
+    & .errors
+    {
+      padding-left: 2rem;
+      list-style: initial !important;
+    }
+  }
+
+  & .register-form
+  {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 2.5rem;
+
+    & > label
+    {
+      font-size: 1.5rem;
+      font-weight: 700;
+      padding-top: 1.5rem;
+    }
+
+    & > input
+    {
+      height: 5rem;
+      padding: 1rem;
+      font-size: 1.8rem;
+      font-family: $font;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    & > button
+    {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      font-size: 1.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    & > label[for="name"], & > input#name,
+    & > label[for="email"], & > input#email,
+    & > button
+    { 
+      flex: 100%;
+    }
+
+    & > label[for="password"], & > input#password,
+    & > label[for="password_confirm"], & > input#password_confirm
+    {
+      width: 50%;
+    }
+
+    & > input#password
+    {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    & > input#password_confirm
+    {
+      border-left: none;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    & > label[for="password"] { order: 1; }
+    & > label[for="password_confirm"] { order: 2; }
+
+    & > input#password { order: 3; }
+    & > input#password_confirm { order: 3; }
+
+    & > button { order: 4; }
+
+    @media (max-width: 670px)
+    {
+      &
+      {
+        flex-wrap: nowrap;
+        flex-direction: column !important;
+      }
+
+      & > *
+      {
+        order: 0 !important;
+        width: 100% !important;
+      }
+
+      & > input
+      {
+        border: 1px solid #ccc !important;
+        border-radius: 4px;
+      }
+    }
+  }
+}

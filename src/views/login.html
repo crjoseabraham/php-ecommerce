@@ -3,24 +3,36 @@
 {% block content %}
 <section class="login">
   <div class="container">
-    <h1>Sign In</h1>
-    <p>Don't have an account? <a href="register" class="secondary">Sign Up</a> </p>
+    <div class="left">
+      Log in to your account and start shopping :)
 
-    {% if data is not empty%}
-    <ul class="errors">
-      {% for error in data %}
-      <li> {{ error }} </li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-    
-    <form method="post" class="login-form">
-      <input type="email" name="email" placeholder="Email">
-      <input type="password" name="password" placeholder="Password">
+      {% if data is not empty%}
+      <div class="warning">
+        <p> There were some problems with your registration: </p>
+        <ul class="errors">
+          {% for error in data %}
+          <li> {{ error }} </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      
+    </div>
+    <div class="right">
+      <h1>Sign In</h1>
+      <p>Don't have an account? <a href="register" class="link-text">Sign Up</a> </p>
+      
+      <form method="post" class="login-form">
+        <label for="email"> Email </label>
+        <input type="email" name="email" id="email" placeholder="johndoe@gmail.com" autofocus required>
 
-      <button type="submit" class="btn btn-primary"> Log in </button>
-    </form>
-    <a href="forgot-password"> Forgot password? </a>
+        <label for="password"> Password </label>
+        <input type="password" id="password" name="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required>
+
+        <button type="submit" class="success"> Log in </button>
+      </form>
+      <a href="forgot-password"> Forgot password? </a>
+    </div>
   </div>
 </section>
 {% endblock %}

@@ -1,41 +1,130 @@
 .navbar
 {
+  background-color: #FFF;
   display: flex;
+  padding: 1.5rem 3rem;
   align-items: center;
-  justify-content: center;
-  height: 10rem;
-  background-color: #000;
+  box-shadow: 0 2px 2px #ccc;
 
-  &-container
+  & a.brand
   {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-basis: 70rem;
-    padding: 0 3rem;
-  }
-
-  & a
-  {
-    color: #FFF;
-
-    &.btn-default:hover
-    {
-      background-color: #FFF;
-      border: 1px solid #FFF;
-      color: $font-color !important;
-    }
-
+    font-size: 2.5rem;
   }
 
   & ul
   {
-    list-style: none;
     display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
 
-    & > li:not(:first-child)
+    & > li
     {
-      padding-left: 1.5rem;
+      min-width: 7rem;
+      margin-right: 1.5rem;
+    }
+  }
+
+  & .menu
+  {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+  }
+
+  & .menu-icon 
+  {
+    cursor: pointer;
+    display: inline-flex;
+    order: 1;
+    padding: 2rem;
+    position: relative;
+    user-select: none;
+  }
+
+  & .menu-icon .navicon 
+  {
+    background: #333;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 1.8rem;
+  }
+
+  & .menu-icon .navicon:before,
+  & .menu-icon .navicon:after {
+    background: #333;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+  }
+
+  & .menu-icon .navicon:before {
+    top: .75rem;
+  }
+
+  & .menu-icon .navicon:after {
+    top: -.75rem;
+  }
+
+  /* menu btn */
+
+  & .menu-btn {
+    display: none;
+  }
+
+  & .menu-btn:checked ~ .menu {
+    max-height: 240px;
+  }
+
+  & .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+  }
+
+  & .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+  }
+
+  & .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+  }
+
+  & .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+  & .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+  }
+
+  @media (min-width: 768px) 
+  {
+    & .menu {
+      clear: none;
+      float: right;
+      max-height: none;
+    }
+    & .menu-icon {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px)
+  {
+    &
+    {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .menu
+    {
+      order: 1;
+      flex-basis: 100%;
+      justify-content: space-between;
     }
   }
 }
