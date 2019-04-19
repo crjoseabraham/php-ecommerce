@@ -3,23 +3,46 @@
 {% block content %}
 <section class="store">
   <div class="container">
-    <div class="cart">The cart goes here</div>
+
+    <div class="cart">
+
+      <div class="cart-details">
+        <h4>My cart details</h4>
+        <div class="body"></div>
+      </div>
+
+      <div class="summary">
+        <h4>Summary</h4>
+        <div class="body"></div>
+      </div>
+
+      <button class="success"> Proceed to payment </button>
+    </div>
+
     <div class="products">
       {% if data is not empty %}
       {% for product in data %}
-      <div class="products__card"> <!-- CARD -->
+      <div class="products__card">
         <img src="{{ product.picture }}" alt="">
         <h3 class="product-name"> {{ product.description }} </h3>
-        <p class="price">${{ product.price }}</p>
-        <div class="rating">♥♥♥♥♥</div>
+        <p class="price"> ${{ product.price }} </p>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
         
         <form method="post" class="add-product">
-          <input type="number" name="quantity" id="quantity">
-          <button type="submit">Add to cart</button>
+          <button class="bordered"> <i class="fas fa-minus"></i> </button>
+          <input type="text" name="quantity" id="quantity" value="1" disabled>
+          <button class="bordered"> <i class="fas fa-plus"></i> </button>
+          <button type="submit" class="success"> <i class="fas fa-cart-plus"></i> Add</button>
         </form>
       </div>
-    {% endfor %}
-    {% endif %}
+      {% endfor %}
+      {% endif %}
     </div>
   </div>
 </section>
