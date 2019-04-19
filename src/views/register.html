@@ -7,18 +7,29 @@
       <h1>Sign Up</h1>
       <p>Already have an account? <a href="login" class="link-text">Log In</a> </p>
 
+      {% if data is not empty%}
+      <div class="warning">
+        <p> There were some problems with your registration: </p>
+        <ul class="errors">
+          {% for error in data %}
+          <li> {{ error }} </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
       <form action="register" method="post" class="register-form">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" autofocus>
+        <input type="text" name="name" id="name" autofocus required>
 
         <label for="email">Email</label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" required>
 
         <label for="password">Password</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password" required>
 
         <label for="password_confirm">Confirm password</label>
-        <input type="password" name="password_confirm" id="password_confirm">
+        <input type="password" name="password_confirm" id="password_confirm" required>
 
         <button type="submit" class="primary"> Register </button>
       </form>

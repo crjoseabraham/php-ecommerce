@@ -9,9 +9,6 @@
   {
     display: flex;
     width: 70%;
-    height: 80%;
-    align-items: center;
-    align-content: center;
     margin: auto;
 
     @media (max-width: 1050px)
@@ -19,6 +16,11 @@
       & > .right
       {
         display: none !important;
+      }
+
+      & > .left > .warning
+      {
+        display: block;
       }
     }
 
@@ -35,12 +37,16 @@
   {
     padding: 2rem 10rem;
     background-color: #FFF;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex: 2;
+
+    & > .warning
+    {
+      display: none;
+    }
 
     @media (max-width: 670px)
     {
@@ -57,31 +63,16 @@
     padding: 0 4rem;
     color: #FFF;
     background-color: rgba(28, 200, 138, .7);
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex: 1;
-
-    & > .warning
-    {
-      font-size: 1.4rem;
-      padding: 1rem;
-      background-color: $danger;
-    }
-
-    & .errors
-    {
-      padding-left: 2rem;
-      list-style: initial !important;
-    }
   }
 
   & .register-form
   {
     display: flex;
     flex-wrap: wrap;
-    padding-top: 2.5rem;
 
     & > label
     {
@@ -163,5 +154,20 @@
         border-radius: 4px;
       }
     }
+  }
+
+
+  & .warning
+  {
+    font-size: 1.4rem;
+    padding: 1rem;
+    background-color: $danger;
+    color: #fff;
+  }
+
+  & .errors
+  {
+    padding-left: 2rem;
+    list-style: initial !important;
   }
 }

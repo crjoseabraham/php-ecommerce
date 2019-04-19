@@ -21,6 +21,17 @@
     <div class="right">
       <h1>Sign In</h1>
       <p>Don't have an account? <a href="register" class="link-text">Sign Up</a> </p>
+
+      {% if data is not empty%}
+      <div class="warning">
+        <p> There were some problems with your registration: </p>
+        <ul class="errors">
+          {% for error in data %}
+          <li> {{ error }} </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
       
       <form method="post" class="login-form">
         <label for="email"> Email </label>
