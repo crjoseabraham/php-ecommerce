@@ -11,10 +11,46 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-
 -- Volcando estructura de base de datos para shoppingcart
 CREATE DATABASE IF NOT EXISTS `shoppingcart` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `shoppingcart`;
+
+-- Volcando estructura para tabla shoppingcart.user
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(60) NOT NULL,
+  `name` varchar(60) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla shoppingcart.user: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`id`, `email`, `name`, `password`) VALUES
+	(37, 'jose@gmail.com', 'Jose', '$2y$10$acOeRYGELTRKtCcF/M/QGOXgJ4S8FazjS.9GgtdviCIg4/NjpjA8C');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+
+-- Volcando estructura para tabla shoppingcart.product
+CREATE TABLE IF NOT EXISTS `product` (
+  `product_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(30) NOT NULL,
+  `price` float NOT NULL,
+  `picture` varchar(255) NOT NULL,
+  `rating` float NOT NULL,
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla shoppingcart.product: ~7 rows (aproximadamente)
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` (`product_id`, `description`, `price`, `picture`, `rating`) VALUES
+	(1, 'Apple', 0.3, 'img/apples.jpg', 2.5),
+	(2, 'Beer', 2, 'img/beer.jpg', 2.5),
+	(3, 'Water', 1, 'img/water.jpg', 1),
+	(4, 'Cheese', 3.74, 'img/cheese.jpg', 1),
+	(5, 'Burger', 5.99, 'img/hamburger.jpg', 0),
+	(6, 'Taco', 3.99, 'img/taco.jpg', 4),
+	(7, 'Orange Juice', 2.35, 'img/orange-juice.jpg', 3.5);
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
 
 -- Volcando estructura para tabla shoppingcart.cart
 CREATE TABLE IF NOT EXISTS `cart` (
@@ -24,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`id`),
   KEY `FK_cart_user` (`user_id`),
   CONSTRAINT `FK_cart_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla shoppingcart.cart: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
@@ -56,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `order` (
   PRIMARY KEY (`order_id`),
   KEY `FK_order_user` (`user_id`),
   CONSTRAINT `FK_order_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla shoppingcart.order: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
@@ -78,28 +114,6 @@ CREATE TABLE IF NOT EXISTS `order_details` (
 /*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
 /*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
 
--- Volcando estructura para tabla shoppingcart.product
-CREATE TABLE IF NOT EXISTS `product` (
-  `product_id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(30) NOT NULL,
-  `price` float NOT NULL,
-  `picture` varchar(255) NOT NULL,
-  `rating` float NOT NULL,
-  PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla shoppingcart.product: ~7 rows (aproximadamente)
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` (`product_id`, `description`, `price`, `picture`, `rating`) VALUES
-	(1, 'Apple', 0.3, 'img/apples.jpg', 2.5),
-	(2, 'Beer', 2, 'img/beer.jpg', 2.5),
-	(3, 'Water', 1, 'img/water.jpg', 1),
-	(4, 'Cheese', 3.74, 'img/cheese.jpg', 1),
-	(5, 'Burger', 5.99, 'img/hamburger.jpg', 0),
-	(6, 'Taco', 3.99, 'img/taco.jpg', 4),
-	(7, 'Orange Juice', 2.35, 'img/orange-juice.jpg', 3.5);
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
-
 -- Volcando estructura para tabla shoppingcart.rating
 CREATE TABLE IF NOT EXISTS `rating` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -109,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `rating` (
   PRIMARY KEY (`id`),
   KEY `FK_rating_product` (`rating_product_id`),
   CONSTRAINT `FK_rating_product` FOREIGN KEY (`rating_product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla shoppingcart.rating: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `rating` DISABLE KEYS */;
@@ -130,19 +144,6 @@ CREATE TABLE IF NOT EXISTS `session` (
 -- Volcando datos para la tabla shoppingcart.session: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `session` DISABLE KEYS */;
 /*!40000 ALTER TABLE `session` ENABLE KEYS */;
-
--- Volcando estructura para tabla shoppingcart.user
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(60) NOT NULL,
-  `name` varchar(60) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
-
--- Volcando datos para la tabla shoppingcart.user: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
