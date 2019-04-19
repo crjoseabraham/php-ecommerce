@@ -5,10 +5,32 @@
   <div class="container">
 
     <div class="cart">
-
+      {% if current_user is not empty %}
       <div class="cart-details">
         <h4>My cart details</h4>
-        <div class="body"></div>
+        <div class="body">
+          <table class="item">
+          {% for item in current_user.userCart %}
+            {% for product in data %}
+              {% if product.product_id == item.product_id %}
+                <tr>
+                  <td><img src="{{ product.picture }}" alt="{{ product.description }}"></td>
+                  <td>
+                    <p class="title"> {{ product.description }}</p> 
+                    <p class="quantity"> Quantity: {{ item.quantity }}</p>
+                  </td>
+                  <td>
+                    <a href="remove-item/{{ item.product_id }}" class="danger"> <i class="fas fa-times"></i> </a>
+                  </td>
+                  <td>
+                    <span class="subtotal">${{ item.subtotal }}</span>
+                  </td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+          </table>
+        </div>
       </div>
 
       <div class="summary">
@@ -17,13 +39,16 @@
       </div>
 
       <button class="success"> Proceed to payment </button>
+      {% else %}
+      O.O
+      {% endif %}
     </div>
 
     <div class="products">
       {% if data is not empty %}
       {% for product in data %}
       <div class="products__card">
-        <img src="{{ product.picture }}" alt="">
+        <img src="{{ product.picture }}" alt="{{ product.description }}">
         <h3 class="product-name"> {{ product.description }} </h3>
         <p class="price"> ${{ product.price }} </p>
         <div class="rating">
@@ -34,9 +59,9 @@
           <i class="fas fa-star"></i>
         </div>
         
-        <form method="post" class="add-product">
+        <form action="add-item/{{ product.product_id }}" method="post" class="add-product">
           <button class="bordered"> <i class="fas fa-minus"></i> </button>
-          <input type="text" name="quantity" id="quantity" value="1" disabled>
+          <input type="text" name="quantity" id="quantity" value="1" readonly>
           <button class="bordered"> <i class="fas fa-plus"></i> </button>
           <button type="submit" class="success"> <i class="fas fa-cart-plus"></i> Add</button>
         </form>

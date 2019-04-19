@@ -2,6 +2,7 @@
 namespace Controller;
 
 use \Model\Product;
+use \Model\Cart;
 /**
  * Pages Controller
  * Only displays the views for the GET requests
@@ -21,6 +22,7 @@ class Pages
    */
   public function store() : void
   {
+    // If user is logged in, get the associated cart
     renderView('store.html', Product::getAll());
   }
 
@@ -46,5 +48,11 @@ class Pages
       redirect('/store');
     else
       renderView('register.html');
+  }
+
+  public function test() : void
+  {
+    $cart = isset($_SESSION['user']) ? Cart::getCartItems() : [];
+    renderView('test2.html', $cart);
   }
 }

@@ -41,7 +41,11 @@ function renderView($file, $data = []) : void
   // Instantiate Twig
   $twig = new \Twig_Environment($loader, ['debug' => true]);
   $twig->addExtension(new \Twig\Extension\DebugExtension());
-  $twig->addGlobal('current_user', \Model\Session::getUser());
+  // If there's a session running, get user data
+  if (isset($_SESSION['user']))
+  {
+    $twig->addGlobal('current_user', ['userSession' => \Model\Session::getUser(), 'userCart' => \Model\Cart::getCartItems()]);
+  }
 
   echo $twig->render($file, ['data' => $data]);
 }

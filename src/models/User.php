@@ -58,7 +58,10 @@ class User extends Database
       $stmt->bindValue(':n', $this->name, \PDO::PARAM_STR);
       $stmt->bindValue(':p', $hashed_password, \PDO::PARAM_STR);
       if ($stmt->execute())
-        return true;
+      {
+        // Now create user's associated cart and return true if everything ok.
+        return Cart::createNewCart($this->findByEmail($this->email)) ? true : false;
+      }
     }
     
     return false;

@@ -11,7 +11,7 @@
   {
     min-width: 30rem;
     background-color: #fff;
-    padding: 0 3rem;
+    padding: 0 2rem;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
@@ -25,9 +25,56 @@
     & .summary > .body
     {
       background-color: #eaeaea;
-      width: 100%;
+      max-width: 26rem;
       height: 20rem;
       border-radius: 1rem;
+      padding: 1rem;
+      overflow: auto;
+    }
+
+    & .cart-details > .body > .item
+    {
+      border-collapse:collapse;
+      width: 100%;
+
+      & tr:not(:last-child) td
+      {
+        border-bottom: 1px solid #ccc;
+      }
+
+      & tr td
+      {
+        padding: .5rem;
+      }
+
+      & tr td:last-child
+      {
+        width: 5.3rem;
+      }
+
+      & img
+      {
+        max-width: 3.5rem;
+        border-radius: 50%;
+      }
+
+      & .title
+      {
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+
+      & .quantity
+      {
+        font-size: 1.4rem;
+        font-style: italic;
+      }
+
+      & a
+      {
+        font-size: 1.4rem;
+        padding: .5rem !important;
+      }
     }
   }
 

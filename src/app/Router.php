@@ -75,8 +75,8 @@ class Router
     {
       die('Page not found.');
     }
-    
-    call_user_func_array(explode('@', $this->params['controller']), $this->params);
+
+    call_user_func_array(explode('@', $this->params['controller']), isset($this->params['item']) ? [$this->params['item']] : []);
   }
 
   //---------------------------------------------
