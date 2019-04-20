@@ -2,7 +2,8 @@
 namespace Model;
 
 /**
- * Session Class
+ * Session handler class
+ * Start and destroy sessions
  */
 class Session
 {
@@ -19,7 +20,9 @@ class Session
    * Log in user
    * Compare email and password combination with database records
    * If everything's correct, start a new PHP Session
-   * @return array if records found, false if not.
+   * @param string $email     Email submitted by the user
+   * @param string $password  Password submitted by the user
+   * @return mixed array if records found, false if not.
    */
   public function login(string $email, string $password)
   {
@@ -45,7 +48,7 @@ class Session
   /**
    * Log out user by destroying the session and cookies
    */
-  public function logout()
+  public function logout() : void
   {
     // Unset all of the session variables
     $_SESSION = [];
@@ -71,7 +74,7 @@ class Session
   }
   
   /**
-   * Get current user by session id
+   * Get current user if a session is running
    * @return array      User info
    */
   public static function getUser()

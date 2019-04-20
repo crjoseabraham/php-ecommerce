@@ -13,7 +13,6 @@ class Auth
   /**
    * Login controller for POST
    * Authenticate user and start session
-   * @return void
    */
   public function login() : void
   {
@@ -30,7 +29,6 @@ class Auth
 
   /**
    * Log out a user
-   * @return void
    */
   public function logout() : void
   {
@@ -41,7 +39,6 @@ class Auth
   /**
    * Register controller for POST
    * Create new user and start their session
-   * @return void
    */
   public function register() : void
   {

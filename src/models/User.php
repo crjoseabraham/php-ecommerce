@@ -3,6 +3,11 @@ namespace Model;
 
 use \App\Database;
 
+/**
+ * User class
+ * Performs operations with 'user' table in the database
+ * Register user, get a user's data, etc.
+ */
 class User extends Database
 {
   /**
@@ -34,9 +39,8 @@ class User extends Database
   /**
    * Set a new $errors value
    * @param  string $value The value to be stored in $errors array
-   * @return void
    */
-  public function setError($value) : void
+  public function setError(string $value) : void
   {
     self::$errors[] = $value;
   }
@@ -70,7 +74,7 @@ class User extends Database
   /**
    * Check if email already exists in the database
    * @param  string $email Email to check
-   * @return               Array if records found, if not returns false
+   * @return mixed         Array if records found, if not returns false
    */
   public function findByEmail($email = '')
   {
@@ -86,7 +90,7 @@ class User extends Database
   /**
    * Get a user's data by passed id
    * @param  string $id    ID to check
-   * @return array         Array if records found
+   * @return mixed         Array if records found
    */
   public function findById($id)
   {
@@ -98,7 +102,6 @@ class User extends Database
 
   /**
    * Sanitize inputs
-   * @return void
    */
   private function validateData() : void
   {

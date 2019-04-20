@@ -1,47 +1,11 @@
-{% extends "inc/header.html" %}
+{% extends "inc/core.html" %}
 
 {% block content %}
 <section class="store">
   <div class="container">
 
     <div class="cart">
-      {% if current_user is not empty %}
-      <div class="cart-details">
-        <h4>My cart details</h4>
-        <div class="body">
-          <table class="item">
-          {% for item in current_user.userCart %}
-            {% for product in data %}
-              {% if product.product_id == item.product_id %}
-                <tr>
-                  <td><img src="{{ product.picture }}" alt="{{ product.description }}"></td>
-                  <td>
-                    <p class="title"> {{ product.description }}</p> 
-                    <p class="quantity"> Quantity: {{ item.quantity }}</p>
-                  </td>
-                  <td>
-                    <a href="remove-item/{{ item.product_id }}" class="danger"> <i class="fas fa-times"></i> </a>
-                  </td>
-                  <td>
-                    <span class="subtotal">${{ item.subtotal }}</span>
-                  </td>
-                </tr>
-              {% endif %}
-            {% endfor %}
-          {% endfor %}
-          </table>
-        </div>
-      </div>
-
-      <div class="summary">
-        <h4>Summary</h4>
-        <div class="body"></div>
-      </div>
-
-      <button class="success"> Proceed to payment </button>
-      {% else %}
-      O.O
-      {% endif %}
+      {% include "inc/cart.html" %}
     </div>
 
     <div class="products">

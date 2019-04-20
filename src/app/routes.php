@@ -13,6 +13,3 @@ $router->post('register', 'Auth@register');
 $router->post('process-payment', 'Users@processPayment');
 $router->post('add-item/{item}', 'Carts@add');
 $router->post('rate-product/{item}', 'Products@rateProduct');
-
-
-$router->get('test', 'Pages@test');

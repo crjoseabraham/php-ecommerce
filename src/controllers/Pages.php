@@ -22,7 +22,6 @@ class Pages
    */
   public function store() : void
   {
-    // If user is logged in, get the associated cart
     renderView('store.html', Product::getAll());
   }
 

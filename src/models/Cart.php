@@ -3,9 +3,19 @@ namespace Model;
 
 use \App\Database;
 
+/**
+ * Cart model class
+ * Performs CRUD operations related to the cart
+ */
 class Cart extends Database
 {
-  public function createNewCart($user) : bool
+  /**
+   * This method is called right after a new user is registered
+   * Creates associated cart to the new user
+   * @param  object   User ID
+   * @return boolean  True if everything ok, false if not
+   */
+  public function createNewCart(object $user) : bool
   {
     $db = static::getDB();
     $stmt = $db->prepare("INSERT INTO cart (`user_id`) VALUES(:id)");
@@ -13,7 +23,12 @@ class Cart extends Database
     return $stmt->execute() ? true : false;
   }
 
-  public function getUserCartId($user)
+  /**
+   * Get data from table 'cart'. Mostly and utility function
+   * @param  int    User's id
+   * @return mixed  Array if records found, false if not
+   */
+  public function getUserCartId(int $user)
   {
     $db = static::getDB();
     $stmt = $db->prepare("SELECT * FROM cart WHERE user_id = :user");
@@ -22,6 +37,10 @@ class Cart extends Database
   }
 
 
+  /**
+   * Get cart items for the current user
+   * @return mixed  Array if records found, false if not
+   */
   public function getCartItems()
   {
     $db = static::getDB();
@@ -30,7 +49,13 @@ class Cart extends Database
     return $stmt->execute() ? $stmt->fetchAll(\PDO::FETCH_OBJ) : false;
   }
 
-  public function addItem($item, $quantity)
+  /**
+   * Add item to cart, if the item is already there then updates de information
+   * @param object $item      Gotten item data from Product::getItem()
+   * @param int    $quantity  Quantity the user wants to add
+   * @return boolean          True if everything ok, false if not
+   */
+  public function addItem(object $item, int $quantity) : bool
   {
     if (preg_match('/\d+/', $quantity))
     {
@@ -53,7 +78,12 @@ class Cart extends Database
       return false;
   }
 
-  public function removeItem($item)
+  /**
+   * Remove an item from the cart
+   * @param  int      ID of item to remove
+   * @return boolean  True if execution was succesful, false if not
+   */
+  public function removeItem(int $item) : bool
   {
     $db = static::getDB();
 
@@ -63,7 +93,13 @@ class Cart extends Database
     return $stmt->execute() ? true : false;
   }
 
-  private function itemIsAlreadyInCart($item, $cart_id)
+  /**
+   * Check if an item is already in the user's cart
+   * @param  int  $item     ID of item to check
+   * @param  int  $cart_id  ID of corresponding cart
+   * @return mixed          Array if item was found, false if not.
+   */
+  private function itemIsAlreadyInCart(int $item, int $cart_id)
   {
     $db = static::getDB();
 

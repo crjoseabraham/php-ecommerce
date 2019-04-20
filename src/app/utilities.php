@@ -32,9 +32,8 @@ function getMethod() : string
 * Load a view
 * @param string $file  Path to file
 * @param array  $data  Optional data that the view may require
-* @return void
 */
-function renderView($file, $data = []) : void
+function renderView(string $file, array $data = []) : void
 {
   // Specify our Twig templates location
   $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/views');
@@ -53,9 +52,8 @@ function renderView($file, $data = []) : void
 /**
  * Redirect method
  * @param  string $file Path to desired page
- * @return void 
  */
-function redirect($file)
+function redirect(string $file) : void
 {
   header('Location: ' . URLROOT . $file, true, 303);
   exit;
