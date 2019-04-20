@@ -19,6 +19,13 @@
       
     </div>
     <div class="right">
+      {% if flash_message is not empty %}
+      <span class="flash_message flash_message--{{ flash_message.type }}">
+        {{ flash_message.message }}
+      </span>
+      <br>
+      {% endif %}
+
       <h1>Sign In</h1>
       <p>Don't have an account? <a href="register" class="link-text">Sign Up</a> </p>
 

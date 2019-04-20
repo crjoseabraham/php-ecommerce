@@ -15,7 +15,7 @@ class Cart extends Database
    * @param  object   User ID
    * @return boolean  True if everything ok, false if not
    */
-  public function createNewCart(object $user) : bool
+  public function createNewCart($user) : bool
   {
     $db = static::getDB();
     $stmt = $db->prepare("INSERT INTO cart (`user_id`) VALUES(:id)");
@@ -28,7 +28,7 @@ class Cart extends Database
    * @param  int    User's id
    * @return mixed  Array if records found, false if not
    */
-  public function getUserCartId(int $user)
+  public function getUserCartId($user)
   {
     $db = static::getDB();
     $stmt = $db->prepare("SELECT * FROM cart WHERE user_id = :user");
@@ -55,7 +55,7 @@ class Cart extends Database
    * @param int    $quantity  Quantity the user wants to add
    * @return boolean          True if everything ok, false if not
    */
-  public function addItem(object $item, int $quantity) : bool
+  public function addItem($item, $quantity) : bool
   {
     if (preg_match('/\d+/', $quantity))
     {
@@ -83,7 +83,7 @@ class Cart extends Database
    * @param  int      ID of item to remove
    * @return boolean  True if execution was succesful, false if not
    */
-  public function removeItem(int $item) : bool
+  public function removeItem($item) : bool
   {
     $db = static::getDB();
 
@@ -99,7 +99,7 @@ class Cart extends Database
    * @param  int  $cart_id  ID of corresponding cart
    * @return mixed          Array if item was found, false if not.
    */
-  private function itemIsAlreadyInCart(int $item, int $cart_id)
+  private function itemIsAlreadyInCart($item, $cart_id)
   {
     $db = static::getDB();
 

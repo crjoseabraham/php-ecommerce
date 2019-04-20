@@ -119,3 +119,31 @@ a, a:visited
     color: $primary;
   }
 }
+
+// Flash notification
+.flash_message
+{
+  font-size: 1.4rem;
+  padding: 1rem;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  align-self: stretch;
+
+  &--success
+  {
+    color: darken($success, 20%);
+    background-color: lighten($success, 50%);
+  }
+
+  &--warning
+  {
+    color: darken($warning, 20%);
+    background-color: lighten($warning, 30%);
+  }
+
+  &--danger
+  {
+    color: darken($danger, 20%);
+    background-color: lighten($danger, 30%);
+  }
+}

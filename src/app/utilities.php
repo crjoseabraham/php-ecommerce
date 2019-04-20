@@ -45,6 +45,8 @@ function renderView(string $file, array $data = []) : void
   {
     $twig->addGlobal('current_user', ['userSession' => \Model\Session::getUser(), 'userCart' => \Model\Cart::getCartItems()]);
   }
+  // Get flash messages if there are any
+  $twig->addGlobal('flash_message', getFlashNotification());
 
   echo $twig->render($file, ['data' => $data]);
 }
@@ -57,4 +59,32 @@ function redirect(string $file) : void
 {
   header('Location: ' . URLROOT . $file, true, 303);
   exit;
+}
+
+/**
+ * Set flash message
+ * @param  string $message Message sent to the user
+ * @param  string $type    Success message, warning, error, etc.
+ */
+function flash(string $message, string $type = SUCCESS) : void
+{
+  if (!isset($_SESSION['flash_notification'])) 
+  {
+    $_SESSION['flash_notification'] = ['message' => $message, 'type' => $type];
+  }
+}
+
+/**
+ * Get flash message
+ * @return  array Array containing message body and type
+ */
+function getFlashNotification()
+{
+  if (isset($_SESSION['flash_notification'])) 
+  {
+    $message = $_SESSION['flash_notification'];
+    unset($_SESSION['flash_notification']);
+
+    return $message;
+  }
 }

@@ -21,12 +21,17 @@ class Carts
     if (Session::getUser())
     {
       if (Cart::addItem(Product::getItem($item_id), $_POST['quantity']))
-        redirect('/store');
+        flash(ITEM_ADDED);
       else
-        die("Something went wrong");
+        flash(ERROR_MESSAGE, ERROR);
+
+      redirect('/store');
     }
     else
+    {
+      flash(LOGIN_REQUIRED, INFO);
       redirect('/login');
+    }
   }
 
   /**
@@ -36,8 +41,10 @@ class Carts
   public function remove(int $item_id) : void
   {
     if (Cart::removeItem($item_id))
-      redirect('/store');
+      flash(ITEM_REMOVED);
     else
-      die("Something went wrong");
+      flash(ERROR_MESSAGE, ERROR);
+
+    redirect('/store');
   }
 }

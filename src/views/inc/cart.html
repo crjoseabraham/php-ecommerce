@@ -1,3 +1,9 @@
+{% if flash_message is not empty %}
+<span class="flash_message flash_message--{{ flash_message.type }}">
+  {{ flash_message.message }}
+</span>
+{% endif %}
+
 {% if current_user is not empty %}
 <div class="cart-details">
   <h4>My cart details</h4>

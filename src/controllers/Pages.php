@@ -48,10 +48,4 @@ class Pages
     else
       renderView('register.html');
   }
-
-  public function test() : void
-  {
-    $cart = isset($_SESSION['user']) ? Cart::getCartItems() : [];
-    renderView('test2.html', $cart);
-  }
 }
