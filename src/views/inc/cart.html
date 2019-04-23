@@ -9,7 +9,7 @@
   <h4>My cart details</h4>
   <div class="body">
     <table class="item">
-    {% for item in current_user.userCart %}
+    {% for item in user_cart %}
       {% for product in data %}
         {% if product.product_id == item.product_id %}
           <tr>
@@ -39,5 +39,5 @@
 
 <button class="success"> Proceed to payment </button>
 {% else %}
-O.O
+&nbsp;
 {% endif %}

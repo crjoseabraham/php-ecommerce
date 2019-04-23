@@ -59,14 +59,14 @@
     flex-wrap: wrap;
     padding-top: 2.5rem;
 
-    & > label
+    & > label:not([for="remember_login"])
     {
       font-size: 1.5rem;
       font-weight: 700;
       flex: 50%;
     }
 
-    & > input
+    & > input:not([type="checkbox"])
     {
       height: 5rem;
       padding: 1rem;
@@ -80,7 +80,20 @@
     & > label[for="password"] { order: 0; }
     & > input#email { order: 1; }
     & > input#password { order: 2; }
-    & > button { order: 4; flex: 1;}
+    & > button { order: 5; flex: 100%;}
+
+    & > .remember_me
+    { 
+      order: 4;
+      font-size: 1.5rem;
+      margin: 2.5rem 0;
+      line-height: 1;
+    }
+
+    & > label[for="remember_login"]
+    {
+      padding-left: .5rem;
+    }
 
     & > input#email
     {
@@ -124,6 +137,16 @@
       {
         border: 1px solid #ccc !important;
         border-radius: 4px;
+      }
+
+      & input[type="checkbox"],
+      {
+        width: initial !important;;
+      }
+
+      & label[for="remember_login"]
+      {
+        width: unset !important;
       }
     }
   }

@@ -40,12 +40,17 @@
       </div>
       {% endif %}
       
-      <form method="post" class="login-form">
+      <form action="login" method="post" class="login-form">
         <label for="email"> Email </label>
         <input type="email" name="email" id="email" placeholder="johndoe@gmail.com" autofocus required>
 
         <label for="password"> Password </label>
         <input type="password" id="password" name="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required>
+
+        <div class="remember_me">
+        <input type="checkbox" name="remember_login" id="remember_login">
+        <label for="remember_login">Remember me</label>
+        </div>
 
         <button type="submit" class="success"> Log in </button>
       </form>

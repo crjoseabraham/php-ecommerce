@@ -45,7 +45,7 @@ class Cart extends Database
   {
     $db = static::getDB();
     $stmt = $db->prepare("SELECT cart_items.* FROM cart_items INNER JOIN cart on cart_items.cart_id = cart.id WHERE cart.user_id = :user");
-    $stmt->bindValue(':user', intval($_SESSION['user']), \PDO::PARAM_INT);
+    $stmt->bindValue(':user', intval($_SESSION['user_id']), \PDO::PARAM_INT);
     return $stmt->execute() ? $stmt->fetchAll(\PDO::FETCH_OBJ) : false;
   }
 
@@ -59,7 +59,7 @@ class Cart extends Database
   {
     if (preg_match('/\d+/', $quantity))
     {
-      $userCart = self::getUserCartId($_SESSION['user']);
+      $userCart = self::getUserCartId($_SESSION['user_id']);
       $db = static::getDB();
 
       // First check if the item is in the cart already, if so, update quantity and subtotal
@@ -88,7 +88,7 @@ class Cart extends Database
     $db = static::getDB();
 
     $stmt = $db->prepare("DELETE cart_items.* FROM cart_items INNER JOIN cart on cart_items.cart_id = cart.id WHERE cart.user_id = :user AND cart_items.product_id = :product");
-    $stmt->bindValue(':user', intval($_SESSION['user']), \PDO::PARAM_INT);
+    $stmt->bindValue(':user', intval($_SESSION['user_id']), \PDO::PARAM_INT);
     $stmt->bindValue(':product', intval($item), \PDO::PARAM_INT);
     return $stmt->execute() ? true : false;
   }

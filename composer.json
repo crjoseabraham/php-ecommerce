@@ -12,7 +12,7 @@
         "files": ["src/app/constants.php", "src/app/utilities.php"],
         "psr-4": {
             "App\\": "src/app",
-            "Controller\\": "src/controllers",
+            "Controller\\": ["src/controllers", "src/controllers/Auth"],
             "Model\\": "src/models"
         }
     },

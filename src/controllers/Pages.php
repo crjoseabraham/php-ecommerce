@@ -3,6 +3,7 @@ namespace Controller;
 
 use \Model\Product;
 use \Model\Cart;
+
 /**
  * Pages Controller
  * Only displays the views for the GET requests

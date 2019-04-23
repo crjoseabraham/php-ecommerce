@@ -41,9 +41,11 @@ function renderView(string $file, array $data = []) : void
   $twig = new \Twig_Environment($loader, ['debug' => true]);
   $twig->addExtension(new \Twig\Extension\DebugExtension());
   // If there's a session running, get user data
-  if (isset($_SESSION['user']))
+  $twig->addGlobal('current_user', \Model\Session::getUser());
+  // Get user cart
+  if (isset($_SESSION['user_id']))
   {
-    $twig->addGlobal('current_user', ['userSession' => \Model\Session::getUser(), 'userCart' => \Model\Cart::getCartItems()]);
+    $twig->addGlobal('user_cart', \Model\Cart::getCartItems());
   }
   // Get flash messages if there are any
   $twig->addGlobal('flash_message', getFlashNotification());

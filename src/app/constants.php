@@ -1,5 +1,6 @@
 <?php 
 define('URLROOT', 'http://localhost/shoppingcart');
+define('SECRET_KEY', 'RYdC5cmDUbgglwwMLTUrcBzs6HXG5NBZ');
 
 // Database config values
 define('DB_HOST', 'localhost');
