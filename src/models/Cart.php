@@ -41,7 +41,7 @@ class Cart extends Database
    * Get cart items for the current user
    * @return mixed  Array if records found, false if not
    */
-  public function getCartItems()
+  public function cartItems()
   {
     $db = static::getDB();
     $stmt = $db->prepare("SELECT cart_items.* FROM cart_items INNER JOIN cart on cart_items.cart_id = cart.id WHERE cart.user_id = :user");

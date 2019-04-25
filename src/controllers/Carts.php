@@ -10,6 +10,12 @@ use \Model\Session;
  */
 class Carts
 {
+
+  public function getCartItems()
+  {
+    return Cart::cartItems();
+  }
+
   /**
    * From the store.html view
    * Check if user is logged in, if so, proceed to call Cart model

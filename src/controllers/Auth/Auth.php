@@ -26,13 +26,9 @@ class Auth
       if ($remember_me)
       {
         if ($session->rememberLogin())
-        {
           setcookie('remember_me', $session->original_token, $session->expiry_timestamp, '/');
-        }
         else
-        {
           die("Something went wrong. Please go back and try again");
-        }
       }
 
       redirect('/store');
@@ -110,9 +106,7 @@ class Auth
       $remembered_login = Session::findByToken($cookie);
 
       if ($remembered_login)
-      {
         Session::deleteRememberedLogin($remembered_login->token_hash);
-      }
 
       setcookie('remember_me', '', time() - 3600);
     }

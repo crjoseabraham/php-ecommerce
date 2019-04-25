@@ -45,7 +45,8 @@ function renderView(string $file, array $data = []) : void
   // Get user cart
   if (isset($_SESSION['user_id']))
   {
-    $twig->addGlobal('user_cart', \Model\Cart::getCartItems());
+    $twig->addGlobal('user_cart', \Controller\Carts::getCartItems());
+    $twig->addGlobal('subtotal', \Controller\Payments::getCartTotal());
   }
   // Get flash messages if there are any
   $twig->addGlobal('flash_message', getFlashNotification());
