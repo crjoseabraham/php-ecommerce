@@ -31,7 +31,7 @@ class Auth
         }
         else
         {
-          die("something went wrong");
+          die("Something went wrong. Please go back and try again");
         }
       }
 
