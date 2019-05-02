@@ -203,4 +203,16 @@ class Session extends Database
     $stmt->bindValue(':token', $token, \PDO::PARAM_STR);
     return $stmt->execute();
   }
+
+  /**
+   * Update session budget
+   */
+  public function updateSessionBudget()
+  {
+    $db = static::getDB();
+    $stmt = $db->prepare("UPDATE `session` SET `cash` = :newValue WHERE `session_id` = :sessionId");
+    $stmt->bindValue(':newValue', $_SESSION['cash'], \PDO::PARAM_STR);
+    $stmt->bindValue(':sessionId', $_SESSION['session_id'], \PDO::PARAM_STR);
+    $stmt->execute();
+  }
 }

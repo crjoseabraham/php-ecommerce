@@ -5,9 +5,15 @@
 {% endif %}
 
 {% if current_user is not empty %}
+<div class="budget">
+  <h4>Current balance:</h4>
+  <span class="balance-text">${{ balance }}</span>
+</div>
+
 <div class="cart-details">
   <h4>My cart details</h4>
   <div class="body">
+    {% if user_cart is not empty %}
     <table class="item">
     {% for item in user_cart %}
       {% for product in data %}
@@ -29,17 +35,37 @@
       {% endfor %}
     {% endfor %}
     </table>
+    {% else %}
+    <center> Your cart is empty </center>
+    {% endif %}
   </div>
 </div>
 
+{% if user_cart is not empty %}
 <div class="summary">
   <h4>Summary</h4>
   <div class="body">
-    total: {{ subtotal }}
+    <table>
+      <tr>
+        <td>Cart total:</td>
+        <td>${{ subtotal }}</td>
+      </tr>
+      <tr>
+        <td>Shipping fee:</td>
+        <td>$10.00</td>
+      </tr>
+      <tr>
+        <td>Total:</td>
+        <td>${{ subtotal + 10 }}</td>
+      </tr>
+    </table>
   </div>
 </div>
 
-<button class="success"> Proceed to payment </button>
+<form action="process-payment" method="POST">
+  <button type="submit" class="primary"> Proceed to payment </button>
+</form>
+{% endif %}
 {% else %}
 &nbsp;
 {% endif %}

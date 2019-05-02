@@ -108,4 +108,14 @@ class Cart extends Database
     $stmt->bindValue(':cart', intval($cart_id), \PDO::PARAM_INT);
     return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_ASSOC) : false;
   }
+
+  /**
+   * Empty cart
+   */
+  public function emptyCart()
+  {
+    $db = static::getDB();
+    $stmt = $db->prepare("TRUNCATE `cart_items`");
+    $stmt->execute();
+  }
 }
