@@ -170,11 +170,25 @@
 
         & > input
         {
+          background-color: #f4f4f4;
           border: 1px solid #dbdbdb;
-          border-radius: 4px;
           padding: 1rem;
           width: 5rem;
           text-align: center;
+          border-left: none;
+          border-right: none;
+        }
+
+        & > button.minus
+        {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        & > button.plus
+        {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
         }
 
         & > button[type="submit"]
