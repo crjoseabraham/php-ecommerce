@@ -81,7 +81,7 @@
 
     & .cart-details > .body > .item
     {
-      border-collapse:collapse;
+      border-collapse: collapse;
       width: 100%;
 
       & tr:not(:last-child) td
@@ -167,12 +167,13 @@
         display: flex;
         align-items: center;
         padding-top: 1rem;
+        font-size: 1.4rem !important;
 
         & > input
         {
           background-color: #f4f4f4;
           border: 1px solid #dbdbdb;
-          padding: 1rem;
+          padding: .9rem;
           width: 5rem;
           text-align: center;
           border-left: none;
@@ -183,17 +184,20 @@
         {
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
+          font-size: 1rem;
         }
 
         & > button.plus
         {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
+          font-size: 1rem;
         }
 
         & > button[type="submit"]
         {
           margin-left: auto;
+          padding: .8rem !important;
         }
       }
     }

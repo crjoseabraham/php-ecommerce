@@ -1,0 +1,65 @@
+{% extends "inc/core.html" %}
+
+{% block content %}
+<section class="profile">
+  <div class="container">
+    <div class="profile-settings">
+      <h2> Profile Settings </h2>
+      <p>
+        Welcome to your profile page, here you can change your basic information like your name, email and password. You can also get the receipts of your previous purchases as a .pdf document.
+      </p>
+      <form action="update-info" method="post">
+        <label for="user_name"> Your name: </label>
+        <input type="text" value="{{ current_user.name }}" name="user_name" id="user_name" autofocus>
+
+        <label for="user_email"> Your email: </label>
+        <input type="text" value="{{ current_user.email }}" name="user_email" id="user_email">
+
+        <label for="new_pass"> Change password to: </label>
+        <input type="password" name="new_pass" id="new_pass">
+
+        <label for="confirm_pass"> Confirm the new password: </label>
+        <input type="password" name="confirm_pass" id="confirm_pass">
+
+        <button type="submit" class="primary">Update my information</button>
+      </form>
+    </div>
+
+    <div class="purchase-history">
+      <h2>Purchase History</h2>
+      <div class="orders">
+        <table>
+          <thead>
+            <th>Code</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Print</th>
+          </thead>
+          <tbody>
+        {% for order in data %}
+            <tr>
+              <td> {{ order.order_id }} </td>
+              <td> {{ order.created_at }} </td>
+              <td> ${{ order.total }} </td>
+              <td> 
+                <a href="receipt/{{ order.order_id }}" class="secondary"> 
+                  <i class="fas fa-file-download"></i> 
+                </a>
+              </td>
+            </tr>
+        {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="danger-zone">
+      <h2>Delete your account</h2>
+      <p>
+        <u>This will erase all your data from our database</u>. You'll also lose all records about your purchases and sessions. This action can't be undone and the data cannot be recovered.
+      </p>
+      <a href="delete-account" class="danger"> Delete account</a> 
+    </div>
+  </div>
+</section>
+{% endblock %}

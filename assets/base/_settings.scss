@@ -71,6 +71,12 @@ h1
   font-weight: 700;
 }
 
+h2
+{
+  font-weight: 700;
+  font-size: 2rem;
+}
+
 h4
 {
   color: $primary;
@@ -91,6 +97,8 @@ button
   cursor: pointer;
   color: #FFF;
   border-radius: 3px;
+  font-family: $font !important;
+  font-size: inherit;
 }
 
 a, a:visited

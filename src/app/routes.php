@@ -7,6 +7,8 @@ $router->get('register', 'Pages@register');
 $router->get('purchase-details', 'Pages@purchaseDetails');
 $router->get('logout', 'Auth@logout');
 $router->get('remove-item/{item}', 'Carts@remove');
+$router->get('profile', 'Pages@profile');
+$router->get('receipt/{item}', 'Payments@printOrder');
 
 $router->post('login', 'Auth@login');
 $router->post('register', 'Auth@register');

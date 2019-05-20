@@ -3,6 +3,8 @@ namespace Controller;
 
 use \Model\Product;
 use \Model\Cart;
+use \Model\Session;
+use \Model\User;
 
 /**
  * Pages Controller
@@ -32,7 +34,7 @@ class Pages
   public function login() : void
   {
     // Hide login page if user is already logged in
-    if (\Model\Session::getUser())
+    if (Session::getUser())
       redirect('/store');
     else
       renderView('login.html');
@@ -44,9 +46,20 @@ class Pages
   public function register() : void
   {
     // Hide register page if user is already logged in
-    if (\Model\Session::getUser())
+    if (Session::getUser())
       redirect('/store');
     else
       renderView('register.html');
+  }
+
+  /**
+   * Displays profile page
+   */
+  public function profile() : void
+  {
+    if (Session::getUser())
+      renderView('profile.html', User::getUserOrders());
+    else
+      redirect('/home');
   }
 }
