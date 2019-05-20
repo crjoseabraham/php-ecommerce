@@ -113,6 +113,66 @@ class User extends Database
   }
 
   /**
+   * Update information from user profile
+   * @param  array $data POST data sent by user
+   * @return boolean     Result of execution: true or false
+   */
+  public function updateInformation($data) : bool
+  {
+    $query = 'UPDATE user SET ';
+    $fields = [];
+    
+    if (isset($data['name']))
+      $fields[] = '`name` = :name';
+
+    if (isset($data['email']) && filter_var($data['email'], FILTER_VALIDATE_EMAIL))
+      $fields[] = '`email` = :email';
+
+    if (isset($data['password']))
+    {
+      if ($data['password'] === $data['password_confirm'])
+      {
+        if (strlen($data['password']) < 6)
+          self::$errors[] = PASSWORD_TOO_SHORT;
+
+        if (preg_match('/.*[a-z]+.*/i', $data['password']) == 0)
+          self::$errors[] = PASSWORD_NEEDS_LETTER;
+
+        if (preg_match('/.*\d+.*/i', $data['password']) == 0)
+          self::$errors[] = PASSWORD_NEEDS_NUMBER;
+      }
+      else
+        self::$errors[] = PASSWORD_MATCH;
+
+      if (empty(self::$errors))
+      {
+        $fields[] = '`password` = :pass';
+        $hashed_password = password_hash($data['password'], PASSWORD_BCRYPT);
+      }
+      else
+        return false;
+    }
+
+    $query .= implode(', ', $fields);
+    $query .= ' WHERE `id` = :user';
+
+    $db = static::getDB();
+    $stmt = $db->prepare($query);
+
+    if (isset($data['name']))
+      $stmt->bindValue(':name', $data['name'], \PDO::PARAM_STR);
+
+    if (isset($data['email']))
+      $stmt->bindValue(':email', $data['email'], \PDO::PARAM_STR);
+
+    if (isset($hashed_password))
+      $stmt->bindValue(':pass', $hashed_password, \PDO::PARAM_STR);
+
+    $stmt->bindValue(':user', $_SESSION['user_id'], \PDO::PARAM_INT);
+    return $stmt->execute();
+  }
+
+  /**
    * Sanitize inputs
    */
   private function validateData() : void

@@ -58,7 +58,7 @@ class Pages
   public function profile() : void
   {
     if (Session::getUser())
-      renderView('profile.html', User::getUserOrders());
+      renderView('profile.html', [User::getUserOrders(), User::getErrors()]);
     else
       redirect('/home');
   }

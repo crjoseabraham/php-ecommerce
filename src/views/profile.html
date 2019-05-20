@@ -8,18 +8,38 @@
       <p>
         Welcome to your profile page, here you can change your basic information like your name, email and password. You can also get the receipts of your previous purchases as a .pdf document.
       </p>
+
+      {% if flash_message is not empty %}
+      <br>
+      <span class="flash_message flash_message--{{ flash_message.type }}">
+        {{ flash_message.message }}
+      </span>
+      {% endif %}
+
+      {% if data.1 is not empty %}
+      <br>
+      <span class="flash_message flash_message--danger">
+        Something went wrong with your request:
+        <ul>
+          {% for error in data.1 %}
+          <li> {{ error }} </li>
+          {% endfor %}
+        </ul>
+      </span>
+      {% endif %}
+
       <form action="update-info" method="post">
-        <label for="user_name"> Your name: </label>
-        <input type="text" value="{{ current_user.name }}" name="user_name" id="user_name" autofocus>
+        <label for="name"> Your name: </label>
+        <input type="text" value="{{ current_user.name }}" name="name" id="name" autofocus>
 
-        <label for="user_email"> Your email: </label>
-        <input type="text" value="{{ current_user.email }}" name="user_email" id="user_email">
+        <label for="email"> Your email: </label>
+        <input type="text" value="{{ current_user.email }}" name="email" id="email">
 
-        <label for="new_pass"> Change password to: </label>
-        <input type="password" name="new_pass" id="new_pass">
+        <label for="password"> Change password to: </label>
+        <input type="password" name="password" id="password">
 
-        <label for="confirm_pass"> Confirm the new password: </label>
-        <input type="password" name="confirm_pass" id="confirm_pass">
+        <label for="password_confirm"> Confirm the new password: </label>
+        <input type="password" name="password_confirm" id="password_confirm">
 
         <button type="submit" class="primary">Update my information</button>
       </form>
@@ -36,7 +56,7 @@
             <th>Print</th>
           </thead>
           <tbody>
-        {% for order in data %}
+        {% for order in data.0 %}
             <tr>
               <td> {{ order.order_id }} </td>
               <td> {{ order.created_at }} </td>

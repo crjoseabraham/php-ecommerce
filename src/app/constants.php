@@ -28,3 +28,7 @@ define('PASSWORD_NEEDS_NUMBER', 'Password needs at least one number');
 define('ITEM_ADDED', 'Item added to your cart');
 define('ITEM_REMOVED', 'Item removed from your cart');
 define('ERROR_MESSAGE', 'Something went wrong. Please try again');
+
+// User profile notifications
+define('NO_CHANGES', 'No changes to make');
+define('DATA_UPDATED', 'Your information was updated successfully');
