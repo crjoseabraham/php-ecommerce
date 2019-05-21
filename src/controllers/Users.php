@@ -5,8 +5,7 @@ use \Model\User;
 
 /**
  * Users Controller
- * Performs actions in 'Profile' page like update information,
- * delete user account and print purchase receipt
+ * Performs actions in 'Profile' page like update information or delete user's account
  */
 class Users
 {
