@@ -14,30 +14,30 @@ The functional version is in the branch 'master'
 &nbsp;&nbsp;&nbsp; 🗹 Validations for the inputs  
 &nbsp;&nbsp;&nbsp; 🗹 Hashed passwords  
 🗹 Create Session handler  
-  🗹 Start session on login and destroy it on logout
-  🗹 Restrict content to unlogged users
+&nbsp;&nbsp;&nbsp; 🗹 Start session on login and destroy it on logout  
+&nbsp;&nbsp;&nbsp; 🗹 Restrict content to unlogged users  
 ☐ Implement CRUD operations for the cart  
-  🗹 Get all cart items  
-  🗹 Add item to cart  
-  🗹 Remove item from cart  
-  🗹 Update item from cart  
-  ☐ UI: +/- buttons with JavaScript  
+&nbsp;&nbsp;&nbsp; 🗹 Get all cart items  
+&nbsp;&nbsp;&nbsp; 🗹 Add item to cart  
+&nbsp;&nbsp;&nbsp; 🗹 Remove item from cart  
+&nbsp;&nbsp;&nbsp; 🗹 Update item from cart  
+&nbsp;&nbsp;&nbsp; ☐ UI: +/- buttons with JavaScript  
 ☐ Payment process  
-  🗹 Set a 'budget' for the session  
-  🗹 Register purchase in the database  
-  ☐ Select 'Shipping' type  
-  ☐ UI: Confirm purchase page  
-  ☐ Show .pdf receipt after purchase  
+&nbsp;&nbsp;&nbsp; 🗹 Set a 'budget' for the session  
+&nbsp;&nbsp;&nbsp; 🗹 Register purchase in the database  
+&nbsp;&nbsp;&nbsp; ☐ Select 'Shipping' type  
+&nbsp;&nbsp;&nbsp; ☐ UI: Confirm purchase page  
+&nbsp;&nbsp;&nbsp; ☐ Show .pdf receipt after purchase  
 🗹 Flash messages  
 🗹 User Management  
-  🗹 Update basic information (Name, Email, Change password)  
-  🗹 Show purchases history  
-  🗹 Danger zone: delete the user's account  
+&nbsp;&nbsp;&nbsp; 🗹 Update basic information (Name, Email, Change password)  
+&nbsp;&nbsp;&nbsp; 🗹 Show purchases history  
+&nbsp;&nbsp;&nbsp; 🗹 Danger zone: delete the user's account  
 🗹 PDF receipts  
-  🗹 Install mPDF via Composer  
-  🗹 Add styles for the PDF template  
+&nbsp;&nbsp;&nbsp; 🗹 Install mPDF via Composer  
+&nbsp;&nbsp;&nbsp; 🗹 Add styles for the PDF template  
 ☐ Rating star system
-  ☐ UI: Make stars highlight on hover  
-  ☐ Backend: Save given rating in the database
+&nbsp;&nbsp;&nbsp; ☐ UI: Make stars highlight on hover  
+&nbsp;&nbsp;&nbsp; ☐ Backend: Save given rating in the database
 ☐ Test cross-browser support
 ☐ Deploy
