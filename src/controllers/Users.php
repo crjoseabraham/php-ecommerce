@@ -12,7 +12,7 @@ class Users
 {
   /**
    * Called when users desire to update their profile information
-   * like name, password, email
+   * like name, password, email or delete their account
    * @return void
    */
   public function updateInfo()
@@ -48,5 +48,16 @@ class Users
       else
         renderView('profile.html', [Payment::getUserOrders(), User::getErrors()]);
     }
+  }
+
+  /**
+   * Delete account
+   */
+  public function deleteAccount()
+  {
+    if (User::deleteUserAccount())
+      Auth::logout();
+    else
+      die(ERROR_MESSAGE);
   }
 }

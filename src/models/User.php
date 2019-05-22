@@ -161,6 +161,17 @@ class User extends Database
   }
 
   /**
+   * Delete user account
+   */
+  public function deleteUserAccount()
+  {
+    $db = static::getDB();
+    $stmt = $db->prepare("DELETE FROM `user` WHERE `id` = :id");
+    $stmt->bindValue(':id', $_SESSION['user_id'], \PDO::PARAM_INT);
+    return $stmt->execute();
+  }
+
+  /**
    * Sanitize inputs
    */
   private function validateData() : void
