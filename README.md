@@ -8,11 +8,11 @@ The functional version is in the branch 'master'
 ## To Do:
 🗹 Improve routing system  
 🗹 Create views  
-  🗹 Install Twig via Composer  
-  🗹 Make layouts responsive
+&nbsp;&nbsp;&nbsp; 🗹 Install Twig via Composer  
+&nbsp;&nbsp;&nbsp; 🗹 Make layouts responsive  
 🗹 More secure login and registration  
-  🗹 Validations for the inputs
-  🗹 Hashed passwords
+&nbsp;&nbsp;&nbsp; 🗹 Validations for the inputs  
+&nbsp;&nbsp;&nbsp; 🗹 Hashed passwords  
 🗹 Create Session handler  
   🗹 Start session on login and destroy it on logout
   🗹 Restrict content to unlogged users
