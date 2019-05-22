@@ -16,12 +16,12 @@ The functional version is in the branch 'master'
 🗹 Create Session handler  
 &nbsp;&nbsp;&nbsp; 🗹 Start session on login and destroy it on logout  
 &nbsp;&nbsp;&nbsp; 🗹 Restrict content to unlogged users  
-☐ Implement CRUD operations for the cart  
+🗹 Implement CRUD operations for the cart  
 &nbsp;&nbsp;&nbsp; 🗹 Get all cart items  
 &nbsp;&nbsp;&nbsp; 🗹 Add item to cart  
 &nbsp;&nbsp;&nbsp; 🗹 Remove item from cart  
 &nbsp;&nbsp;&nbsp; 🗹 Update item from cart  
-&nbsp;&nbsp;&nbsp; ☐ UI: +/- buttons with JavaScript  
+&nbsp;&nbsp;&nbsp; 🗹 UI: +/- buttons with JavaScript  
 ☐ Payment process  
 &nbsp;&nbsp;&nbsp; 🗹 Set a 'budget' for the session  
 &nbsp;&nbsp;&nbsp; 🗹 Register purchase in the database  

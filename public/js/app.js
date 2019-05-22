@@ -11,24 +11,24 @@
 // 	});
 // });
 
-// /**
-//  * Arrow buttons functionality
-//  * + or - number of items to add
-//  */
-// const arrowButtons = document.querySelectorAll('.product-card__arrow-button');
+/**
+ * Arrow buttons functionality
+ * + or - number of items to add
+ */
+const arrowButtons = document.querySelectorAll('.arrow-button');
 
-// arrowButtons.forEach(thisButton => {
-// 	thisButton.addEventListener('click', () =>  {
-// 		if (thisButton.classList.contains('arrow-button--up')) {
-// 			let inputField = thisButton.nextElementSibling.nextElementSibling.nextElementSibling;
-// 			inputField.value++;
-// 		} else {
-// 			let inputField = thisButton.nextElementSibling.nextElementSibling;
-// 			if (inputField.value > 0)
-// 				inputField.value--;
-// 		}
-// 	});
-// });
+arrowButtons.forEach(thisButton => {
+	thisButton.addEventListener('click', () =>  {
+		if (thisButton.classList.contains('plus')) {
+			let inputField = thisButton.previousElementSibling;
+			inputField.value++;
+		} else {
+			let inputField = thisButton.nextElementSibling;
+			if (inputField.value > 1)
+				inputField.value--;
+		}
+	});
+});
 
 // /**
 //  * Responsive button
