@@ -38,6 +38,6 @@ The functional version is in the branch 'master'
 &nbsp;&nbsp;&nbsp; 🗹 Add styles for the PDF template  
 ☐ Rating star system  
 &nbsp;&nbsp;&nbsp; ☐ UI: Make stars highlight on hover  
-&nbsp;&nbsp;&nbsp; ☐ Backend: Save given rating in the database
-☐ Test cross-browser support
-☐ Deploy
+&nbsp;&nbsp;&nbsp; ☐ Backend: Save given rating in the database  
+☐ Test cross-browser support  
+☐ Deploy  
