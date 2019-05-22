@@ -101,18 +101,6 @@ class User extends Database
   }
 
   /**
-   * Get all orders for the current logged in user
-   * @return mixed Array if records found, false otherwise
-   */
-  public function getUserOrders()
-  {
-    $db = static::getDB();
-    $stmt = $db->prepare("SELECT * FROM `order` WHERE user_id = :user ORDER BY created_at DESC");
-    $stmt->bindValue(':user', $_SESSION['user_id'], \PDO::PARAM_INT);
-    return $stmt->execute() ? $stmt->fetchAll(\PDO::FETCH_ASSOC) : false;
-  }
-
-  /**
    * Update information from user profile
    * @param  array $data POST data sent by user
    * @return boolean     Result of execution: true or false

@@ -2,6 +2,7 @@
 namespace Controller;
 
 use \Model\User;
+use \Model\Payment;
 
 /**
  * Users Controller
@@ -9,6 +10,11 @@ use \Model\User;
  */
 class Users
 {
+  /**
+   * Called when users desire to update their profile information
+   * like name, password, email
+   * @return void
+   */
   public function updateInfo()
   {    
     // Validate that user actually wants to change some data
@@ -40,7 +46,7 @@ class Users
         redirect('/profile');
       }
       else
-        renderView('profile.html', [User::getUserOrders(), User::getErrors()]);
+        renderView('profile.html', [Payment::getUserOrders(), User::getErrors()]);
     }
   }
 }

@@ -11,9 +11,22 @@ use \Model\Session;
 class Carts
 {
 
+  /**
+   * Get all items in the user's cart
+   * @return object All items
+   */
   public function getCartItems()
   {
     return Cart::cartItems();
+  }
+
+  /**
+   * Get the total amount of user's cart
+   * @return float    Total amount
+   */
+  public function getCartTotal()
+  {
+    return Cart::cartTotal();
   }
 
   /**

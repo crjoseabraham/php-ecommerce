@@ -36,7 +36,6 @@ class Cart extends Database
     return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_OBJ) : false;
   }
 
-
   /**
    * Get cart items for the current user
    * @return mixed  Array if records found, false if not
@@ -47,6 +46,22 @@ class Cart extends Database
     $stmt = $db->prepare("SELECT cart_items.* FROM cart_items INNER JOIN cart on cart_items.cart_id = cart.id WHERE cart.user_id = :user");
     $stmt->bindValue(':user', intval($_SESSION['user_id']), \PDO::PARAM_INT);
     return $stmt->execute() ? $stmt->fetchAll(\PDO::FETCH_OBJ) : false;
+  }
+
+  /**
+   * Get cart total;
+   * @return float    Total
+   */
+  public function cartTotal()
+  {
+    $cart = self::cartItems();
+    $subtotal = 0;
+    foreach ($cart as $item) 
+    {
+      $subtotal += $item->subtotal;
+    }
+
+    return $subtotal;
   }
 
   /**

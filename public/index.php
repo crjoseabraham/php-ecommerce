@@ -1,5 +1,6 @@
 <?php
 /*!
+ * myMiniMarket
  * PHP Shopping cart
  *
  * An MVC application written with vanilla PHP, without libraries or frameworks
