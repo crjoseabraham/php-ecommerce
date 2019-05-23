@@ -42,29 +42,7 @@
 </div>
 
 {% if user_cart is not empty %}
-<div class="summary">
-  <h4>Summary</h4>
-  <div class="body">
-    <table>
-      <tr>
-        <td>Cart total:</td>
-        <td>${{ subtotal }}</td>
-      </tr>
-      <tr>
-        <td>Shipping fee:</td>
-        <td>$10.00</td>
-      </tr>
-      <tr>
-        <td>Total:</td>
-        <td>${{ subtotal + 10 }}</td>
-      </tr>
-    </table>
-  </div>
-</div>
-
-<form action="process-payment" method="POST">
-  <button type="submit" class="primary"> Proceed to payment </button>
-</form>
+<a href="confirm-payment" class="primary"> Proceed to payment </a>
 {% endif %}
 {% else %}
 &nbsp;

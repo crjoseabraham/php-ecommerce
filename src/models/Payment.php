@@ -11,17 +11,18 @@ class Payment extends Database
 {
   /**
    * Store the new purchase order in the database
-   * @return mixed    ID of last inserted record, false if there's something wrong
+   * @param  float $shipping_costs  Shipping costs value
+   * @param  float $total         Total amount
+   * @return mixed                ID of last inserted record, false if there's something wrong
    */
-  public function newPurchase()
+  public function newPurchase(float $shipping_costs, float $total)
   {
     $db = static::getDB();
     $stmt = $db->prepare("INSERT INTO `order` VALUES(null, :user, :created, :costs, :total)");
     $stmt->bindValue(':user', $_SESSION['user_id'], \PDO::PARAM_INT);
     $stmt->bindValue(':created', date('Y-m-d H:i:s'), \PDO::PARAM_STR);
-    //TODO: Transport costs, for now it's a static value
-    $stmt->bindValue(':costs', 10, \PDO::PARAM_INT);
-    $stmt->bindValue(':total', (Cart::cartTotal() + 10), \PDO::PARAM_STR);
+    $stmt->bindValue(':costs', $shipping_costs, \PDO::PARAM_STR);
+    $stmt->bindValue(':total', $total, \PDO::PARAM_STR);
     if ($stmt->execute())
       return self::saveOrderDetails($db->lastInsertId());
 

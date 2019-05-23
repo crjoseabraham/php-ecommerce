@@ -1,16 +1,3 @@
-// /**
-//  * Update total amount with the transport type costs
-//  */
-// const selectTransport = document.getElementsByName('transport-type');
-// const initialSubtotal = (document.getElementById("cart__total") !== null) ? parseFloat(document.getElementById("cart__total").innerHTML) : 0;
-
-// selectTransport.forEach(thisOption => {
-// 	thisOption.addEventListener('change', () => {
-// 		let total = initialSubtotal + parseFloat(thisOption.value);
-// 		document.getElementById("cart__total").innerHTML = total;
-// 	});
-// });
-
 /**
  * Arrow buttons functionality
  * + or - number of items to add
@@ -27,15 +14,34 @@ arrowButtons.forEach(thisButton => {
 			if (inputField.value > 1)
 				inputField.value--;
 		}
-	});
-});
+	})
+})
 
-// /**
-//  * Responsive button
-//  * Shows cart when 'checked'
-//  */
-// const responsiveCheckbox = document.getElementById('responsive');
 
-// responsiveCheckbox.addEventListener('change', () => {
-// 	document.querySelector('.sidebar__content').style.display = (responsiveCheckbox.checked) ? 'block' : 'none';
-// });
+/**
+ * Show total amount in confirm-payment page
+ * Update total amount adding the transport type costs
+ */
+const initialSubtotal = parseFloat(document.querySelector(".confirm-subtotal").innerHTML);
+const shipping = document.querySelector("#shipping");
+
+// Show starter value
+document.querySelector(".total-amount").innerHTML = 
+  parseInt(shipping.value) === 7 ? (initialSubtotal + (initialSubtotal * 0.07)).toFixed(2) : initialSubtotal;
+
+// Update total amount when <select> value has changed
+shipping.addEventListener('change', () => {
+  let total = 0;
+
+  switch(parseInt(shipping.value))
+  {
+    case 7:
+      total = (initialSubtotal + (initialSubtotal * 0.07)).toFixed(2);
+      break;
+    case 0:
+      total = initialSubtotal;
+      break;
+  }
+
+  document.querySelector(".total-amount").innerHTML = total;
+})

@@ -22,12 +22,11 @@ The functional version is in the branch 'master'
 &nbsp;&nbsp;&nbsp; 🗹 Remove item from cart  
 &nbsp;&nbsp;&nbsp; 🗹 Update item from cart  
 &nbsp;&nbsp;&nbsp; 🗹 UI: +/- buttons with JavaScript  
-☐ Payment process  
+🗹 Payment process  
 &nbsp;&nbsp;&nbsp; 🗹 Set a 'budget' for the session  
 &nbsp;&nbsp;&nbsp; 🗹 Register purchase in the database  
-&nbsp;&nbsp;&nbsp; ☐ Select 'Shipping' type  
-&nbsp;&nbsp;&nbsp; ☐ UI: Confirm purchase page  
-&nbsp;&nbsp;&nbsp; ☐ Show .pdf receipt after purchase  
+&nbsp;&nbsp;&nbsp; 🗹 Select 'Shipping' type  
+&nbsp;&nbsp;&nbsp; 🗹 UI: Confirm purchase page  
 🗹 Flash messages  
 🗹 User Management  
 &nbsp;&nbsp;&nbsp; 🗹 Update basic information (Name, Email, Change password)  

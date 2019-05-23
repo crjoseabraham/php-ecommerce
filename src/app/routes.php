@@ -9,6 +9,7 @@ $router->get('logout', 'Auth@logout');
 $router->get('remove-item/{item}', 'Carts@remove');
 $router->get('profile', 'Pages@profile');
 $router->get('receipt/{item}', 'Payments@printOrder');
+$router->get('confirm-payment', 'Pages@confirmPayment');
 
 $router->post('login', 'Auth@login');
 $router->post('register', 'Auth@register');

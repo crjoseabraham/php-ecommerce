@@ -63,4 +63,15 @@ class Pages
     else
       redirect('/home');
   }
+
+  /**
+   * Displays payment confirmation page
+   */
+  public function confirmPayment() : void
+  {
+    if (Session::getUser())
+      renderView('confirm-payment.html', Product::getAll());
+    else
+      redirect('/home');
+  }
 }

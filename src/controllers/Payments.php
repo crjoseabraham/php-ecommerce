@@ -20,15 +20,30 @@ class Payments
    */
   public function processPayment()
   {
-    $total_is_less_than_budget = ($_SESSION['cash'] >= (Carts::getCartTotal() + 10)) ?? false;
+    $subtotal = Carts::getCartTotal();
 
-    if (!$total_is_less_than_budget || !Payment::newPurchase())
-      \flash(ERROR_MESSAGE, ERROR);
+    switch (intval($_POST['shipping'])) {
+      case 7:
+        $shipping_costs = number_format(($subtotal * 0.07), 2, '.', '');
+        $total = $subtotal + $shipping_costs;
+        break;
+      
+      case 0:
+        $shipping_costs = 0;
+        $total = $subtotal;
+        break;
+    }
+
+    $total_is_less_than_budget = $_SESSION['cash'] >= $total ?? false;
+
+    if (!$total_is_less_than_budget || !Payment::newPurchase($shipping_costs, $total))
+      \flash(OVER_BUDGET, ERROR);
     else
     {
-      $_SESSION['cash'] -= (Carts::getCartTotal() + 10);
+      $_SESSION['cash'] -= $total;
       Session::updateSessionBudget();
       Cart::emptyCart();
+      \flash(PURCHASE_COMPLETED);
     }
     
     redirect('/store');

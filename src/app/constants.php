@@ -28,6 +28,8 @@ define('PASSWORD_NEEDS_NUMBER', 'Password needs at least one number');
 define('ITEM_ADDED', 'Item added to your cart');
 define('ITEM_REMOVED', 'Item removed from your cart');
 define('ERROR_MESSAGE', 'Something went wrong. Please try again');
+define('OVER_BUDGET', 'You don\'t have enough money for this purchase. Please remove some items');
+define('PURCHASE_COMPLETED', 'Your order was processed successfully. You can get see the receipt in your profile page.');
 
 // User profile notifications
 define('NO_CHANGES', 'No changes to make');

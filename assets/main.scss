@@ -1,8 +1,9 @@
 @import 'base/settings';
-@import 'components/navbar';
-@import 'components/index';
-@import 'components/store';
-@import 'components/login';
-@import 'components/register';
-@import 'components/footer';
-@import 'components/profile';
+@import 'layouts/navbar';
+@import 'layouts/index';
+@import 'layouts/store';
+@import 'layouts/login';
+@import 'layouts/register';
+@import 'layouts/footer';
+@import 'layouts/profile';
+@import 'layouts/confirm';
