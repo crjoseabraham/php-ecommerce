@@ -10,12 +10,14 @@ The functional version is in the branch 'master'
 🗹 Create views  
 &nbsp;&nbsp;&nbsp; 🗹 Install Twig via Composer  
 &nbsp;&nbsp;&nbsp; 🗹 Make layouts responsive  
-🗹 More secure login and registration  
+☐ More secure login and registration  
 &nbsp;&nbsp;&nbsp; 🗹 Validations for the inputs  
 &nbsp;&nbsp;&nbsp; 🗹 Hashed passwords  
+&nbsp;&nbsp;&nbsp; ☐ 'Forgot your password' function  
 🗹 Create Session handler  
 &nbsp;&nbsp;&nbsp; 🗹 Start session on login and destroy it on logout  
 &nbsp;&nbsp;&nbsp; 🗹 Restrict content to unlogged users  
+&nbsp;&nbsp;&nbsp; 🗹 'Remember me' function with Cookies  
 🗹 Implement CRUD operations for the cart  
 &nbsp;&nbsp;&nbsp; 🗹 Get all cart items  
 &nbsp;&nbsp;&nbsp; 🗹 Add item to cart  
