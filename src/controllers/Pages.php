@@ -26,7 +26,7 @@ class Pages
    */
   public function store() : void
   {
-    renderView('store.html', Product::getAll());
+    renderView('store.html', Products::getAllProducts());
   }
 
   /**
@@ -70,7 +70,7 @@ class Pages
   public function confirmPayment() : void
   {
     if (Session::getUser())
-      renderView('confirm-payment.html', Product::getAll());
+      renderView('confirm-payment.html', Products::getAllProducts());
     else
       redirect('/home');
   }

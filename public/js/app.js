@@ -17,6 +17,16 @@ arrowButtons.forEach(thisButton => {
 	})
 })
 
+/**
+ * Submit star rating form when user clicks a star
+ */
+allStars = document.querySelectorAll('.products__card .rating input[type="radio"]');
+allStars.forEach(star => {
+  star.addEventListener('change', () => {
+    star.form.submit();
+  })
+})
+
 
 /**
  * Show total amount in confirm-payment page

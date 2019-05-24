@@ -38,7 +38,9 @@ The functional version is in the branch 'master'
 &nbsp;&nbsp;&nbsp; 🗹 Install mPDF via Composer  
 &nbsp;&nbsp;&nbsp; 🗹 Add styles for the PDF template  
 ☐ Rating star system  
-&nbsp;&nbsp;&nbsp; ☐ UI: Make stars highlight on hover  
-&nbsp;&nbsp;&nbsp; ☐ Backend: Save given rating in the database  
+&nbsp;&nbsp;&nbsp; 🗹 UI: Make stars highlight on hover  
+&nbsp;&nbsp;&nbsp; 🗹 Save given rating in the database  
+&nbsp;&nbsp;&nbsp; ☐ UI: Show product total rating and votes  
+&nbsp;&nbsp;&nbsp; ☐ Restrict voting to once per session  
 ☐ Test cross-browser support  
 ☐ Deploy  

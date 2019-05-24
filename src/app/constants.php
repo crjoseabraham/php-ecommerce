@@ -30,6 +30,8 @@ define('ITEM_REMOVED', 'Item removed from your cart');
 define('ERROR_MESSAGE', 'Something went wrong. Please try again');
 define('OVER_BUDGET', 'You don\'t have enough money for this purchase. Please remove some items');
 define('PURCHASE_COMPLETED', 'Your order was processed successfully. You can get see the receipt in your profile page.');
+define('VOTE_SUBMITTED', 'Your vote was submitted successfully');
+define('VOTE_ERROR', 'Sorry but you can rate an item only once per session');
 
 // User profile notifications
 define('NO_CHANGES', 'No changes to make');

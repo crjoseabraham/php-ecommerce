@@ -107,7 +107,9 @@
       background-color: #fff;
       border-radius: 6px;
       padding: 2rem;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       & > img
       {
@@ -118,7 +120,40 @@
 
       & > .rating
       {
-        padding-top: 1rem;
+        display: flex;
+
+        /* Hide input */
+        & input[type="radio"]
+        {
+         height: 0;
+         left: 0;
+         opacity: 0;
+         overflow: hidden;
+         position: absolute;
+         top: 0;
+         width: 0;
+        }
+
+        /* Stars styles */
+        & label
+        { 
+          font-size: 1.5rem; 
+          cursor: pointer;
+        }
+       
+        &:hover label
+        { color: gold; }
+
+        & label,
+        & label:hover ~ label
+        { color: #ccc; }
+
+        &:focus-within > label,
+        &:focus-within > input[type="radio"]:checked + label
+        { color: gold !important; }
+
+        &:focus-within > input[type="radio"]:checked + label ~ label
+        { color: #ccc !important; }
       }
 
       & > .add-product
@@ -155,7 +190,7 @@
 
         & > button[type="submit"]
         {
-          margin-left: auto;
+          margin-left: 1rem;
           padding: .8rem !important;
         }
       }
