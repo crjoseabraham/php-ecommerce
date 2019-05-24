@@ -41,8 +41,14 @@ class Products
       // Verify if product id passed is valid and submit the vote
       if (self::productExists($product_id) && $rating_value)
       {
-        Product::submitRatingVote($product_id, $rating_value);
-        flash(VOTE_SUBMITTED);
+        // Check if user already submitted a vote for this item in the same session
+        if(!Product::userAlreadyRatedInThisSession($product_id))
+        {
+          Product::submitRatingVote($product_id, $rating_value);
+          flash(VOTE_SUBMITTED);
+        }
+        else
+          flash(VOTE_ERROR, ERROR);
       }
       else
         flash(ERROR_MESSAGE, ERROR);

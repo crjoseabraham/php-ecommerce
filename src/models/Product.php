@@ -83,4 +83,24 @@ class Product extends Database
     $stmt->bindValue(':id', $product_id, \PDO::PARAM_INT);
     return $stmt->execute() ? number_format($stmt->fetchColumn(), 1, '.', '') : false;
   }
+
+  /**
+   * Check if the user already submitted a vote for an item in the same session
+   * @param int $product_id Product ID
+   * @return boolean        True if record found, false if not
+   */
+  public function userAlreadyRatedInThisSession(int $product_id)
+  {
+    $db = static::getDB();
+    $stmt = $db->prepare("SELECT * FROM rating WHERE rating_product_id = :product AND session_id = :session");
+    $stmt->bindValue(':product', $product_id, \PDO::PARAM_INT);
+    $stmt->bindValue(':session', $_SESSION['session_id'], \PDO::PARAM_STR);
+    if ($stmt->execute())
+    {
+      if ($stmt->fetch())
+        return true;
+      else
+        return false;
+    }
+  }
 }

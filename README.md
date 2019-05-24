@@ -41,6 +41,6 @@ The functional version is in the branch 'master'
 &nbsp;&nbsp;&nbsp; 🗹 UI: Make stars highlight on hover  
 &nbsp;&nbsp;&nbsp; 🗹 Save given rating in the database  
 &nbsp;&nbsp;&nbsp; ☐ UI: Show product total rating and votes  
-&nbsp;&nbsp;&nbsp; ☐ Restrict voting to once per session  
+&nbsp;&nbsp;&nbsp; 🗹 Restrict voting to once per session  
 ☐ Test cross-browser support  
 ☐ Deploy  
