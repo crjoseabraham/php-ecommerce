@@ -15,6 +15,16 @@
         <img src="{{ product.picture }}" alt="{{ product.description }}">
         <h3 class="product-name"> {{ product.description }} </h3>
         <p class="price"> ${{ product.price }} </p>
+
+        <form action="add-item/{{ product.product_id }}" method="post" class="add-product">
+          <button type="button" class="bordered arrow-button minus"> <i class="fas fa-minus"></i> </button>
+          <input type="text" name="quantity" id="quantity" value="1" readonly>
+          <button type="button" class="bordered arrow-button plus"> <i class="fas fa-plus"></i> </button>
+          <button type="submit" class="success"> <i class="fas fa-cart-plus"></i> Add</button>
+        </form>
+
+        <div class="rating-components">
+        <p class="vote-text">Rate this item: </p>
         <form action="rate-product/{{ product.product_id }}" method="post" class="rating">
           <input type="radio" name="star" id="star-1--{{ product.product_id }}" value="1"/>
           <label for="star-1--{{ product.product_id }}">
@@ -41,13 +51,7 @@
             <span class="star-text"> <i class="fas fa-star"></i> </span>
           </label>
         </form>
-        
-        <form action="add-item/{{ product.product_id }}" method="post" class="add-product">
-          <button type="button" class="bordered arrow-button minus"> <i class="fas fa-minus"></i> </button>
-          <input type="text" name="quantity" id="quantity" value="1" readonly>
-          <button type="button" class="bordered arrow-button plus"> <i class="fas fa-plus"></i> </button>
-          <button type="submit" class="success"> <i class="fas fa-cart-plus"></i> Add</button>
-        </form>
+        </div>
       </div>
       {% endfor %}
       {% endif %}
