@@ -36,7 +36,7 @@ function getMethod() : string
 function renderView(string $file, array $data = []) : void
 {
   // Specify our Twig templates location
-  $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/views');
+  $loader = new \Twig_Loader_Filesystem(dirname(dirname(__DIR__)) . '/views');
   // Instantiate Twig
   $twig = new \Twig_Environment($loader, ['debug' => true]);
   $twig->addExtension(new \Twig\Extension\DebugExtension());

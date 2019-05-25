@@ -1,6 +1,8 @@
 <?php 
 define('URLROOT', 'http://localhost/shoppingcart');
 define('SECRET_KEY', 'RYdC5cmDUbgglwwMLTUrcBzs6HXG5NBZ');
+define('MAILGUN_API_KEY', '20151f46d22eaf7351cb15482ef375cd-52b0ea77-1831818b');
+define('MAILGUN_DOMAIN', 'sandbox3a08108a76aa472da54cf97f1e2b33e9.mailgun.org');
 
 // Database config values
 define('DB_HOST', 'localhost');

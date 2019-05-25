@@ -8,6 +8,7 @@ $router->get('purchase-details', 'Pages@purchaseDetails');
 $router->get('profile', 'Pages@profile');
 $router->get('receipt/{item}', 'Payments@printOrder');
 $router->get('confirm-payment', 'Pages@confirmPayment');
+$router->get('forgot-my-password', 'Pages@forgottenPassword');
 // TODO: Change to post ->
 $router->get('logout', 'Auth@logout');
 $router->get('remove-item/{item}', 'Carts@remove');

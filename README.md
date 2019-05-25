@@ -21,9 +21,9 @@ The functional version is in the branch 'master'
 🗹 Implement CRUD operations for the cart  
 &nbsp;&nbsp;&nbsp; 🗹 Get all cart items  
 &nbsp;&nbsp;&nbsp; 🗹 Add item to cart  
-&nbsp;&nbsp;&nbsp; 🗹 Remove item from cart  
-&nbsp;&nbsp;&nbsp; 🗹 Update item from cart  
-&nbsp;&nbsp;&nbsp; 🗹 UI: +/- buttons with JavaScript  
+&nbsp;&nbsp;&;&nbsp; 🗹 Update item from cart  
+&nbspnbsp; 🗹 Remove item from cart  
+&nbsp;&nbsp;&nbsp;&nbsp; 🗹 UI: +/- buttons with JavaScript  
 🗹 Payment process  
 &nbsp;&nbsp;&nbsp; 🗹 Set a 'budget' for the session  
 &nbsp;&nbsp;&nbsp; 🗹 Register purchase in the database  
