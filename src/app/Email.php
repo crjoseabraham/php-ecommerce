@@ -1,7 +1,8 @@
 <?php 
 namespace App;
 
-use Mailgun\Mailgun;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 /**
  * Email class
@@ -19,17 +20,35 @@ class Email
    */
   public static function send($to, $subject, $text, $html)
   {
-    // First, instantiate the SDK with your API credentials
-    $mg = Mailgun::create(MAILGUN_API_KEY); // For US servers
+    $mail = new PHPMailer(true);
 
-    // Now, compose and send your message.
-    // $mg->messages()->send($domain, $params);
-    $mg->messages()->send(MAILGUN_DOMAIN, [
-      'from'    => 'joseabraham@myminimarket.com',
-      'to'      => $to,
-      'subject' => $subject,
-      'text'    => $text,
-      'html'    => $html
-    ]);
+    try 
+    {
+      //Server settings
+      $mail->isSMTP();                        // Set mailer to use SMTP
+      $mail->SMTPDebug  = 2;                  // Enable verbose debug output
+      $mail->Host       = EMAIL_HOST;         // Specify main and backup SMTP servers
+      $mail->SMTPAuth   = true;               // Enable SMTP authentication
+      $mail->Username   = EMAIL_USER;         // SMTP username
+      $mail->Password   = EMAIL_PASS;         // SMTP password
+      $mail->SMTPSecure = 'STARTTLS';
+      $mail->Port       = 587;                // TCP port to connect to
+      
+      //Recipients
+      $mail->setFrom(EMAIL_USER, EMAIL_NAME);
+      $mail->addAddress($to);                 // Add a recipient
+
+      // Content
+      $mail->isHTML(true);                    // Set email format to HTML
+      $mail->Subject = $subject;
+      $mail->Body    = $html;
+      $mail->AltBody = $text;
+
+      $mail->send();
+    } 
+    catch (Exception $e) 
+    {
+      echo EMAIL_ERROR;
+    }
   }
 }
