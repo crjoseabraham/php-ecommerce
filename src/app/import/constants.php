@@ -13,7 +13,7 @@ define('EMAIL_HOST', 'YOUR_SMTP_HOST');
 define('EMAIL_USER', 'YOUR_EMAIL');
 define('EMAIL_NAME', 'YOUR NAME');
 define('EMAIL_PASS', 'YOUR_PASSWORD');
-define('EMAIL_ERROR', 'Message could not be sent. Mailer Error: {$mail->ErrorInfo}');
+define('EMAIL_ERROR', 'Message could not be sent.');
 
 // Flash message types
 define('SUCCESS', 'success');
