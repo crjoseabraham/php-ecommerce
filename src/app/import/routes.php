@@ -19,3 +19,4 @@ $router->post('add-item/{item}', 'Carts@add');
 $router->post('rate-product/{item}', 'Products@rateProduct');
 $router->post('update-info', 'Users@updateInfo');
 $router->post('delete-account', 'Users@deleteAccount');
+$router->post('forgot-my-password', 'Users@recoverPassword');

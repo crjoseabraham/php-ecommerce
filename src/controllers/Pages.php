@@ -85,8 +85,7 @@ class Pages
    */
   public function forgottenPassword()
   {
-    Email::send('RECIPIENT_EMAIL_HERE', 'Email test', 'This is a test', '<h1>This is a test</h1>');
-    echo "Email sent";
+    renderView('forgot-password.html');
   }
 <<<<<<< HEAD
 =======

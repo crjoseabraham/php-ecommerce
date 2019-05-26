@@ -2,6 +2,8 @@
 namespace Model;
 
 use \App\Database;
+use \App\Email;
+use \Controller\Token;
 
 /**
  * User class
@@ -170,6 +172,50 @@ class User extends Database
     $stmt->bindValue(':id', $_SESSION['user_id'], \PDO::PARAM_INT);
     return $stmt->execute();
   }
+
+  /**
+   * Send email for password reseting
+   */
+  public function sendPasswordResetEmail($email)
+  {
+    $user = self::findByEmail($email);
+
+    if ($user)
+    {
+      if (self::startPasswordReset($user->id))
+      {
+        Email::send($email, 'RecoverPass', 'Recover your pass', '<h1>Recover your pass</h1>');
+      }
+    }
+    else
+    {
+      flash('error', ERROR);
+      redirect('/login');
+    }
+  }
+
+  /**
+   * Start the password reset process by generating a new token and expiry date
+   */
+  public function startPasswordReset($user_id)
+  {
+    $token = new Token;
+    $hashed_token = $token->getHash();
+    $expiry_timestamp = date('Y-m-d H:i:s', time() + 60 * 60 * 2);   // 2 hours from now
+
+    $db = static::getDB();
+    $stmt = $db->prepare("
+      UPDATE user
+      SET password_reset_hash = :token_hash,
+          password_reset_expires_at = :expiry_date
+      WHERE id = :user_id");
+    $stmt->bindValue(':token_hash', $hashed_token, \PDO::PARAM_STR);
+    $stmt->bindValue(':expiry_date', $expiry_timestamp, \PDO::PARAM_STR);
+    $stmt->bindValue(':user_id', $user_id, \PDO::PARAM_STR);
+
+    return $stmt->execute();
+  }
+  
 
   /**
    * Sanitize inputs

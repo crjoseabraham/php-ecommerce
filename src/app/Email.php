@@ -26,7 +26,6 @@ class Email
     {
       //Server settings
       $mail->isSMTP();                        // Set mailer to use SMTP
-      $mail->SMTPDebug  = 2;                  // Enable verbose debug output
       $mail->Host       = EMAIL_HOST;         // Specify main and backup SMTP servers
       $mail->SMTPAuth   = true;               // Enable SMTP authentication
       $mail->Username   = EMAIL_USER;         // SMTP username
