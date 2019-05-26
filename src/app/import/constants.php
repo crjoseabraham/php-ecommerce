@@ -14,7 +14,11 @@ define('EMAIL_USER', 'YOUR_EMAIL');
 define('EMAIL_NAME', 'YOUR NAME');
 define('EMAIL_PASS', 'YOUR_PASSWORD');
 <<<<<<< HEAD:src/app/import/constants.php
+<<<<<<< HEAD:src/app/import/constants.php
 define('EMAIL_ERROR', 'Message could not be sent.');
+=======
+define('EMAIL_ERROR', 'Message could not be sent. Mailer Error: {$mail->ErrorInfo}');
+>>>>>>> Setup PHPMailer to send emails (working). Dump Mailgun LOL:src/app/constants.php
 =======
 define('EMAIL_ERROR', 'Message could not be sent. Mailer Error: {$mail->ErrorInfo}');
 >>>>>>> Setup PHPMailer to send emails (working). Dump Mailgun LOL:src/app/constants.php

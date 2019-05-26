@@ -77,6 +77,9 @@ class Pages
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Setup PHPMailer to send emails (working). Dump Mailgun LOL
 =======
 >>>>>>> Setup PHPMailer to send emails (working). Dump Mailgun LOL
 
@@ -89,6 +92,10 @@ class Pages
     echo "Email sent";
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 856d11d... Setup PHPMailer to send emails (working). Dump Mailgun LOL
+>>>>>>> Setup PHPMailer to send emails (working). Dump Mailgun LOL
 =======
 >>>>>>> 856d11d... Setup PHPMailer to send emails (working). Dump Mailgun LOL
 >>>>>>> Setup PHPMailer to send emails (working). Dump Mailgun LOL
