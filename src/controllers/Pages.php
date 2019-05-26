@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 
+use \App\Email;
 use \Model\Product;
 use \Model\Cart;
 use \Model\Session;
@@ -80,7 +81,7 @@ class Pages
    */
   public function forgottenPassword()
   {
-    Email::send('RECIPIENT_EMAIL_HERE', 'Email test', 'This is a test', '<h1>This is a test</h1>');
+    Email::send('crjoseabraham@gmail.com', 'Mailgun test', 'This is a test', '<h1>This is a test</h1>');
     echo "Email sent";
   }
 }

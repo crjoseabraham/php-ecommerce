@@ -8,13 +8,6 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'shoppingcart');
 
-// Email config constants
-define('EMAIL_HOST', 'YOUR_SMTP_HOST');
-define('EMAIL_USER', 'YOUR_EMAIL');
-define('EMAIL_NAME', 'YOUR NAME');
-define('EMAIL_PASS', 'YOUR_PASSWORD');
-define('EMAIL_ERROR', 'Message could not be sent.');
-
 // Flash message types
 define('SUCCESS', 'success');
 define('INFO', 'warning');
