@@ -9,7 +9,7 @@
         }
     ],
     "autoload": {
-        "files": ["src/app/import/constants.php", "src/app/import/utilities.php"],
+        "files": ["src/app/constants.php", "src/app/utilities.php"],
         "psr-4": {
             "App\\": "src/app",
             "Controller\\": ["src/controllers", "src/controllers/Auth"],
@@ -18,7 +18,11 @@
     },
     "require": {
         "twig/twig": "^2.0",
+<<<<<<< HEAD
         "mpdf/mpdf": "^8.0",
         "phpmailer/phpmailer": "^6.0"
+=======
+        "mpdf/mpdf": "^8.0"
+>>>>>>> parent of d21518f... Setup email sending using Mailgun API
     }
 }
