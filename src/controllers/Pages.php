@@ -74,14 +74,6 @@ class Pages
     else
       redirect('/home');
   }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Setup PHPMailer to send emails (working). Dump Mailgun LOL
-=======
->>>>>>> Setup PHPMailer to send emails (working). Dump Mailgun LOL
 
   /**
    * Forgotten password
@@ -91,12 +83,4 @@ class Pages
     Email::send('RECIPIENT_EMAIL_HERE', 'Email test', 'This is a test', '<h1>This is a test</h1>');
     echo "Email sent";
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 856d11d... Setup PHPMailer to send emails (working). Dump Mailgun LOL
->>>>>>> Setup PHPMailer to send emails (working). Dump Mailgun LOL
-=======
->>>>>>> 856d11d... Setup PHPMailer to send emails (working). Dump Mailgun LOL
->>>>>>> Setup PHPMailer to send emails (working). Dump Mailgun LOL
 }
