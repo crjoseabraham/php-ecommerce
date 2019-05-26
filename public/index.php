@@ -29,4 +29,4 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 session_start();
 
-App\Router::load(dirname(__DIR__) . '/src/app/import/routes.php')->redirect(getURI(), getMethod());
+App\Router::load(dirname(__DIR__) . '/src/app/routes.php')->redirect(getURI(), getMethod());
