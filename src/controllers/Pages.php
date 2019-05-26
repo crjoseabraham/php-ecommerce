@@ -1,7 +1,6 @@
 <?php
 namespace Controller;
 
-use \App\Email;
 use \Model\Product;
 use \Model\Cart;
 use \Model\Session;
