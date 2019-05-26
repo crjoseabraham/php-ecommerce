@@ -74,7 +74,6 @@ class Pages
     else
       redirect('/home');
   }
-<<<<<<< HEAD
 
   /**
    * Forgotten password
@@ -83,6 +82,4 @@ class Pages
   {
     renderView('forgot-password.html');
   }
-=======
->>>>>>> parent of d21518f... Setup email sending using Mailgun API
 }
