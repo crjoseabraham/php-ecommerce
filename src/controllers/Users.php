@@ -7,6 +7,7 @@ use \Model\Payment;
 /**
  * Users Controller
  * Performs actions in 'Profile' page like update information or delete user's account
+ * Also the recover password function
  */
 class Users
 {
@@ -59,5 +60,15 @@ class Users
       Auth::logout();
     else
       die(ERROR_MESSAGE);
+  }
+
+  /**
+   * Recover password
+   */
+  public function recoverPassword()
+  {
+    User::sendPasswordResetEmail(htmlspecialchars($_POST['email']));
+
+    renderView('/email-sent.html');
   }
 }
