@@ -9,10 +9,16 @@
         }
     ],
     "autoload": {
-        "files": ["src/app/constants.php", "src/app/utilities.php"],
+        "files": ["src/app/import/constants.php", "src/app/import/utilities.php"],
         "psr-4": {
             "App\\": "src/app",
-            "Controller\\": ["src/controllers", "src/controllers/Auth"],
+            "Controller\\": [
+                "src/controllers", 
+                "src/controllers/Auth",
+                "src/controllers/Payments",
+                "src/controllers/Products",
+                "src/controllers/Users"
+            ],
             "Model\\": "src/models"
         }
     },

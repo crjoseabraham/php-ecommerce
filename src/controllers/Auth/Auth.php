@@ -16,25 +16,48 @@ class Auth
    */
   public function login() : void
   {
-    $user = Session::login($_POST['email'], $_POST['password']);
-    $remember_me = isset($_POST['remember_login']);
+    // 1. SANITIZE POST DATA
+    $email = strtolower(htmlspecialchars($_POST['email']));
+    $password = htmlspecialchars($_POST['password']);
 
-    if ($user)
+    if (filter_var($email, FILTER_VALIDATE_EMAIL) === false)
     {
-      $session = new Session($user->id);
+      flash(EMAIL_INVALID, ERROR);
+      redirect('/login');
+    }
 
-      if ($remember_me)
-      {
-        if ($session->rememberLogin())
-          setcookie('remember_me', $session->original_token, $session->expiry_timestamp, '/');
-        else
-          die("Something went wrong. Please go back and try again");
-      }
+    // 2. SEARCH USER IN DATABASE
+    $user = User::findByEmail($email);
 
-      redirect('/store');
+    if (!$user)
+    {
+      // User does not exist, redirect to login page and show error
+      flash(LOGIN_ERROR, ERROR);
+      redirect('/login');
     }
     else
-      renderView('login.html', User::getErrors());
+    {
+      // User was found, check if the password matches
+      if (!password_verify($password, $user->password))
+      {
+        flash(LOGIN_ERROR, ERROR);
+        redirect('/login');
+      }
+      else
+      {
+        // Start session
+        $session = new Session($user->id);
+
+        // Verify if 'remember me' is checked
+        if(isset($_POST['remember_login']))
+        {
+          $session->rememberLogin();
+          Cookies::newCookie('remember_me', $session->original_token, $session->expiry_timestamp, '/');
+        }
+
+        redirect('/store');
+      }
+    }
   }
 
   /**
@@ -42,8 +65,8 @@ class Auth
    */
   public function logout() : void
   {
-    Session::logout();
-    redirect('');
+    Session::destroySession();
+    redirect('/home');
   }
 
   /**
@@ -52,16 +75,81 @@ class Auth
    */
   public function register() : void
   {
-    $userModel = new User($_POST);
-
-    if ($userModel->registerUser())
+    // 1. SANITIZE POST DATA
+    foreach ($_POST as $field) 
     {
-      $user = $userModel->findByEmail();
-      $session = new Session($user->id);
-      redirect('/store');
+      $field = htmlspecialchars($field);
+    }
+
+    $_POST['email'] = strtolower($_POST['email']);
+
+    // Create variable to store errors in it
+    $errors = self::validateRegistrationData($_POST);
+
+    // 2. IF THERE ARE NO ERRORS, PROCEED WITH REGISTRATION
+    if (empty($errors))
+    {
+      $user = new User($_POST);
+
+      if ($user)
+      {
+        // Now start session for the new user
+        $session = new Session($user->id);
+        redirect('/store');
+      }
+      else
+      {
+        flash(REGISTRATION_ERROR, ERROR);
+        redirect('/register');
+      }
     }
     else
-      renderView('register.html', User::getErrors());
+    {
+      // If some fields contain invalid values, display form again with errors
+      flash($errors, ERROR);
+      redirect('/register');
+    }
+  }
+
+  /**
+   * Validate registration data passed
+   * @param  array $data      Information passed through registration form
+   * @return array            Array with errors or empty if everything's ok
+   */
+  public function validateRegistrationData($data)
+  {
+    $errors = [];
+
+    // NAME
+    if ($data['name'] === '')
+      $errors[] = NAME_MISSING;
+
+    if ($data['name'] !== '' && preg_match('/[^\p{L} +]/', $data['name']))
+      $errors[] = NAME_INVALID;
+
+    // EMAIL ADDRESS
+    if (filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false)
+      $errors[] = EMAIL_INVALID;
+
+    if (User::findByEmail($data['email']))
+      $errors[] = EMAIL_EXISTS;
+
+    // PASSWORD
+    if ($data['password'] !== $data['password_confirm'])
+      $errors[] = PASSWORDS_DONT_MATCH;
+    else
+    {
+      if (strlen($data['password']) < 6)
+        $errors[] = PASSWORD_TOO_SHORT;
+
+      if (!preg_match('/.*[a-z]+.*/i', $data['password']))
+        $errors[] = PASSWORD_NEEDS_LETTER;
+
+      if (!preg_match('/.*\d+.*/i', $data['password']))
+        $errors[] = PASSWORD_NEEDS_NUMBER;
+    }
+
+    return $errors;
   }
 
   /**
@@ -70,14 +158,14 @@ class Auth
    */
   public function loginFromRememberedCookie() : bool
   {
-    $cookie = $_COOKIE['remember_me'] ?? false;
+    $sessionCookie = Cookies::findCookie('remember_me');
 
-    if ($cookie)
+    if ($sessionCookie)
     {
-      $remembered_login = Session::findByToken($cookie);
+      $remembered_login = Session::findByToken($sessionCookie);
 
-      // If a 'remembered' login was found and it hasn't expired
-      if ($remembered_login && !Session::cookieHasExpired($remembered_login->expires_at))
+      // If a 'remembered login' was found and it hasn't expired
+      if ($remembered_login && !Cookies::hasExpired($remembered_login->expires_at))
       {
         // Get that old session data and restore that session
         $old_session = Session::getSessionById($remembered_login->session_id);
@@ -99,16 +187,16 @@ class Auth
    */
   public function forgetLogin()
   {
-    $cookie = $_COOKIE['remember_me'] ?? false;
+    $sessionCookie = Cookies::findCookie('remember_me');
 
-    if ($cookie)
+    if ($sessionCookie)
     {
-      $remembered_login = Session::findByToken($cookie);
+      $remembered_login = Session::findByToken($sessionCookie);
 
       if ($remembered_login)
         Session::deleteRememberedLogin($remembered_login->token_hash);
 
-      setcookie('remember_me', '', time() - 3600);
+      Cookies::newCookie('remember_me', '', time() - 3600);
     }
   }
 }

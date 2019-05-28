@@ -72,7 +72,7 @@ class Cart extends Database
    */
   public function addItem($item, $quantity) : bool
   {
-    if (preg_match('/\d+/', $quantity))
+    if (!preg_match('/[^\d+]/', $quantity))
     {
       $userCart = self::getUserCartId($_SESSION['user_id']);
       $db = static::getDB();

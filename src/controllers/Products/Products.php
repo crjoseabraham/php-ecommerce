@@ -22,7 +22,7 @@ class Products
    */
   public function productExists($product_id)
   {
-    return Product::getItem($product_id);
+    return Product::getItemById($product_id);
   }
 
   /**
@@ -36,7 +36,7 @@ class Products
     if (Session::getUser())
     {
       // Validate the rating value submitted is a number between 1 and 5
-      $rating_value = (preg_match('/\d+/', $_POST['star']) && ($_POST['star'] >= 1 && $_POST['star'] <= 5 )) ? intval($_POST['star']) : false;
+      $rating_value = (!preg_match('/[^\d+]/', $_POST['star']) && ($_POST['star'] >= 1 && $_POST['star'] <= 5 )) ? intval($_POST['star']) : false;
 
       // Verify if product id passed is valid and submit the vote
       if (self::productExists($product_id) && $rating_value)

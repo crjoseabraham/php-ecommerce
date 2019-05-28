@@ -25,7 +25,7 @@ class Product extends Database
    * @param  int $id  ID of item to search for
    * @return mixed    Array if records found, false if not
    */
-  public function getItem($id)
+  public function getItemById($id)
   {
     $db = static::getDB();
     $stmt = $db->prepare("SELECT * FROM product WHERE product_id = :id");

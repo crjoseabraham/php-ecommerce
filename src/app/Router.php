@@ -64,9 +64,7 @@ class Router
         foreach ($matches as $key => $match) 
         {
           if (is_string($key)) 
-          {
             $this->params[$key] = $match;
-          }
         }
       }
     }
@@ -115,9 +113,7 @@ class Router
     if (\class_exists($class)) 
     {
       if (\method_exists($class, $method)) 
-      {
         return true;
-      }
     }
 
     return false;

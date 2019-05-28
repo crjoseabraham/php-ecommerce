@@ -7,29 +7,29 @@
       <h1>Sign Up</h1>
       <p>Already have an account? <a href="login" class="link-text">Log In</a> </p>
 
-      {% if data is not empty%}
-      <div class="warning">
-        <p> There were some problems with your registration: </p>
-        <ul class="errors">
-          {% for error in data %}
+      {% if flash_message is not empty %}
+      <span class="flash_message flash_message--{{ flash_message.type }}">
+        There were some errors with your registration:
+        <ul>
+        {% for error in flash_message.message %}
           <li> {{ error }} </li>
-          {% endfor %}
+        {% endfor %}        
         </ul>
-      </div>
+      </span>
       {% endif %}
 
       <form action="register" method="post" class="register-form">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" autofocus required>
+        <input type="text" name="name" id="name" autofocus >
 
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" required>
+        <input type="email" name="email" id="email" >
 
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" required>
+        <input type="password" name="password" id="password" >
 
         <label for="password_confirm">Confirm password</label>
-        <input type="password" name="password_confirm" id="password_confirm" required>
+        <input type="password" name="password_confirm" id="password_confirm" >
 
         <button type="submit" class="primary"> Register </button>
       </form>
@@ -37,17 +37,6 @@
 
     <div class="right">
       Create an account to start using our services.
-
-      {% if data is not empty%}
-      <div class="warning">
-        <p> There were some problems with your registration: </p>
-        <ul class="errors">
-          {% for error in data %}
-          <li> {{ error }} </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
     </div>
   </div>
 </section>

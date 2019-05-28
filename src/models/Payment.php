@@ -49,7 +49,7 @@ class Payment extends Database
    * Get all orders for the current logged in user
    * @return mixed Array if records found, false otherwise
    */
-  public function getUserOrders()
+  public function getOrders()
   {
     $db = static::getDB();
     $stmt = $db->prepare("SELECT * FROM `order` WHERE user_id = :user ORDER BY created_at DESC");

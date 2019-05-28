@@ -27,7 +27,6 @@ class Token
     return $this->token;
   }
 
-
   /**
    * Return hashed token
    * @return string

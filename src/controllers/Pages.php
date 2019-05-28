@@ -1,11 +1,7 @@
 <?php
 namespace Controller;
 
-use \Model\Product;
-use \Model\Cart;
 use \Model\Session;
-use \Model\User;
-use \Model\Payment;
 
 /**
  * Pages Controller
@@ -59,7 +55,7 @@ class Pages
   public function profile() : void
   {
     if (Session::getUser())
-      renderView('profile.html', [Payment::getUserOrders(), User::getErrors()]);
+      renderView('profile.html', Payments::getUserOrders());
     else
       redirect('/home');
   }

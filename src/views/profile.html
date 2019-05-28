@@ -10,21 +10,17 @@
       </p>
 
       {% if flash_message is not empty %}
-      <br>
       <span class="flash_message flash_message--{{ flash_message.type }}">
-        {{ flash_message.message }}
-      </span>
-      {% endif %}
-
-      {% if data.1 is not empty %}
-      <br>
-      <span class="flash_message flash_message--danger">
-        Something went wrong with your request:
-        <ul>
-          {% for error in data.1 %}
-          <li> {{ error }} </li>
-          {% endfor %}
-        </ul>
+        {% if flash_message.message is not iterable %}
+          {{ flash_message.message }}
+        {% else %}
+          There were some errors with your registration:
+          <ul>
+          {% for error in flash_message.message %}
+            <li> {{ error }} </li>
+          {% endfor %}        
+          </ul>
+        {% endif %}
       </span>
       {% endif %}
 
@@ -56,7 +52,7 @@
             <th>Print</th>
           </thead>
           <tbody>
-        {% for order in data.0 %}
+        {% for order in data %}
             <tr>
               <td> {{ order.order_id }} </td>
               <td> {{ order.created_at }} </td>

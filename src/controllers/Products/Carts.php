@@ -4,13 +4,13 @@ namespace Controller;
 use \Model\Cart;
 use \Model\Product;
 use \Model\Session;
+
 /**
  * Carts controller class
  * Add to/Remove from cart
  */
 class Carts
 {
-
   /**
    * Get all items in the user's cart
    * @return object All items
@@ -39,7 +39,10 @@ class Carts
   {
     if (Session::getUser())
     {
-      if (Cart::addItem(Product::getItem($item_id), $_POST['quantity']))
+      // Verify the id passed belongs to a registered product
+      $item = Products::productExists($item_id);
+
+      if ($item && Cart::addItem($item, $_POST['quantity']))
         flash(ITEM_ADDED);
       else
         flash(ERROR_MESSAGE, ERROR);
@@ -59,7 +62,10 @@ class Carts
    */
   public function remove(int $item_id) : void
   {
-    if (Cart::removeItem($item_id))
+    // Verify the id passed belongs to a registered product
+    $item = Products::productExists($item_id);
+
+    if ($item && Cart::removeItem($item->product_id))
       flash(ITEM_REMOVED);
     else
       flash(ERROR_MESSAGE, ERROR);

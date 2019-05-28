@@ -36,19 +36,22 @@ function getMethod() : string
 function renderView(string $file, array $data = []) : void
 {
   // Specify our Twig templates location
-  $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/views');
+  $loader = new \Twig_Loader_Filesystem(dirname(dirname(__DIR__)) . '/views');
   // Instantiate Twig
   $twig = new \Twig_Environment($loader, ['debug' => true]);
   $twig->addExtension(new \Twig\Extension\DebugExtension());
-  // If there's a session running, get user data
+
+  // Check if user is logged in or there's a cookie to remember a session
   $twig->addGlobal('current_user', \Model\Session::getUser());
-  // Get user cart
+
+  // If there's a session running, get user data and corresponding cart
   if (isset($_SESSION['user_id']))
   {
     $twig->addGlobal('user_cart', \Controller\Carts::getCartItems());
     $twig->addGlobal('subtotal', \Controller\Carts::getCartTotal());
     $twig->addGlobal('balance', $_SESSION['cash']);
   }
+  
   // Get flash messages if there are any
   $twig->addGlobal('flash_message', getFlashNotification());
 
@@ -67,10 +70,10 @@ function redirect(string $file) : void
 
 /**
  * Set flash message
- * @param  string $message Message sent to the user
+ * @param         $message Message sent to the user
  * @param  string $type    Success message, warning, error, etc.
  */
-function flash(string $message, string $type = SUCCESS) : void
+function flash($message, string $type = SUCCESS) : void
 {
   if (!isset($_SESSION['flash_notification'])) 
   {

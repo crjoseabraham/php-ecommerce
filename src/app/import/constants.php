@@ -16,10 +16,12 @@ define('ERROR', 'danger');
 // User authentication notifications
 define('LOGIN_REQUIRED', 'You need to be logged in to do that');
 define('LOGIN_ERROR', 'Email and password combination is wrong');
+define('REGISTRATION_ERROR', 'Something went wrong with your registration');
 define('NAME_MISSING', 'Name is required');
+define('NAME_INVALID', 'Name can contain only letters');
 define('EMAIL_INVALID', 'Invalid email');
 define('EMAIL_EXISTS', 'Email address already exists');
-define('PASSWORD_MATCH', 'Password must match confirmation');
+define('PASSWORDS_DONT_MATCH', 'Password must match confirmation');
 define('PASSWORD_TOO_SHORT', 'Password must be at least 6 characters long');
 define('PASSWORD_NEEDS_LETTER', 'Password needs at least one letter');
 define('PASSWORD_NEEDS_NUMBER', 'Password needs at least one number');

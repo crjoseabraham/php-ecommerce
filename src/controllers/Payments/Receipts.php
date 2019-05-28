@@ -3,62 +3,22 @@ namespace Controller;
 
 use \Model\User;
 use \Model\Payment;
-use \Model\Session;
-use \Model\Cart;
 use \Mpdf\Mpdf as mPDF;
 
 /**
- * Payments controller
- * Handle needed methods and data to process payment and print orders receipt
+ * Receipts class
  */
-class Payments
-{  
-  /**
-   * Process Payment
-   * Previous validations before the payment is processed
-   * @return void
-   */
-  public function processPayment()
-  {
-    $subtotal = Carts::getCartTotal();
-
-    switch (intval($_POST['shipping'])) {
-      case 7:
-        $shipping_costs = number_format(($subtotal * 0.07), 2, '.', '');
-        $total = $subtotal + $shipping_costs;
-        break;
-      
-      case 0:
-        $shipping_costs = 0;
-        $total = $subtotal;
-        break;
-    }
-
-    $total_is_less_than_budget = $_SESSION['cash'] >= $total ?? false;
-
-    if (!$total_is_less_than_budget || !Payment::newPurchase($shipping_costs, $total))
-      \flash(OVER_BUDGET, ERROR);
-    else
-    {
-      $_SESSION['cash'] -= $total;
-      Session::updateSessionBudget();
-      Cart::emptyCart();
-      \flash(PURCHASE_COMPLETED);
-    }
-    
-    redirect('/store');
-  }
-
+class Receipts
+{
   /**
    * Print an order's receipt in a PDF document
    * @param  int $receipt_id    ID of the order to print
    * @return void
    */
-  public function printOrder($receipt_id)
+  public function print($receipt_id)
   {
-    // Get user
+    // Get user and order details
     $user = User::findById($_SESSION['user_id']);
-    // Get order details
     $order = Payment::getOrderById($receipt_id);
 
     // Page settings
@@ -72,13 +32,14 @@ class Payments
     $mpdf->SetTitle('Purchase details');
 
     // Get .css file as string and create HTML markup
-    $stylesheet = file_get_contents(dirname(dirname(__DIR__)) . '\public\css\receipts.css');
-    $html = self::receiptTemplate($order, $user);
+    $stylesheet = file_get_contents(dirname(dirname(dirname(__DIR__))) . '\public\css\receipts.css');
+    $html = self::template($order, $user);
 
     // Import styles and markup :)
     $mpdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
     $mpdf->WriteHTML($html,\Mpdf\HTMLParserMode::HTML_BODY);
 
+    // Print
     $mpdf->Output("receipt.pdf", "I");
     $mpdf->Output();
   }
@@ -89,7 +50,7 @@ class Payments
    * @param  object $user  User data to display the name in the receipt
    * @return string        Complete HTML template
    */
-  private function receiptTemplate(object $order, object $user) : string
+  private function template(object $order, object $user) : string
   {
     $order_subtotal = 0;
 
