@@ -20,7 +20,7 @@
       <li><a href="store"> Store</a></li>
       {% if current_user %}
       <li> <a href="profile"> Profile </a> </li>
-      <li> <a href="logout" class="bordered">Logout</a>
+      <li> <form action="logout" method="post"> <button type="submit" class="secondary"> Logout </button></form>
       {% else %}
       <li><a href="login" class="primary">Login</a></li>
       <li><a href="register" class="light">Register</a></li>

@@ -58,9 +58,9 @@
               <td> {{ order.created_at }} </td>
               <td> ${{ order.total }} </td>
               <td> 
-                <a href="receipt/{{ order.order_id }}" class="secondary" target="_blank"> 
-                  <i class="fas fa-file-download"></i> 
-                </a>
+                <form action="receipt/{{ order.order_id }}" method="post" target="_blank">
+                  <button type="submit" class="secondary"> <i class="fas fa-file-download"></i> </button>
+                </form>
               </td>
             </tr>
         {% endfor %}

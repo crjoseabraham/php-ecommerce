@@ -29,7 +29,9 @@
               <p class="quantity"> Quantity: {{ item.quantity }}</p>
             </td>
             <td>
-              <a href="remove-item/{{ item.product_id }}" class="danger"> <i class="fas fa-times"></i> </a>
+              <form action="remove-item/{{ item.product_id }}" method="post">
+                <button type="submit" class="danger"> <i class="fas fa-times"></i> </button>
+              </form>
             </td>
             <td>
               <span class="subtotal">${{ item.subtotal }}</span>
@@ -46,7 +48,9 @@
 </div>
 
 {% if user_cart is not empty %}
-<a href="confirm-payment" class="primary"> Proceed to payment </a>
+<form action="confirm-payment" method="post">
+  <button type="submit" class="primary">Proceed to payment</button>
+</form>
 {% endif %}
 {% else %}
 &nbsp;

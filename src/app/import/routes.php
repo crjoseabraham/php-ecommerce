@@ -1,22 +1,20 @@
 <?php
-$router->get('', 'Pages@index');                                  #DONE ✔
-$router->get('home', 'Pages@index');                              #DONE ✔
-$router->get('store', 'Pages@store');                             #DONE ✔
-$router->get('login', 'Pages@login');                             #DONE ✔
-$router->get('register', 'Pages@register');                       #DONE ✔
-$router->get('purchase-details', 'Pages@purchaseDetails');        #DONE ✔
-$router->get('profile', 'Pages@profile');                         #DONE ✔
-// @todo: Change to post ->
-$router->get('logout', 'Auth@logout');                            #DONE ✔
-$router->get('remove-item/{item}', 'Carts@remove');               #DONE ✔
-$router->get('receipt/{item}', 'Receipts@print');                 #DONE ✔
-$router->get('confirm-payment', 'Pages@confirmPayment');          #DONE ✔
+$router->get('', 'Pages@index');
+$router->get('home', 'Pages@index');
+$router->get('store', 'Pages@store');
+$router->get('login', 'Pages@login');
+$router->get('register', 'Pages@register');
+$router->get('purchase-details', 'Pages@purchaseDetails');
+$router->get('profile', 'Pages@profile');
 
-
-$router->post('login', 'Auth@login');                             #DONE ✔
-$router->post('register', 'Auth@register');                       #DONE ✔
-$router->post('process-payment', 'Payments@processPayment');      #DONE ✔
-$router->post('add-item/{item}', 'Carts@add');                    #DONE ✔
-$router->post('rate-product/{item}', 'Products@rateProduct');     #DONE ✔
-$router->post('update-info', 'Users@updateInfo');                 #DONE ✔
-$router->post('delete-account', 'Users@deleteAccount');           #DONE ✔
+$router->post('login', 'Auth@login');
+$router->post('logout', 'Auth@logout');
+$router->post('register', 'Auth@register');
+$router->post('add-item/{item}', 'Carts@add');
+$router->post('remove-item/{item}', 'Carts@remove');
+$router->post('confirm-payment', 'Pages@confirmPayment');
+$router->post('process-payment', 'Payments@processPayment');
+$router->post('receipt/{item}', 'Receipts@print');
+$router->post('rate-product/{item}', 'Products@rateProduct');
+$router->post('update-info', 'Users@updateInfo');
+$router->post('delete-account', 'Users@deleteAccount');
