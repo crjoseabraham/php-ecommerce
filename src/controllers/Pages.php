@@ -70,4 +70,13 @@ class Pages
     else
       redirect('/home');
   }
+
+  /**
+   * Forgotten password page
+   */
+  public function forgottenPassword()
+  {
+    Emails::send('zasaxux@airsport.top', 'Email test', 'This is a test', '<h1>This is a test</h1>');
+    echo 'Email sent.';
+  }
 }

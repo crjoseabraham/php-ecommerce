@@ -8,6 +8,12 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'shoppingcart');
 
+// Email credentials
+define('EMAIL_HOST', '');
+define('EMAIL_USER', '');
+define('EMAIL_NAME', '');
+define('EMAIL_PASS', '');
+
 // Flash message types
 define('SUCCESS', 'success');
 define('INFO', 'warning');

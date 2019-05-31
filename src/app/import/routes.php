@@ -6,6 +6,7 @@ $router->get('login', 'Pages@login');
 $router->get('register', 'Pages@register');
 $router->get('purchase-details', 'Pages@purchaseDetails');
 $router->get('profile', 'Pages@profile');
+$router->get('forgot-password', 'Pages@forgottenPassword');
 
 $router->post('login', 'Auth@login');
 $router->post('logout', 'Auth@logout');
