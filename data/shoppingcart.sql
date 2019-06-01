@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-05-2019 a las 15:08:21
+-- Tiempo de generación: 01-06-2019 a las 05:25:26
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -95,11 +95,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `description`, `price`, `picture`, `rating`) VALUES
-(1, 'Apple', 0.3, 'img/apples.jpg', 2.5),
-(2, 'Beer', 2, 'img/beer.jpg', 2.5),
-(3, 'Water', 1, 'img/water.jpg', 1),
-(4, 'Cheese', 3.74, 'img/cheese.jpg', 1),
-(5, 'Burger', 5.99, 'img/hamburger.jpg', 0),
+(1, 'Apple', 0.3, 'img/apples.jpg', 2),
+(2, 'Beer', 2, 'img/beer.jpg', 2),
+(3, 'Water', 1, 'img/water.jpg', 3),
+(4, 'Cheese', 3.74, 'img/cheese.jpg', 5),
+(5, 'Burger', 5.99, 'img/hamburger.jpg', 4),
 (6, 'Taco', 3.99, 'img/taco.jpg', 4),
 (7, 'Orange Juice', 2.35, 'img/orange-juice.jpg', 3.5);
 
@@ -153,7 +153,9 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `email` varchar(60) NOT NULL,
   `name` varchar(60) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `password_reset_hash` varchar(64) DEFAULT NULL,
+  `password_reset_expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -219,7 +221,8 @@ ALTER TABLE `session`
 -- Indices de la tabla `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `password_reset_hash` (`password_reset_hash`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
