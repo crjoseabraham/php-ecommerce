@@ -7,8 +7,12 @@ $router->get('register', 'Pages@register');
 $router->get('purchase-details', 'Pages@purchaseDetails');
 $router->get('profile', 'Pages@profile');
 $router->get('forgot-password', 'Pages@forgottenPassword');
+$router->get('email-sent', 'Pages@emailSent');
+$router->get('password-reset/{token}', 'Auth@verifyResetPasswordToken');
 
 $router->post('login', 'Auth@login');
+$router->post('recover-password', 'Auth@recoverPassword');
+$router->post('password-reset/{token}', 'Auth@resetPasswordForm');
 $router->post('logout', 'Auth@logout');
 $router->post('register', 'Auth@register');
 $router->post('add-item/{item}', 'Carts@add');

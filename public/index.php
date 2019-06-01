@@ -24,6 +24,7 @@
  * - Use of a template engine: Twig
  * - UI Improvements
  */
+date_default_timezone_set('America/Caracas');
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 

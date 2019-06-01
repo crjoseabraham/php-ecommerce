@@ -199,4 +199,44 @@ class Auth
       Cookies::newCookie('remember_me', '', time() - 3600);
     }
   }
+
+  /**
+   * Recover password method
+   */
+  public function recoverPassword()
+  {
+    $email = strtolower(htmlspecialchars($_POST['email']));
+
+    if (User::passwordResetProcess($email))
+        redirect('/email-sent');
+    else
+      die(ERROR_MESSAGE);
+  }
+
+  /**
+   * User clicked link in email to recover their password
+   * Verify token
+   */
+  public function verifyResetPasswordToken($token)
+  {
+    if (!Session::getUser()) {
+      $user = User::findByPasswordReset(htmlspecialchars($token));
+      renderView('reset-password.html', ["token" => $token]);
+    } 
+    else 
+      die('You can not access this page');
+  }
+
+  public function resetPasswordForm($token)
+  {
+    if (!Session::getUser()) {
+      $user = User::findByPasswordReset(htmlspecialchars($token));
+      if ($user && User::changePassword($user, $_POST))
+        redirect('/home');
+      else
+        die(ERROR_MESSAGE);
+    } 
+    else 
+      die('You can not access this page');
+  }
 }

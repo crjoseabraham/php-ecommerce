@@ -3,6 +3,8 @@ namespace Model;
 
 use \App\Database;
 use \Controller\Auth;
+use \Controller\Token;
+use \Controller\Emails;
 
 /**
  * User class
@@ -31,7 +33,7 @@ class User extends Database
   /**
    * Check if email already exists in the database
    * @param  string $email Email to check
-   * @return mixed         Array if records found, if not returns false
+   * @return mixed         Object if records found, if not returns false
    */
   public function findByEmail($email)
   {
@@ -44,7 +46,7 @@ class User extends Database
   /**
    * Get a user's data by passed id
    * @param  string $id    ID to check
-   * @return mixed         Array if records found
+   * @return mixed         Object if records found, false if not
    */
   public function findById($id)
   {
@@ -52,6 +54,35 @@ class User extends Database
     $stmt = $db->prepare("SELECT * FROM user WHERE id = :id;");
     $stmt->bindValue(':id', $id, \PDO::PARAM_STR);
     return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_OBJ) : false;
+  }
+
+  /**
+   * Get a user's data by the password_reset_hash column
+   * @param string $token   Token to verify
+   * @return mixed          Object if records found, false if not
+   */
+  public function findByPasswordReset($token)
+  {
+    $token = new Token($token);
+    $hashed_token = $token->getHash();
+
+    $db = static::getDB();
+    $stmt = $db->prepare( "SELECT * FROM `user` WHERE password_reset_hash = :token");
+    $stmt->bindValue(':token', $hashed_token, \PDO::PARAM_STR);
+    $stmt->execute();
+
+    $user = $stmt->fetch(\PDO::FETCH_OBJ);
+    
+    if ($user)
+    {
+      // Check password reset token hasn't expired
+      if (strtotime($user->password_reset_expires_at) > time())
+      {
+         return $user;
+      }
+    }
+
+    return false;
   }
 
   /**
@@ -96,7 +127,7 @@ class User extends Database
       $stmt->bindValue(':email', $data['email'], \PDO::PARAM_STR);
 
     if (isset($data['hashed_password']))
-      $stmt->bindValue(':pass', $hashed_password, \PDO::PARAM_STR);
+      $stmt->bindValue(':pass', $data['hashed_password'], \PDO::PARAM_STR);
 
     $stmt->bindValue(':user', $_SESSION['user_id'], \PDO::PARAM_INT);
     
@@ -111,6 +142,71 @@ class User extends Database
     $db = static::getDB();
     $stmt = $db->prepare("DELETE FROM `user` WHERE `id` = :id");
     $stmt->bindValue(':id', $_SESSION['user_id'], \PDO::PARAM_INT);
+    return $stmt->execute();
+  }
+
+  /**
+   * Password reset process
+   */
+  public function passwordResetProcess($email)
+  {
+    $user = self::findByEmail($email);
+
+    if ($user)
+    {
+      // Start password reset process
+      [$startPasswordReset, $token] = self::startPasswordReset($user);
+
+      if ($startPasswordReset)
+      {
+        self::sendPasswordResetEmail($token, $email);
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * Start password reset process
+   */
+  public function startPasswordReset($user)
+  {
+    $token = new Token;
+    $hashed_token = $token->getHash();
+    $expiry_timestamp = date('Y-m-d H:i:s', time() + 60 * 60 * 2);   // 2 hours from now
+    $db = static::getDB();
+    $stmt = $db->prepare("
+      UPDATE user
+      SET password_reset_hash = :token_hash,
+          password_reset_expires_at = :expiry_date
+      WHERE id = :user_id");
+    $stmt->bindValue(':token_hash', $hashed_token, \PDO::PARAM_STR);
+    $stmt->bindValue(':expiry_date', $expiry_timestamp, \PDO::PARAM_STR);
+    $stmt->bindValue(':user_id', $user->id, \PDO::PARAM_STR);
+    return [$stmt->execute(), $token->getValue()];
+  }
+
+  /**
+   * Send password reset email
+   */
+  public function sendPasswordResetEmail($token, $email)
+  {
+    $url = URLROOT . '/password-reset/' . $token;
+
+    $text = getTemplate('reset-email.txt', ['url' => $url]);
+    $html = getTemplate('reset-email.html', ['url' => $url]);
+
+    Emails::send($email, 'Password reset', $text, $html);
+  }
+
+  public function changePassword($user, $data)
+  {
+    $hashed_password = password_hash($data['password'], PASSWORD_BCRYPT);
+    $db = static::getDB();
+    $stmt = $db->prepare( "UPDATE `user` SET `password` = :new_pass, password_reset_hash = null, password_reset_expires_at = null WHERE `id` = :user");
+    $stmt->bindValue(':new_pass', $hashed_password, \PDO::PARAM_STR);
+    $stmt->bindValue(':user', $user->id, \PDO::PARAM_INT);
     return $stmt->execute();
   }
 }

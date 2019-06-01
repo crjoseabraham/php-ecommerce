@@ -35,27 +35,38 @@ function getMethod() : string
 */
 function renderView(string $file, array $data = []) : void
 {
-  // Specify our Twig templates location
-  $loader = new \Twig_Loader_Filesystem(dirname(dirname(__DIR__)) . '/views');
-  // Instantiate Twig
-  $twig = new \Twig_Environment($loader, ['debug' => true]);
-  $twig->addExtension(new \Twig\Extension\DebugExtension());
+  echo getTemplate($file, $data);
+}
 
-  // Check if user is logged in or there's a cookie to remember a session
-  $twig->addGlobal('current_user', \Model\Session::getUser());
+/**
+* Get an .html template
+* @param string $file  Path to file
+* @param array  $data  Optional data that the view may require
+*/
+function getTemplate(string $file, array $data = [])
+{
+  $twig = null;
 
-  // If there's a session running, get user data and corresponding cart
-  if (isset($_SESSION['user_id']))
+  if ($twig === null)
   {
-    $twig->addGlobal('user_cart', \Controller\Carts::getCartItems());
-    $twig->addGlobal('subtotal', \Controller\Carts::getCartTotal());
-    $twig->addGlobal('balance', $_SESSION['cash']);
-  }
-  
-  // Get flash messages if there are any
-  $twig->addGlobal('flash_message', getFlashNotification());
+    // Specify our Twig templates location.
+    $loader = new \Twig_Loader_Filesystem(dirname(dirname(__DIR__)) . '/views');
+    // Instantiate Twig
+    $twig = new \Twig_Environment($loader, ['debug' => true]);
 
-  echo $twig->render($file, ['data' => $data]);
+    // Check if user is logged in or there's a cookie to remember a session. Also flash messages
+    $twig->addGlobal('current_user', \Model\Session::getUser());
+    $twig->addGlobal('flash_message', getFlashNotification());
+    // If there's a session running, get user data and corresponding cart
+    if (isset($_SESSION['user_id']))
+    {
+      $twig->addGlobal('user_cart', \Controller\Carts::getCartItems());
+      $twig->addGlobal('subtotal', \Controller\Carts::getCartTotal());
+      $twig->addGlobal('balance', $_SESSION['cash']);
+    }
+  }
+
+  return $twig->render($file, ['data' => $data]);
 }
 
 /**

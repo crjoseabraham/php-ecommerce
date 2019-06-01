@@ -74,7 +74,7 @@ class Router
       die('Page not found.');
     }
 
-    call_user_func_array(explode('@', $this->params['controller']), isset($this->params['item']) ? [$this->params['item']] : []);
+    call_user_func_array(explode('@', $this->params['controller']), [array_pop($this->params)]);
   }
 
   //---------------------------------------------
@@ -83,7 +83,7 @@ class Router
   // Utilities for other methods in this class
 
   /**
-   * Convert URI to a regular expression in order to have flexible a flexible router for some routes that
+   * Convert URI to a regular expression in order to have a flexible router for some routes that
    * have an parameters like {id} or {item}
    * @param string $uri   URI
    * @return string $uri  Converted URI
@@ -95,6 +95,9 @@ class Router
 
     // Convert parameter {item}
     $uri = preg_replace('/\{(item)\}/', '(?P<\1>\d+)', $uri);
+
+    // Convert parameter {token}
+    $uri = preg_replace('/\{(token)\}/', '(?P<\1>[\da-f]+)', $uri);
 
     // Add start and end delimeter
     $uri = '/^' . $uri . '$/i';

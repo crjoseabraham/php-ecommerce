@@ -76,7 +76,20 @@ class Pages
    */
   public function forgottenPassword()
   {
-    Emails::send('zasaxux@airsport.top', 'Email test', 'This is a test', '<h1>This is a test</h1>');
-    echo 'Email sent.';
+    if (!Session::getUser())
+      renderView('forgot-password.html');
+    else
+      redirect('/store');
+  }
+
+  /**
+   * Email sent page
+   */
+  public function emailSent()
+  {
+    if (!Session::getUser())
+      renderView('email-sent.html');
+    else
+      die('You have no access to this section');
   }
 }
