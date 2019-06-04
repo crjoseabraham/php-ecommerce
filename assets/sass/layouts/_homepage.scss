@@ -1,0 +1,36 @@
+body
+{
+  display: grid;
+  grid-template-rows: 1fr 60vh 200rem 10rem;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+  "navbar"
+  "header"
+  "main"
+  "footer";
+}
+
+nav
+{
+  background-color: dodgerblue;
+  grid-area: navbar;
+  height: 5rem;
+}
+
+header
+{
+  background-color: lightblue;
+  grid-area: header;
+}
+
+main
+{
+  background-color: cadetblue;
+  grid-area: main;
+}
+
+footer
+{
+  background-color: blue;
+  grid-area: footer;
+}

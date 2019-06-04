@@ -14,7 +14,7 @@ class Pages
    */
   public function index() : void
   {
-    renderView('index.html');
+    renderView('index2.html');
   }
 
   /**

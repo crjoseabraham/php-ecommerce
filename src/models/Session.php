@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Model;
 
 use \App\Database;

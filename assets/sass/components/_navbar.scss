@@ -1,0 +1,61 @@
+nav
+{
+  padding: 0 2rem;
+
+  & > ul
+  {
+    height: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    & > li
+    {
+      height: 100%;
+      position: relative;
+      z-index: 1;
+
+      & > * { height: inherit; }
+    }
+  }
+
+  // MENU BUTTON
+  & .navbar-menu-toggle
+  {
+    border: none;
+    cursor: pointer;
+  }
+
+  // SIDEBAR MENU
+  & .menu
+  {
+    position: fixed;
+    z-index: 2;
+    top: 5rem;
+    left: 1px;
+    background-color: aliceblue;
+    transform: scale(0, 1);
+    transform-origin: left;
+    transition: transform .5s ease-in-out;
+
+    font-size: 1.8rem;
+    padding: 2rem;
+
+    & > ul
+    {
+      opacity: 0;
+      transition: opacity 150ms ease-in-out;
+    }
+
+    &.active
+    {
+      transform: scale(1, 1);
+
+      & > ul      {
+        opacity: 1;
+        transition: opacity 250ms ease-in-out 250ms;
+      }
+    }
+  }
+}
