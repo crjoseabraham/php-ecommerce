@@ -1,61 +1,89 @@
-nav
-{
-  padding: 0 2rem;
+header {
+	background-color: #fff;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-  & > ul
-  {
-    height: 100%;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+	& > *:not(nav) {
+		height: 100%;
+	}
 
-    & > li
-    {
-      height: 100%;
-      position: relative;
-      z-index: 1;
+	// LOGO
+	a.brand img {
+		max-height: 5rem;
+		display: block;
+		margin: .4rem auto;
 
-      & > * { height: inherit; }
-    }
-  }
+		@media screen and (max-width: 600px) {
+			max-height: 4rem;
+			margin: 1.2rem auto;
+		}
+	}
 
-  // MENU BUTTON
-  & .navbar-menu-toggle
-  {
-    border: none;
-    cursor: pointer;
-  }
+	// BUTTONS
+	& button {
+		color: #000;
+		background-color: #fff;
+		padding: 0 2rem;
+		border: none;
+		cursor: pointer;
+		font-size: 1.5rem;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		display: flex;
+		align-items: center;
+		transition: background-color .2s ease-in-out;
 
-  // SIDEBAR MENU
-  & .menu
-  {
-    position: fixed;
-    z-index: 2;
-    top: 5rem;
-    left: 1px;
-    background-color: aliceblue;
-    transform: scale(0, 1);
-    transform-origin: left;
-    transition: transform .5s ease-in-out;
+		ion-icon {
+			font-weight: 700;
+			font-size: 1.8rem;
+		}
 
-    font-size: 1.8rem;
-    padding: 2rem;
+		&.menu-toggle span {
+			padding-left: .7rem;
+		}
 
-    & > ul
-    {
-      opacity: 0;
-      transition: opacity 150ms ease-in-out;
-    }
+		&.cart-toggle span {
+			padding-right: .7rem;
+		}
 
-    &.active
-    {
-      transform: scale(1, 1);
+		&:hover {
+			background-color: #ededed;
+		}
 
-      & > ul      {
-        opacity: 1;
-        transition: opacity 250ms ease-in-out 250ms;
-      }
-    }
-  }
+		@media screen and (max-width: 700px) {
+			span {
+				display: none;
+			}
+
+			ion-icon {
+				font-size: 2.4rem;
+			}
+		}
+	}
+
+	// TOGGLE MENU
+	& .menu {
+		background-color: #fff;
+		padding: 2rem;
+		width: 40rem;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		transform: scale(0, 1);
+		transform-origin: left;
+		transition: transform 250ms;
+
+		&.active {
+			transform: scale(1, 1);
+			z-index: 9999;
+		}
+
+		@media screen and (max-width:700px) {
+			width: 100%;
+		}
+	}
+
+	// TOGGLE MENU LINKS
 }

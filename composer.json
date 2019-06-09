@@ -1,30 +1,30 @@
 {
-    "name": "abraham/shoppingcart",
-    "description": "Shopping cart app with vanilla PHP",
-    "type": "project",
-    "authors": [
-        {
-            "name": "Jose Abraham Castillo",
-            "email": "crjoseabraham@gmail.com"
-        }
-    ],
-    "autoload": {
-        "files": ["src/app/import/constants.php", "src/app/import/utilities.php"],
-        "psr-4": {
-            "App\\": "src/app",
-            "Controller\\": [
-                "src/controllers", 
-                "src/controllers/Auth",
-                "src/controllers/Payments",
-                "src/controllers/Products",
-                "src/controllers/Users"
-            ],
-            "Model\\": "src/models"
-        }
-    },
-    "require": {
-        "twig/twig": "^2.0",
-        "mpdf/mpdf": "^8.0",
-        "phpmailer/phpmailer": "^6.0"
-    }
+	"name": "abraham/shoppingcart",
+	"description": "Shopping cart app with vanilla PHP",
+	"type": "project",
+	"authors": [
+		{
+			"name": "Jose Abraham Castillo",
+			"email": "crjoseabraham@gmail.com"
+		}
+	],
+	"autoload": {
+		"files": ["src/app/import/constants.php", "src/app/import/utilities.php"],
+		"psr-4": {
+			"App\\": "src/app",
+			"Controller\\": [
+				"src/controllers",
+				"src/controllers/Auth",
+				"src/controllers/Payments",
+				"src/controllers/Products",
+				"src/controllers/Users"
+			],
+			"Model\\": "src/models"
+		}
+	},
+	"require": {
+		"twig/twig": "^2.0",
+		"mpdf/mpdf": "^8.0",
+		"phpmailer/phpmailer": "^6.0"
+	}
 }

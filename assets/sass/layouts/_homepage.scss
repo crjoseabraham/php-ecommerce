@@ -1,36 +1,35 @@
 body
 {
-  display: grid;
-  grid-template-rows: 1fr 60vh 200rem 10rem;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-  "navbar"
-  "header"
-  "main"
-  "footer";
-}
-
-nav
-{
-  background-color: dodgerblue;
-  grid-area: navbar;
-  height: 5rem;
+	display: grid;
+	grid-template-rows: 1fr 60vh 200rem 10rem;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+	"header"
+	"hero"
+	"main"
+	"footer";
 }
 
 header
 {
-  background-color: lightblue;
-  grid-area: header;
+	grid-area: header;
+	height: 6rem;
+}
+
+.hero
+{
+	background-color: lightblue;
+	grid-area: hero;
 }
 
 main
 {
-  background-color: cadetblue;
-  grid-area: main;
+	background-color: cadetblue;
+	grid-area: main;
 }
 
 footer
 {
-  background-color: blue;
-  grid-area: footer;
+	background-color: blue;
+	grid-area: footer;
 }
