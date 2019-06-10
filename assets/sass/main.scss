@@ -1,3 +1,8 @@
 @import 'base/settings';
+@import 'mixins/lateralsidebars';
 @import 'layouts/homepage';
 @import 'components/navbar';
+@import 'components/leftsidebar';
+@import 'components/rightsidebar';
+@import 'components/login';
+@import 'components/hero';

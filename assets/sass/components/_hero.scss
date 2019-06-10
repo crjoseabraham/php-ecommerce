@@ -1,0 +1,97 @@
+.hero {
+  padding-top: 7rem;
+  background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('../img/background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+
+  .container {
+    padding: 8rem 5rem;
+    color: #fff;
+    max-width: 65rem;
+    text-align: center;
+
+    h1 {
+      font-size: 5rem;
+      padding-top: 2.5rem;
+      font-family: 'Roboto Condensed', sans-serif;
+      text-transform: uppercase;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #f0b183;
+        transform: scale(0, 1);
+        transition: transform .3s ease-in-out;
+      }
+
+      &:hover::before {
+        transform: scale(1, 1);
+      }
+    }
+
+    p.subtitle {
+      font-size: 3rem;
+      color: #aeaeae;
+      padding: 2rem 0;
+    }
+
+    .links {
+      padding-top: 8rem;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  // LINKS
+  a#toStore,
+  a#toAbout {
+    padding: 1.5rem 3rem;
+    border: 1px solid currentColor;
+    font-size: 1.6rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      ion-icon {
+        font-size: 1.6rem;
+      }
+    }
+
+    ion-icon {
+      padding-left: 1rem;
+      font-size: 0px;
+      transition: font-size .3s ease-in-out;
+    }
+  }
+
+  #toStore {
+    color: #000;
+    background-color: #fff;
+
+    &:hover {
+      background-color: #ededed;
+    }
+  }
+
+  #toAbout {
+    color: #fff;
+    background-color: transparent;
+
+    &:hover {
+      border: 1px solid transparent;
+      background-color: #ededed;
+      color: #000;
+    }
+  }
+}

@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ui__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ui */ \"./assets/javascript/ui.js\");\n\nconsole.log(Object(_ui__WEBPACK_IMPORTED_MODULE_0__[\"add\"])(1, 2));\nconsole.log('working!');\n\n//# sourceURL=webpack:///./assets/javascript/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ui__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ui */ \"./assets/javascript/ui.js\");\n // Instantiate UI class\n\nvar ui = new _ui__WEBPACK_IMPORTED_MODULE_0__[\"UI\"](); // Load event listeners\n\ndocument.getElementById('menu-toggle').addEventListener('click', ui.toggleMenu);\ndocument.querySelector('.left-sidebar #close-menu').addEventListener('click', ui.toggleMenu);\ndocument.getElementById('right-sidebar-toggle').addEventListener('click', ui.toggleForm);\ndocument.querySelector('.right-sidebar #close-menu').addEventListener('click', ui.toggleForm);\n\n//# sourceURL=webpack:///./assets/javascript/index.js?");
 
 /***/ }),
 
@@ -102,11 +102,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ui_
 /*!*********************************!*\
   !*** ./assets/javascript/ui.js ***!
   \*********************************/
-/*! exports provided: add */
+/*! exports provided: UI */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"add\", function() { return add; });\nvar add = function add(a, b) {\n  return a + b;\n};\n\n//# sourceURL=webpack:///./assets/javascript/ui.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"UI\", function() { return UI; });\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nvar UI =\n/*#__PURE__*/\nfunction () {\n  function UI() {\n    _classCallCheck(this, UI);\n  }\n\n  _createClass(UI, [{\n    key: \"toggleMenu\",\n    // Show/Hide left menu a.k.a Main Menu\n    value: function toggleMenu() {\n      UI.overlay();\n      document.querySelector('.left-sidebar').classList.toggle('active');\n    } // Show/Hide right menu a.k.a Login/Register Form\n\n  }, {\n    key: \"toggleForm\",\n    value: function toggleForm() {\n      UI.overlay();\n      document.querySelector('.right-sidebar').classList.toggle('active');\n    } // Toggle black transparent overlay\n\n  }], [{\n    key: \"overlay\",\n    value: function overlay() {\n      document.querySelector('.overlay').classList.toggle('active');\n    }\n  }]);\n\n  return UI;\n}();\n\n\n\n//# sourceURL=webpack:///./assets/javascript/ui.js?");
 
 /***/ }),
 

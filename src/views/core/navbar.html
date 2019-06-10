@@ -1,23 +1,71 @@
 <header>
+	<div id="overlay" class="overlay"></div>
+
 	<button class="menu-toggle" id="menu-toggle">
 		<ion-icon name="menu"></ion-icon>
 		<span>Menu</span>
 	</button>
+	<div class="left-sidebar">
+		<div class="container">
+			<div class="menu-title">
+				<span> Menu </span>
+				<button id="close-menu">
+					<ion-icon name="close"></ion-icon>
+				</button>
+			</div>
 
-	<nav class="menu">
-		<ul>
-			<li>Link 1</li>
-			<li>Link 2</li>
-			<li>Link 3</li>
-		</ul>
-	</nav>
+			<nav>
+				<ul class="main-menu">
+					<li><a href="#"> Sign In </a></li>
+					<li><a href="#"> About this project </a></li>
+					<li><a href="#"> View Source Code </a></li>
+					<li><a href="#"> Contact Developer </a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
 
 	<a href="#" class="brand">
 		<img src="img/logo.png" alt="minimarket Logo">
 	</a>
 
-	<button class="cart-toggle">
+	<button class="right-sidebar-toggle" id="right-sidebar-toggle">
 		<span>Access</span>
 		<ion-icon name="contact"></ion-icon>
 	</button>
+	<div class="right-sidebar">
+		<div class="container">
+			<div class="menu-title">
+				<span> Sign In </span>
+				<button id="close-menu">
+					<ion-icon name="close"></ion-icon>
+				</button>
+			</div>
+
+			<a href="#" class="link" class="register-link">Don't have an account? Create one!</a>
+
+			<form action="login" method="post">
+				<div class="form-group">
+					<label for="inputEmail"> Email </label>
+					<input type="email" name="email" id="inputEmail" required>
+				</div>
+
+				<div class="form-group">
+					<label for="inputPassword"> Password </label>
+					<input type="password" name="password" id="inputPassword" required>
+				</div>
+
+				<div class="form-group checkbox">
+					<input type="checkbox" name="remember_me" id="remember_me">
+					<label for="remember_me"> Remember me</label>
+				</div>
+
+				<button type="submit" class="submit-form-btn"> Log In </button>
+			</form>
+
+			<br>
+
+			<a href="#" class="link">Forgot your password?</a>
+		</div>
+	</div>
 </header>

@@ -1,12 +1,32 @@
 header {
 	background-color: #fff;
-	position: relative;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+	top: 0;
+	left: 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 
 	& > *:not(nav) {
 		height: 100%;
+	}
+
+	// OVERLAY
+	#overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5));
+		z-index: 100;
+		display: none;
+
+		&.active {
+			display: block;
+		}
 	}
 
 	// LOGO
@@ -21,8 +41,8 @@ header {
 		}
 	}
 
-	// BUTTONS
-	& button {
+	// HEADER BAR BUTTONS
+	& > button {
 		color: #000;
 		background-color: #fff;
 		padding: 0 2rem;
@@ -34,6 +54,7 @@ header {
 		display: flex;
 		align-items: center;
 		transition: background-color .2s ease-in-out;
+		position: relative;
 
 		ion-icon {
 			font-weight: 700;
@@ -44,7 +65,7 @@ header {
 			padding-left: .7rem;
 		}
 
-		&.cart-toggle span {
+		&.right-sidebar-toggle span {
 			padding-right: .7rem;
 		}
 
@@ -62,28 +83,4 @@ header {
 			}
 		}
 	}
-
-	// TOGGLE MENU
-	& .menu {
-		background-color: #fff;
-		padding: 2rem;
-		width: 40rem;
-		position: absolute;
-		top: 100%;
-		left: 0;
-		transform: scale(0, 1);
-		transform-origin: left;
-		transition: transform 250ms;
-
-		&.active {
-			transform: scale(1, 1);
-			z-index: 9999;
-		}
-
-		@media screen and (max-width:700px) {
-			width: 100%;
-		}
-	}
-
-	// TOGGLE MENU LINKS
 }
