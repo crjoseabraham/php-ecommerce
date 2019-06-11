@@ -30,11 +30,7 @@ class Pages
    */
   public function login() : void
   {
-    // Hide login page if user is already logged in
-    if (Session::getUser())
-      redirect('/store');
-    else
-      renderView('login.html');
+    renderView('templates/login_form.html');
   }
 
   /**
@@ -42,11 +38,7 @@ class Pages
    */
   public function register() : void
   {
-    // Hide register page if user is already logged in
-    if (Session::getUser())
-      redirect('/store');
-    else
-      renderView('register.html');
+    renderView('templates/register_form.html');
   }
 
   /**

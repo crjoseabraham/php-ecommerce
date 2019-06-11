@@ -13,13 +13,5 @@
     font-size: 1.6rem;
     color: $dark;
     align-self: center;
-
-    &::before {
-      background-color: $warning !important;
-    }
-
-    &:first-of-type {
-      padding-top: 4rem;
-    }
   }
 }

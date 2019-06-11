@@ -9,7 +9,7 @@
 		<div class="container">
 			<div class="menu-title">
 				<span> Menu </span>
-				<button id="close-menu">
+				<button id="close-menu" class="close-menu">
 					<ion-icon name="close"></ion-icon>
 				</button>
 			</div>
@@ -35,37 +35,7 @@
 	</button>
 	<div class="right-sidebar">
 		<div class="container">
-			<div class="menu-title">
-				<span> Sign In </span>
-				<button id="close-menu">
-					<ion-icon name="close"></ion-icon>
-				</button>
-			</div>
-
-			<a href="#" class="link" class="register-link">Don't have an account? Create one!</a>
-
-			<form action="login" method="post">
-				<div class="form-group">
-					<label for="inputEmail"> Email </label>
-					<input type="email" name="email" id="inputEmail" required>
-				</div>
-
-				<div class="form-group">
-					<label for="inputPassword"> Password </label>
-					<input type="password" name="password" id="inputPassword" required>
-				</div>
-
-				<div class="form-group checkbox">
-					<input type="checkbox" name="remember_me" id="remember_me">
-					<label for="remember_me"> Remember me</label>
-				</div>
-
-				<button type="submit" class="submit-form-btn"> Log In </button>
-			</form>
-
-			<br>
-
-			<a href="#" class="link">Forgot your password?</a>
+			{% include 'templates/login_form.html' %}
 		</div>
 	</div>
 </header>

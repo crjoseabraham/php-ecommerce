@@ -1,23 +1,43 @@
 class UI
 {
-  // Show/Hide left menu a.k.a Main Menu
-  toggleMenu()
-  {
-    UI.overlay()
-    document.querySelector('.left-sidebar').classList.toggle('active')
-  }
-
-  // Show/Hide right menu a.k.a Login/Register Form
-  toggleForm()
-  {
-    UI.overlay()
-    document.querySelector('.right-sidebar').classList.toggle('active')
-  }
-
-  // Toggle black transparent overlay
-  static overlay()
+  // Toggle black semi-transparent layer
+  overlay()
   {
     document.querySelector('.overlay').classList.toggle('active')
+  }
+
+  // Toggle left or right sidebar
+  toggleSidebar(element)
+  {
+    switch (true)
+    {
+      case element.classList.contains('menu-toggle'):
+      case element.classList.contains('left-sidebar'):
+        document.querySelector('.left-sidebar').classList.toggle('active')
+        break;
+
+      case element.classList.contains('right-sidebar-toggle'):
+      case element.classList.contains('right-sidebar'):
+        document.querySelector('.right-sidebar').classList.toggle('active')
+        break;
+    }
+  }
+
+  // Empty content of an element's .container
+  emptyContainer(container)
+  {
+    while (container.firstChild)
+    {
+      container.removeChild(container.firstChild)
+    }
+  }
+
+  // Change content of an element's .container
+  loadTemplate(route, container)
+  {
+    fetch(`http://localhost/shoppingcart/${route}`)
+    .then(resp => resp.text())
+    .then(text => container.innerHTML = text)
   }
 }
 

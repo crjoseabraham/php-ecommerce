@@ -4,6 +4,7 @@
   padding: 2rem;
   width: 40rem;
   height: 100%;
+  overflow-y: auto;
   position: fixed;
   top: 0;
   z-index: 200;
@@ -29,12 +30,16 @@
   display: flex;
   justify-content: space-between;
   padding: 2rem;
-  font-size: 2.8rem;
   text-transform: uppercase;
   border-bottom: 2px solid #ededed;
 
-  span {
+  span, span > a {
     font-family: 'Roboto Condensed', sans-serif !important;
+    font-size: 2.8rem;
+  }
+
+  span > a {
+    color: $primary;
   }
 
   #close-menu {
@@ -43,13 +48,19 @@
     color: #fff;
     background-color: #000;
     font-size: 2rem;
-    padding: 0 .8rem;
+    width: 3.6rem;
+    height: 3.6rem;
     line-height: .6;
     transition: background-color .3s ease-in-out;
     cursor: pointer;
 
     &:hover {
       background-color: #aeaeae;
+    }
+
+    ion-icon {
+      width: 3.6rem;
+      height: 3.6rem;
     }
   }
 }

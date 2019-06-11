@@ -1,0 +1,30 @@
+<div class="menu-title">
+  <span> Sign Up / <a href="#" class="link change login">Log in</a></span>
+  <button id="close-menu" class="close-menu">
+    <ion-icon name="close"></ion-icon>
+  </button>
+</div>
+
+<form action="register" method="post">
+  <div class="form-group">
+    <label for="inputName"> Name </label>
+    <input type="text" name="name" id="inputName" required>
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail"> Email </label>
+    <input type="email" name="email" id="inputEmail" required>
+  </div>
+
+  <div class="form-group">
+    <label for="inputPassword"> Password </label>
+    <input type="password" name="password" id="inputPassword" required>
+  </div>
+
+  <div class="form-group">
+    <label for="inputPasswordConfirm"> Confirm Password </label>
+    <input type="password" name="password_confirm" id="inputPasswordConfirm" required>
+  </div>
+
+  <button type="submit" class="submit-form-btn"> Register </button>
+</form>
