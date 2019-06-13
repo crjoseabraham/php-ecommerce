@@ -14,7 +14,7 @@ class Pages
    */
   public function index() : void
   {
-    renderView('index2.html');
+    renderView('index.html', Products::getAllProducts());
   }
 
   /**

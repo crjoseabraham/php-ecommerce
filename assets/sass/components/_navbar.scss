@@ -2,12 +2,13 @@ header {
 	background-color: #fff;
 	position: fixed;
 	width: 100%;
-	z-index: 1;
+	z-index: 10;
 	top: 0;
 	left: 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	box-shadow: 0 -1rem 2rem $dark;
 
 	& > *:not(nav) {
 		height: 100%;

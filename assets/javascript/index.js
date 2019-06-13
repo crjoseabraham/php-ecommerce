@@ -1,11 +1,11 @@
 import { UI } from './ui'
-const path = require('path');
 
 const ui = new UI()
 
 /**
  * SET EVENT LISTENERS
  */
+
 // Show sidebars
 document.querySelectorAll('header > button').forEach(button => {
 	button.addEventListener('click', () => {
@@ -42,4 +42,10 @@ sidebars.forEach(sidebar => {
 				break;
 		}
 	})
+})
+
+// Submit form to add item
+const addItemForms = document.querySelectorAll('.item')
+addItemForms.forEach(form => {
+	form.addEventListener('click', () => form.submit())
 })
