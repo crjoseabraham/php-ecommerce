@@ -1,6 +1,11 @@
 <div class="menu-title">
-  <span> Sign In / <a href="#" class="link change register">Register</a></span>
-  <button id="close-menu" class="close-menu">
+  <div class="title-links">
+    <button class="text-button-title disabled" id="right-sidebar">Sign Up</button>
+    /
+    <button class="text-button-title load-template register" id="right-sidebar">Register</button>
+  </div>
+
+  <button id="right-sidebar-toggle" class="right-sidebar-toggle">
     <ion-icon name="close"></ion-icon>
   </button>
 </div>
@@ -23,4 +28,7 @@
 
   <button type="submit" class="submit-form-btn"> Log In </button>
 </form>
-<a href="#" class="link">Forgot your password?</a>
+
+<button class="text-button load-template recover-password" id="right-sidebar" style="align-self: center;">
+  Forgot your password?
+</button>

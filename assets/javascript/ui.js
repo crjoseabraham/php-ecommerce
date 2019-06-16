@@ -11,7 +11,7 @@ class UI
   {
     switch (true)
     {
-      case element.classList.contains('menu-toggle'):
+      case element.classList.contains('left-sidebar-toggle'):
       case element.classList.contains('left-sidebar'):
         document.querySelector('.left-sidebar').classList.toggle('active')
         break;

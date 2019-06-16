@@ -4,6 +4,10 @@
     flex-direction: column;
     padding: 3rem 3rem;
 
+    p {
+      font-size: 1.6rem;
+    }
+
     .form-group:not(.checkbox) {
       display: flex;
       flex-direction: column;

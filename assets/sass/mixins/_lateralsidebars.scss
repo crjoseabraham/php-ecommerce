@@ -30,19 +30,12 @@
   display: flex;
   justify-content: space-between;
   padding: 2rem;
+  font-family: 'Roboto Condensed', sans-serif !important;
+  font-size: 2.4rem;
   text-transform: uppercase;
   border-bottom: 2px solid #ededed;
 
-  span, span > a {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-size: 2.8rem;
-  }
-
-  span > a {
-    color: $primary;
-  }
-
-  #close-menu {
+  button[class$="-sidebar-toggle"] {
     border: none;
     border-radius: 50%;
     color: #fff;

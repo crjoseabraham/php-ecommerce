@@ -1,5 +1,6 @@
 body
 {
+	position: relative;
 	display: grid;
 	grid-template-rows: 1fr auto auto 10rem;
 	grid-template-columns: 1fr;

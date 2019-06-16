@@ -1,41 +1,37 @@
 <header>
 	<div id="overlay" class="overlay"></div>
 
-	<button class="menu-toggle" id="menu-toggle">
+	<button class="left-sidebar-toggle load-template menu" id="left-sidebar">
 		<ion-icon name="menu"></ion-icon>
 		<span>Menu</span>
 	</button>
-	<div class="left-sidebar">
-		<div class="container">
-			<div class="menu-title">
-				<span> Menu </span>
-				<button id="close-menu" class="close-menu">
-					<ion-icon name="close"></ion-icon>
-				</button>
-			</div>
 
-			<nav>
-				<ul class="main-menu">
-					<li><a href="#"> Sign In </a></li>
-					<li><a href="#"> About this project </a></li>
-					<li><a href="#"> View Source Code </a></li>
-					<li><a href="#"> Contact Developer </a></li>
-				</ul>
-			</nav>
-		</div>
+	<div class="left-sidebar">
+		<div class="container"> </div>
 	</div>
 
 	<a href="#" class="brand">
 		<img src="img/logo.png" alt="minimarket Logo">
 	</a>
 
-	<button class="right-sidebar-toggle" id="right-sidebar-toggle">
+	{% if current_user is empty %}
+	<button class="right-sidebar-toggle load-template login" id="right-sidebar">
 		<span>Access</span>
 		<ion-icon name="contact"></ion-icon>
 	</button>
+	{% else %}
+	<button class="right-sidebar-toggle load-template cart" id="right-sidebar">
+		<span>Cart</span>
+		<ion-icon name="cart"></ion-icon>
+	</button>
+
+	<a href="logout" class="logout-button">
+		<span>Log out</span>
+		<ion-icon name="power"></ion-icon>
+	</a>
+	{% endif %}
+
 	<div class="right-sidebar">
-		<div class="container">
-			{% include 'templates/login_form.html' %}
-		</div>
+		<div class="container">	</div>
 	</div>
 </header>

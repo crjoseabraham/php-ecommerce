@@ -1,0 +1,58 @@
+.flash_message {
+	padding: 2rem;
+	font-size: 1.6rem;
+	color: #fff;
+	position: fixed;
+	top: 8rem;
+	right: 1rem;
+	max-width: 35rem;
+	border-radius: 5px;
+	z-index: 9999;
+	animation-name: flashMessage;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+
+	&--success {
+		background-color: rgba($color: $success, $alpha: 0.9);
+		border: 1px solid $primary;
+		&:hover { background-color: rgba($color: $success, $alpha: 1); }
+	}
+
+	&--warning {
+		background-color: rgba($color: $warning, $alpha: 0.9);
+		border: 1px $warning;
+		&:hover { background-color: rgba($color: $warning, $alpha: 1); }
+	}
+
+	&--danger {
+		background-color: rgba($color: $danger, $alpha: 0.9);
+		border: 1px $danger;
+		&:hover { background-color: rgba($color: $danger, $alpha: 1); }
+	}
+
+	ul {
+		padding-left: 2rem;
+	}
+}
+
+@keyframes flashMessage {
+  0% {
+  	transform: translateX(100%);
+  	opacity: 0;
+  }
+
+  10% {
+  	transform: translateX(0);
+  	opacity: 1;
+  }
+
+  90% {
+  	transform: translateX(0);
+  	opacity: 1;
+  }
+
+  100% {
+  	transform: translateX(100%);
+  	opacity: 0;
+  }
+}

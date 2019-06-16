@@ -46,14 +46,11 @@ class Carts
         flash(ITEM_ADDED);
       else
         flash(ERROR_MESSAGE, ERROR);
-
-      redirect('/store');
     }
     else
-    {
       flash(LOGIN_REQUIRED, INFO);
-      redirect('/login');
-    }
+
+    redirect('/');
   }
 
   /**

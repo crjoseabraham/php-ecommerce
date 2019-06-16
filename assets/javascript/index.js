@@ -2,46 +2,42 @@ import { UI } from './ui'
 
 const ui = new UI()
 
-/**
- * SET EVENT LISTENERS
- */
+// SET EVENT LISTENERS
 
-// Show sidebars
-document.querySelectorAll('header > button').forEach(button => {
-	button.addEventListener('click', () => {
-		ui.overlay()
-		ui.toggleSidebar(button)
-	})
-})
+// Header/Navbar event listener
+document.querySelector('header').addEventListener('click', e => {
+	let button
 
-// All event listeners on the sidebars' elements
-const sidebars = document.querySelectorAll('div[class$="-sidebar"]')
+	// Get the clicked button
+	if (e.target.localName === "button")
+		button = e.target
+	if (e.target.parentElement.localName === "button")
+		button = e.target.parentElement
 
-sidebars.forEach(sidebar => {
-	sidebar.addEventListener('click', e => {
-		let rightSidebar = document.querySelector('.right-sidebar')
-		let leftSidebar = document.querySelector('.left-sidebar')
-		let rightSidebarContainer = document.querySelector('.right-sidebar .container')
-		let leftSidebarContainer = document.querySelector('.left-sidebar .container')
-
-		switch (true) {
-			// Hide sidebars when 'X' button is clicked
-			case e.target.parentElement.classList.contains('close-menu'):
-				ui.overlay()
-				ui.toggleSidebar(e.target.parentElement.parentElement.parentElement.parentElement)
-				break;
-			// Change content of sidebar .container
-			case e.target.classList.contains('change'):
-				let routeToTemplate = e.target.classList[e.target.classList.length - 1]
-				ui.toggleSidebar(rightSidebar)
-				ui.emptyContainer(rightSidebarContainer)
-				setTimeout(() => {
-					ui.loadTemplate(routeToTemplate, rightSidebarContainer)
-					ui.toggleSidebar(rightSidebar)
-				}, 390);
-				break;
+	if (button)
+	{
+		// Case 1: The clicked button is a sidebar toggler
+		if (button.classList.contains('left-sidebar-toggle') || button.classList.contains('right-sidebar-toggle'))
+		{
+			ui.overlay()
+			ui.toggleSidebar(button)
 		}
-	})
+
+		// Case 2: The button is a .container changer
+		if (button.classList.contains('load-template'))
+		{
+			// Get template name
+			let template = button.classList[Array.from(button.classList).indexOf('load-template') + 1]
+			// Get corresponding sidebar
+			let sidebar = button.getAttribute("id")
+			// Load template
+			ui.emptyContainer(document.querySelector(`.${sidebar} > .container`))
+
+			setTimeout(() => {				
+				ui.loadTemplate(template, document.querySelector(`.${sidebar} > .container`))
+			}, 100);
+		}
+	}
 })
 
 // Submit form to add item

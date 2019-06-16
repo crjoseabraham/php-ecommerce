@@ -17,47 +17,42 @@ class Auth
   public function login() : void
   {
     // 1. SANITIZE POST DATA
-    $email = strtolower(htmlspecialchars($_POST['email']));
+    $email = Validations::validateEmail($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
 
-    if (filter_var($email, FILTER_VALIDATE_EMAIL) === false)
-    {
-      flash(EMAIL_INVALID, ERROR);
-      redirect('/login');
-    }
+    $errors = Validations::getValidationErrors();
 
-    // 2. SEARCH USER IN DATABASE
-    $user = User::findByEmail($email);
-
-    if (!$user)
-    {
-      // User does not exist, redirect to login page and show error
-      flash(LOGIN_ERROR, ERROR);
-      redirect('/login');
-    }
+    if (!empty($errors))
+      flash($errors, ERROR);
     else
     {
-      // User was found, check if the password matches
-      if (!password_verify($password, $user->password))
-      {
+      // 2. SEARCH USER IN DATABASE
+      $user = User::findByEmail($email);
+
+      if (!$user)
+        // User does not exist, redirect to home page and show error
         flash(LOGIN_ERROR, ERROR);
-        redirect('/login');
-      }
       else
       {
-        // Start session
-        $session = new Session($user->id);
-
-        // Verify if 'remember me' is checked
-        if(isset($_POST['remember_login']))
+        // User was found, check if the password matches
+        if (!password_verify($password, $user->password))
+          flash(LOGIN_ERROR, ERROR);
+        else
         {
-          $session->rememberLogin();
-          Cookies::newCookie('remember_me', $session->original_token, $session->expiry_timestamp, '/');
-        }
+          // Start session
+          $session = new Session($user->id);
 
-        redirect('/store');
+          // Verify if 'remember me' is checked
+          if(isset($_POST['remember_login']))
+          {
+            $session->rememberLogin();
+            Cookies::newCookie('remember_me', $session->original_token, $session->expiry_timestamp, '/');
+          }
+        }
       }
     }
+
+    redirect('/');
   }
 
   /**
@@ -65,8 +60,9 @@ class Auth
    */
   public function logout() : void
   {
-    Session::destroySession();
-    redirect('/home');
+    if (Session::getUser())
+      Session::destroySession();
+    redirect('/');
   }
 
   /**
@@ -76,80 +72,27 @@ class Auth
   public function register() : void
   {
     // 1. SANITIZE POST DATA
-    foreach ($_POST as $field) 
-    {
-      $field = htmlspecialchars($field);
-    }
-
-    $_POST['email'] = strtolower($_POST['email']);
-
-    // Create variable to store errors in it
-    $errors = self::validateRegistrationData($_POST);
+    $name = Validations::validateName($_POST['name']);
+    $email = Validations::validateEmail($_POST['email'], 'registration');
+    [$password, $password_confirm] = Validations::validatePassword($_POST['password'], $_POST['password_confirm']);
 
     // 2. IF THERE ARE NO ERRORS, PROCEED WITH REGISTRATION
-    if (empty($errors))
+    $errors = Validations::getValidationErrors();
+
+    if (!empty($errors))
+      flash($errors, ERROR);
+    else
     {
-      $user = new User($_POST);
+      $data = ["name" => $name, "email" => $email, "password" => $password];
+      $user = new User($data);
 
       if ($user)
-      {
-        // Now start session for the new user
         $session = new Session($user->id);
-        redirect('/store');
-      }
       else
-      {
         flash(REGISTRATION_ERROR, ERROR);
-        redirect('/register');
-      }
     }
-    else
-    {
-      // If some fields contain invalid values, display form again with errors
-      flash($errors, ERROR);
-      redirect('/register');
-    }
-  }
-
-  /**
-   * Validate registration data passed
-   * @param  array $data      Information passed through registration form
-   * @return array            Array with errors or empty if everything's ok
-   */
-  public function validateRegistrationData($data)
-  {
-    $errors = [];
-
-    // NAME
-    if ($data['name'] === '')
-      $errors[] = NAME_MISSING;
-
-    if ($data['name'] !== '' && preg_match('/[^\p{L} +]/', $data['name']))
-      $errors[] = NAME_INVALID;
-
-    // EMAIL ADDRESS
-    if (filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false)
-      $errors[] = EMAIL_INVALID;
-
-    if (User::findByEmail($data['email']))
-      $errors[] = EMAIL_EXISTS;
-
-    // PASSWORD
-    if ($data['password'] !== $data['password_confirm'])
-      $errors[] = PASSWORDS_DONT_MATCH;
-    else
-    {
-      if (strlen($data['password']) < 6)
-        $errors[] = PASSWORD_TOO_SHORT;
-
-      if (!preg_match('/.*[a-z]+.*/i', $data['password']))
-        $errors[] = PASSWORD_NEEDS_LETTER;
-
-      if (!preg_match('/.*\d+.*/i', $data['password']))
-        $errors[] = PASSWORD_NEEDS_NUMBER;
-    }
-
-    return $errors;
+    
+    redirect('/');
   }
 
   /**

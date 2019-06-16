@@ -17,12 +17,10 @@ class Pages
     renderView('index.html', Products::getAllProducts());
   }
 
-  /**
-   * Displays 'Store' page with all products
-   */
-  public function store() : void
+  // Show menu in the left sidebar
+  public function menu() : void
   {
-    renderView('store.html', Products::getAllProducts());
+    renderView('templates/menu.html');
   }
 
   /**
@@ -42,46 +40,16 @@ class Pages
   }
 
   /**
-   * Displays profile page
+   * Displays form for recovering user's password
    */
-  public function profile() : void
+  public function recoverPasswordForm() : void
   {
-    if (Session::getUser())
-      renderView('profile.html', Payments::getUserOrders());
-    else
-      redirect('/home');
+    renderView('templates/recover_password_form.html');
   }
 
-  /**
-   * Displays payment confirmation page
-   */
-  public function confirmPayment() : void
+  // Load cart template in the right sidebar container
+  public function loadCart() : void
   {
-    if (Session::getUser())
-      renderView('confirm-payment.html', Products::getAllProducts());
-    else
-      redirect('/home');
-  }
-
-  /**
-   * Forgotten password page
-   */
-  public function forgottenPassword()
-  {
-    if (!Session::getUser())
-      renderView('forgot-password.html');
-    else
-      redirect('/store');
-  }
-
-  /**
-   * Email sent page
-   */
-  public function emailSent()
-  {
-    if (!Session::getUser())
-      renderView('email-sent.html');
-    else
-      die('You have no access to this section');
+    renderView('templates/cart.html'); 
   }
 }

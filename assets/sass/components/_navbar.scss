@@ -43,7 +43,8 @@ header {
 	}
 
 	// HEADER BAR BUTTONS
-	& > button {
+	& > button,
+	& > a.logout-button {
 		color: #000;
 		background-color: #fff;
 		padding: 0 2rem;
@@ -62,7 +63,7 @@ header {
 			font-size: 1.8rem;
 		}
 
-		&.menu-toggle span {
+		&.left-sidebar-toggle span {
 			padding-left: .7rem;
 		}
 
@@ -83,5 +84,14 @@ header {
 				font-size: 2.4rem;
 			}
 		}
+	}
+
+	.right-sidebar-toggle,
+	a.brand {
+		margin-left: auto;
+	}
+
+	a.logout-button ion-icon {
+		padding-left: .7rem;
 	}
 }
