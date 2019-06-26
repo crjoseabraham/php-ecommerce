@@ -1,8 +1,8 @@
 {% for product in data %}
-<form action="add-item/{{ product.product_id }}" method="post" class="item">
+<div class="item" data-target="add-item/{{ product.product_id }}">
   <div class="item-extras">
     <img src="{{ product.picture }}" alt="{{ product.description }}">
-    <button type="submit" class="add-to-cart">
+    <button class="add-to-cart">
       <ion-icon name="add"></ion-icon> Add to cart
     </button>
   </div>
@@ -12,5 +12,5 @@
   <p class="price">
     ${{ product.price}}
   </p>
-</form>
+</div>
 {% endfor %}

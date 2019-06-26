@@ -20,7 +20,7 @@ class Pages
   // Show menu in the left sidebar
   public function menu() : void
   {
-    renderView('templates/menu.html');
+    renderView('components/menu.html');
   }
 
   /**
@@ -28,7 +28,7 @@ class Pages
    */
   public function login() : void
   {
-    renderView('templates/login_form.html');
+    renderView('components/login_form.html');
   }
 
   /**
@@ -36,7 +36,7 @@ class Pages
    */
   public function register() : void
   {
-    renderView('templates/register_form.html');
+    renderView('components/register_form.html');
   }
 
   /**
@@ -44,12 +44,18 @@ class Pages
    */
   public function recoverPasswordForm() : void
   {
-    renderView('templates/recover_password_form.html');
+    renderView('components/recover_password_form.html');
   }
 
   // Load cart template in the right sidebar container
   public function loadCart() : void
   {
-    renderView('templates/cart.html'); 
+    renderView('components/cart.html'); 
+  }
+
+  // Load cart template in the right sidebar container
+  public function addItemForm(int $item_id) : void
+  {
+    renderView('components/modal.html', [Products::productExists($item_id)]);
   }
 }

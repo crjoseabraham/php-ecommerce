@@ -6,6 +6,8 @@ $router->get('register', 'Pages@register');
 $router->get('recover-password', 'Pages@recoverPasswordForm');
 $router->get('logout', 'Auth@logout');
 $router->get('cart', 'Pages@loadCart');
+$router->get('add-item/{item}', 'Pages@addItemForm');
+$router->get('auth', 'Auth@checkSession');
 
 // $router->get('purchase-details', 'Pages@purchaseDetails');
 // $router->get('profile', 'Pages@profile');

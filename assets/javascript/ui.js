@@ -7,7 +7,7 @@ class UI
   }
 
   // Toggle left or right sidebar
-  toggleSidebar(element)
+  toggleActive(element)
   {
     switch (true)
     {
@@ -19,6 +19,11 @@ class UI
       case element.classList.contains('right-sidebar-toggle'):
       case element.classList.contains('right-sidebar'):
         document.querySelector('.right-sidebar').classList.toggle('active')
+        break;
+
+      case element.classList.contains('modal'):
+      case element.classList.contains('modal-toggle'):
+        document.querySelector('.modal').classList.toggle('active')
         break;
     }
   }
@@ -38,6 +43,23 @@ class UI
     fetch(`http://localhost/shoppingcart/${route}`)
     .then(resp => resp.text())
     .then(text => container.innerHTML = text)
+  }
+
+  // Add or subtract quantity
+  modalEvents(element)
+  {
+    switch (true) 
+    {
+      case element.target.classList.contains('add'):
+        let quantity = document.getElementById('quantity')
+        quantity.value++
+        break;
+      case element.target.classList.contains('subtract'):
+        quantity = document.getElementById('quantity')
+        if (quantity.value > 1)
+          quantity.value--
+        break;
+    }
   }
 }
 

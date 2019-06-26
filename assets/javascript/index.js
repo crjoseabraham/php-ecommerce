@@ -4,8 +4,8 @@ const ui = new UI()
 
 // SET EVENT LISTENERS
 
-// Header/Navbar event listener
-document.querySelector('header').addEventListener('click', e => {
+// General button event listener
+document.querySelector('body').addEventListener('click', e => {
 	let button
 
 	// Get the clicked button
@@ -16,11 +16,13 @@ document.querySelector('header').addEventListener('click', e => {
 
 	if (button)
 	{
-		// Case 1: The clicked button is a sidebar toggler
-		if (button.classList.contains('left-sidebar-toggle') || button.classList.contains('right-sidebar-toggle'))
+		// Case 1: The clicked button is a toggler
+		if (button.classList.contains('left-sidebar-toggle') || 
+				button.classList.contains('right-sidebar-toggle') || 
+				button.classList.contains('modal-toggle'))
 		{
 			ui.overlay()
-			ui.toggleSidebar(button)
+			ui.toggleActive(button)
 		}
 
 		// Case 2: The button is a .container changer
@@ -28,20 +30,35 @@ document.querySelector('header').addEventListener('click', e => {
 		{
 			// Get template name
 			let template = button.classList[Array.from(button.classList).indexOf('load-template') + 1]
-			// Get corresponding sidebar
-			let sidebar = button.getAttribute("id")
+			// Get element where the content will be loaded in
+			let parent = button.getAttribute("id")
 			// Load template
-			ui.emptyContainer(document.querySelector(`.${sidebar} > .container`))
+			ui.emptyContainer(document.querySelector(`.${parent} > .container`))
 
-			setTimeout(() => {				
-				ui.loadTemplate(template, document.querySelector(`.${sidebar} > .container`))
+			setTimeout(() => {
+				ui.loadTemplate(template, document.querySelector(`.${parent} > .container`))
 			}, 100);
 		}
 	}
 })
 
-// Submit form to add item
-const addItemForms = document.querySelectorAll('.item')
-addItemForms.forEach(form => {
-	form.addEventListener('click', () => form.submit())
+// Modal
+document.querySelectorAll('.item').forEach(itemDiv => {
+	itemDiv.addEventListener('click', () => {
+		let route = itemDiv.getAttribute('data-target')
+		let modal = document.getElementById('modal')
+
+		// Show modal
+		ui.overlay()
+		ui.toggleActive(modal)
+
+		// Load modal content
+		ui.emptyContainer(modal)
+		setTimeout(() => {
+			ui.loadTemplate(route, modal)
+		}, 100);
+
+		// Load modal event listeners
+		document.querySelector('.modal').addEventListener('click', ui.modalEvents)
+	})
 })

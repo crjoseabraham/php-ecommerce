@@ -1,0 +1,152 @@
+.modal {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	transform: scale(0);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&.active {
+		transform: scale(1);
+	}
+
+	& .modal-container {
+		background-color: #fff;
+		box-shadow: 0 1rem 2rem $dark;
+		transform: scale(0);
+		transition: transform .4s ease-in-out;
+		display: flex;
+		flex-direction: column;
+		padding: 2rem;
+	}
+
+	&.active .modal-container {
+		transform: scale(1);
+	}
+
+	& .modal-title {
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 1px solid $dark;
+
+		h2 {
+			font-family: 'Roboto Condensed', sans-serif !important;
+			font-size: 3rem;
+			text-transform: uppercase;
+			font-weight: 400;
+		}
+
+		.modal-toggle {
+			border: none;
+	    border-radius: 50%;
+	    color: #fff;
+	    background-color: #000;
+	    font-size: 1.8rem;
+	    width: 3.4rem;
+	    height: 3.4rem;
+	    line-height: .6;
+	    transition: background-color .3s ease-in-out;
+	    cursor: pointer;
+
+	    &:hover {
+	      background-color: #aeaeae;
+	    }
+
+	    ion-icon {
+	      width: 3.3rem;
+	      height: 3.3rem;
+	    }
+		}
+	}
+
+	.modal-body {
+		padding: 2rem 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		& > img { max-width: 20rem !important; }
+
+		& > .details {
+			padding-top: 1rem;
+
+			.product-details {
+				display: flex;
+				justify-content: space-between;
+
+				.product-name,
+				.product-price {
+					font-family: 'Roboto Condensed', sans-serif;
+					font-size: 2.6rem;
+				}
+
+				.product-price {
+					font-weight: 700;
+				}
+			}
+
+			form {
+				padding-top: 1rem;
+				display: flex;
+				flex-shrink: 1;
+				flex-direction: column;
+
+				span {
+					font-size: 1.4rem;
+				}
+
+				.inputs {
+					padding-top: 1rem;
+					display: flex;
+
+					input[type="button"] {
+						background-color: $primary;
+						color: #fff;
+						font-size: 2rem;
+						font-weight: 700;
+						border: 1px solid transparent;
+						padding: 0 1rem;
+						transition: background-color .3s ease-in;
+						cursor: pointer;
+
+						&:hover {
+							background-color: lighten($primary, 20%);
+						}
+					}
+
+					input[type="text"] {
+						padding: .5rem 0;
+						margin: 0 .5rem;
+						text-align: center;
+						font-size: 1.8rem;
+						border: 1px solid #000;
+						background-color: transparent;
+					}
+				}
+
+				button {
+					margin-top: 1rem;
+					border: 1px solid #000;
+					background-color: #000;
+					color: #fff;
+					font-family: 'Roboto Condensed', sans-serif;
+					font-size: 1.8rem;
+					text-transform: uppercase;
+					cursor: pointer;
+					padding: 1rem 0;
+					transition: background-color .3s ease-in;
+
+					&:hover {
+						background-color: lighten(#000, 20%);
+					}
+				}
+			}
+		}
+
+
+	}
+}
