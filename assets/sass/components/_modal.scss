@@ -14,17 +14,17 @@
 		transform: scale(1);
 	}
 
-	& .modal-container {
+	& .container {
 		background-color: #fff;
 		box-shadow: 0 1rem 2rem $dark;
 		transform: scale(0);
-		transition: transform .4s ease-in-out;
+		transition: transform .3s ease-in-out;
 		display: flex;
 		flex-direction: column;
 		padding: 2rem;
 	}
 
-	&.active .modal-container {
+	&.active .container {
 		transform: scale(1);
 	}
 

@@ -38,17 +38,15 @@ class UI
   }
 
   // Change content of an element's .container
-  loadTemplate(route, container)
+  loadTemplate(template, container)
   {
-    fetch(`http://localhost/shoppingcart/${route}`)
-    .then(resp => resp.text())
-    .then(text => container.innerHTML = text)
+    container.innerHTML = template
   }
 
   // Add or subtract quantity
   modalEvents(element)
   {
-    switch (true) 
+    switch (true)
     {
       case element.target.classList.contains('add'):
         let quantity = document.getElementById('quantity')

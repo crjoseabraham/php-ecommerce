@@ -14,7 +14,7 @@
 
 	&--success {
 		background-color: rgba($color: $success, $alpha: 0.9);
-		border: 1px solid $primary;
+		border: 1px solid $success;
 		&:hover { background-color: rgba($color: $success, $alpha: 1); }
 	}
 

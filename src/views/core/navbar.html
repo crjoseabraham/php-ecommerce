@@ -1,14 +1,8 @@
 <header>
-	<div id="overlay" class="overlay"></div>
-
 	<button class="left-sidebar-toggle load-template menu" id="left-sidebar">
 		<ion-icon name="menu"></ion-icon>
-		<span>Menu</span>
+		<span class="button-title">Menu</span>
 	</button>
-
-	<div class="left-sidebar">
-		<div class="container"> </div>
-	</div>
 
 	<a href="#" class="brand">
 		<img src="img/logo.png" alt="minimarket Logo">
@@ -16,22 +10,18 @@
 
 	{% if current_user is empty %}
 	<button class="right-sidebar-toggle load-template login" id="right-sidebar">
-		<span>Access</span>
+		<span class="button-title">Access</span>
 		<ion-icon name="contact"></ion-icon>
 	</button>
 	{% else %}
 	<button class="right-sidebar-toggle load-template cart" id="right-sidebar">
-		<span>Cart</span>
+		<span class="button-title">Cart</span>
 		<ion-icon name="cart"></ion-icon>
 	</button>
 
 	<a href="logout" class="logout-button">
-		<span>Log out</span>
+		<span class="button-title">Log out</span>
 		<ion-icon name="power"></ion-icon>
 	</a>
 	{% endif %}
-
-	<div class="right-sidebar">
-		<div class="container">	</div>
-	</div>
 </header>

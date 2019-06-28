@@ -1,0 +1,113 @@
+.cart-container {
+  margin-top: 2rem;
+  max-height: 24rem;
+  overflow: auto;
+  border: 1px solid #888;
+  padding: 0 .5rem;
+
+  @media screen and (max-width: 400px){
+    max-height: 18rem;
+  }
+
+  .cart-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #ccc;
+    }
+
+    img {
+      max-width: 5rem;
+      border: 1px solid #000;
+      border-radius: 50%;
+    }
+
+    .item_details {
+      font-size: 1.5rem;
+      display: flex;
+      flex-direction: column;
+
+      @media screen and (max-width: 500px){
+        font-size: 1.4rem;
+      }
+
+      #subtotal {
+        font-family: 'Roboto Condensed', sans-serif;
+        text-transform: uppercase;
+        font-weight: 700;
+        padding-top: 1rem;
+      }
+    }
+
+    button#delete {
+      background-color: $danger;
+      border: none;
+      padding: .5rem;
+      color: #fff;
+      font-size: 1.2rem;
+      display: flex;
+      line-height: 1;
+      cursor: pointer;
+      transition: background-color .3s ease-in-out;
+
+      &:hover {
+        background-color: darken($color: $danger, $amount: 10%);
+      }
+
+      span {
+        padding-left: 2px;
+
+        @media screen and (max-width: 400px){
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.summary {
+  margin-top: 2rem;
+  padding: 1rem 0;
+  border-top: 2px solid #ededed;
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1rem;
+
+    & > * {
+      font-size: 1.6rem;
+    }
+
+    span {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+  }
+
+  select {
+    padding: .5rem;
+    border: 1px solid #ccc;
+  }
+}
+
+button#checkout {
+  margin-top: 2rem;
+  padding: 1.2rem;
+  background-color: #000;
+  color: #fff;
+  font-size: 2.2rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  transition: background-color .3s ease-in-out;
+
+  &:hover {
+    background-color: lighten(#000, 20%);
+  }
+}

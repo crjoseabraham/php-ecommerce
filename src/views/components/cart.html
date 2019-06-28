@@ -1,1 +1,49 @@
-<h1>The cart goes here</h1>
+<div class="menu-title">
+	<span> Your cart </span>
+	<button id="right-sidebar-toggle" class="right-sidebar-toggle">
+		<ion-icon name="close"></ion-icon>
+	</button>
+</div>
+
+<div class="cart-container">
+	{% set cart_items = data.0 %}
+	{% set products = data.1 %}
+
+	{% for item in cart_items %}
+	<div class="cart-row">
+		{% for product in products %}
+		{% if item.product_id == product.product_id %}
+		<img src="{{ product.picture }}" alt="{{ product.description }} product image">
+
+		<div class="item_details">
+			<span> ({{ item.quantity }}) x {{ product.description }} </span>
+			<span id="subtotal"> Subtotal: ${{ item.subtotal }} </span>
+		</div>
+
+		<button id="delete" data-action="delete-item">
+			<ion-icon name="trash"></ion-icon> <span>Remove</span>
+		</button>
+		{% endif %}
+		{% endfor %}
+	</div>
+	{% endfor %}
+</div>
+
+<div class="summary">
+	<div class="row">
+		<p>Subtotal: </p>
+		<span> ${{ subtotal }} </span>
+	</div>
+
+	<div class="row">
+		<p>Shipping method: </p>
+		<div>
+		<select name="shipping" id="shipping">
+			<option value="7" selected> Delivery (+7% fee) </option>
+			<option value="0"> I'll pick it up (free) </option>
+		</select>
+		</div>
+	</div>
+</div>
+
+<button data-action="confirm-payment" id="checkout"> Check out</button>

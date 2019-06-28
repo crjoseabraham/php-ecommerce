@@ -50,7 +50,7 @@ class Pages
   // Load cart template in the right sidebar container
   public function loadCart() : void
   {
-    renderView('components/cart.html'); 
+    renderView('components/cart.html', [Carts::getCartItems(), Products::getAllProducts()]);
   }
 
   // Load cart template in the right sidebar container

@@ -1,33 +1,31 @@
-<div class="modal-container">
-	{% set product = data.0 %}
+{% set product = data.0 %}
 
-	<div class="modal-title">
-		<h2>Add item</h2>
-		<button class="modal-toggle" id="modal-toggle">
-			<ion-icon name="close"></ion-icon>
-		</button>
-	</div>
+<div class="modal-title">
+	<h2>Add item</h2>
+	<button class="modal-toggle" id="modal-toggle">
+		<ion-icon name="close"></ion-icon>
+	</button>
+</div>
 
-	<div class="modal-body">
-		<img src="{{ product.picture }}" alt="{{ product.description }} picture">
+<div class="modal-body">
+	<img src="{{ product.picture }}" alt="{{ product.description }} picture">
 
-		<div class="details">
-			<div class="product-details">
-				<span class="product-name"> {{ product.description }} </span>
-				<span class="product-price"> ${{ product.price }} </span>
+	<div class="details">
+		<div class="product-details">
+			<span class="product-name"> {{ product.description }} </span>
+			<span class="product-price"> ${{ product.price }} </span>
+		</div>
+
+		<form action="add-item/{{ product.product_id }}" method="post">
+			<span>Quantity: </span>
+
+			<div class="inputs">
+				<input type="button" value="-" class="quantity-btn subtract">
+				<input type="text" value="1" name="quantity" id="quantity" readonly>
+				<input type="button" value="+" class="quantity-btn add">
 			</div>
 
-			<form action="add-item/{{ product.product_id }}" method="post">
-				<span>Quantity: </span>
-
-				<div class="inputs">
-					<input type="button" value="-" class="quantity-btn subtract">
-					<input type="text" value="1" name="quantity" id="quantity" readonly>
-					<input type="button" value="+" class="quantity-btn add">
-				</div>
-
-				<button type="submit"> Add to cart</button>
-			</form>
-		</div>
+			<button type="submit"> Add to cart</button>
+		</form>
 	</div>
 </div>

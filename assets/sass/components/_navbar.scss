@@ -2,7 +2,7 @@ header {
 	background-color: #fff;
 	position: fixed;
 	width: 100%;
-	z-index: 10;
+	z-index: 9997;
 	top: 0;
 	left: 0;
 	display: flex;
@@ -12,22 +12,6 @@ header {
 
 	& > *:not(nav) {
 		height: 100%;
-	}
-
-	// OVERLAY
-	#overlay {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5));
-		z-index: 100;
-		display: none;
-
-		&.active {
-			display: block;
-		}
 	}
 
 	// LOGO

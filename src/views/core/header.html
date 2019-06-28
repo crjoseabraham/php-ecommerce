@@ -10,13 +10,25 @@
 	</head>
 
 	<body>
+		<div id="overlay" class="overlay"></div>
 
-	{{ include ('components/flash_message.html') }}
-	{{ include ('core/navbar.html') }}
-	{% block content %}
+		<div class="modal" id="modal">
+			<div class="container"></div>
+		</div>
 
-	{% endblock %}
-	<script src="js/app.bundle.js"></script>
-	<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+		<div class="left-sidebar">
+			<div class="container"> </div>
+		</div>
+
+		<div class="right-sidebar">
+			<div class="container"> </div>
+		</div>
+		{{ include ('components/flash_message.html') }}
+		{{ include ('core/navbar.html') }}
+		{% block content %}
+
+		{% endblock %}
+		<script src="js/app.bundle.js"></script>
+		<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 	</body>
 </html>

@@ -1,5 +1,5 @@
 {% for product in data %}
-<div class="item" data-target="add-item/{{ product.product_id }}">
+<div class="item modal-toggle load-template add-item/{{ product.product_id }}" id="modal">
   <div class="item-extras">
     <img src="{{ product.picture }}" alt="{{ product.description }}">
     <button class="add-to-cart">
