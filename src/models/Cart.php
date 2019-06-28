@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Model;
 
 use \App\Database;
@@ -56,7 +56,7 @@ class Cart extends Database
   {
     $cart = self::cartItems();
     $subtotal = 0;
-    foreach ($cart as $item) 
+    foreach ($cart as $item)
     {
       $subtotal += $item->subtotal;
     }
@@ -96,16 +96,15 @@ class Cart extends Database
   /**
    * Remove an item from the cart
    * @param  int      ID of item to remove
-   * @return boolean  True if execution was succesful, false if not
    */
-  public function removeItem($item) : bool
+  public function removeItem($item)
   {
     $db = static::getDB();
 
     $stmt = $db->prepare("DELETE cart_items.* FROM cart_items INNER JOIN cart on cart_items.cart_id = cart.id WHERE cart.user_id = :user AND cart_items.product_id = :product");
     $stmt->bindValue(':user', intval($_SESSION['user_id']), \PDO::PARAM_INT);
     $stmt->bindValue(':product', intval($item), \PDO::PARAM_INT);
-    return $stmt->execute() ? true : false;
+    echo json_encode($stmt->execute() ? true : false);
   }
 
   /**

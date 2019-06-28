@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Controller;
 
 use \Model\Cart;
@@ -57,16 +57,14 @@ class Carts
    * Call function to remove item from cart
    * @param  int $item_id   ID of item to remove
    */
-  public function remove(int $item_id) : void
+  public function remove(int $item_id)
   {
     // Verify the id passed belongs to a registered product
     $item = Products::productExists($item_id);
 
-    if ($item && Cart::removeItem($item->product_id))
-      flash(ITEM_REMOVED);
+    if ($item)
+      Cart::removeItem($item->product_id);
     else
-      flash(ERROR_MESSAGE, ERROR);
-
-    redirect('/store');
+      echo json_encode(false);
   }
 }

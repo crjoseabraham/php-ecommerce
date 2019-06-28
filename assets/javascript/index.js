@@ -5,7 +5,14 @@ const http = new HttpRequests()
 const ui = new UI()
 const baseURL = 'http://localhost/shoppingcart'
 
-// SET EVENT LISTENERS
+ui.baseURL = baseURL
+ui.http = http
+
+// Load event listeners
+document.addEventListener('DOMContentLoaded', function() {
+	ui.modalEvents()
+	ui.cartEvents()
+})
 
 // Toggle element
 document.querySelector('body').addEventListener('click', function(e) {
@@ -31,6 +38,3 @@ document.querySelector('body').addEventListener('click', async function(e) {
 		ui.loadTemplate(await http.get(`${baseURL}/${route}`), container)
 	}
 })
-
-// Modal event listeners
-document.querySelector('.modal').addEventListener('click', ui.modalEvents)

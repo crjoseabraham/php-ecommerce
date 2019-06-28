@@ -43,21 +43,67 @@ class UI
     container.innerHTML = template
   }
 
-  // Add or subtract quantity
-  modalEvents(element)
+  // Event listeners for the modal element
+  modalEvents()
   {
-    switch (true)
-    {
-      case element.target.classList.contains('add'):
-        let quantity = document.getElementById('quantity')
-        quantity.value++
-        break;
-      case element.target.classList.contains('subtract'):
-        quantity = document.getElementById('quantity')
-        if (quantity.value > 1)
-          quantity.value--
-        break;
-    }
+    document.querySelector('.modal').addEventListener('click', element => {
+      switch (true)
+      {
+        case element.target.classList.contains('add'):
+          let quantity = document.getElementById('quantity')
+          quantity.value++
+          break;
+        case element.target.classList.contains('subtract'):
+          quantity = document.getElementById('quantity')
+          if (quantity.value > 1)
+            quantity.value--
+          break;
+      }
+    })
+  }
+
+  // Event listeners for the cart
+  cartEvents()
+  {
+    document.querySelector('.right-sidebar').addEventListener('click', element => {
+      switch (true)
+      {
+        // Remove item from cart
+        case element.target.getAttribute("id") === "delete":
+          this.removeItemFromCart(element.target)
+          break;
+        case element.target.parentElement.getAttribute("id") === "delete":
+          this.removeItemFromCart(element.target.parentElement)
+          break;
+      }
+    })
+  }
+
+  // Remove an item from user's cart
+  removeItemFromCart(element)
+  {
+    let route = element.getAttribute('data-action')
+    let container = document.querySelector('.right-sidebar > .container')
+
+    this.http.post(`${this.baseURL}/${route}`)
+      .then(response => {
+        if (response) {
+          // Reload cart and show flash_message
+          this.toggleActive(document.querySelector('.right-sidebar'))
+          this.emptyContainer(container)
+          return this.http.get(`${this.baseURL}/cart`)
+        }
+        else {
+          // Show flash_message with error
+        }
+      })
+      .then(newCartTemplate => {
+        setTimeout(() => {
+          this.loadTemplate(newCartTemplate, container)
+          this.toggleActive(document.querySelector('.right-sidebar'))
+        }, 150);
+      })
+      .catch(error => console.log(error))
   }
 }
 

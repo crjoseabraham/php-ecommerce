@@ -20,7 +20,7 @@
 			<span id="subtotal"> Subtotal: ${{ item.subtotal }} </span>
 		</div>
 
-		<button id="delete" data-action="delete-item">
+		<button id="delete" data-action="remove-item/{{ product.product_id }}">
 			<ion-icon name="trash"></ion-icon> <span>Remove</span>
 		</button>
 		{% endif %}
