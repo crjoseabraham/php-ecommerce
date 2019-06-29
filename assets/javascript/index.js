@@ -36,5 +36,12 @@ document.querySelector('body').addEventListener('click', async function(e) {
 
 		ui.emptyContainer(container)
 		ui.loadTemplate(await http.get(`${baseURL}/${route}`), container)
+
+		// Specific event listeners for dynamic elements (hardcoded)
+		if (route === 'cart') {
+			// Set total amount
+			ui.handleShipping(document.getElementById('shipping'))
+			document.getElementById('shipping').addEventListener('change', ui.handleShipping)
+		}
 	}
 })

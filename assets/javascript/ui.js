@@ -1,5 +1,6 @@
 class UI
 {
+
   // Toggle black semi-transparent layer
   overlay()
   {
@@ -83,27 +84,53 @@ class UI
   removeItemFromCart(element)
   {
     let route = element.getAttribute('data-action')
-    let container = document.querySelector('.right-sidebar > .container')
+    let container = document.querySelector('.right-sidebar .container')
 
     this.http.post(`${this.baseURL}/${route}`)
       .then(response => {
-        if (response) {
-          // Reload cart and show flash_message
-          this.toggleActive(document.querySelector('.right-sidebar'))
-          this.emptyContainer(container)
+        if (response)
+          // If deletion was successful reload cart template
           return this.http.get(`${this.baseURL}/cart`)
-        }
-        else {
-          // Show flash_message with error
-        }
+        else
+          return false
       })
       .then(newCartTemplate => {
-        setTimeout(() => {
-          this.loadTemplate(newCartTemplate, container)
-          this.toggleActive(document.querySelector('.right-sidebar'))
-        }, 150);
+        if (newCartTemplate)
+        {
+          this.emptyContainer(container)
+
+          setTimeout(() => {
+            this.loadTemplate(newCartTemplate, container)
+            this.handleShipping(document.getElementById('shipping'))
+            document.getElementById('shipping').addEventListener('change', this.handleShipping)
+          }, 100);
+        }
+        else
+          alert('Something went wrong. Please try again')
       })
       .catch(error => console.log(error))
+  }
+
+  // Add/Subtract shipping costs
+  handleShipping(element)
+  {
+    const selectedValue = (element.target === undefined) ? parseFloat(element.value) : parseFloat(element.target.value)
+    const subtotal = parseFloat(document.querySelector('.subtotal-value').innerText)
+    let total = 0
+
+    switch (selectedValue) {
+      case 0:
+        total = subtotal
+        break;
+
+      case 7:
+        total = (subtotal + (subtotal * 0.07)).toFixed(2)
+        break;
+    }
+
+    document.querySelector(".total-value").innerHTML = total
+    // Update hidden input value
+    document.getElementById('shippingInput').value = selectedValue
   }
 }
 

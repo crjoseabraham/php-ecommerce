@@ -5,6 +5,7 @@
 	</button>
 </div>
 
+{% if user_cart is not empty %}
 <div class="cart-container">
 	{% set cart_items = data.0 %}
 	{% set products = data.1 %}
@@ -32,7 +33,7 @@
 <div class="summary">
 	<div class="row">
 		<p>Subtotal: </p>
-		<span> ${{ subtotal }} </span>
+		<span class="subtotal-value">{{ subtotal }}</span>
 	</div>
 
 	<div class="row">
@@ -44,6 +45,26 @@
 		</select>
 		</div>
 	</div>
+
+	<hr>
+
+	<div class="row">
+		<p class="total-title">Total amount:</p>
+		<p> $<span class="total-value"></span> </p>
+	</div>
 </div>
 
-<button data-action="confirm-payment" id="checkout"> Check out</button>
+<form action="process-payment" method="post">
+	<input type="hidden" name="shipping" id="shippingInput">
+	<button type="submit" id="checkout"> Check out</button>
+</form>
+{% else %}
+<div class="empty-cart">
+	<span class="surprised-face">
+		(๑⚈ ․̥ ⚈๑)
+	</span>
+	<span class="text">
+		Your cart is empty
+	</span>
+</div>
+{% endif %}

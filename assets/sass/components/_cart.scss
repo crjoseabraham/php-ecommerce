@@ -2,7 +2,6 @@
   margin-top: 2rem;
   max-height: 24rem;
   overflow: auto;
-  border: 1px solid #888;
   padding: 0 .5rem;
 
   @media screen and (max-width: 400px){
@@ -73,6 +72,10 @@
   padding: 1rem 0;
   border-top: 2px solid #ededed;
 
+  hr {
+    margin-top: 1rem;
+  }
+
   .row {
     display: flex;
     justify-content: space-between;
@@ -82,20 +85,36 @@
       font-size: 1.6rem;
     }
 
-    span {
+    p:last-child {
       font-size: 2.2rem;
+    }
+
+    p.total-title {
       font-weight: 700;
+      font-size: 2.2rem;
+      text-transform: uppercase;
+    }
+
+    span {
+      font-size: 1.6rem;
+      font-weight: 700;
+
+      &.total-value {
+        font-size: 2.2rem;
+      }
     }
   }
 
   select {
-    padding: .5rem;
     border: 1px solid #ccc;
   }
 }
 
+.summary + form {
+  padding: 1rem 0 !important;
+}
+
 button#checkout {
-  margin-top: 2rem;
   padding: 1.2rem;
   background-color: #000;
   color: #fff;
@@ -109,5 +128,25 @@ button#checkout {
 
   &:hover {
     background-color: lighten(#000, 20%);
+  }
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  padding-top: 10rem;
+
+  .surprised-face {
+    font-size: 6rem;
+  }
+
+  .text {
+    font-size: 2rem;
+    padding-top: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
 }

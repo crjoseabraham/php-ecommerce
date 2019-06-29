@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Controller;
 
 use \Model\Payment;
@@ -10,7 +10,7 @@ use \Model\Cart;
  * Handle needed methods and data to process payment and print orders receipt
  */
 class Payments
-{  
+{
 
   /**
    * Get all orders for the current user
@@ -30,13 +30,13 @@ class Payments
     $subtotal = Carts::getCartTotal();
 
     // Get total adding shipping costs
-    switch (intval($_POST['shipping'])) 
+    switch (intval($_POST['shipping']))
     {
       case 7:
         $shipping_costs = number_format(($subtotal * 0.07), 2, '.', '');
         $total = $subtotal + $shipping_costs;
         break;
-      
+
       case 0:
         $shipping_costs = 0;
         $total = $subtotal;
@@ -54,7 +54,7 @@ class Payments
       Cart::emptyCart();
       \flash(PURCHASE_COMPLETED);
     }
-    
-    redirect('/store');
+
+    redirect('/');
   }
 }

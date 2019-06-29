@@ -29,9 +29,18 @@ main
 	display: grid;
 	justify-content: center;
 	padding: 5rem 2rem 10rem 2rem;
-	grid-template-columns: repeat(auto-fit, minmax(25rem, 25rem));
-	grid-template-rows: repeat(auto-fit, 35rem);
-	grid-gap: 3rem;
+	grid-template-columns: repeat(auto-fit, minmax(18rem, 20rem));
+	grid-template-rows: repeat(auto-fit, 30rem);
+	grid-column-gap: 3rem;
+
+	@media screen and (max-width: 480px) {
+		grid-template-columns: repeat(auto-fit, minmax(14rem, 16rem));
+	}
+
+	@media screen and (max-width: 400px) {
+		grid-template-columns: repeat(auto-fit, minmax(10rem, 12rem));
+		grid-template-rows: repeat(auto-fit, 22rem);
+	}
 }
 
 footer

@@ -50,7 +50,7 @@ class Carts
     else
       flash(LOGIN_REQUIRED, INFO);
 
-    redirect('/');
+    redirect('/#store');
   }
 
   /**
@@ -63,7 +63,10 @@ class Carts
     $item = Products::productExists($item_id);
 
     if ($item)
+    {
       Cart::removeItem($item->product_id);
+      flash(ITEM_REMOVED, SUCCESS);
+    }
     else
       echo json_encode(false);
   }

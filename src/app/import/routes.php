@@ -19,6 +19,7 @@ $router->post('login', 'Auth@login');
 $router->post('register', 'Auth@register');
 $router->post('add-item/{item}', 'Carts@add');
 $router->post('remove-item/{item}', 'Carts@remove');
+$router->post('process-payment', 'Payments@processPayment');
 
 
 
