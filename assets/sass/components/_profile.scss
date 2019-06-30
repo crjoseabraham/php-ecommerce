@@ -1,0 +1,125 @@
+.profile-container {
+  padding-top: 2rem;
+
+  .container {
+    text-align: left;
+
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+
+      &:not(:first-child) {
+        margin-top: 2.5rem;
+      }
+
+      h3 {
+        font-size: 1.6rem;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+
+        span {
+          padding-left: 1rem;
+        }
+      }
+    }
+  }
+
+  .text-button {
+    color: $primary;
+    padding-top: 1rem;
+
+    &.danger {
+      color: $danger;
+    }
+  }
+
+  ul {
+    padding: 1rem 0;
+    list-style: none;
+    width: 100%;
+
+    li {
+      padding: 1rem;
+      background-color: #fff;
+      border-top: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      width: 100%;
+
+      &:last-child {
+        border-bottom: 1px solid #ccc;
+      }
+
+      span {
+        font-size: 1.4rem;
+
+        &.field {
+          font-weight: 700;
+        }
+
+        &.value {
+          padding-left: 1.5rem;
+          color: #777;
+        }
+      }
+    }
+  }
+
+  table.receipts {
+    margin-top: 1rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 1.4rem;
+    padding: 1rem;
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    tbody {
+      display:block;
+      width: 100%;
+      overflow: auto;
+      height: 20rem;
+
+      tr:nth-child(even) {
+        background-color: #eee;
+      }
+    }
+
+    thead {
+      background: black;
+      color:#fff;
+    }
+
+    thead tr  {
+      display:block;
+    }
+
+    th, td {
+      padding: 5px;
+      text-align: center;
+      width: 1%;
+    }
+
+    form button {
+      color: #fff;
+      background-color: $warning;
+      border: 1px solid darken($warning, 15%);
+      border-radius: 3px;
+      padding: 1px 3px;
+      cursor: pointer;
+      display: flex;
+      margin: 0 auto;
+
+      &:hover {
+        background-color: darken($warning, 7%);
+      }
+
+      ion-icon {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}

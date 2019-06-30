@@ -22,6 +22,7 @@
 			}
 		}
 
+		li button,
 		li a {
 			padding: 1rem 2rem;
 			display: flex;
@@ -30,6 +31,11 @@
 			font-size: 2.4rem;
 			text-transform: uppercase;
 			text-decoration: none;
+			background-color: transparent;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+			height: 100%;
 		}
 	}
 }

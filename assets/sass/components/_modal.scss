@@ -29,37 +29,13 @@
 	}
 
 	& .modal-title {
-		display: flex;
-		justify-content: space-between;
-		border-bottom: 1px solid $dark;
+		@include menu-title;
 
 		h2 {
 			font-family: 'Roboto Condensed', sans-serif !important;
-			font-size: 3rem;
+			font-size: 2.6rem;
 			text-transform: uppercase;
 			font-weight: 400;
-		}
-
-		.modal-toggle {
-			border: none;
-	    border-radius: 50%;
-	    color: #fff;
-	    background-color: #000;
-	    font-size: 1.8rem;
-	    width: 3.4rem;
-	    height: 3.4rem;
-	    line-height: .6;
-	    transition: background-color .3s ease-in-out;
-	    cursor: pointer;
-
-	    &:hover {
-	      background-color: #aeaeae;
-	    }
-
-	    ion-icon {
-	      width: 3.3rem;
-	      height: 3.3rem;
-	    }
 		}
 	}
 

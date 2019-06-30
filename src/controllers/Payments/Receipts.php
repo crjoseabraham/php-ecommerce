@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Controller;
 
 use \Model\User;
@@ -10,6 +10,14 @@ use \Mpdf\Mpdf as mPDF;
  */
 class Receipts
 {
+  /**
+   * Get all orders for the current user
+   */
+  public function getUserOrders()
+  {
+    return Payment::getOrders();
+  }
+
   /**
    * Print an order's receipt in a PDF document
    * @param  int $receipt_id    ID of the order to print
@@ -79,7 +87,7 @@ class Receipts
 
       <tbody>';
 
-    foreach ($order->items as $item) 
+    foreach ($order->items as $item)
     {
       $order_subtotal += $item->subtotal;
       $html .= '
@@ -89,7 +97,7 @@ class Receipts
         <td> '. $item->subtotal .'</td>
       </tr>';
     }
-      
+
     $html .= '
       </tbody>
     </table>

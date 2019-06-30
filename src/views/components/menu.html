@@ -7,9 +7,15 @@
 
 <nav>
 	<ul class="main-menu">
-		<li><a href="#"> Sign In </a></li>
+		{% if current_user is not empty %}
+		<li>
+			<button class="load-template profile" id="left-sidebar"> Profile </button>
+		</li>
+		{% endif %}
 		<li><a href="#"> About this project </a></li>
-		<li><a href="#"> View Source Code </a></li>
-		<li><a href="#"> Contact Developer </a></li>
+		<li><a href="http://github.com/crjoseabraham/shoppingcart" target="_blank"> View Source Code </a></li>
+		<li>
+			<button class="load-template contact" id="left-sidebar"> Contact Developer </button>
+		</li>
 	</ul>
 </nav>

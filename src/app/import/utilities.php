@@ -1,4 +1,4 @@
-<?php 
+<?php
 //------------------------
 //  Utility functions
 //------------------------
@@ -31,9 +31,9 @@ function getMethod() : string
 /**
 * Load a view
 * @param string $file  Path to file
-* @param array  $data  Optional data that the view may require
+* @param mixed  $data  Optional data that the view may require
 */
-function renderView(string $file, array $data = []) : void
+function renderView(string $file, $data = []) : void
 {
   echo getTemplate($file, $data);
 }
@@ -41,9 +41,9 @@ function renderView(string $file, array $data = []) : void
 /**
 * Get an .html template
 * @param string $file  Path to file
-* @param array  $data  Optional data that the view may require
+* @param mixed  $data  Optional data that the view may require
 */
-function getTemplate(string $file, array $data = [])
+function getTemplate(string $file, $data = [])
 {
   $twig = null;
 
@@ -53,7 +53,6 @@ function getTemplate(string $file, array $data = [])
     $loader = new \Twig_Loader_Filesystem(dirname(dirname(__DIR__)) . '/views');
     // Instantiate Twig
     $twig = new \Twig_Environment($loader, ['debug' => true]);
-
     // Check if user is logged in or there's a cookie to remember a session. Also flash messages
     $twig->addGlobal('current_user', \Model\Session::getUser());
     $twig->addGlobal('flash_message', getFlashNotification());
@@ -86,7 +85,7 @@ function redirect(string $file) : void
  */
 function flash($message, string $type = SUCCESS) : void
 {
-  if (!isset($_SESSION['flash_notification'])) 
+  if (!isset($_SESSION['flash_notification']))
   {
     $_SESSION['flash_notification'] = ['message' => $message, 'type' => $type];
   }
@@ -98,7 +97,7 @@ function flash($message, string $type = SUCCESS) : void
  */
 function getFlashNotification()
 {
-  if (isset($_SESSION['flash_notification'])) 
+  if (isset($_SESSION['flash_notification']))
   {
     $message = $_SESSION['flash_notification'];
     unset($_SESSION['flash_notification']);

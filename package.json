@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --watch",
+    "sass": "sass --watch assets/sass:public/css --style compressed",
     "build": "webpack --mode production"
   },
   "repository": {

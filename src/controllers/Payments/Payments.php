@@ -11,15 +11,6 @@ use \Model\Cart;
  */
 class Payments
 {
-
-  /**
-   * Get all orders for the current user
-   */
-  public function getUserOrders()
-  {
-    return Payment::getOrders();
-  }
-
   /**
    * Process Payment
    * Previous validations before the payment is processed

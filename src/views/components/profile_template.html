@@ -1,0 +1,79 @@
+<div class="menu-title">
+  <button class="load-template menu" id="left-sidebar">
+    <ion-icon name="arrow-back"></ion-icon>
+  </button>
+  <span> My Profile </span>
+  <button id="left-sidebar-toggle" class="left-sidebar-toggle">
+    <ion-icon name="close"></ion-icon>
+  </button>
+</div>
+
+<div class="profile-container">
+  <div class="container">
+    <section>
+      <h3>
+        <ion-icon name="person"></ion-icon>
+        <span>Basic information</span>
+      </h3>
+
+      <ul class="user-info">
+        <li>
+          <span class="field">Name:</span>
+          <span class="value"> {{ current_user.name }} </span>
+        </li>
+
+        <li>
+          <span class="field">Email:</span>
+          <span class="value"> {{ current_user.email }} </span>
+        </li>
+      </ul>
+
+      <button class="text-button load-template update-basic" id="profile-container">
+        Change basic information
+      </button>
+
+      <button class="text-button load-template update-password" id="profile-container">
+        Change password
+      </button>
+
+      <button class="text-button danger load-template deactivate" id="profile-container">
+        Deactivate account
+      </button>
+    </section>
+
+    <section>
+      <h3>
+        <ion-icon name="time"></ion-icon>
+        <span>Purchase history</span>
+      </h3>
+
+      <table class="receipts">
+        <thead>
+          <tr>
+            <th>Ref.</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Print</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for order in data.0 %}
+          <tr>
+            <td>{{ order.order_id }}</td>
+            <td>{{ order.created_at }}</td>
+            <td>${{ order.total }}</td>
+            <td>
+              <form action="receipt/{{order.order_id}}" method="post">
+                <button type="submit">
+                  <ion-icon name="download"></ion-icon>
+                </button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>

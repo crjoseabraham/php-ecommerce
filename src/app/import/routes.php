@@ -4,10 +4,14 @@ $router->get('menu', 'Pages@menu');
 $router->get('login', 'Pages@login');
 $router->get('register', 'Pages@register');
 $router->get('recover-password', 'Pages@recoverPasswordForm');
+$router->get('update-basic', 'Pages@updateBasicInfoForm');
+$router->get('update-password', 'Pages@updatePasswordForm');
 $router->get('logout', 'Auth@logout');
 $router->get('cart', 'Pages@loadCart');
 $router->get('add-item/{item}', 'Pages@addItemForm');
 $router->get('auth', 'Auth@checkSession');
+$router->get('profile', 'Pages@profile');
+$router->get('deactivate', 'Pages@deleteAccount');
 
 // $router->get('purchase-details', 'Pages@purchaseDetails');
 // $router->get('profile', 'Pages@profile');
@@ -17,9 +21,11 @@ $router->get('auth', 'Auth@checkSession');
 
 $router->post('login', 'Auth@login');
 $router->post('register', 'Auth@register');
+$router->post('update-info/basic', 'Users@updateInfo');
 $router->post('add-item/{item}', 'Carts@add');
 $router->post('remove-item/{item}', 'Carts@remove');
 $router->post('process-payment', 'Payments@processPayment');
+$router->post('receipt/{item}', 'Receipts@print');
 
 
 

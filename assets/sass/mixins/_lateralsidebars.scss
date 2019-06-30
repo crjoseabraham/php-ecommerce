@@ -1,6 +1,6 @@
 // Default styles for both lateral sidebars
 @mixin lateralsidebar-base {
-  background-color: #fff;
+  background-color: #f8f8f8;
   padding: 2rem;
   width: 40rem;
   height: 100%;
@@ -38,25 +38,22 @@
     font-size: 2.6rem;
   }
 
-  button[class$="-sidebar-toggle"] {
+  button {
     border: none;
     border-radius: 50%;
-    color: #fff;
-    background-color: #000;
-    font-size: 2rem;
-    width: 3.6rem;
-    height: 3.6rem;
-    line-height: .6;
+    color: #333;
+    background-color: transparent;
+    line-height: 1;
     transition: background-color .3s ease-in-out;
     cursor: pointer;
 
     &:hover {
-      background-color: #aeaeae;
+      background-color: #eee;
     }
 
     ion-icon {
-      width: 3.6rem;
-      height: 3.6rem;
+      width: 3rem;
+      height: 3rem;
     }
   }
 }

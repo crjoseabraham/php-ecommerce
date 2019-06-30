@@ -1,4 +1,4 @@
-{% for product in data %}
+{% for product in data.0 %}
 <div class="item modal-toggle load-template add-item/{{ product.product_id }}" id="modal">
   <div class="item-extras">
     <img src="{{ product.picture }}" alt="{{ product.description }}">
