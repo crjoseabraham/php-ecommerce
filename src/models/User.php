@@ -23,7 +23,7 @@ class User extends Database
     if ($this->registerUser($data))
     {
       $user = $this->findByEmail($data['email']);
-      foreach ($user as $key => $value) 
+      foreach ($user as $key => $value)
       {
         $this->$key = $value;
       }
@@ -51,8 +51,20 @@ class User extends Database
   public function findById($id)
   {
     $db = static::getDB();
-    $stmt = $db->prepare("SELECT * FROM user WHERE id = :id;");
+    $stmt = $db->prepare("SELECT * FROM `user` WHERE id = :id;");
     $stmt->bindValue(':id', $id, \PDO::PARAM_STR);
+    return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_OBJ) : false;
+  }
+
+  /**
+   * Search for certain email in the database for another user that's not the current user. Used as valdiation when users want to edit their e-mail address
+   */
+  public function findByEmailExceptCurrent($email)
+  {
+    $db = static::getDB();
+    $stmt = $db->prepare("SELECT * FROM `user` WHERE email = :email AND NOT id = :id");
+    $stmt->bindValue(':email', $email, \PDO::PARAM_STR);
+    $stmt->bindValue(':id', $_SESSION['user_id'], \PDO::PARAM_STR);
     return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_OBJ) : false;
   }
 
@@ -72,7 +84,7 @@ class User extends Database
     $stmt->execute();
 
     $user = $stmt->fetch(\PDO::FETCH_OBJ);
-    
+
     if ($user)
     {
       // Check password reset token hasn't expired
@@ -108,29 +120,34 @@ class User extends Database
   }
 
   /**
-   * Update information from user profile
-   * @param  array $data    POST data sent by user
-   * @param  array $fields  Partial strings for final SQL query
-   * @return boolean        Result of execution: true or false
+   * Update information from user profile (name & email)
+   * @param  string $name    New name
+   * @param  string $email   New email
+   * @return boolean         Result of execution: true or false
    */
-  public function updateInformation($data, $fields) : bool
+  public function updateBasicInfo($name, $email) : bool
   {
-    $query = 'UPDATE user SET ' . implode(', ', $fields) . ' WHERE `id` = :user';
+    $db = static::getDB();
+    $stmt = $db->prepare("UPDATE `user` SET `name` = :n, `email` = :e WHERE `id` = :id");
+    $stmt->bindValue(':n', $name, \PDO::PARAM_STR);
+    $stmt->bindValue(':e', $email, \PDO::PARAM_STR);
+    $stmt->bindValue(':id', $_SESSION['user_id'], \PDO::PARAM_INT);
+    return $stmt->execute();
+  }
+
+  /**
+   * Change current user's password
+   * @param  string $password   New password
+   * @return boolean            Result of execution: true or false
+   */
+  public function changePassword($password): bool
+  {
+    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
     $db = static::getDB();
-    $stmt = $db->prepare($query);
-
-    if (isset($data['name']))
-      $stmt->bindValue(':name', $data['name'], \PDO::PARAM_STR);
-
-    if (isset($data['email']))
-      $stmt->bindValue(':email', $data['email'], \PDO::PARAM_STR);
-
-    if (isset($data['hashed_password']))
-      $stmt->bindValue(':pass', $data['hashed_password'], \PDO::PARAM_STR);
-
+    $stmt = $db->prepare("UPDATE `user` SET `password` = :new_pass WHERE `id` = :user");
+    $stmt->bindValue(':new_pass', $hashed_password, \PDO::PARAM_STR);
     $stmt->bindValue(':user', $_SESSION['user_id'], \PDO::PARAM_INT);
-    
     return $stmt->execute();
   }
 
@@ -198,15 +215,5 @@ class User extends Database
     $html = getTemplate('reset-email.html', ['url' => $url]);
 
     Emails::send($email, 'Password reset', $text, $html);
-  }
-
-  public function changePassword($user, $data)
-  {
-    $hashed_password = password_hash($data['password'], PASSWORD_BCRYPT);
-    $db = static::getDB();
-    $stmt = $db->prepare( "UPDATE `user` SET `password` = :new_pass, password_reset_hash = null, password_reset_expires_at = null WHERE `id` = :user");
-    $stmt->bindValue(':new_pass', $hashed_password, \PDO::PARAM_STR);
-    $stmt->bindValue(':user', $user->id, \PDO::PARAM_INT);
-    return $stmt->execute();
   }
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Controller;
 
 use \Model\User;
@@ -43,7 +43,7 @@ class Auth
           $session = new Session($user->id);
 
           // Verify if 'remember me' is checked
-          if(isset($_POST['remember_login']))
+          if(isset($_POST['remember_me']))
           {
             $session->rememberLogin();
             Cookies::newCookie('remember_me', $session->original_token, $session->expiry_timestamp, '/');
@@ -91,7 +91,7 @@ class Auth
       else
         flash(REGISTRATION_ERROR, ERROR);
     }
-    
+
     redirect('/');
   }
 
@@ -139,7 +139,7 @@ class Auth
       if ($remembered_login)
         Session::deleteRememberedLogin($remembered_login->token_hash);
 
-      Cookies::newCookie('remember_me', '', time() - 3600);
+      Cookies::newCookie('remember_me', '', time() - 3600, '/');
     }
   }
 
@@ -165,8 +165,8 @@ class Auth
     if (!Session::getUser()) {
       $user = User::findByPasswordReset(htmlspecialchars($token));
       renderView('reset-password.html', ["token" => $token]);
-    } 
-    else 
+    }
+    else
       die('You can not access this page');
   }
 
@@ -178,8 +178,8 @@ class Auth
         redirect('/home');
       else
         die(ERROR_MESSAGE);
-    } 
-    else 
+    }
+    else
       die('You can not access this page');
   }
 }

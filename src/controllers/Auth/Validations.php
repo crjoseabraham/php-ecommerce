@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Controller;
 
 class Validations
@@ -49,13 +49,19 @@ class Validations
 		$email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
 		if (filter_var($email, FILTER_VALIDATE_EMAIL) === false)
-    	self::$errors[] = EMAIL_INVALID;
+			self::$errors[] = EMAIL_INVALID;
 
-    if ($type === 'registration')
-    {
-    	if (\Model\User::findByEmail($email))
-      	self::$errors[] = EMAIL_EXISTS;
-    }
+		switch ($type) {
+			case 'registration':
+				if (\Model\User::findByEmail($email))
+					self::$errors[] = EMAIL_EXISTS;
+				break;
+
+			case 'update':
+				if (\Model\User::findByEmailExceptCurrent($email))
+					self::$errors[] = EMAIL_EXISTS;
+				break;
+		}
 
     return $email;
 	}
