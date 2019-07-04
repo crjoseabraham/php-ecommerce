@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2019 a las 05:25:26
+-- Tiempo de generación: 04-07-2019 a las 17:23:15
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -180,8 +180,7 @@ ALTER TABLE `cart_items`
 -- Indices de la tabla `order`
 --
 ALTER TABLE `order`
-  ADD PRIMARY KEY (`order_id`),
-  ADD KEY `FK_order_user` (`user_id`);
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indices de la tabla `order_details`
@@ -279,8 +278,8 @@ ALTER TABLE `cart_items`
 -- Filtros para la tabla `order_details`
 --
 ALTER TABLE `order_details`
-  ADD CONSTRAINT `FK_order_items_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_order_items_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FK_order_details_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_order_details_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `rating`
