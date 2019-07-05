@@ -70,8 +70,14 @@ class Pages
   }
 
   // Load page for "Delete account"
-  public function deleteAccount(): void
+  public function deleteAccount() : void
   {
     renderView('components/deactivate_account.html');
+  }
+
+  // Reset password form
+  public function resetPassword($token) : void
+  {
+    renderView('recover_password_page.html', ['token' => $token]);
   }
 }

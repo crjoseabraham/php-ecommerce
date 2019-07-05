@@ -148,12 +148,20 @@ class Auth
    */
   public function recoverPassword()
   {
-    $email = strtolower(htmlspecialchars($_POST['email']));
+    $email = Validations::validateEmail($_POST['email']);
+    $possible_errors = Validations::getValidationErrors();
 
-    if (User::passwordResetProcess($email))
-        redirect('/email-sent');
+    if (empty($possible_errors))
+    {
+      if (User::passwordResetProcess($email))
+        flash(RECOVER_PASSWORD_EMAIL);
+      else
+        flash(EMAIL_DOESNT_EXISTS, ERROR);
+    }
     else
-      die(ERROR_MESSAGE);
+      flash(ERROR_MESSAGE, ERROR);
+
+    redirect('/');
   }
 
   /**
@@ -162,24 +170,48 @@ class Auth
    */
   public function verifyResetPasswordToken($token)
   {
-    if (!Session::getUser()) {
+    if (!Session::getUser())
+    {
       $user = User::findByPasswordReset(htmlspecialchars($token));
-      renderView('reset-password.html', ["token" => $token]);
+
+      if ($user)
+        redirect("/update-password/$token");
+      else
+      {
+        flash(RECOVER_TOKEN_EXPIRED, ERROR);
+        redirect('/');
+      }
     }
     else
-      die('You can not access this page');
+    {
+      flash(LOGIN_REQUIRED, INFO);
+      redirect('/');
+    }
   }
 
   public function resetPasswordForm($token)
   {
     if (!Session::getUser()) {
+      $token = $_POST['token'];
+      [$password, $password_confirm] = Validations::validatePassword($_POST['password'], $_POST['password_confirm']);
       $user = User::findByPasswordReset(htmlspecialchars($token));
-      if ($user && User::changePassword($user, $_POST))
-        redirect('/home');
+
+      $possible_errors = Validations::getValidationErrors();
+
+      if ($possible_errors)
+        flash($possible_errors, ERROR);
       else
-        die(ERROR_MESSAGE);
+      {
+        if ($user && User::changePassword($password, $user))
+        {
+          User::clearPasswordHash($user);
+          flash(DATA_UPDATED);
+        }
+      }
     }
     else
-      die('You can not access this page');
+      flash(LOGIN_REQUIRED, ERROR);
+
+    redirect('/');
   }
 }

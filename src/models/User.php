@@ -138,16 +138,23 @@ class User extends Database
   /**
    * Change current user's password
    * @param  string $password   New password
+   * @param  mixed  $user       User can be passed or not if a session is running or if
+   *                            it's called from the recover password function
    * @return boolean            Result of execution: true or false
    */
-  public function changePassword($password): bool
+  public function changePassword($password, $user = null): bool
   {
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
     $db = static::getDB();
     $stmt = $db->prepare("UPDATE `user` SET `password` = :new_pass WHERE `id` = :user");
     $stmt->bindValue(':new_pass', $hashed_password, \PDO::PARAM_STR);
-    $stmt->bindValue(':user', $_SESSION['user_id'], \PDO::PARAM_INT);
+
+    if ($user === null)
+      $stmt->bindValue(':user', $_SESSION['user_id'], \PDO::PARAM_INT);
+    else
+      $stmt->bindValue(':user', $user->id, \PDO::PARAM_INT);
+
     return $stmt->execute();
   }
 
@@ -205,15 +212,30 @@ class User extends Database
   }
 
   /**
+   * Clear password hash fields
+   * @param object $user
+   */
+  public function clearPasswordHash($user)
+  {
+    $db = static::getDB();
+    $stmt = $db->prepare("
+      UPDATE `user`
+      SET password_reset_hash = '',
+          password_reset_expires_at = ''
+      WHERE `id` = :user_id");
+    $stmt->bindValue(':user_id', $user->id, \PDO::PARAM_INT);
+    $stmt->execute();
+  }
+
+  /**
    * Send password reset email
    */
   public function sendPasswordResetEmail($token, $email)
   {
     $url = URLROOT . '/password-reset/' . $token;
 
-    $text = getTemplate('reset-email.txt', ['url' => $url]);
-    $html = getTemplate('reset-email.html', ['url' => $url]);
-
+    $text = getTemplate('email_templates/reset_email.txt', ['url' => $url]);
+    $html = getTemplate('email_templates/reset_email.html', ['url' => $url]);
     Emails::send($email, 'Password reset', $text, $html);
   }
 }

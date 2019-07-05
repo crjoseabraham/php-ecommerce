@@ -12,6 +12,8 @@ $router->get('add-item/{item}', 'Pages@addItemForm');
 $router->get('auth', 'Auth@checkSession');
 $router->get('profile', 'Pages@profile');
 $router->get('deactivate', 'Pages@deleteAccount');
+$router->get('password-reset/{token}', 'Auth@verifyResetPasswordToken');
+$router->get('update-password/{token}', 'Pages@resetPassword');
 
 // $router->get('purchase-details', 'Pages@purchaseDetails');
 // $router->get('profile', 'Pages@profile');
@@ -28,6 +30,8 @@ $router->post('remove-item/{item}', 'Carts@remove');
 $router->post('process-payment', 'Payments@processPayment');
 $router->post('receipt/{item}', 'Receipts@print');
 $router->post('delete-account', 'Users@deleteAccount');
+$router->post('recover-password', 'Auth@recoverPassword');
+$router->post('update-password/submit-pass', 'Auth@resetPasswordForm');
 
 
 
