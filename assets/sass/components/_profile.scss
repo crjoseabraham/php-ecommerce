@@ -103,22 +103,23 @@
       width: 1%;
     }
 
+    form {
+      display: flex;
+      justify-content: center;
+    }
+
     form button {
-      color: #fff;
-      background-color: $warning;
-      border: 1px solid darken($warning, 15%);
-      border-radius: 3px;
-      padding: 1px 3px;
+      border: none;
+      background: transparent;
       cursor: pointer;
       display: flex;
-      margin: 0 auto;
 
       &:hover {
-        background-color: darken($warning, 7%);
+        opacity: .7;
       }
 
-      ion-icon {
-        font-size: 1.6rem;
+      .icon {
+        width: 1.8rem;
       }
     }
   }

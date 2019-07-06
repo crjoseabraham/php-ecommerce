@@ -77,19 +77,19 @@
     transition: all .3s ease-in-out;
 
     &:hover {
-      ion-icon {
-        font-size: 1.6rem;
+      .icon {
+        width: 2.2rem;
 
         @media screen and (max-width: 700px) {
-          font-size: 1.4rem;
+          width: 1.8rem;
         }
       }
     }
 
-    ion-icon {
+    .icon {
       padding-left: 1rem;
-      font-size: 0px;
-      transition: font-size .3s ease-in-out;
+      width: 0px;
+      transition: width .3s ease-in-out;
     }
 
     @media screen and (max-width: 700px) {

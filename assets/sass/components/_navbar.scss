@@ -10,6 +10,10 @@ header {
 	align-items: center;
 	box-shadow: 0 -1rem 2rem $dark;
 
+	.icon {
+		width: 1.4rem;
+	}
+
 	& > *:not(nav) {
 		height: 100%;
 	}
@@ -42,11 +46,6 @@ header {
 		transition: background-color .2s ease-in-out;
 		position: relative;
 
-		ion-icon {
-			font-weight: 700;
-			font-size: 1.8rem;
-		}
-
 		&.left-sidebar-toggle span {
 			padding-left: .7rem;
 		}
@@ -63,19 +62,15 @@ header {
 			span {
 				display: none;
 			}
-
-			ion-icon {
-				font-size: 2.4rem;
-			}
 		}
+	}
+
+	a.logout-button span {
+		padding-right: .7rem;
 	}
 
 	.right-sidebar-toggle,
 	a.brand {
 		margin-left: auto;
-	}
-
-	a.logout-button ion-icon {
-		padding-left: .7rem;
 	}
 }

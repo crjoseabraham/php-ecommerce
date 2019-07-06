@@ -1,6 +1,6 @@
 <header>
 	<button class="left-sidebar-toggle load-template menu" id="left-sidebar">
-		<ion-icon name="menu"></ion-icon>
+		<img src="icons/menu.svg" class="icon" alt="Menu icon">
 		<span class="button-title">Menu</span>
 	</button>
 
@@ -11,17 +11,17 @@
 	{% if current_user is empty %}
 	<button class="right-sidebar-toggle load-template login" id="right-sidebar">
 		<span class="button-title">Access</span>
-		<ion-icon name="contact"></ion-icon>
+		<img src="icons/user.svg" class="icon" alt="User icon">
 	</button>
 	{% else %}
 	<button class="right-sidebar-toggle load-template cart" id="right-sidebar">
 		<span class="button-title">Cart</span>
-		<ion-icon name="cart"></ion-icon>
+		<img src="icons/shopping-cart.svg" class="icon" alt="Shopping cart icon">
 	</button>
 
 	<a href="logout" class="logout-button">
-		<span class="button-title">Log out</span>
-		<ion-icon name="power"></ion-icon>
+		<span class="button-title">Logout</span>
+		<img src="icons/stand-by.svg" class="icon" alt="Logout icon">
 	</a>
 	{% endif %}
 </header>

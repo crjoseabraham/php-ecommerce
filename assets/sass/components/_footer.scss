@@ -1,0 +1,9 @@
+footer {
+  grid-area: footer;
+  background-color: $dark;
+  color: #ccc;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}

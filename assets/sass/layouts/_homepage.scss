@@ -2,7 +2,7 @@ body
 {
 	position: relative;
 	display: grid;
-	grid-template-rows: 1fr auto auto 10rem;
+	grid-template-rows: 1fr auto auto auto;
 	grid-template-columns: 1fr;
 	grid-template-areas:
 	"header"
@@ -41,10 +41,4 @@ main
 		grid-template-columns: repeat(auto-fit, minmax(10rem, 12rem));
 		grid-template-rows: repeat(auto-fit, 22rem);
 	}
-}
-
-footer
-{
-	background-color: dodgerblue;
-	grid-area: footer;
 }
