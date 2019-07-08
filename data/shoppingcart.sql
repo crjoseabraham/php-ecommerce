@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-07-2019 a las 17:23:15
+-- Tiempo de generación: 08-07-2019 a las 23:25:16
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -95,13 +95,13 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `description`, `price`, `picture`, `rating`) VALUES
-(1, 'Apple', 0.3, 'img/apples.jpg', 2),
-(2, 'Beer', 2, 'img/beer.jpg', 2),
-(3, 'Water', 1, 'img/water.jpg', 3),
-(4, 'Cheese', 3.74, 'img/cheese.jpg', 5),
-(5, 'Burger', 5.99, 'img/hamburger.jpg', 4),
-(6, 'Taco', 3.99, 'img/taco.jpg', 4),
-(7, 'Orange Juice', 2.35, 'img/orange-juice.jpg', 3.5);
+(1, 'Apple', 0.3, 'img/apples.jpg', 3),
+(2, 'Beer', 2, 'img/beer.jpg', 0),
+(3, 'Water', 1, 'img/water.jpg', 0),
+(4, 'Cheese', 3.74, 'img/cheese.jpg', 0),
+(5, 'Burger', 5.99, 'img/hamburger.jpg', 0),
+(6, 'Taco', 3.99, 'img/taco.jpg', 0),
+(7, 'Orange Juice', 2.35, 'img/orange-juice.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -112,8 +112,8 @@ INSERT INTO `product` (`product_id`, `description`, `price`, `picture`, `rating`
 CREATE TABLE `rating` (
   `id` int(11) NOT NULL,
   `rating_product_id` int(11) NOT NULL,
-  `rating_value` float NOT NULL,
-  `session_id` varchar(255) DEFAULT NULL
+  `rating_user_id` int(11) NOT NULL,
+  `rating_value` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -126,6 +126,19 @@ CREATE TABLE `remembered_logins` (
   `token_hash` varchar(64) NOT NULL,
   `session_id` varchar(50) NOT NULL,
   `expires_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `review`
+--
+
+CREATE TABLE `review` (
+  `id` int(11) NOT NULL,
+  `review_product_id` int(11) NOT NULL,
+  `review_user_id` int(11) NOT NULL,
+  `review_content` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -210,6 +223,14 @@ ALTER TABLE `remembered_logins`
   ADD KEY `session_id` (`session_id`);
 
 --
+-- Indices de la tabla `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK__product` (`review_product_id`),
+  ADD KEY `FK__user` (`review_user_id`);
+
+--
 -- Indices de la tabla `session`
 --
 ALTER TABLE `session`
@@ -249,6 +270,12 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT de la tabla `rating`
 --
 ALTER TABLE `rating`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `review`
+--
+ALTER TABLE `review`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -292,6 +319,13 @@ ALTER TABLE `rating`
 --
 ALTER TABLE `remembered_logins`
   ADD CONSTRAINT `remembered_logins_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `session` (`session_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `FK__product` FOREIGN KEY (`review_product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK__user` FOREIGN KEY (`review_user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `session`

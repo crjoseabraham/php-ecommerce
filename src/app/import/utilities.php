@@ -53,6 +53,7 @@ function getTemplate(string $file, $data = [])
     $loader = new \Twig_Loader_Filesystem(dirname(dirname(__DIR__)) . '/views');
     // Instantiate Twig
     $twig = new \Twig_Environment($loader, ['debug' => true]);
+    $twig->addExtension(new \Twig\Extension\DebugExtension());
     // Check if user is logged in or there's a cookie to remember a session. Also flash messages
     $twig->addGlobal('current_user', \Model\Session::getUser());
     $twig->addGlobal('flash_message', getFlashNotification());

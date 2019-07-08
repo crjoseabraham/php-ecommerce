@@ -221,7 +221,7 @@ class User extends Database
     $stmt = $db->prepare("
       UPDATE `user`
       SET password_reset_hash = '',
-          password_reset_expires_at = ''
+          password_reset_expires_at = null
       WHERE `id` = :user_id");
     $stmt->bindValue(':user_id', $user->id, \PDO::PARAM_INT);
     $stmt->execute();

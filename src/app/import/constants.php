@@ -20,7 +20,7 @@ define('INFO', 'warning');
 define('ERROR', 'danger');
 
 // User authentication notifications
-define('LOGIN_REQUIRED', 'You need to be logged in to access that page');
+define('LOGIN_REQUIRED', 'You need to be logged in to perform that action');
 define('LOGIN_ERROR', 'Email and password combination is wrong');
 define('REGISTRATION_ERROR', 'Something went wrong with your registration');
 define('NAME_MISSING', 'Name is required');
@@ -32,6 +32,10 @@ define('PASSWORDS_DONT_MATCH', 'Password must match confirmation');
 define('PASSWORD_TOO_SHORT', 'Password must be at least 6 characters long');
 define('PASSWORD_NEEDS_LETTER', 'Password needs at least one letter');
 define('PASSWORD_NEEDS_NUMBER', 'Password needs at least one number');
+
+// Product notifications
+define('REVIEW_SUBMITTED', 'Your review was submitted successfully');
+define('REVIEW_DELETED', 'Your review was deleted');
 
 // Cart notifications
 define('ITEM_ADDED', 'Item added to your cart');

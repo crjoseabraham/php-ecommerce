@@ -48,7 +48,11 @@ class Pages
   // Load cart template in the right sidebar container
   public function addItemForm(int $item_id) : void
   {
-    renderView('components/modal.html', [Products::productExists($item_id)]);
+    $data = [
+      'product' => Products::productExists($item_id),
+      'reviews' => Ratings::getProductReviews($item_id)
+    ];
+    renderView('components/modal.html', $data);
   }
 
   // Load profile template

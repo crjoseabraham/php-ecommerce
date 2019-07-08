@@ -15,12 +15,6 @@ $router->get('deactivate', 'Pages@deleteAccount');
 $router->get('password-reset/{token}', 'Auth@verifyResetPasswordToken');
 $router->get('update-password/{token}', 'Pages@resetPassword');
 
-// $router->get('purchase-details', 'Pages@purchaseDetails');
-// $router->get('profile', 'Pages@profile');
-// $router->get('forgot-password', 'Pages@forgottenPassword');
-// $router->get('email-sent', 'Pages@emailSent');
-// $router->get('password-reset/{token}', 'Auth@verifyResetPasswordToken');
-
 $router->post('login', 'Auth@login');
 $router->post('register', 'Auth@register');
 $router->post('update-info/basic', 'Users@updateInfo');
@@ -32,15 +26,6 @@ $router->post('receipt/{item}', 'Receipts@print');
 $router->post('delete-account', 'Users@deleteAccount');
 $router->post('recover-password', 'Auth@recoverPassword');
 $router->post('update-password/submit-pass', 'Auth@resetPasswordForm');
-
-
-
-// $router->post('recover-password', 'Auth@recoverPassword');
-// $router->post('password-reset/{token}', 'Auth@resetPasswordForm');
-// $router->post('remove-item/{item}', 'Carts@remove');
-// $router->post('confirm-payment', 'Pages@confirmPayment');
-// $router->post('process-payment', 'Payments@processPayment');
-// $router->post('receipt/{item}', 'Receipts@print');
-// $router->post('rate-product/{item}', 'Products@rateProduct');
-// $router->post('update-info', 'Users@updateInfo');
-// $router->post('delete-account', 'Users@deleteAccount');
+$router->post('rating/{item}', 'Ratings@submit');
+$router->post('review/{item}', 'Ratings@review');
+$router->post('review/{item}/delete', 'Ratings@delete');

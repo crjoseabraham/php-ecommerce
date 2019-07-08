@@ -59,8 +59,41 @@ class UI
           if (quantity.value > 1)
             quantity.value--
           break;
+        case element.target.classList.contains('star-label'):
+          setTimeout(() => {
+            element.target.closest('form').submit()
+          }, 10)
+          break;
+        case element.target.classList.contains('show-reviews'):
+          element.target.textContent = 'Hide reviews'
+          element.target.className = 'text-button hide-reviews'
+          document.querySelector('.reviews-container').classList.toggle('active')
+          break;
+        case element.target.classList.contains('hide-reviews'):
+          element.target.textContent = 'View product reviews'
+          element.target.className = 'text-button show-reviews'
+          document.querySelector('.reviews-container').classList.toggle('active')
+          break;
       }
     })
+
+    document.querySelector('.modal').addEventListener('mouseover', element => {
+      if (element.target.classList.contains('star-label'))
+      {
+        let starValue = parseInt(element.target.nextElementSibling.value)
+        this.calculateStarsBackground(starValue)
+      }
+    })
+  }
+
+  // Take the rating of the selected product in order to
+  // calculate it as percentage and color the stars depending on such percentage
+  calculateStarsBackground(rating)
+  {
+    const container = document.querySelector('.product-rating form')
+    const percentage = (rating * 100) / 5
+    container.style.background = `linear-gradient(to right, gold 0, gold ${percentage}%, #ccc ${percentage}%)`
+    container.style.backgroundClip = 'text'
   }
 
   // Event listeners for the cart

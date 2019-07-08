@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Controller;
 
 use \Model\Product;
@@ -23,42 +23,5 @@ class Products
   public function productExists($product_id)
   {
     return Product::getItemById($product_id);
-  }
-
-  /**
-   * Submit a rating vote for a product
-   * Called when user clicks a star
-   * @param  int $product_id    ID of product users desires to rate
-   * @return void
-   */
-  public function rateProduct($product_id)
-  {
-    if (Session::getUser())
-    {
-      // Validate the rating value submitted is a number between 1 and 5
-      $rating_value = (!preg_match('/[^\d+]/', $_POST['star']) && ($_POST['star'] >= 1 && $_POST['star'] <= 5 )) ? intval($_POST['star']) : false;
-
-      // Verify if product id passed is valid and submit the vote
-      if (self::productExists($product_id) && $rating_value)
-      {
-        // Check if user already submitted a vote for this item in the same session
-        if(!Product::userAlreadyRatedInThisSession($product_id))
-        {
-          Product::submitRatingVote($product_id, $rating_value);
-          flash(VOTE_SUBMITTED);
-        }
-        else
-          flash(VOTE_ERROR, ERROR);
-      }
-      else
-        flash(ERROR_MESSAGE, ERROR);
-    }
-    else
-    {
-      flash(LOGIN_REQUIRED, INFO);
-      redirect('/login');
-    }
-
-    redirect('/store');
   }
 }

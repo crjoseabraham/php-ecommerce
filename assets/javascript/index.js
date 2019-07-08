@@ -43,5 +43,16 @@ document.querySelector('body').addEventListener('click', async function(e) {
 			ui.handleShipping(document.getElementById('shipping'))
 			document.getElementById('shipping').addEventListener('change', ui.handleShipping)
 		}
+		
+		if (parent === 'modal') {
+			// Handle stars color
+			const rating = parseFloat(document.querySelector('.product-rating > p > span.rating-value').textContent)
+
+			ui.calculateStarsBackground(rating)
+
+			document.querySelector('.product-rating form').addEventListener('mouseout', () => {
+				ui.calculateStarsBackground(rating)				
+			})
+		}
 	}
 })

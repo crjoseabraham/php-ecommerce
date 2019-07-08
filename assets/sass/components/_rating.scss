@@ -1,0 +1,26 @@
+.product-rating form {
+  align-items: baseline;
+  position: relative;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+
+  label {
+    font-size: 2.5rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    @media screen and (max-width: 500px) {
+      font-size: 2rem;
+    }
+
+    @media screen and (max-width: 450px) {
+      font-size: 1.6rem;
+    }
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+}
