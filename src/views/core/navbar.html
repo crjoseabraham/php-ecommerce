@@ -15,6 +15,7 @@
 	</button>
 	{% else %}
 	<button class="right-sidebar-toggle load-template cart" id="right-sidebar">
+		<span class="counter">{{ user_cart|length }}</span>
 		<span class="button-title">Cart</span>
 		<img src="icons/shopping-cart.svg" class="icon" alt="Shopping cart icon">
 	</button>

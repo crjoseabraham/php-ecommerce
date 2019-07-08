@@ -59,10 +59,24 @@ header {
 		}
 
 		@media screen and (max-width: 700px) {
-			span {
+			span:not(.counter) {
 				display: none;
 			}
 		}
+	}
+
+	span.counter {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		font-size: 1.2rem;
+		z-index: 2;
+		background-color: $danger;
+		color: #fff;
+		border-radius: 50%;
+		padding: .4rem !important;
+		line-height: .8;
+		font-weight: 700;
 	}
 
 	a.logout-button span {

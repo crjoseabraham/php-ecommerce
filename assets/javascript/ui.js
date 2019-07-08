@@ -137,6 +137,11 @@ class UI
             this.handleShipping(document.getElementById('shipping'))
             document.getElementById('shipping').addEventListener('change', this.handleShipping)
           }, 100);
+
+          document.querySelector('.counter').textContent = parseInt(document.querySelector('.counter').textContent) - 1
+
+          if (document.querySelector('.counter').textContent === '0')
+            document.querySelector('.counter').style.display = 'none'
         }
         else
           alert('Something went wrong. Please try again')
