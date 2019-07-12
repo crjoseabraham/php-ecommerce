@@ -10,10 +10,10 @@ The functional version is in the branch 'master'
 🗹 Create views  
 &nbsp;&nbsp;&nbsp; 🗹 Install Twig via Composer  
 &nbsp;&nbsp;&nbsp; 🗹 Make layouts responsive  
-☐ More secure login and registration  
+🗹 More secure login and registration  
 &nbsp;&nbsp;&nbsp; 🗹 Validations for the inputs  
 &nbsp;&nbsp;&nbsp; 🗹 Hashed passwords  
-&nbsp;&nbsp;&nbsp; ☐ 'Forgot your password' function  
+&nbsp;&nbsp;&nbsp; 🗹 'Forgot your password' function  
 🗹 Create Session handler  
 &nbsp;&nbsp;&nbsp; 🗹 Start session on login and destroy it on logout  
 &nbsp;&nbsp;&nbsp; 🗹 Restrict content to unlogged users  
@@ -35,7 +35,7 @@ The functional version is in the branch 'master'
 &nbsp;&nbsp;&nbsp; 🗹 Show purchases history  
 &nbsp;&nbsp;&nbsp; 🗹 Danger zone: delete the user's account  
 🗹 PDF receipts  
-&nbsp;&nbsp;&nbsp; 🗹 Install mPDF via Composer  
+&nbsp;&nbsp;&nbsp; 🗹 Install FPDF via Composer  
 &nbsp;&nbsp;&nbsp; 🗹 Add styles for the PDF template  
 ☐ Rating star system  
 &nbsp;&nbsp;&nbsp; 🗹 UI: Make stars highlight on hover  
