@@ -9,7 +9,7 @@
 </div>
 
 <div class="modal-body">
-	<div class="item-container">
+	<div class="item-container">		
 		<div class="product-details">
 			<img src="{{ product.picture }}" alt="{{ product.description }} picture">
 			<div class="details-container">
@@ -19,6 +19,7 @@
 
 				<div class="product-rating">
 					<p>Rating: <span class="rating-value">{{ product.rating }}</span></p>
+					<p>({{ product.total_rating_votes }} votes)</p>
 
 					<form action="rating/{{ product.product_id }}" method="post">
 						<label for="star-1" class="star-label">

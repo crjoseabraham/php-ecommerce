@@ -28,7 +28,12 @@ class Product extends Database
   public function getItemById($id)
   {
     $db = static::getDB();
-    $stmt = $db->prepare("SELECT * FROM product WHERE product_id = :id");
+    $stmt = $db->prepare("
+      SELECT product.*, COUNT(`rating`.rating_value) AS total_rating_votes
+      FROM product 
+      INNER JOIN rating
+      ON product.product_id = rating.rating_product_id
+      WHERE product_id = :id");
     $stmt->bindValue(':id', $id, \PDO::PARAM_STR);
     return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_OBJ) : false;
   }
