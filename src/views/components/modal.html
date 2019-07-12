@@ -4,7 +4,7 @@
 <div class="modal-title">
 	<h2>Add item</h2>
 	<button class="modal-toggle" id="modal-toggle">
-		<img src="icons/close.svg" class="icon" alt="Close sidebar icon">
+		<i class="icon ion-ios-close"></i>
 	</button>
 </div>
 
@@ -21,19 +21,29 @@
 					<p>Rating: <span class="rating-value">{{ product.rating }}</span></p>
 
 					<form action="rating/{{ product.product_id }}" method="post">
-						<label for="star-1" class="star-label">★</label>
+						<label for="star-1" class="star-label">
+							<i class="icon ion-md-star"></i>
+						</label>
 						<input type="radio" name="stars" id="star-1" value="1">
 
-						<label for="star-2" class="star-label">★</label>
+						<label for="star-2" class="star-label">
+							<i class="icon ion-md-star"></i>
+						</label>
 						<input type="radio" name="stars" id="star-2" value="2">
 
-						<label for="star-3" class="star-label">★</label>
+						<label for="star-3" class="star-label">
+							<i class="icon ion-md-star"></i>
+						</label>
 						<input type="radio" name="stars" id="star-3" value="3">
 
-						<label for="star-4" class="star-label">★</label>
+						<label for="star-4" class="star-label">
+							<i class="icon ion-md-star"></i>
+						</label>
 						<input type="radio" name="stars" id="star-4" value="4">
 
-						<label for="star-5" class="star-label">★</label>
+						<label for="star-5" class="star-label">
+							<i class="icon ion-md-star"></i>
+						</label>
 						<input type="radio" name="stars" id="star-5" value="5">
 					</form>
 

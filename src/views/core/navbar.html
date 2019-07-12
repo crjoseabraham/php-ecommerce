@@ -1,28 +1,28 @@
 <header>
 	<button class="left-sidebar-toggle load-template menu" id="left-sidebar">
-		<img src="icons/menu.svg" class="icon" alt="Menu icon">
+		<i class="icon ion-ios-menu"></i>
 		<span class="button-title">Menu</span>
 	</button>
 
-	<a href="#" class="brand">
+	<a href="/shoppingcart" class="brand">
 		<img src="img/logo.png" alt="minimarket Logo">
 	</a>
 
 	{% if current_user is empty %}
 	<button class="right-sidebar-toggle load-template login" id="right-sidebar">
 		<span class="button-title">Access</span>
-		<img src="icons/user.svg" class="icon" alt="User icon">
+		<i class="icon ion-ios-key"></i>
 	</button>
 	{% else %}
 	<button class="right-sidebar-toggle load-template cart" id="right-sidebar">
 		<span class="counter">{{ user_cart|length }}</span>
 		<span class="button-title">Cart</span>
-		<img src="icons/shopping-cart.svg" class="icon" alt="Shopping cart icon">
+		<i class="icon ion-md-cart"></i>
 	</button>
 
 	<a href="logout" class="logout-button">
 		<span class="button-title">Logout</span>
-		<img src="icons/stand-by.svg" class="icon" alt="Logout icon">
+		<i class="icon ion-ios-log-out"></i>
 	</a>
 	{% endif %}
 </header>

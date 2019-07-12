@@ -21,6 +21,12 @@ class Pages
     renderView('components/menu.html');
   }
 
+  // Displays 'About' page
+  public function about() : void
+  {
+    renderView('about.html');
+  }
+
   // Displays login form
   public function login() : void
   {
@@ -83,5 +89,15 @@ class Pages
   public function resetPassword($token) : void
   {
     renderView('recover_password_page.html', ['token' => $token]);
+  }
+
+  // Not a template
+  // Set a cookie for the cookie banner button
+  public function disableCookieBanner()
+  {
+    // Set expiry date to 30 days from now
+    $expiry_timestamp = time() + 60 * 60 * 24 * 30;
+    Cookies::newCookie('banner', true, $expiry_timestamp, '/');
+    echo true;
   }
 }

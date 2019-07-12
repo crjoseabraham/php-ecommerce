@@ -59,7 +59,7 @@ class UI
           if (quantity.value > 1)
             quantity.value--
           break;
-        case element.target.classList.contains('star-label'):
+        case element.target.parentElement.classList.contains('star-label'):
           setTimeout(() => {
             element.target.closest('form').submit()
           }, 10)
@@ -78,9 +78,9 @@ class UI
     })
 
     document.querySelector('.modal').addEventListener('mouseover', element => {
-      if (element.target.classList.contains('star-label'))
+      if (element.target.parentElement.classList.contains('star-label'))
       {
-        let starValue = parseInt(element.target.nextElementSibling.value)
+        let starValue = parseInt(element.target.parentElement.nextElementSibling.value)
         this.calculateStarsBackground(starValue)
       }
     })
@@ -169,6 +169,20 @@ class UI
     document.querySelector(".total-value").innerHTML = total
     // Update hidden input value
     document.getElementById('shippingInput').value = selectedValue
+  }
+
+  cookieBannerEvents()
+  {
+    document.querySelector('body').addEventListener('click', async (element) => {
+      if (element.target.classList.contains('close-cookie-banner') || element.target.parentElement.classList.contains('close-cookie-banner'))
+      {
+        let response = await this.http.get(`${this.baseURL}/cookie-banner`)
+        if (response)
+          document.querySelector('.cookie-banner').style.display = 'none'
+        else
+          console.log('Something went wrong')
+      }
+    })
   }
 }
 

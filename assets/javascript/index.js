@@ -12,6 +12,7 @@ ui.http = http
 document.addEventListener('DOMContentLoaded', function() {
 	ui.modalEvents()
 	ui.cartEvents()
+	ui.cookieBannerEvents()
 })
 
 // Toggle element

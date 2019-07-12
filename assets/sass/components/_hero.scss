@@ -1,6 +1,6 @@
 .hero {
   padding-top: 7rem;
-  background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('../img/background.jpg');
+  background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.8)), url('../img/background.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -69,27 +69,16 @@
   a#toStore,
   a#toAbout {
     padding: 1.5rem 3rem;
-    border: 1px solid currentColor;
+    border-radius: .4rem;
     font-size: 1.6rem;
     text-decoration: none;
     display: flex;
     align-items: center;
     transition: all .3s ease-in-out;
 
-    &:hover {
-      .icon {
-        width: 2.2rem;
-
-        @media screen and (max-width: 700px) {
-          width: 1.8rem;
-        }
-      }
-    }
-
     .icon {
+      font-size: 1.6rem;
       padding-left: 1rem;
-      width: 0px;
-      transition: width .3s ease-in-out;
     }
 
     @media screen and (max-width: 700px) {
@@ -110,11 +99,12 @@
   #toAbout {
     color: #fff;
     background-color: transparent;
+    border: 1px solid #fff;
 
     &:hover {
-      border: 1px solid transparent;
       background-color: #ededed;
       color: #000;
+      border: 1px solid transparent;
     }
 
     @media screen and (max-width: 440px) {

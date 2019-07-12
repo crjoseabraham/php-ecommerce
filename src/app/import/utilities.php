@@ -57,6 +57,7 @@ function getTemplate(string $file, $data = [])
     // Check if user is logged in or there's a cookie to remember a session. Also flash messages
     $twig->addGlobal('current_user', \Model\Session::getUser());
     $twig->addGlobal('flash_message', getFlashNotification());
+    $twig->addGlobal('cookie_banner', \Controller\Cookies::findCookie('banner'));
     // If there's a session running, get user data and corresponding cart
     if (isset($_SESSION['user_id']))
     {

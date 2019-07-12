@@ -6,6 +6,7 @@ $router->get('register', 'Pages@register');
 $router->get('recover-password', 'Pages@recoverPasswordForm');
 $router->get('update-basic', 'Pages@updateBasicInfoForm');
 $router->get('update-password', 'Pages@updatePasswordForm');
+$router->get('cookie-banner', 'Pages@disableCookieBanner');
 $router->get('logout', 'Auth@logout');
 $router->get('cart', 'Pages@loadCart');
 $router->get('add-item/{item}', 'Pages@addItemForm');

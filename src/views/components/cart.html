@@ -1,11 +1,15 @@
 <div class="menu-title">
 	<span> Your cart: </span>
 	<button id="right-sidebar-toggle" class="right-sidebar-toggle">
-		<img src="icons/close.svg" class="icon" alt="Close sidebar icon">
+		<i class="icon ion-ios-close"></i>
 	</button>
 </div>
 
-<p class="balance">Current balance: <span>${{ balance }}</span></p>
+<div class="balance">
+ <span>Account balance:</span>
+ <span>${{ balance }}</span>
+</div>
+
 {% if user_cart is not empty %}
 <div class="cart-container">
 	{% set cart_items = data.0 %}
@@ -15,16 +19,20 @@
 	<div class="cart-row">
 		{% for product in products %}
 		{% if item.product_id == product.product_id %}
-		<img src="{{ product.picture }}" alt="{{ product.description }} product image">
+		<img src="{{ product.picture }}" alt="{{ product.description }} product image" class="left">
 
-		<div class="item_details">
-			<span> ({{ item.quantity }}) x {{ product.description }} </span>
-			<span id="subtotal"> Subtotal: ${{ item.subtotal }} </span>
+		<div class="center">
+			<p class="product-name"> {{ product.description }} </p>
+			<p class="product-qty"> Quantity:	 {{ item.quantity }} </p>			
 		</div>
 
-		<button id="delete" data-action="remove-item/{{ product.product_id }}">
-			<span>Remove</span>
-		</button>
+		<div class="right">
+			<button id="delete" data-action="remove-item/{{ product.product_id }}">
+				<i class="icon ion-ios-close"></i>
+			</button>
+
+			<span id="subtotal"> ${{ item.subtotal }} </span>
+		</div>
 		{% endif %}
 		{% endfor %}
 	</div>
@@ -51,7 +59,7 @@
 
 	<div class="row">
 		<p class="total-title">Total amount:</p>
-		<p> $<span class="total-value"></span> </p>
+		<span class="total-value"></span>
 	</div>
 </div>
 

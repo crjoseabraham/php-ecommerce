@@ -28,6 +28,7 @@
 // Default styles for the sidebar title and 'close' button
 @mixin menu-title {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 2rem;
   text-transform: uppercase;
@@ -46,14 +47,14 @@
     line-height: 1;
     transition: background-color .3s ease-in-out;
     cursor: pointer;
-    padding: .7rem;
+    padding: 0 .7rem;
 
     &:hover {
       background-color: #eee;
     }
+  }
 
-    .icon {
-      width: 1.8rem;
-    }
+  .icon {
+    font-size: 3rem;
   }
 }

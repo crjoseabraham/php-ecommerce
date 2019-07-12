@@ -1,21 +1,18 @@
 <div class="menu-title">
 	<span> Menu </span>
 	<button id="left-sidebar-toggle" class="left-sidebar-toggle">
-		<img src="icons/close.svg" class="icon" alt="Close sidebar icon">
+		<i class="icon ion-ios-close"></i>
 	</button>
 </div>
 
 <nav>
 	<ul class="main-menu">
+		<li><a href="/shoppingcart"> Home </a></li>
 		{% if current_user is not empty %}
 		<li>
 			<button class="load-template profile" id="left-sidebar"> Profile </button>
 		</li>
 		{% endif %}
-		<li><a href="#"> About this project </a></li>
 		<li><a href="http://github.com/crjoseabraham/shoppingcart" target="_blank"> View Source Code </a></li>
-		<li>
-			<button class="load-template contact" id="left-sidebar"> Contact Developer </button>
-		</li>
 	</ul>
 </nav>

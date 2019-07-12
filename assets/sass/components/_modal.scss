@@ -22,6 +22,7 @@
 		display: flex;
 		flex-direction: column;
 		padding: 1rem;
+		border-radius: .6rem;
 
 		@media screen and (max-width: 700px) {
 			width: 100%;
@@ -121,6 +122,20 @@
 						border: none;
 						padding: .1rem 1rem;
 						font-size: 2.5rem;
+
+						&:first-child {
+							border-top-left-radius: .4rem;
+							border-bottom-left-radius: .4rem;
+						}
+
+						&:last-child {
+							border-top-right-radius: .4rem;
+							border-bottom-right-radius: .4rem;
+						}
+
+						&:hover {
+							background-color: darken($primary, 15%);
+						}
 					}
 
 					input {
@@ -144,7 +159,7 @@
 					border: none;
 					cursor: pointer;
 					margin-top: 2rem;
-					border-radius: 10rem;
+					border-radius: .4rem;
 					transition: background-color .3s ease-in-out;
 
 					&:hover {
