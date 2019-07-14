@@ -8,15 +8,24 @@
   position: fixed;
   top: 0;
   z-index: 9999;
+  -webkit-transition: -webkit-transform 250ms;
+  transition: -webkit-transform 250ms;
   transition: transform 250ms;
+  transition: transform 250ms, -webkit-transform 250ms;
 
   &.active {
-    transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
   }
 
   .container  {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     text-align: center;
   }
 
@@ -27,9 +36,15 @@
 
 // Default styles for the sidebar title and 'close' button
 @mixin menu-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 2rem;
   text-transform: uppercase;
   border-bottom: 2px solid #ededed;
@@ -45,6 +60,7 @@
     color: #333;
     background-color: transparent;
     line-height: 1;
+    -webkit-transition: background-color .3s ease-in-out;
     transition: background-color .3s ease-in-out;
     cursor: pointer;
     padding: 0 .7rem;

@@ -1,7 +1,9 @@
 .left-sidebar {
 	left: 0;
-	transform: scale(0, 1);
-	transform-origin: left;
+	-webkit-transform: scale(0, 1);
+	        transform: scale(0, 1);
+	-webkit-transform-origin: left;
+	        transform-origin: left;
 	@include lateralsidebar-base;
 
 	// TOGGLE MENU TITLE
@@ -25,6 +27,8 @@
 		li button,
 		li a {
 			padding: 1rem 2rem;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
 			color: #000;
 			font-family: 'Roboto Condensed', sans-serif;

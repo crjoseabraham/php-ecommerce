@@ -1,7 +1,12 @@
 .right-sidebar {
   form {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     padding: 3rem 3rem;
 
     p {
@@ -9,8 +14,13 @@
     }
 
     .form-group:not(.checkbox) {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      flex-direction: column;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
 
       &:not(:first-child) {
         padding-top: 2rem;
@@ -56,6 +66,7 @@
       font-family: 'Roboto Condensed', sans-serif;
       font-size: 2.2rem;
       text-transform: uppercase;
+      -webkit-transition: background-color .3s ease-in-out;
       transition: background-color .3s ease-in-out;
 
       &:hover {

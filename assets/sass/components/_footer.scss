@@ -1,9 +1,12 @@
 footer {
-  grid-area: footer;
   background-color: $dark;
   color: #ccc;
   font-size: 1.3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 3rem 0;
 }

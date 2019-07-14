@@ -1,8 +1,12 @@
 .balance {
   padding-top: 2rem;
   font-size: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 
   span:last-child {
     font-weight: 700;
@@ -23,16 +27,21 @@
   .cart-row {
     padding: 2rem 0;
     text-align: left;
+    display: -ms-grid;
     display: grid;
+    -ms-grid-rows: 1fr;
     grid-template-rows: 1fr;
+    -ms-grid-columns: 1fr 2fr 1fr;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-areas: "left center right";
+        grid-template-areas: "left center right";
 
     &:not(:last-child) {
       border-bottom: 1px solid #ededed;
     }
 
     .left {
+      -ms-grid-row: 1;
+      -ms-grid-column: 1;
       max-width: 5rem;
       border-radius: 4px;
       grid-area: left;
@@ -40,12 +49,21 @@
 
     .center,
     .right {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
     }
 
     .center {
+      -ms-grid-row: 1;
+      -ms-grid-column: 2;
       grid-area: center;
 
       .product-name {
@@ -60,8 +78,12 @@
     }
 
     .right {
+      -ms-grid-row: 1;
+      -ms-grid-column: 3;
       grid-area: right;
-      align-items: flex-end;
+      -webkit-box-align: end;
+          -ms-flex-align: end;
+              align-items: flex-end;
 
       span#subtotal {
         font-size: 1.8rem;
@@ -74,9 +96,12 @@
         padding: 0 .7rem;
         color: #fff;
         font-size: 2rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         line-height: 1;
         cursor: pointer;
+        -webkit-transition: background-color .3s ease-in-out;
         transition: background-color .3s ease-in-out;
         border-radius: 50%;
 
@@ -104,8 +129,12 @@
   }
 
   .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     padding-top: 1rem;
 
     p,
@@ -144,6 +173,7 @@ button#checkout {
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  -webkit-transition: background-color .3s ease-in-out;
   transition: background-color .3s ease-in-out;
 
   &:hover {
@@ -152,10 +182,19 @@ button#checkout {
 }
 
 .empty-cart {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   color: #888;
   padding-top: 10rem;
 

@@ -7,8 +7,12 @@
   }
 
   .buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
 
   button {
@@ -16,6 +20,7 @@
     font-size: 1.4rem;
     padding: 1rem;
     cursor: pointer;
+    -webkit-transition: background-color .3s ease-in-out;
     transition: background-color .3s ease-in-out;
 
     &.btn-danger {

@@ -8,9 +8,12 @@
 	max-width: 35rem;
 	border-radius: 5px;
 	z-index: 9999;
-	animation-name: flashMessage;
-  animation-duration: 5s;
-  animation-fill-mode: forwards;
+	-webkit-animation-name: flashMessage;
+	        animation-name: flashMessage;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 
 	&--success {
 		background-color: rgba($color: $success, $alpha: 0.9);
@@ -35,24 +38,54 @@
 	}
 }
 
-@keyframes flashMessage {
+@-webkit-keyframes flashMessage {
   0% {
-  	transform: translateX(100%);
+  	-webkit-transform: translateX(100%);
+  	        transform: translateX(100%);
   	opacity: 0;
   }
 
   10% {
-  	transform: translateX(0);
+  	-webkit-transform: translateX(0);
+  	        transform: translateX(0);
   	opacity: 1;
   }
 
   90% {
-  	transform: translateX(0);
+  	-webkit-transform: translateX(0);
+  	        transform: translateX(0);
   	opacity: 1;
   }
 
   100% {
-  	transform: translateX(100%);
+  	-webkit-transform: translateX(100%);
+  	        transform: translateX(100%);
+  	opacity: 0;
+  }
+}
+
+@keyframes flashMessage {
+  0% {
+  	-webkit-transform: translateX(100%);
+  	        transform: translateX(100%);
+  	opacity: 0;
+  }
+
+  10% {
+  	-webkit-transform: translateX(0);
+  	        transform: translateX(0);
+  	opacity: 1;
+  }
+
+  90% {
+  	-webkit-transform: translateX(0);
+  	        transform: translateX(0);
+  	opacity: 1;
+  }
+
+  100% {
+  	-webkit-transform: translateX(100%);
+  	        transform: translateX(100%);
   	opacity: 0;
   }
 }

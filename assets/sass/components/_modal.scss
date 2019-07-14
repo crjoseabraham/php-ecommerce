@@ -5,22 +5,40 @@
 	top: 0;
 	left: 0;
 	z-index: 9999;
-	transform: scale(0);
+	-webkit-transform: scale(0);
+	        transform: scale(0);
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 
 	&.active {
-		transform: scale(1);
+		-webkit-transform: scale(1);
+		        transform: scale(1);
 	}
 
 	& > .container {
 		background-color: #fff;
-		box-shadow: 0 1rem 2rem $dark;
-		transform: scale(0);
+		-webkit-box-shadow: 0 1rem 2rem $dark;
+		        box-shadow: 0 1rem 2rem $dark;
+		-webkit-transform: scale(0);
+		        transform: scale(0);
+		-webkit-transition: -webkit-transform .3s ease-in-out;
+		transition: -webkit-transform .3s ease-in-out;
 		transition: transform .3s ease-in-out;
+		transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		flex-direction: column;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
 		padding: 1rem;
 		border-radius: .6rem;
 
@@ -32,7 +50,8 @@
 	}
 
 	&.active > .container {
-		transform: scale(1);
+		-webkit-transform: scale(1);
+		        transform: scale(1);
 	}
 
 	& .modal-title {
@@ -48,26 +67,48 @@
 
 	.modal-body {
 		padding: 2rem 0;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
+		-webkit-box-pack: justify;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
+		-webkit-box-align: start;
+		    -ms-flex-align: start;
+		        align-items: flex-start;
 
 		@media screen and (max-width: 700px) {
-			flex-direction: column;
-			align-items: center;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			    -ms-flex-direction: column;
+			        flex-direction: column;
+			-webkit-box-align: center;
+			    -ms-flex-align: center;
+			        align-items: center;
 		}
 
 		.item-container {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
-			flex-direction: column;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			    -ms-flex-direction: column;
+			        flex-direction: column;
 			padding: 0 3rem;
-			flex: 1;
+			-webkit-box-flex: 1;
+			    -ms-flex: 1;
+			        flex: 1;
 
 			& > * {
-				flex: 1;
+				-webkit-box-flex: 1;
+				    -ms-flex: 1;
+				        flex: 1;
 			}
 
 			.product-details {
+				display: -webkit-box;
+				display: -ms-flexbox;
 				display: flex;
 
 				& > img {
@@ -88,8 +129,13 @@
 					}
 
 					& .product-rating {
+						display: -webkit-box;
+						display: -ms-flexbox;
 						display: flex;
-						flex-direction: column;
+						-webkit-box-orient: vertical;
+						-webkit-box-direction: normal;
+						    -ms-flex-direction: column;
+						        flex-direction: column;
 
 						p {
 							font-size: 1.2rem;
@@ -112,6 +158,8 @@
 				}
 
 				& > .inputs {
+					display: -webkit-box;
+					display: -ms-flexbox;
 					display: flex;
 					padding-top: 1rem;
 
@@ -145,7 +193,9 @@
 						border-bottom: 1px solid #ccc;
 						border-left: none;
 						border-right: none;
-						flex: 1;
+						-webkit-box-flex: 1;
+						    -ms-flex: 1;
+						        flex: 1;
 					}
 				}
 
@@ -160,6 +210,7 @@
 					cursor: pointer;
 					margin-top: 2rem;
 					border-radius: .4rem;
+					-webkit-transition: background-color .3s ease-in-out;
 					transition: background-color .3s ease-in-out;
 
 					&:hover {

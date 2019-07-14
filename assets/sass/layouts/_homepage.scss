@@ -42,3 +42,8 @@ main
 		grid-template-rows: repeat(auto-fit, 22rem);
 	}
 }
+
+footer
+{
+	grid-area: footer;
+}

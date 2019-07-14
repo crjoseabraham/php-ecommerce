@@ -5,10 +5,17 @@ header {
 	z-index: 9997;
 	top: 0;
 	left: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	box-shadow: 0 -1rem 2rem $dark;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-shadow: 0 -1rem 2rem $dark;
+	        box-shadow: 0 -1rem 2rem $dark;
 
 	.icon {
 		font-size: 2rem;
@@ -41,8 +48,13 @@ header {
 		font-size: 1.5rem;
 		letter-spacing: 1px;
 		text-transform: uppercase;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		align-items: center;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
+		-webkit-transition: background-color .2s ease-in-out;
 		transition: background-color .2s ease-in-out;
 		position: relative;
 

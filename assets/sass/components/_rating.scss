@@ -1,5 +1,7 @@
 .product-rating form {
-  align-items: baseline;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
   position: relative;
   -webkit-text-fill-color: transparent;
   display: inline-block;
