@@ -76,24 +76,6 @@ class UI
           break;
       }
     })
-
-    document.querySelector('.modal').addEventListener('mouseover', element => {
-      if (element.target.parentElement.classList.contains('star-label'))
-      {
-        let starValue = parseInt(element.target.parentElement.nextElementSibling.value)
-        this.calculateStarsBackground(starValue)
-      }
-    })
-  }
-
-  // Take the rating of the selected product in order to
-  // calculate it as percentage and color the stars depending on such percentage
-  calculateStarsBackground(rating)
-  {
-    const container = document.querySelector('.product-rating form')
-    const percentage = (rating * 100) / 5
-    container.style.background = `linear-gradient(to right, gold 0, gold ${percentage}%, #ccc ${percentage}%)`
-    container.style.backgroundClip = 'text'
   }
 
   // Event listeners for the cart

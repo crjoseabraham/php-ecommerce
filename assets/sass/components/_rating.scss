@@ -3,13 +3,21 @@
       -ms-flex-align: baseline;
           align-items: baseline;
   position: relative;
-  -webkit-text-fill-color: transparent;
   display: inline-block;
+
+  &:hover label {
+    color: gold;
+  }
 
   label {
     font-size: 2.5rem;
     font-weight: 700;
     cursor: pointer;
+    color: #ccc;
+
+    &:hover ~ label {
+      color: #ccc;
+    }
 
     @media screen and (max-width: 500px) {
       font-size: 2rem;
