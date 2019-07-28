@@ -87,11 +87,11 @@ shoppingcart/
     vendor/		# Composer files and 3rd party libraries
     .gitignore		# Files and folders to be ignored by git commands
     .htaccess		# To redirect the start point to public/ folder
-    composer.json	Composer dependency file
-    composer.lock	Composer lockfile
-    package-lock.json	Dependency lockfile
-    package.json	NPM dependency file
-    webpack.config.js	Webpack configuration file
+    composer.json	# Composer dependency file
+    composer.lock	# Composer lockfile
+    package-lock.json	# Dependency lockfile
+    package.json	# NPM dependency file
+    webpack.config.js	# Webpack configuration file
 ```
 
 ## Goals achieved
