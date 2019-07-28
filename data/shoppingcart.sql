@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-07-2019 a las 23:25:16
+-- Tiempo de generación: 28-07-2019 a las 04:08:39
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -96,7 +96,7 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`product_id`, `description`, `price`, `picture`, `rating`) VALUES
 (1, 'Apple', 0.3, 'img/apples.jpg', 3),
-(2, 'Beer', 2, 'img/beer.jpg', 0),
+(2, 'Beer', 2, 'img/beer.jpg', 2),
 (3, 'Water', 1, 'img/water.jpg', 0),
 (4, 'Cheese', 3.74, 'img/cheese.jpg', 0),
 (5, 'Burger', 5.99, 'img/hamburger.jpg', 0),
@@ -170,6 +170,13 @@ CREATE TABLE `user` (
   `password_reset_hash` varchar(64) DEFAULT NULL,
   `password_reset_expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `name`, `password`, `password_reset_hash`, `password_reset_expires_at`) VALUES
+(9, 'tester@gmail.com', 'Tester', '$2y$10$TYV391dt.n8Mlfs8OXd.8./uOJTWKMHLvsbf1btwF5gFS25txteeu', NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -282,7 +289,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
