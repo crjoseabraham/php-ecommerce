@@ -33,7 +33,7 @@ If you want to test this project on your local machine, you have to follow these
 Go to your database manager (phpmyadmin, heidiSQL or whatever) and import the .sql file that's located in the `data` folder. The `CREATE DATABASE` command is included already.
 
 4. **Update credentials !important**
-In order to get everything working you may need to do some changes in the file that's located in `src / app / import / constants.php` like in these lines:
+In order to get everything working you may need to do some changes in the file that's located in [src/app/import/constants.php](https://github.com/crjoseabraham/shoppingcart/blob/version-2.0/src/app/import/constants.php) like in these lines:
 	```
 	define('URLROOT', 'http://localhost/shoppingcart');
 	
@@ -49,13 +49,13 @@ In order to get everything working you may need to do some changes in the file t
 	define('EMAIL_NAME', '');
 	define('EMAIL_PASS', '');
 	```
-	Another thing you may want to change or even delete is the timezone I set in `public / index.php` because I used my timezone
+	Another thing you may want to change or even delete is the timezone I set in [public/index.php](https://github.com/crjoseabraham/shoppingcart/blob/version-2.0/public/index.php) because I used my timezone
 	
 	`date_default_timezone_set('America/Caracas');`
 	
 ## Tester account
 
-If you feel lazy and don't want to sign up, you can log in with a tester account that's in the database:
+If you feel lazy and don't want to sign up, you can log in with a tester account that's already in the database:
 
  - **Email:** tester@gmail.com
  - **Password:** abc123
@@ -97,7 +97,7 @@ shoppingcart/
 ## Goals achieved
 
  - [x] Learn how to work with the OOP paradigm
- - [x] Understand how to apply the MVC architecture and it's hows and whys
+ - [x] Understand how to apply the MVC architecture and its hows and whys
  - [x] How to work with sessions and cookies in PHP
  - [x] Implement user authentication (logging in, logging out, update user's password, recover password function, hide/show content for non logged in users.
  - [x] Work with third party libraries
