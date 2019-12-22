@@ -4,8 +4,8 @@ define('SECRET_KEY', 'RYdC5cmDUbgglwwMLTUrcBzs6HXG5NBZ');
 
 // Database config values
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_USER', 'god');
+define('DB_PASS', 'secret');
 define('DB_NAME', 'shoppingcart');
 
 // Email credentials
