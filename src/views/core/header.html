@@ -1,43 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<link rel="icon" type="image/png" href="img/favicon.png">
-		<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="css/main.css">
-		<title>minimarket | A shopping cart app made with vanilla PHP and JavaScript ES6</title>
-	</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="icon" type="image/png" href="img/favicon.png">
+        <link rel="stylesheet" href="css/main.css">
+        <title>minimarket | A shopping cart app made with vanilla PHP and JavaScript ES6</title>
+    </head>
 
-	<body>
-		<div id="overlay" class="overlay"></div>
+    <body>
+        {{ include ('core/navbar.html') }}
+        {{ include ('components/flash_message.html') }}
+        {{ include ('components/cookie_banner.html') }}
+        {% block content %}
 
-		<div class="modal" id="modal">
-			<div class="container"></div>
-		</div>
-
-		{% if cookie_banner == false %}
-		<div class="cookie-banner" id="cookie-banner">
-			Hi, this is a typical annoying box saying that this website uses cookies to improve user experience and by keeping browsing I assume you're ok with that (otherwise, blame it on the EU).  <button class="text-button close-cookie-banner"> Close banner.</button>
-			<button class="cookie-banner-btn close-cookie-banner">
-				<i class="icon ion-ios-close"></i>
-			</button>
-		</div>
-		{% endif %}
-
-		<div class="left-sidebar">
-			<div class="container"> </div>
-		</div>
-
-		<div class="right-sidebar">
-			<div class="container"> </div>
-		</div>
-		{{ include ('components/flash_message.html') }}
-		{{ include ('core/navbar.html') }}
-		{% block content %}
-
-		{% endblock %}
-		<script src="js/app.bundle.js"></script>
-	</body>
+        {% endblock %}
+        <script src="https://kit.fontawesome.com/eea5dcc8ef.js" crossorigin="anonymous"></script>
+        <script src="js/app.bundle.new.js"></script>
+    </body>
 </html>

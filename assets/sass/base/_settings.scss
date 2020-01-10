@@ -1,92 +1,68 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato|Muli&display=swap');
 
-$primary: #016fb9;
-$success: #06d6a0;
-$warning: #ff9505;
-$danger: #ec4e20;
-$dark: #353531;
+$darker: #354147;
+$lighter: #576574;
+$bluebell: #341f97;
+$orange: #ff9f43; //unused
+$yellow: #ffa930;
 
-*, *::before, *::after {
-	padding: 0;
-	margin: 0;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
-	font-family: 'Source Sans Pro', sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-	font-size: 62.5%;
+    font-size: 62.5%;
+}
+
+body {
+    background: #EAEDED;
+    margin-top: 7rem;
 }
 
 a {
-	color: #000;
-	text-decoration: none;
-	font-size: 1.4rem;
-	position: relative;
+    text-decoration: none;
 }
 
+.container {
+    margin: auto;
+    width: 90%;
+    max-width: 1100px;
+}
+
+/*****************
+    BUTTONS
+*****************/
 button {
-	position: relative;
-
-	&.text-button-title {
-		font-family: 'Roboto Condensed', sans-serif !important;
-    font-size: 2.8rem;
-    border: none;
-    background-color: transparent;
-
-    &:not(.disabled) {
-    	cursor: pointer;
-    	color: $primary;
-    }
-	}
-
-	&.text-button {
-		font-size: 1.4rem;
-		background-color: transparent;
-		border: none;
-		cursor: pointer;
-
-		&::before {
-			content: '';
-			background-color: currentColor;
-			width: 100%;
-			height: 1px;
-			position: absolute;
-			bottom: -2px;
-			left: 0;
-			-webkit-transform: scaleX(0);
-			        transform: scaleX(0);
-			-webkit-transform-origin: right;
-			        transform-origin: right;
-			-webkit-transition: -webkit-transform .3s ease-in;
-			transition: -webkit-transform .3s ease-in;
-			transition: transform .3s ease-in;
-			transition: transform .3s ease-in, -webkit-transform .3s ease-in;
-		}
-
-		&:hover::before {
-			-webkit-transform: scaleX(1);
-			        transform: scaleX(1);
-			-webkit-transform-origin: left;
-			        transform-origin: left;
-		}
-	}
+    background: none;
+    padding: .5rem .8rem;
+    border-radius: .4rem;
+    border: 1px solid transparent;
+    cursor: pointer;
 }
 
-// OVERLAY
-#overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.5)), to(rgba(0,0,0,.5)));
-	background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5));
-	z-index: 9998;
-	display: none;
+@mixin btn-base {
+    color: #fff !important;
+    padding: .5rem .8rem;
+    border-radius: .4rem;
+    transition: ease all .3s;
+}
 
-	&.active {
-		display: block;
-	}
+.btn-gray {
+    background: $lighter;
+    @include btn-base;
+
+    &:hover {
+        background: lighten($lighter, 20%);
+    }
+}
+
+.btn-yellow {
+    background: $yellow;
+    @include btn-base;
+
+    &:hover {
+        background: lighten($yellow, 10%);
+    }
 }

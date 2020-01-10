@@ -1,28 +1,43 @@
-<header>
-	<button class="left-sidebar-toggle load-template menu" id="left-sidebar">
-		<i class="icon ion-ios-menu"></i>
-		<span class="button-title">Menu</span>
-	</button>
+<nav class="menu" id="menu">
+    <div class="container container-responsive-menu-buttons">
+        <button class="btn-bars" id="btn-bars"><i class="fas fa-bars"></i></button>
+        <a href="#" class="logo">minimarket</a>
+        <button class="btn-close" id="btn-close"><i class="fas fa-times"></i></button>
+    </div>
 
-	<a href="/shoppingcart" class="brand">
-		<img src="img/logo.png" alt="minimarket Logo">
-	</a>
+    <div class="container container-links">
+        <a href="#" class="logo">minimarket</a>
+        <a href="#">About</a>
+        <a href="#">Source code</a>
+        {% if current_user is empty %}
+        <a href="#" id="nav-btn" data-content="login-form">Log in</a>
+        <a href="#" id="nav-btn" data-content="registration-form" class="btn-yellow">Register</a>
+        {% else %}
+        <a href="#" id="nav-btn" data-content="profile">Profile</a>
+        <a href="#" id="nav-btn" data-content="cart" class="btn-yellow">
+            <i class="fas fa-shopping-bag"></i> Your cart
+        </a>
+        <a href="#">Log out</a>
+        {% endif %}
+    </div>
 
-	{% if current_user is empty %}
-	<button class="right-sidebar-toggle load-template login" id="right-sidebar">
-		<span class="button-title">Access</span>
-		<i class="icon ion-ios-key"></i>
-	</button>
-	{% else %}
-	<button class="right-sidebar-toggle load-template cart" id="right-sidebar">
-		<span class="counter">{{ user_cart|length }}</span>
-		<span class="button-title">Cart</span>
-		<i class="icon ion-md-cart"></i>
-	</button>
+    <div class="container container-menu-content-box">
+        <div class="menu-content-box">
+            <div class="content" data-content="login-form">
+                {{ include ('components/login_form.html') }}
+            </div>
 
-	<a href="logout" class="logout-button">
-		<span class="button-title">Logout</span>
-		<i class="icon ion-ios-log-out"></i>
-	</a>
-	{% endif %}
-</header>
+            <div class="content" data-content="registration-form">
+                {{ include ('components/registration_form.html') }}
+            </div>
+
+            <div class="content" data-content="profile">
+                Profile information goes here
+            </div>
+
+            <div class="content" data-content="cart">
+                Cart content goes here
+            </div>
+        </div>
+    </div>
+</nav>
