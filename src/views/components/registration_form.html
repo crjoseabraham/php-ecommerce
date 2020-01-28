@@ -1,35 +1,26 @@
-<div class="menu-title">
-  <div class="title-links">
-    <button class="text-button-title load-template login" id="right-sidebar">Sign Up</button>
-    /
-    <button class="text-button-title disabled" id="right-sidebar">Register</button>
-  </div>
+<div class="registration-form">
+  <img src="img/registration.jpg" alt="Registration form picture">
+  <div class="form-content">
+    <h2>Create an account to start shopping!</h2>
+    <form action="register" method="post">
+      <div class="form-group inline">
+        <label for="name">What's your name?</label>
+        <input type="text" name="name" id="name" required placeholder="e.g: John Doe">
+      </div>
+      <div class="form-group inline">
+        <label for="email">Enter your email</label>
+        <input type="email" name="email" id="email" required placeholder="e.g: johndoe@gmail.com">
+      </div>
+      <div class="form-group">
+        <label for="password">Create a password</label>
+        <input type="password" name="password" id="password" required>
+      </div>
+      <div class="form-group">
+        <label for="password_confirm">Confirm your password</label>
+        <input type="password" name="password_confirm" id="password_confirm" required>
+      </div>
 
-  <button id="right-sidebar-toggle" class="right-sidebar-toggle">
-    <i class="icon ion-ios-close"></i>
-  </button>
+      <button type="submit" class="btn-orangered">Create account</button>
+    </form>
+  </div>
 </div>
-
-<form action="register" method="post">
-  <div class="form-group">
-    <label for="inputName"> Name </label>
-    <input type="text" name="name" id="inputName" required>
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail"> Email </label>
-    <input type="email" name="email" id="inputEmail" required>
-  </div>
-
-  <div class="form-group">
-    <label for="inputPassword"> Password </label>
-    <input type="password" name="password" id="inputPassword" required>
-  </div>
-
-  <div class="form-group">
-    <label for="inputPasswordConfirm"> Confirm Password </label>
-    <input type="password" name="password_confirm" id="inputPasswordConfirm" required>
-  </div>
-
-  <button type="submit" class="submit-form-btn"> Register </button>
-</form>

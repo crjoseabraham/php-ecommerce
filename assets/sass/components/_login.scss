@@ -1,77 +1,109 @@
-.right-sidebar {
-  form {
-    display: -webkit-box;
-    display: -ms-flexbox;
+.login-form {
+  display: flex;
+  width: 100%;
+
+  & > img {
+    order: 1;
+    flex: 40%;
+    max-width: 40%;
+  }
+
+  .form-content {
+    flex: 60%;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    padding: 3rem 3rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.75rem 5rem;
 
-    p {
-      font-size: 1.6rem;
+    & > * {
+      width: 100%;
     }
 
-    .form-group:not(.checkbox) {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column;
-
-      &:not(:first-child) {
-        padding-top: 2rem;
-      }
-    }
-
-    .form-group.checkbox {
-      text-align: left;
+    h2 {
       padding-top: 2rem;
+    }
 
-      & label {
-        font-size: 1.6rem;
-        color: $dark;
-        padding-left: .5rem;
-        font-family: 'Roboto Condensed', sans-serif;
-        letter-spacing: 1px;
+    h2, h4 {
+      text-align: center;
+    }
+
+    .oneline-items {
+      display: flex;
+      justify-content: space-between;
+      padding-top: .5rem;
+
+      a {
+        font-size: 1.3rem;
+        font-family: 'Muli', sans-serif;
+        color: $darkblue;
+        position: relative;
+        transition: ease all .3s;
+
+        &:active {
+          color: $darkblue;
+        }
+
+        &:hover {
+          color: $aux;
+        }
+      }
+
+      .form-group label {
+        cursor: pointer;
+        position: relative;
+        padding-left: 2rem;
+        color: $text;
+
+        &:hover {
+          color: $aux;
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          width: 1.1rem;
+          height: 1.1rem;
+          background: transparent;
+          border: 2px solid $orangered;
+          border-radius: .3rem;
+        }
+      }
+
+      .form-group input[type="checkbox"] {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        opacity: 0;
+
+        &:focus + label {
+          color: $aux;
+
+          &::before {
+            border: 2px solid $orangered;
+          }
+        }
+
+        &:checked + label {
+          color: $aux;
+        }
+
+        &:checked + label::before {
+          content: '\2713\0020';
+          font-weight: bold;
+          font-size: 1.8rem;
+          line-height: 1rem;
+          color: $orangered;
+          border: 2px solid $beige;
+        }
       }
     }
 
-    label:not([for="remember_me"]) {
-      text-align: left;
-      font-family: 'Roboto Condensed', sans-serif;
-      font-size: 2.4rem;
-      color: $dark;
-    }
-
-    input {
-      padding: 1rem;
-      border: 1px solid #ddd;
-
-      &:focus {
-        border: 1px solid #000;
-      }
-    }
-
-    .submit-form-btn {
-      cursor: pointer;
-      margin-top: 2.5rem;
-      border: none;
-      background-color: $primary;
-      padding: 1rem 0;
-      color: #fff;
-      font-family: 'Roboto Condensed', sans-serif;
-      font-size: 2.2rem;
-      text-transform: uppercase;
-      -webkit-transition: background-color .3s ease-in-out;
-      transition: background-color .3s ease-in-out;
-
-      &:hover {
-        background-color: lighten($primary, 20%);
-      }
+    button[type="submit"] {
+      padding: .65rem 3rem;
+      margin: 2.5rem auto 0 auto;
+      display: block;
     }
   }
 }

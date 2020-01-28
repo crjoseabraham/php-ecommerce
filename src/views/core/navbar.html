@@ -10,11 +10,11 @@
         <a href="#">About</a>
         <a href="#">Source code</a>
         {% if current_user is empty %}
-        <a href="#" id="nav-btn" data-content="login-form">Log in</a>
-        <a href="#" id="nav-btn" data-content="registration-form" class="btn-yellow">Register</a>
+        <a href="#" id="nav-btn" data-content="login-form">Log in <span class="arrow"></span></a>
+        <a href="#" id="nav-btn" data-content="registration-form" class="btn-orangered">Sign Up <span class="arrow"></span></a>
         {% else %}
         <a href="#" id="nav-btn" data-content="profile">Profile</a>
-        <a href="#" id="nav-btn" data-content="cart" class="btn-yellow">
+        <a href="#" id="nav-btn" data-content="cart" class="btn-beige">
             <i class="fas fa-shopping-bag"></i> Your cart
         </a>
         <a href="#">Log out</a>

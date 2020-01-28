@@ -1,5 +1,5 @@
 .menu {
-    background: $darker;
+    background: $darkblue;
     padding: 1.5rem 0;
     position: fixed;
     top: 0;
@@ -13,11 +13,11 @@
 
         button {
             font-size: 2rem;
-            color: #fff;
+            color: $bone;
             transition: ease all .3s;
 
             &:hover {
-                background: $lighter;
+                background: lighten($darkblue, 15%);
             }
         }
 
@@ -39,43 +39,59 @@
         a {
             color: #fff;
             font-size: 1.6rem;
-
-            &:hover {
-                color: $yellow;
-            }
+            transition: ease all .3s;
+            position: relative;
+            padding: .5rem .8rem;
 
             // TEMPORAL
             &:first-child {
-                color: $orange;
+                color: $orangered;
                 margin-right: auto;
             }
 
             &:not(:first-child) {
-                margin-left: 2rem;
+                margin-left: 1rem;
+            }
+
+            & > span.arrow {
+                position: absolute;
+                display: none;
+                bottom: -1.5rem;
+                right: 50%;
+                left: 50%;
+                background: none;
+                border-top: 1rem solid transparent;
+                border-left: 1rem solid transparent;
+                border-right: 1rem solid transparent;
+                border-bottom: 1rem solid #fff;
+
+                &.active {
+                    display: block !important;
+                }
             }
         }
     }
 
-    .container-menu-content-box {
+    .container-menu-content-box .menu-content-box{
+        width: 100%;
         position: relative;
 
-        .menu-content-box {
+        .content {
+            max-width: 75%;
+            background: #fff;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 1.5rem 1.5rem rgba(0,0,0,.35);
+            transform: scale(0);
+            transform-origin: top right;
+            transition: ease all .3s;
             position: absolute;
             z-index: 1000;
-            width: 100%;
             top: 1.5rem;
-            left: 0;
+            right: 0;
 
-            .content {
-                background: #fff;
-                box-shadow: 0 1rem 1rem rgba(0,0,0,.4);
-                min-height: 50vh;
-                display: none;
-
-                &.active {
-                    display: block;
-                    transform: translateY(0);
-                }
+            &.active {
+                transform: scale(1);
             }
         }
     }

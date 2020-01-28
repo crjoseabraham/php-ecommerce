@@ -1,0 +1,51 @@
+.registration-form {
+  display: flex;
+  width: 100%;
+
+  & > img {
+    order: 1;
+    flex: 40%;
+    max-width: 40%;
+    object-fit: cover;
+    object-position: -105px 2px;
+  }
+
+  .form-content {
+    flex: 60%;
+    padding: 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 1.5rem;
+
+      .form-group.inline {
+        width: 50%;
+
+        &:nth-child(1) input {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        &:nth-child(2) input {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+
+      button[type="submit"] {
+        padding: .65rem 3rem;
+        margin: 2.5rem auto 0 auto;
+        display: block;
+      }
+    }
+  }
+}

@@ -1,34 +1,29 @@
-<div class="menu-title">
-  <div class="title-links">
-    <button class="text-button-title disabled" id="right-sidebar">Sign Up</button>
-    /
-    <button class="text-button-title load-template register" id="right-sidebar">Register</button>
-  </div>
+<div class="login-form">
+  <img src="img/login-side-pic.jpg" alt="Cart pic for login form">
 
-  <button id="right-sidebar-toggle" class="right-sidebar-toggle">
-    <i class="icon ion-ios-close"></i>
-  </button>
+  <div class="form-content">
+    <h4>Welcome back!</h4>
+    <h2>Log in to your account</h2>
+    <form action="login" method="post">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Enter your password</label>
+        <input type="password" name="password" id="password" required>
+      </div>
+
+      <div class="oneline-items">
+        <div class="form-group checkbox">
+          <input type="checkbox" name="remember_me" id="remember_me">
+          <label for="remember_me">Stay logged in</label>
+        </div>
+
+        <a href="#">Forgot your password?</a>
+      </div>
+
+      <button type="submit" class="btn-orangered">Log In</button>
+    </form>
+  </div>
 </div>
-
-<form action="login" method="post">
-  <div class="form-group">
-    <label for="inputEmail"> Email </label>
-    <input type="email" name="email" id="inputEmail" required>
-  </div>
-
-  <div class="form-group">
-    <label for="inputPassword"> Password </label>
-    <input type="password" name="password" id="inputPassword" required>
-  </div>
-
-  <div class="form-group checkbox">
-    <input type="checkbox" name="remember_me" id="remember_me">
-    <label for="remember_me"> Remember me</label>
-  </div>
-
-  <button type="submit" class="submit-form-btn"> Log In </button>
-</form>
-
-<button class="text-button load-template recover-password" id="right-sidebar" style="align-self: center;">
-  Forgot your password?
-</button>
