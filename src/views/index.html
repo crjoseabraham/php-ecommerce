@@ -1,32 +1,22 @@
-{% extends "core/header.html" %}
-
-{% block content %}
-<div class="hero">
-	<div class="container">
-		<h1>A shopping cart app</h1>
-		<p class="subtitle">
-			Built with vanilla PHP and a little of modern JavaScript
-		</p>
-
-		<div class="links">
-			<a href="#store" id="toStore">
-				Go to the store
-				<i class="icon ion-ios-arrow-round-down"></i>
-			</a>
-			<a href="http://github.com/crjoseabraham/shoppingcart" target="_blank" id="toAbout">
-				View source code
-				<i class="icon ion-ios-information-circle"></i>
-			</a>
-		</div>
-	</div>
-</div>
-
-<main id="store">
-	{% include 'items.html' %}
+{% extends "core/header.html" %} {% block content %}
+<main class="container">
+    <div class="main-picture"></div>
+    <div class="pic-1"></div>
+    <div class="pic-2"></div>
+    <div class="pic-3"></div>
+    <div class="pic-4"></div>
 </main>
 
-<footer>
-	Made by José Abraham Castillo &copy; 2020.
-</footer>
+<section class="container special-offers">
+    <div class="left-block">LEFT</div>
+    <div class="right-block">RIGHT</div>
+</section>
 
+<section>
+    CAROUSEL OF ITEMS
+</section>
+
+<section>
+    CATCHING TEXT OR BLOG POST
+</section>
 {% endblock %}

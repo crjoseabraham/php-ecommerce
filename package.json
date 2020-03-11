@@ -1,40 +1,35 @@
 {
-  "name": "minimarket",
-  "version": "2.0.0",
-  "description": "A shopping cart app with vanilla PHP and JavaScript ES6",
-  "main": "index.js",
-  "scripts": {
-    "dev": "webpack --mode development --watch",
-    "sass": "sass --watch assets/sass:public/css --style compressed",
-    "build": "webpack --mode production"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/crjoseabraham/shoppingcart.git"
-  },
-  "keywords": [
-    "mvc",
-    "shoppingcart",
-    "php",
-    "vanilla",
-    "js",
-    "javascript",
-    "ecommerce"
-  ],
-  "author": "Jose Abraham Castillo",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/crjoseabraham/shoppingcart/issues"
-  },
-  "homepage": "https://github.com/crjoseabraham/shoppingcart#readme",
-  "devDependencies": {
-    "@babel/core": "^7.7.5",
-    "@babel/preset-env": "^7.7.6",
-    "babel-loader": "^8.0.6",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.7.0"
-  }
+    "name": "ecommerce",
+    "version": "2.0.1",
+    "description": "\"About the fit\" - Ecommerce site with PHP and modern JavaScript",
+    "main": "index.js",
+    "scripts": {
+        "sass": "node-sass -w resources/sass -o public/assets/styles --style compressed",
+        "dev": "webpack --watch --mode=development",
+        "build": "webpack --mode=production"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/crjoseabraham/shoppingcart.git"
+    },
+    "keywords": [
+        "ecommerce",
+        "php",
+        "php7",
+        "shoppingcart",
+        "mvc"
+    ],
+    "author": "Jose Abraham Castillo",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/crjoseabraham/shoppingcart/issues"
+    },
+    "homepage": "https://github.com/crjoseabraham/shoppingcart#readme",
+    "devDependencies": {
+        "@babel/core": "^7.8.7",
+        "@babel/preset-env": "^7.8.7",
+        "babel-loader": "^8.0.6",
+        "webpack": "^4.42.0",
+        "webpack-cli": "^3.3.11"
+    }
 }

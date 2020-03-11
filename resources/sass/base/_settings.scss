@@ -1,0 +1,62 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Alice|Playfair+Display:700,700i&display=swap");
+
+$heading: "Playfair Display", serif;
+$body: "Alice", serif;
+
+// Colors
+$bistre: #312c26;
+$grullo: #b2a08a;
+$eggshell: #f2e9db;
+$white: #ffffff;
+$peach: #fed1bd;
+$tulip: #fc8b93;
+
+// Reset basic styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%; // So that 1rem = 10px
+}
+
+body {
+    background: $white;
+    color: $bistre;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: $heading;
+    color: $bistre;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+h2 {
+    font-size: 2.2rem;
+}
+h3 {
+    font-size: 1.8rem;
+}
+h4 {
+    font-size: 1.45rem;
+}
+h5 {
+    font-size: 1.2rem;
+}
+
+button {
+    cursor: pointer;
+}

@@ -1,0 +1,83 @@
+.container {
+    margin: auto;
+    width: 90%;
+    max-width: 1000px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    // for testing purposes
+    & > * {
+        border: 1px solid black;
+        width: 100%;
+    }
+}
+
+// navbar
+#menu {
+    height: 8rem;
+
+    .menu__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+
+        .menu__logo {
+            max-height: 6.5rem;
+            order: 1;
+        }
+
+        .menu__links--right {
+            order: 2;
+        }
+    }
+}
+
+// main element: 5 big images
+main {
+    display: grid;
+    grid-template-areas:
+        "main pic-1 pic-2"
+        "main pic-3 pic-4";
+
+    // for testing purposes
+    & > div {
+        border: 1px solid red;
+        padding: 3rem;
+    }
+
+    .main-picture {
+        grid-area: main;
+    }
+
+    .pic-1 {
+        grid-area: pic-1;
+    }
+
+    .pic-2 {
+        grid-area: pic-2;
+    }
+
+    .pic-3 {
+        grid-area: pic-3;
+    }
+
+    .pic-4 {
+        grid-area: pic-4;
+    }
+}
+
+// second div: small bar with special offers
+.special-offers {
+    display: flex;
+    width: 100%;
+
+    & > div {
+        border: 1px solid red;
+        padding: 2rem 4rem;
+        flex: 1;
+    }
+}
