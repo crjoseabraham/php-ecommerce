@@ -4,7 +4,6 @@
     "description": "\"About the fit\" - Ecommerce site with PHP and modern JavaScript",
     "main": "index.js",
     "scripts": {
-        "sass": "node-sass -w resources/sass -o public/assets/styles --style compressed",
         "dev": "webpack --watch --mode=development",
         "build": "webpack --mode=production"
     },
@@ -28,7 +27,14 @@
     "devDependencies": {
         "@babel/core": "^7.8.7",
         "@babel/preset-env": "^7.8.7",
+        "autoprefixer": "^9.7.5",
         "babel-loader": "^8.0.6",
+        "css-loader": "^3.4.2",
+        "mini-css-extract-plugin": "^0.9.0",
+        "node-sass": "^4.13.1",
+        "postcss-loader": "^3.0.0",
+        "sass-loader": "^8.0.2",
+        "style-loader": "^1.1.3",
         "webpack": "^4.42.0",
         "webpack-cli": "^3.3.11"
     }
