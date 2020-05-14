@@ -1,11 +1,13 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const autoprefixer = require("autoprefixer");
 
 module.exports = {
     entry: "./resources/scripts/index.js",
     output: {
         filename: "app.js",
-        path: path.resolve(__dirname, "dist", "assets", "js")
+        path: path.resolve(__dirname, "dist", "assets", "js"),
+        publicPath: "./dist/assets"
     },
     module: {
         rules: [
@@ -24,21 +26,17 @@ module.exports = {
                 use: [
                     "style-loader",
                     MiniCssExtractPlugin.loader,
-                    {
-                        loader: "css-loader",
-                        options: { sourceMap: true }
-                    },
+                    "css-loader?url=false",
                     {
                         loader: "postcss-loader",
                         options: {
-                            sourceMap: true,
-                            config: { path: "./postcss.config.js" }
+                            autoprefixer: {
+                                browser: ["last 4 versions"]
+                            },
+                            plugins: () => [autoprefixer]
                         }
                     },
-                    {
-                        loader: "sass-loader",
-                        options: { sourceMap: true }
-                    }
+                    "sass-loader"
                 ]
             }
         ]

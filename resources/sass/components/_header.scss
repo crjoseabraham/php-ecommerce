@@ -1,0 +1,128 @@
+// main element: 5 big images
+.main__links {
+    display: none;
+    //display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1px 1px;
+    grid-template-areas:
+        "main main main pic1 pic2"
+        "main main main pic3 pic4";
+    width: 100%;
+    height: 85vh;
+
+    & > * {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        background-repeat: no-repeat;
+        position: relative;
+        @include headeroverlay(0.05);
+
+        // hidden button in the 4 small blocks
+        &:not(.main-pic) {
+            h2 {
+                color: $white;
+                text-align: center;
+                padding: 0 1rem;
+                transform: translateY(2rem);
+                transition: all 0.3s ease-in-out;
+            }
+
+            .btn {
+                opacity: 0;
+                transform: translateY(2rem);
+                transform-origin: bottom;
+                transition: all 0.3s ease-in-out;
+            }
+
+            &:hover {
+                h2 {
+                    transform: translateY(0);
+                }
+                .btn {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+
+    .main-pic {
+        background-position: center center;
+        grid-area: main;
+
+        p {
+            color: $white;
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .title-container {
+            position: relative;
+            padding: 3.5rem 0;
+
+            &::before,
+            &::after {
+                content: "";
+                height: 2px;
+                width: 10rem;
+                background: $white;
+                position: absolute;
+                left: 50%;
+                right: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            &::before {
+                top: 0;
+            }
+
+            &::after {
+                bottom: 0;
+            }
+        }
+    }
+
+    .pic-1 {
+        grid-area: pic1;
+        background-position: center;
+    }
+    .pic-2 {
+        grid-area: pic2;
+        background-position: 75% center;
+    }
+    .pic-3 {
+        grid-area: pic3;
+        background-position: center -20rem;
+        background-size: 300%;
+    }
+    .pic-4 {
+        grid-area: pic4;
+        background-position: left center;
+    }
+}
+
+// second div: small bar with special offers
+.special-offers {
+    display: flex;
+    width: 100%;
+
+    &__block {
+        &--left {
+            width: 66.667%;
+        }
+
+        &--right {
+            width: 33.333%;
+        }
+    }
+
+    // testing
+    & > div {
+        border: 1px solid red;
+        padding: 2rem 4rem;
+    }
+}

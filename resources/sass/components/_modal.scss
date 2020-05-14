@@ -1,0 +1,14 @@
+.modal {
+    position: absolute;
+    top: 3rem;
+    left: 34%;
+    width: 40rem;
+    height: 90vh;
+    border: 1px solid red;
+    z-index: -20;
+    background-color: peachpuff;
+
+    &.active {
+        z-index: 1000;
+    }
+}

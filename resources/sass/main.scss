@@ -1,2 +1,8 @@
-@import "base/layout";
+@import "utilities/variables";
+@import "utilities/common";
+@import "utilities/mixins";
 @import "base/settings";
+@import "components/buttons";
+@import "components/navbar";
+@import "components/header";
+@import "components/modal";

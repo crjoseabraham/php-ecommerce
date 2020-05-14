@@ -11,10 +11,16 @@
         </title>
     </head>
 
-    <body>
+    <body id="bodyJsPointer">
         @include('includes.navbar')
         @include('layouts.main')
         @include('includes.footer')
+
+        <div class="modal" id="modal">
+            <button id="close-modal" class="btn btn--link"><i class="fas fa-times"></i></button>
+            <div class="modal__content"></div>
+        </div>
+
         <script
             src="https://kit.fontawesome.com/eea5dcc8ef.js"
             crossorigin="anonymous"
