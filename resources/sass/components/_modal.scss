@@ -20,23 +20,14 @@
 
     &__content {
         position: absolute;
-        width: 40rem;
-        height: 50rem;
+        width: 50rem;
+        height: 60rem;
         top: 50%;
         left: 50%;
         z-index: 1000;
         opacity: 0;
-        background-color: $white;
-        border: 1px solid red;
+        background-color: darken($white, 2%);
         transform: translate(-50%, -30%);
         transition: all 0.3s ease;
-
-        & .template {
-            display: none;
-
-            &.active {
-                display: block;
-            }
-        }
     }
 }

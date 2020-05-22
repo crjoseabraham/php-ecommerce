@@ -1,5 +1,8 @@
 export default class UI {
-    constructor() {
+    constructor(HttpRequest) {
+        // For HTTP Requests
+        this.http = HttpRequest;
+
         // UI elements
         this.modal = document.getElementById("modal");
         this.body = document.getElementById("bodyJsPointer");
@@ -32,22 +35,27 @@ export default class UI {
     }
 
     /**
-     * Show modal. Display correct content div, hide the rest
+     * Show modal. Display correct content div
      * @param {string} data_template Reference name to the desired view
      */
     showModal(data_template) {
-        this.modal.classList.add("active");
-        this.body.classList.add("noscroll");
-
-        const content_divs = this.modal.querySelectorAll(".modal__content .template");
-
-        content_divs.forEach((div) => {
-            div.classList.remove("active");
-
-            if (div.dataset.template === data_template) {
-                div.classList.add("active");
-            }
-        });
+        this.http
+            .get(data_template)
+            .then((view_html) => {
+                this.deleteElementContent(
+                    this.modal.querySelector(".template-container")
+                );
+                this.modal
+                    .querySelector(".template-container")
+                    .insertAdjacentHTML("afterbegin", view_html);
+            })
+            .catch((error_message) => {
+                console.log(error_message);
+            })
+            .finally(() => {
+                this.modal.classList.add("active");
+                this.body.classList.add("noscroll");
+            });
     }
 
     /**

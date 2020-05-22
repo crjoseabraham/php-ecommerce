@@ -20,7 +20,7 @@
             />
         </a>
         <div class="menu__links">
-            <a href="https://google.com" target="_blank" class="simple">Categories</a>
+            <a href="#" class="simple">Categories</a>
             <a href="#" class="simple">About the project</a>
             <a href="#" class="simple">Blog</a>
         </div>
