@@ -1,0 +1,1 @@
+REGISTRATION FORM<?php /**PATH /var/www/html/shoppingcart/resources/views/components/register_form.blade.php ENDPATH**/ ?>

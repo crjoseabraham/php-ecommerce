@@ -1,7 +1,6 @@
 // main element: 5 big images
 .main__links {
-    display: none;
-    //display: grid;
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 1px 1px;

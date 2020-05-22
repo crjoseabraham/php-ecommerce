@@ -1,15 +1,11 @@
 export default class UI {
-    constructor(HttpRequest) {
-        // For HTTP Requests
-        this.HttpRequest = HttpRequest;
-
+    constructor() {
         // UI elements
         this.modal = document.getElementById("modal");
+        this.body = document.getElementById("bodyJsPointer");
 
         // Set event listeners
-        document
-            .getElementById("bodyJsPointer")
-            .addEventListener("click", this.eventsHandler.bind(this));
+        this.body.addEventListener("click", this.eventsHandler.bind(this));
     }
 
     /**
@@ -24,39 +20,42 @@ export default class UI {
      * @param {object} event Clicked element
      */
     eventsHandler(event) {
-        event.preventDefault();
-
+        // Show modal
         if (event.target.hasAttribute("data-template")) {
+            event.preventDefault();
             this.showModal(event.target.dataset.template);
+        }
+        // Hide modal
+        if (event.target.parentElement.id === "close-modal") {
+            this.hideModal();
         }
     }
 
     /**
-     * Find a view to display in modal
-     * @param {string} view Reference name to the desired view
+     * Show modal. Display correct content div, hide the rest
+     * @param {string} data_template Reference name to the desired view
      */
-    showModal(view) {
-        this.HttpRequest.get(view)
-            .then((view_html) => {
-                console.log(JSON.parse(view_html)); // <----- DELETE
-                this.deleteElementContent(this.modal.querySelector(".modal__content"));
-                this.modal
-                    .querySelector(".modal__content")
-                    .insertAdjacentHTML("afterbegin", JSON.parse(view_html));
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-            .finally(() => {
-                this.modal.classList.toggle("active");
-            });
+    showModal(data_template) {
+        this.modal.classList.add("active");
+        this.body.classList.add("noscroll");
+
+        const content_divs = this.modal.querySelectorAll(".modal__content .template");
+
+        content_divs.forEach((div) => {
+            div.classList.remove("active");
+
+            if (div.dataset.template === data_template) {
+                div.classList.add("active");
+            }
+        });
     }
 
     /**
      * Ehm.. hide the modal, what else do you want from me?
      */
     hideModal() {
-        // code here
+        this.modal.classList.remove("active");
+        this.body.classList.remove("noscroll");
     }
 
     /**

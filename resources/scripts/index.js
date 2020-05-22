@@ -1,5 +1,5 @@
 import "../sass/main.scss";
 import UI from "./UI";
-import HttpRequest from "./HttpRequest";
+//import HttpRequest from "./HttpRequest";
 
-new UI(new HttpRequest());
+new UI();
