@@ -10,3 +10,27 @@
         opacity: $opacity;
     }
 }
+
+@mixin btn-hover-effect($width, $time, $opacity) {
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+        background: $white;
+        content: "";
+        height: 155px;
+        left: -150px;
+        opacity: $opacity;
+        position: absolute;
+        top: -50px;
+        transform: rotate(35deg);
+        transition: all $time cubic-bezier(0.19, 1, 0.22, 1);
+        width: $width;
+        z-index: 1;
+    }
+
+    &:hover::after {
+        left: 120%;
+        transition: all $time cubic-bezier(0.19, 1, 0.22, 1);
+    }
+}

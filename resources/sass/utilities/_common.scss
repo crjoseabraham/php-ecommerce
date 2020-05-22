@@ -24,3 +24,11 @@
 .noscroll {
     overflow: hidden;
 }
+
+// Inline elements
+.inline-sb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}

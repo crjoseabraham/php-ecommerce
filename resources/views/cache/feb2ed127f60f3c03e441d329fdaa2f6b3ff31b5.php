@@ -4,14 +4,21 @@
 </div>
 
 <form action="login" method="post" id="login_form">
-    <label for="email">email</label>
+    <label for="email">Email</label>
     <input type="email" name="email" id="email">
 
-    <label for="pass">pass</label>
+    <label for="pass">Password</label>
     <input type="password" name="pass" id="pass">
 
-    <input type="checkbox" name="lol" id="lol">
-    <label for="lol">lol</label>
+    <div class="inline-sb mt-2">
+        <div class="inline-group">
+            <input type="checkbox" name="remember_me" id="checkbox">
+            <label for="checkbox">Keep me signed in</label>
+        </div>
+        <div class="inline">
+            <a href="#" class="simple">I forgot my password</a>
+        </div>
+    </div>
 
-    <button type="submit" class="btn">Log In</button>
+    <button type="submit" class="btn btn--primary mt-4">Log In</button>
 </form><?php /**PATH /var/www/html/shoppingcart/resources/views/components/login_form.blade.php ENDPATH**/ ?>

@@ -24,7 +24,10 @@
         &:not(.main-pic) {
             h2 {
                 color: $white;
+                font-style: italic;
                 text-align: center;
+                text-transform: uppercase;
+                text-shadow: 2px 2px 5px #cbcbcb;
                 padding: 0 1rem;
                 transform: translateY(2rem);
                 transition: all 0.3s ease-in-out;

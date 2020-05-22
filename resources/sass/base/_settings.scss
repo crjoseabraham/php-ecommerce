@@ -80,3 +80,43 @@ h4 {
 h5 {
     font-size: 1.5rem;
 }
+
+// Forms
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    label {
+        align-self: flex-start;
+        font-weight: 500;
+
+        &:not(:first-child),
+        &:not([for="checkbox"]) {
+            padding-top: 2rem;
+        }
+
+        &[for="checkbox"] {
+            cursor: pointer;
+        }
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        margin-top: 0.8rem;
+        padding: 1.5rem 0.8rem;
+        border: 1px solid lighten($bistre, 50%);
+        border-radius: 0;
+        font-size: 1.6rem;
+        font-family: $body;
+
+        &:focus {
+            border: 1px solid black;
+        }
+    }
+
+    input[type="checkbox"] {
+        vertical-align: bottom;
+    }
+}

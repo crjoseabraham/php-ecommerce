@@ -12,29 +12,9 @@ button {
     cursor: pointer;
 
     &--blank {
-        border: 1px solid $white;
-        overflow: hidden;
-        position: relative;
         color: $white;
-
-        &::after {
-            background: $white;
-            content: "";
-            height: 155px;
-            left: -75px;
-            opacity: 0.4;
-            position: absolute;
-            top: -50px;
-            transform: rotate(35deg);
-            transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
-            width: 50px;
-            z-index: 1;
-        }
-
-        &:hover::after {
-            left: 120%;
-            transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
-        }
+        border: 1px solid currentColor;
+        @include btn-hover-effect(50px, 550ms, 0.4);
     }
 
     &--link {
@@ -42,5 +22,15 @@ button {
         color: lighten($bistre, 40%);
         border: none;
         background: transparent;
+    }
+
+    &--primary {
+        padding: 1.3rem 0;
+        font-size: 1.6rem;
+        font-weight: 500;
+        border: none;
+        color: $white;
+        background: #000;
+        @include btn-hover-effect(90px, 500ms, 0.8);
     }
 }
