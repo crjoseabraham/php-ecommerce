@@ -11,14 +11,20 @@
         </title>
     </head>
 
-    <body>
+    <body id="bodyJsPointer">
         <?php echo $__env->make('includes.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        <?php echo $__env->make('layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <?php echo $__env->make('includes.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+        <div class="modal" id="modal">
+            <button id="close-modal" class="btn btn--link"><i class="fas fa-times"></i></button>
+            <div class="modal__content"></div>
+        </div>
+
         <script
             src="https://kit.fontawesome.com/eea5dcc8ef.js"
             crossorigin="anonymous"
         ></script>
         <script src="dist/assets/js/app.js"></script>
     </body>
-</html><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/index.blade.php ENDPATH**/ ?>
+</html><?php /**PATH /var/www/html/shoppingcart/resources/views/home.blade.php ENDPATH**/ ?>

@@ -36,24 +36,20 @@ export default class UI {
      * @param {string} view Reference name to the desired view
      */
     showModal(view) {
-        const lol = this.HttpRequest.get(view);
-        console.log(lol);
-        // .then((data) => console.log("resolved:", data))
-        // .catch((err) => console.log(err));
-        // this.HttpRequest.get(view)
-        //     .then((view_html_content) => {
-        //         // this.deleteElementContent(this.modal);
-        //         // this.modal
-        //         //     .querySelector(".modal__content")
-        //         //     .insertAdjacentHTML("afterbegin", view_html_content);
-        //         console.log(view_html_content);
-        //     })
-        //     .catch((error_message) => {
-        //         this.modal.innerText = error_message;
-        //     })
-        //     .finally(() => {
-        //         this.modal.classList.toggle("active");
-        //     });
+        this.HttpRequest.get(view)
+            .then((view_html) => {
+                console.log(JSON.parse(view_html)); // <----- DELETE
+                this.deleteElementContent(this.modal.querySelector(".modal__content"));
+                this.modal
+                    .querySelector(".modal__content")
+                    .insertAdjacentHTML("afterbegin", JSON.parse(view_html));
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                this.modal.classList.toggle("active");
+            });
     }
 
     /**
@@ -68,6 +64,8 @@ export default class UI {
      * @param {object} element div/element to erase content from
      */
     deleteElementContent(element) {
-        element.child;
+        while (element.firstChild) {
+            element.removeChild(element.lastChild);
+        }
     }
 }

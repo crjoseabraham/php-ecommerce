@@ -14,4 +14,4 @@
     <label for="lol">lol</label>
 
     <button type="submit" class="btn">Log In</button>
-</form>
+</form><?php /**PATH /var/www/html/shoppingcart/resources/views/components/login_form.blade.php ENDPATH**/ ?>

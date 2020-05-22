@@ -41,4 +41,4 @@
 <section>
     CATCHING TEXT OR BLOG POST
 </section>
-<?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/layouts/main.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/html/shoppingcart/resources/views/layouts/main.blade.php ENDPATH**/ ?>

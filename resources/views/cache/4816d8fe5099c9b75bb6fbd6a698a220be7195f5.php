@@ -31,3 +31,4 @@
         </div>
     </div>
 </nav>
+<?php /**PATH /var/www/html/shoppingcart/resources/views/includes/navbar.blade.php ENDPATH**/ ?>
