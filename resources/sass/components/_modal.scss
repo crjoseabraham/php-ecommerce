@@ -7,6 +7,7 @@
     z-index: -1;
     visibility: hidden;
     background: rgba($color: #000000, $alpha: 0.3);
+    overflow: auto;
 
     &.active {
         visibility: visible;
@@ -14,19 +15,19 @@
 
         & .modal__content {
             opacity: 1;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, 0);
         }
     }
 
     &__content {
         position: absolute;
         width: 50rem;
-        top: 50%;
+        top: 3rem;
         left: 50%;
         z-index: 1000;
         opacity: 0;
         background-color: darken($white, 2%);
-        transform: translate(-50%, -30%);
+        transform: translate(-50%, 3rem);
         transition: all 0.3s ease;
 
         #close-modal {
@@ -55,10 +56,6 @@
             p {
                 padding-top: 2rem;
             }
-        }
-
-        form {
-            margin-top: 4rem;
         }
     }
 }

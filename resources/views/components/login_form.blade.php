@@ -3,12 +3,12 @@
     <p>Become a Member — you'll enjoy exclusive deals, offers, invites and rewards.</p>
 </div>
 
-<form action="login" method="post" id="login_form">
+<form action="login" method="post" id="login_form" class="mt-4">
     <label for="email">Email</label>
     <input type="email" name="email" id="email">
 
     <label for="pass">Password</label>
-    <input type="password" name="pass" id="pass">
+    <input type="password" name="password" id="pass">
 
     <div class="inline-sb mt-2">
         <div class="inline-group">
