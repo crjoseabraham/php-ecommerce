@@ -20,6 +20,30 @@
     margin-top: 4rem;
 }
 
+.pv2 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.ph2 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.pv4 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+.ph4 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+.pv8 {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+}
+.ph8 {
+    padding-left: 8rem;
+    padding-right: 8rem;
+}
 // No Scroll for body
 .noscroll {
     overflow: hidden;
@@ -36,4 +60,35 @@
 // Color change
 .tulip {
     color: $tulip;
+}
+
+// Font
+.fs16 {
+    font-size: 1.6rem;
+}
+.fs18 {
+    font-size: 1.8rem;
+}
+.fs32 {
+    font-size: 3.2rem;
+}
+
+.serif {
+    font-family: $heading;
+}
+
+.sans {
+    font-family: $body;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.upper {
+    text-transform: uppercase;
+}
+
+.center {
+    text-align: center;
 }

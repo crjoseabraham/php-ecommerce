@@ -30,7 +30,10 @@
 </main>
 
 <section class="container special-offers">
-    <div class="special-offers__block--left">LEFT</div>
+    <div class="special-offers__block--left center pv8 ph8">
+        <h2 class="serif upper fs32">Special Offers!</h2>
+        <p class="upper fs18 mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium cum deleniti, reprehenderit fugit sunt tenetur exercitationem voluptate numquam commodi. Tenetur!</p>
+    </div>
     <div class="special-offers__block--right">RIGHT</div>
 </section>
 

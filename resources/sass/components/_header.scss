@@ -3,7 +3,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 1px 1px;
     grid-template-areas:
         "main main main pic1 pic2"
         "main main main pic3 pic4";
@@ -27,7 +26,7 @@
                 font-style: italic;
                 text-align: center;
                 text-transform: uppercase;
-                text-shadow: 2px 2px 5px #cbcbcb;
+                text-shadow: 2px 2px 20px #888;
                 padding: 0 1rem;
                 transform: translateY(2rem);
                 transition: all 0.3s ease-in-out;
@@ -125,6 +124,5 @@
     // testing
     & > div {
         border: 1px solid red;
-        padding: 2rem 4rem;
     }
 }
