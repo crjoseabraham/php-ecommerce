@@ -1,0 +1,19 @@
+.glider-contain {
+    width: 280px;
+}
+
+.glider.draggable {
+    height: 360px;
+}
+
+.glider-slide {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.glider-next,
+.glider-next:focus,
+.glider-prev,
+.glider-next:focus {
+    color: $tulip;
+}

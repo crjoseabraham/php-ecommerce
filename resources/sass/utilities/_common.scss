@@ -44,6 +44,7 @@
     padding-left: 8rem;
     padding-right: 8rem;
 }
+
 // No Scroll for body
 .noscroll {
     overflow: hidden;
@@ -60,6 +61,14 @@
 // Color change
 .tulip {
     color: $tulip;
+}
+
+.black {
+    color: #000 !important;
+}
+
+.transparent {
+    background: transparent !important;
 }
 
 // Font
@@ -87,6 +96,10 @@
 
 .upper {
     text-transform: uppercase;
+}
+
+.stroked {
+    text-decoration: line-through;
 }
 
 .center {

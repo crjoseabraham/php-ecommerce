@@ -97,7 +97,7 @@
     }
     .pic-3 {
         grid-area: pic3;
-        background-position: center -20rem;
+        background-position: center bottom;
         background-size: 300%;
     }
     .pic-4 {
@@ -114,15 +114,28 @@
     &__block {
         &--left {
             width: 66.667%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            span.discount {
+                position: absolute;
+                z-index: -1;
+                font-size: 30rem;
+                color: #000;
+                opacity: 0.2;
+                font-family: "Arial Narrow", serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
         }
 
         &--right {
             width: 33.333%;
+            padding: 3rem 0;
         }
-    }
-
-    // testing
-    & > div {
-        border: 1px solid red;
     }
 }

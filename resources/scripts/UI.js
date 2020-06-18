@@ -9,6 +9,9 @@ export default class UI {
 
         // Set event listeners
         this.body.addEventListener("click", this.eventsHandler.bind(this));
+
+        // Load other elements on startup
+        this.loadCarousels();
     }
 
     /**
@@ -74,5 +77,21 @@ export default class UI {
         while (element.firstChild) {
             element.removeChild(element.lastChild);
         }
+    }
+
+    /**
+     * Init Glider.js carousel
+     */
+    loadCarousels() {
+        new Glider(document.querySelector(".items-with-discount"), {
+            slidesToShow: 1,
+            draggable: true,
+            scrollLock: true,
+            rewind: true,
+            arrows: {
+                prev: ".glider-prev",
+                next: ".glider-next"
+            }
+        });
     }
 }

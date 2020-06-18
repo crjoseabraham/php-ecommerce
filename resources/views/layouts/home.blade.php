@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="icon" type="image/png" href="img/brand/favicon.png" />
+        <link rel="stylesheet" href="dist/assets/styles/glider.min.css" />
         <link rel="stylesheet" href="dist/assets/styles/main.css" />
         <title>
             About the fit | An ecommerce app made with PHP and vanilla JS
@@ -12,22 +13,36 @@
     </head>
 
     <body id="bodyJsPointer">
-        @include('includes.navbar')
-        @include('layouts.main')
-        @include('includes.footer')
+        <!-- Navigation bar -->
+        @include('sections.navbar')
+
+        <!-- Header -->
+        @include('sections.header')
+
+        <!-- Special offers -->
+        @include('sections.offers')
+
+        <!-- Basics -->
+        @include('sections.basics')
+
+        <section>
+            CATCHING TEXT OR BLOG POST <br>
+            CATCHING TEXT OR BLOG POST <br>
+            CATCHING TEXT OR BLOG POST <br>
+            CATCHING TEXT OR BLOG POST <br>
+        </section>
+
+        <!-- Footer -->
+        @include('sections.footer')
 
         <!-- Modal -->
-        <div class="modal" id="modal">
-            <div class="modal__content">
-                <button id="close-modal" class="btn btn--link"><i class="fas fa-times"></i></button>
-                <div class="template-container"></div>
-            </div>
-        </div>
+        @include('components.modal')
 
         <script
             src="https://kit.fontawesome.com/eea5dcc8ef.js"
             crossorigin="anonymous"
         ></script>
+        <script src="dist/assets/js/glider.min.js"></script>
         <script src="dist/assets/js/app.js"></script>
     </body>
 </html>

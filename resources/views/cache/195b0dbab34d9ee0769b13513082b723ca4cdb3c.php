@@ -30,4 +30,4 @@
             <a href="#" class="simple template" data-template="register_form">Sign Up</a>
         </div>
     </div>
-</nav>
+</nav><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/components/navbar.blade.php ENDPATH**/ ?>

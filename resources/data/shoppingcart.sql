@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-07-2019 a las 04:08:39
--- Versión del servidor: 10.1.39-MariaDB
--- Versión de PHP: 7.3.5
+-- Tiempo de generación: 19-06-2020 a las 01:17:24
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -84,24 +84,46 @@ CREATE TABLE `order_details` (
 
 CREATE TABLE `product` (
   `product_id` int(11) NOT NULL,
-  `description` varchar(30) NOT NULL,
+  `description` varchar(150) NOT NULL,
   `price` float NOT NULL,
-  `picture` varchar(255) NOT NULL,
-  `rating` float NOT NULL
+  `discount` tinyint(4) NOT NULL DEFAULT 0,
+  `rating` float NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `product`
 --
 
-INSERT INTO `product` (`product_id`, `description`, `price`, `picture`, `rating`) VALUES
-(1, 'Apple', 0.3, 'img/apples.jpg', 3),
-(2, 'Beer', 2, 'img/beer.jpg', 2),
-(3, 'Water', 1, 'img/water.jpg', 0),
-(4, 'Cheese', 3.74, 'img/cheese.jpg', 0),
-(5, 'Burger', 5.99, 'img/hamburger.jpg', 0),
-(6, 'Taco', 3.99, 'img/taco.jpg', 0),
-(7, 'Orange Juice', 2.35, 'img/orange-juice.jpg', 0);
+INSERT INTO `product` (`product_id`, `description`, `price`, `discount`, `rating`) VALUES
+(1000, 'White floral dress', 35.99, 0, 0),
+(1001, 'Gray spaghetti strap dress', 29.5, 0, 0),
+(1002, 'Purple lace knitted long-sleeved dress', 48, 0, 0),
+(1003, 'Pastel pink, black and white floral halter-top dress', 38, 30, 0),
+(1004, 'White dress with pink and blue floral textile', 40, 0, 0),
+(1005, 'White V-Neck sleeveless dress', 32, 0, 0),
+(1006, 'Red sleeveless dress', 41, 0, 0),
+(1007, 'Red floral dress', 26.99, 0, 0),
+(1008, 'Metallic blue jumpsuit', 60, 0, 0),
+(1009, 'Gray jumpsuit', 53.5, 0, 0),
+(1010, 'Light blue striped jumpsuit', 42, 30, 0),
+(1011, 'White spaghetti strap jumpsuit', 47.5, 0, 0),
+(1012, 'Beige sleeveless jumpsuit', 58.99, 0, 0),
+(1013, 'Green athletic shoes', 39.99, 0, 0),
+(1014, 'Simple white sneakers', 30, 0, 0),
+(1015, 'Red sneakers', 42.5, 30, 0),
+(1016, 'Pink patent leather stilettos', 54.99, 0, 0),
+(1017, 'Gold leather heeled sandals', 49.99, 0, 0),
+(1018, 'Black stilettos', 40, 0, 0),
+(1019, 'Yellow tracksuit', 75, 30, 0),
+(1020, 'Black skull hand top', 24.99, 0, 0),
+(1021, 'Gray turtle-neck top', 29.99, 30, 0),
+(1022, 'Blue denim shorts', 24.99, 0, 0),
+(1023, 'Black long sleeve t-shirt', 20, 0, 0),
+(1024, 'Green halter bikini', 17.99, 0, 0),
+(1025, 'Basic black bikini', 12.99, 0, 0),
+(1026, 'Red with white dots bikini', 14.99, 0, 0),
+(1027, 'Animal print bikini top', 12, 0, 0),
+(1028, 'Floral halter bikini top', 11.5, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -150,7 +172,7 @@ CREATE TABLE `review` (
 CREATE TABLE `session` (
   `session_id` varchar(50) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `cash` float NOT NULL DEFAULT '100',
+  `cash` float NOT NULL DEFAULT 100,
   `start` datetime NOT NULL,
   `end` datetime DEFAULT NULL,
   `status` bit(1) NOT NULL DEFAULT b'1'
@@ -271,7 +293,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT de la tabla `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1029;
 
 --
 -- AUTO_INCREMENT de la tabla `rating`

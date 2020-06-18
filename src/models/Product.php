@@ -1,7 +1,7 @@
 <?php
-namespace Model;
+namespace App\Model;
 
-use \App\Database;
+use \App\Core\Database;
 
 /**
  * Product class
@@ -17,7 +17,7 @@ class Product extends Database
   {
     $db = static::getDB();
     $stmt = $db->prepare("SELECT * FROM product");
-    return $stmt->execute() ? $stmt->fetchAll(\PDO::FETCH_OBJ) : false;
+    return $stmt->execute() ? $stmt->fetchAll(\PDO::FETCH_ASSOC) : false;
   }
 
   /**
@@ -30,7 +30,7 @@ class Product extends Database
     $db = static::getDB();
     $stmt = $db->prepare("
       SELECT product.*, COUNT(`rating`.rating_value) AS total_rating_votes
-      FROM product 
+      FROM product
       INNER JOIN rating
       ON product.product_id = rating.rating_product_id
       WHERE product_id = :id");
@@ -47,7 +47,7 @@ class Product extends Database
   {
     $db = static::getDB();
     $stmt = $db->prepare("
-      SELECT review.review_user_id, user.name, review.review_content 
+      SELECT review.review_user_id, user.name, review.review_content
       FROM `review`
       INNER JOIN `user`
       ON review.review_user_id = user.id
@@ -154,7 +154,7 @@ class Product extends Database
 
 
   // Utility functions
-  
+
   // Check if there's a record in the `review` table for the current user and for an specific item
   public function userAlreadyReviewed($product)
   {
@@ -174,5 +174,5 @@ class Product extends Database
     $stmt->bindValue(':ru', $_SESSION['user_id'], \PDO::PARAM_INT);
     return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_OBJ) : false;
   }
-  
+
 }
