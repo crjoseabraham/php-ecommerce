@@ -7,6 +7,10 @@
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
 
-    <button aria-label="Previous" class="glider-prev">&lang;</button>
-    <button aria-label="Next" class="glider-next">&rang;</button>
+    <button aria-label="Previous" class="glider-prev">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <button aria-label="Next" class="glider-next">
+        <i class="fas fa-chevron-right"></i>
+    </button>
 </div><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/sections/items_w_discount.blade.php ENDPATH**/ ?>

@@ -1,14 +1,14 @@
-.glider-contain {
-    width: 280px;
+.glider-contain.single-item .glider {
+    width: 260px;
 }
 
-.glider.draggable {
-    height: 360px;
+.glider-contain.multiple-items .glider {
+    width: calc(260px * 4);
 }
 
 .glider-slide {
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    width: 255px !important;
+    margin: 0 0.25rem;
 }
 
 .glider-next,
@@ -16,4 +16,12 @@
 .glider-prev,
 .glider-next:focus {
     color: $tulip;
+}
+
+.glider-prev {
+    left: 0;
+}
+
+.glider-next {
+    right: 0;
 }

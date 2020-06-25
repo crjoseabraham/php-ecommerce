@@ -25,12 +25,14 @@
         <!-- Basics -->
         @include('sections.basics')
 
-        <section>
-            CATCHING TEXT OR BLOG POST <br>
-            CATCHING TEXT OR BLOG POST <br>
-            CATCHING TEXT OR BLOG POST <br>
-            CATCHING TEXT OR BLOG POST <br>
-        </section>
+        <!-- Best Sellers and New pieces -->
+        @include('sections.best_sellers')
+
+        <!-- Blog -->
+        @include('sections.blog')
+
+        <!-- Newsletter -->
+        @include('sections.newsletter')
 
         <!-- Footer -->
         @include('sections.footer')

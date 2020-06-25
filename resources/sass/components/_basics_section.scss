@@ -1,0 +1,17 @@
+.basics {
+    display: flex;
+    height: 25rem;
+
+    .right {
+        width: 25rem;
+        background: $peach;
+    }
+
+    .left {
+        flex: 1;
+        background-image: url("./../../img/basics.jpg");
+        background-size: cover;
+        background-position: center 50%;
+        background-repeat: no-repeat;
+    }
+}

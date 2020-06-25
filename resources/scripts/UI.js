@@ -93,5 +93,29 @@ export default class UI {
                 next: ".glider-next"
             }
         });
+
+        new Glider(document.querySelector(".best-sellers-carousel"), {
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            draggable: true,
+            scrollLock: true,
+            rewind: true,
+            arrows: {
+                prev: ".best-prev",
+                next: ".best-next"
+            }
+        });
+
+        new Glider(document.querySelector(".just-arrived-carousel"), {
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            draggable: true,
+            scrollLock: true,
+            rewind: true,
+            arrows: {
+                prev: ".ja-prev",
+                next: ".ja-next"
+            }
+        });
     }
 }

@@ -25,12 +25,14 @@
         <!-- Basics -->
         <?php echo $__env->make('sections.basics', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-        <section>
-            CATCHING TEXT OR BLOG POST <br>
-            CATCHING TEXT OR BLOG POST <br>
-            CATCHING TEXT OR BLOG POST <br>
-            CATCHING TEXT OR BLOG POST <br>
-        </section>
+        <!-- Best Sellers and New pieces -->
+        <?php echo $__env->make('sections.best_sellers', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+        <!-- Blog -->
+        <?php echo $__env->make('sections.blog', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+        <!-- Newsletter -->
+        <?php echo $__env->make('sections.newsletter', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <!-- Footer -->
         <?php echo $__env->make('sections.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
