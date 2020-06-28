@@ -21,6 +21,17 @@ class Product extends Database
   }
 
   /**
+   * Get certain items to not display the same in both carousels
+   * @return mixed  Array if records found, false if not
+   */
+  public function getTestItems()
+  {
+    $db = static::getDB();
+    $stmt = $db->prepare("SELECT * FROM product WHERE `product_id` > 1017");
+    return $stmt->execute() ? $stmt->fetchAll(\PDO::FETCH_ASSOC) : false;
+  }
+
+  /**
    * Get item by its ID
    * @param  int $id  ID of item to search for
    * @return mixed    Array if records found, false if not

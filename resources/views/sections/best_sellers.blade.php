@@ -23,7 +23,7 @@
 
         <div class="glider-contain multiple-items">
             <div class="just-arrived-carousel glider-wrap">
-                @foreach ($products as $item)
+                @foreach ($products2 as $item)
                     @include('components.product_card')
                 @endforeach
             </div>

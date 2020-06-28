@@ -10,7 +10,7 @@
 
     &:hover .product__image {
         .btn {
-            transform: translate(-50%, -50%) scale(1);
+            transform: scaleY(1);
             visibility: visible;
             opacity: 1;
         }
@@ -41,13 +41,15 @@
     .btn {
         position: absolute;
         bottom: 0;
-        left: 50%;
-        transform: translateX(-50%) scale(1.5);
+        left: 0;
+        transform: scaleY(0);
+        transform-origin: bottom;
         transition: all 0.1s ease-in;
         z-index: 5;
         visibility: hidden;
         opacity: 0;
         padding: 1.3rem 3rem;
+        width: 100%;
     }
 }
 

@@ -36,7 +36,9 @@ class View {
     private function getHomeParams() {
         return [
             "sessions" => "Sessions array goes here",
-            "products" => (new Products())->getProducts()
+            "products" => (new Products())->getProducts(),
+            // Just to show something different
+            "products2" => (new Products())->getNotSoRandomProducts()
         ];
     }
 }
