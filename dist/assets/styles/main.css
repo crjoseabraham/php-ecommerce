@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Work+Sans:wght@400;500;700&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Work+Sans:wght@400;500;700&display=swap);
 .container {
   margin: auto;
   width: 90%;
@@ -49,6 +49,9 @@
 .tulip {
   color: #fc8b93; }
 
+.grullo {
+  color: #b2a08a; }
+
 .black {
   color: #000 !important; }
 
@@ -88,7 +91,8 @@
   box-sizing: border-box; }
 
 html {
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  scroll-behavior: smooth; }
 
 body {
   background: #ffffff;
@@ -483,8 +487,6 @@ button {
   background-color: #fff;
   position: relative;
   overflow: hidden; }
-  .product__card:hover .product__image .image__overlay {
-    background-color: rgba(178, 160, 138, 0.8); }
   .product__card:hover .product__image .btn {
     transform: translate(-50%, -50%) scale(1);
     visibility: visible;
@@ -495,7 +497,8 @@ button {
   height: 309px; }
   .product__image img {
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    transition: all 0.3s ease-in-out; }
   .product__image .image__overlay {
     position: absolute;
     top: 0;
@@ -507,13 +510,14 @@ button {
     transition: all 0.3s ease; }
   .product__image .btn {
     position: absolute;
-    top: 50%;
+    bottom: 0;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1.5);
+    transform: translateX(-50%) scale(1.5);
     transition: all 0.1s ease-in;
     z-index: 5;
     visibility: hidden;
-    opacity: 0; }
+    opacity: 0;
+    padding: 1.3rem 3rem; }
 
 .product__details {
   position: relative;
@@ -541,7 +545,16 @@ button {
   height: 25rem; }
   .basics .right {
     width: 25rem;
-    background: #fed1bd; }
+    background: #fed1bd;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .basics .right a {
+      flex: 1;
+      text-align: center;
+      color: #fc8b93; }
+      .basics .right a i {
+        font-size: 5rem; }
   .basics .left {
     flex: 1;
     background-image: url("./../../img/basics.jpg");
@@ -605,4 +618,89 @@ button {
     transform: translateY(2rem);
     transform-origin: bottom;
     transition: all 0.3s ease-in-out; }
+
+.newsletter {
+  width: 100%;
+  padding: 5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to bottom, rgba(252, 139, 147, 0.8), rgba(252, 139, 147, 0.8)), url("./../../img/roses-bg.jpg");
+  background-repeat: repeat;
+  background-position: top left; }
+  .newsletter__container {
+    width: 60rem;
+    height: 42rem;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; }
+  .newsletter__background {
+    background-image: url("./../../img/newsletter-bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+    height: 45%; }
+  .newsletter__form {
+    border-top: 6px double #312c26;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 6rem; }
+    .newsletter__form h2 {
+      font-style: italic; }
+    .newsletter__form p {
+      font-size: 1.4rem;
+      padding-top: 1rem; }
+    .newsletter__form .btn {
+      padding: 1.3rem 3rem; }
+
+footer {
+  width: 100%;
+  background-color: #312c26;
+  padding: 5rem 20rem; }
+  footer .footer-menu {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start; }
+  footer .footer-category {
+    flex: 1; }
+    footer .footer-category h5 {
+      color: #f2e9db;
+      text-transform: uppercase;
+      font-family: "Work Sans", sans-serif;
+      font-weight: 500;
+      font-size: 1.4rem;
+      padding-bottom: 1rem; }
+    footer .footer-category a {
+      color: #b2a08a;
+      display: table;
+      padding-top: 1.5rem; }
+  footer .brand {
+    flex: 1; }
+    footer .brand img {
+      max-width: 180px; }
+  footer .company-info .social-links {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    footer .company-info .social-links li {
+      margin: 0 1.5rem; }
+    footer .company-info .social-links li a {
+      color: #b2a08a;
+      font-size: 1.6rem;
+      transition: color 0.3s ease; }
+      footer .company-info .social-links li a:hover {
+        color: #f2e9db; }
+  footer .company-info .disclaimer {
+    width: 75%;
+    color: #b2a08a;
+    text-align: center;
+    margin: 2rem auto;
+    font-size: 1.4rem; }
+  footer hr {
+    border: 1px solid #b2a08a; }
 

@@ -5,6 +5,19 @@
     .right {
         width: 25rem;
         background: $peach;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            flex: 1;
+            text-align: center;
+            color: $tulip;
+
+            i {
+                font-size: 5rem;
+            }
+        }
     }
 
     .left {

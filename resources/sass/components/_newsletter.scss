@@ -1,0 +1,55 @@
+.newsletter {
+    width: 100%;
+    padding: 5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(
+            to bottom,
+            rgba(252, 139, 147, 0.8),
+            rgba(252, 139, 147, 0.8)
+        ),
+        url("./../../img/roses-bg.jpg");
+    background-repeat: repeat;
+    background-position: top left;
+
+    &__container {
+        width: 60rem;
+        height: 42rem;
+        background-color: $white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    &__background {
+        background-image: url("./../../img/newsletter-bg.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        height: 45%;
+    }
+
+    &__form {
+        border-top: 6px double $bistre;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 3rem 6rem;
+
+        h2 {
+            font-style: italic;
+        }
+
+        p {
+            font-size: 1.4rem;
+            padding-top: 1rem;
+        }
+
+        .btn {
+            padding: 1.3rem 3rem;
+        }
+    }
+}

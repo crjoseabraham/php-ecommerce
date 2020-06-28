@@ -2,7 +2,7 @@
     <div class="product__image">
         <img src="./img/product/{{ $item["product_id"] }}.jpg" alt="Product Image">
         <div class="image__overlay"></div>
-        <button class="btn btn--blank transparent mt-2">View details</button>
+        <button class="btn btn--primary mt-2">View details</button>
     </div>
 
     <div class="product__details">

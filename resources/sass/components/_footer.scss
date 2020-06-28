@@ -1,0 +1,73 @@
+footer {
+    width: 100%;
+    background-color: $bistre;
+    padding: 5rem 20rem;
+
+    .footer-menu {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+    }
+
+    .footer-category {
+        flex: 1;
+
+        h5 {
+            color: $eggshell;
+            text-transform: uppercase;
+            font-family: $body;
+            font-weight: 500;
+            font-size: 1.4rem;
+            padding-bottom: 1rem;
+        }
+
+        a {
+            color: $grullo;
+            display: table;
+            padding-top: 1.5rem;
+        }
+    }
+
+    .brand {
+        flex: 1;
+
+        img {
+            max-width: 180px;
+        }
+    }
+
+    .company-info {
+        .social-links {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            li {
+                margin: 0 1.5rem;
+            }
+
+            li a {
+                color: $grullo;
+                font-size: 1.6rem;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: $eggshell;
+                }
+            }
+        }
+
+        .disclaimer {
+            width: 75%;
+            color: $grullo;
+            text-align: center;
+            margin: 2rem auto;
+            font-size: 1.4rem;
+        }
+    }
+
+    hr {
+        border: 1px solid $grullo;
+    }
+}

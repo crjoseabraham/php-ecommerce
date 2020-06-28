@@ -8,7 +8,7 @@
         {{-- Photo by Rowan Chestnut on Unsplash --}}
     </a>
     <a href="#" class="pic-1 cover" style="background-image: url(img/pic-1.jpg);">
-        <h2>Create stunning outfits</h2>
+        <h2>New Collection</h2>
         <span class="btn btn--blank mt-2">See more</span>
         {{-- Photo by Tamara Bellis on Unsplash --}}
     </a>
