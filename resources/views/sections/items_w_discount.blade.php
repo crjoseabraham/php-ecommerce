@@ -1,5 +1,5 @@
 <div class="glider-contain single-item">
-    <div class="items-with-discount">
+    <div class="items-with-discount glider-wrap">
         @foreach ($products as $item)
             @if ($item["discount"] == 30)
                 @include('components.product_card')

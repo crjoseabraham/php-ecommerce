@@ -6,6 +6,10 @@
     width: calc(260px * 4);
 }
 
+.glider-track {
+    scrollbar-width: none;
+}
+
 .glider-slide {
     width: 255px !important;
     margin: 0 0.25rem;
@@ -24,4 +28,13 @@
 
 .glider-next {
     right: 0;
+}
+
+@-moz-document url-prefix() {
+    .glider-track {
+        margin-bottom: 17px;
+    }
+    .glider-wrap {
+        overflow: hidden;
+    }
 }

@@ -3,7 +3,7 @@
         <h4 class="section-title">Best Sellers</h4>
 
         <div class="glider-contain multiple-items">
-            <div class="best-sellers-carousel">
+            <div class="best-sellers-carousel glider-wrap">
                 @foreach ($products as $item)
                     @include('components.product_card')
                 @endforeach
@@ -22,7 +22,7 @@
         <h4 class="section-title">New Arrivals</h4>
 
         <div class="glider-contain multiple-items">
-            <div class="just-arrived-carousel">
+            <div class="just-arrived-carousel glider-wrap">
                 @foreach ($products as $item)
                     @include('components.product_card')
                 @endforeach

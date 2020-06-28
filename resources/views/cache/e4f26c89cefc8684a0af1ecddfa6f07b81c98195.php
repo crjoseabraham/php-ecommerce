@@ -1,5 +1,5 @@
 <div class="glider-contain single-item">
-    <div class="items-with-discount">
+    <div class="items-with-discount glider-wrap">
         <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <?php if($item["discount"] == 30): ?>
                 <?php echo $__env->make('components.product_card', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
