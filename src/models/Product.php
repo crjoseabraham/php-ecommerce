@@ -46,7 +46,7 @@ class Product extends Database
       ON product.product_id = rating.rating_product_id
       WHERE product_id = :id");
     $stmt->bindValue(':id', $id, \PDO::PARAM_STR);
-    return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_OBJ) : false;
+    return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_ASSOC) : false;
   }
 
   /**

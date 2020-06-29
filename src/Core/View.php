@@ -20,11 +20,13 @@ class View {
      * @return void
      */
     public function render($view, $params) {
-        if ($view === "layouts/home")
+        if ($view === "layouts/home")                   // Load homepage with starter data
             echo $this->blade->view()->make($view)->with($this->getHomeParams())->render();
-        elseif (is_null($params))
+        elseif (is_null($params))                       // Load views that require no params
             echo $this->blade->view()->make($view)->render();
-        else
+        elseif ($view === "components/item_details")    // Load modal with item details
+            echo $this->blade->view()->make($view)->with((new Products())->getItem($params["id"]))->render();
+        else                                            // Load view with one parameter
             echo $this->blade->view()->make($view)->with($params)->render();
     }
 
@@ -38,7 +40,7 @@ class View {
             "sessions" => "Sessions array goes here",
             "products" => (new Products())->getProducts(),
             // Just to show something different
-            "products2" => (new Products())->getNotSoRandomProducts()
+            "products2" => (new Products())->getNotReallyRandomProducts()
         ];
     }
 }

@@ -9,7 +9,11 @@ class Products {
         return (new Product())->getAll();
     }
 
-    public function getNotSoRandomProducts() {
+    public function getNotReallyRandomProducts() {
         return (new Product())->getTestItems();
+    }
+
+    public function getItem($id) {
+        return (new Product())->getItemById($id);
     }
 }

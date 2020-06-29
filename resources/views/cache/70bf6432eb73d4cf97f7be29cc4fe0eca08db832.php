@@ -1,8 +1,8 @@
-<div class="product__card">
+<div class="product__card" data-template="item/<?php echo e($item["product_id"]); ?>/details">
     <div class="product__image">
         <img src="./img/product/<?php echo e($item["product_id"]); ?>.jpg" alt="Product Image">
         <div class="image__overlay"></div>
-        <button class="btn btn--primary mt-2">View details</button>
+        <button class="btn btn--primary mt-2" data-template="item/<?php echo e($item["product_id"]); ?>/details">View details</button>
     </div>
 
     <div class="product__details">
