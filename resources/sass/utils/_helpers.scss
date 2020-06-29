@@ -1,5 +1,3 @@
-// Utility classes
-
 // DIVs
 .container {
     margin: auto;
@@ -73,39 +71,4 @@
 
 .transparent {
     background: transparent !important;
-}
-
-// Font
-.fs16 {
-    font-size: 1.6rem;
-}
-.fs18 {
-    font-size: 1.8rem;
-}
-.fs32 {
-    font-size: 3.2rem;
-}
-
-.serif {
-    font-family: $heading;
-}
-
-.sans {
-    font-family: $body;
-}
-
-.italic {
-    font-style: italic;
-}
-
-.upper {
-    text-transform: uppercase;
-}
-
-.stroked {
-    text-decoration: line-through;
-}
-
-.center {
-    text-align: center;
 }

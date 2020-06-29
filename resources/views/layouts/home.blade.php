@@ -22,8 +22,8 @@
         <!-- Special offers -->
         @include('sections.offers')
 
-        <!-- Basics -->
-        @include('sections.basics')
+        <!-- Instagram banner -->
+        @include('sections.banner')
 
         <!-- Best Sellers and New pieces -->
         @include('sections.best_sellers')

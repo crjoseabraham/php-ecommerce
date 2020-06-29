@@ -22,8 +22,8 @@
         <!-- Special offers -->
         <?php echo $__env->make('sections.offers', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-        <!-- Basics -->
-        <?php echo $__env->make('sections.basics', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <!-- Instagram banner -->
+        <?php echo $__env->make('sections.banner', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <!-- Best Sellers and New pieces -->
         <?php echo $__env->make('sections.best_sellers', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

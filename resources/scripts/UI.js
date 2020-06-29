@@ -12,6 +12,7 @@ export default class UI {
 
         // Load other elements on startup
         this.loadCarousels();
+        this.stickyNav();
     }
 
     /**
@@ -121,6 +122,9 @@ export default class UI {
         this.hideFFScrollbars();
     }
 
+    /**
+     * Hide carousels horizontal scrollbar in Firefox
+     */
     hideFFScrollbars() {
         document.addEventListener("glider-loaded", hideFFScrollBars);
         document.addEventListener("glider-refresh", hideFFScrollBars);
@@ -135,5 +139,22 @@ export default class UI {
                 }
             }
         }
+    }
+
+    /**
+     * Make navbar sticky on scroll
+     */
+    stickyNav() {
+        window.addEventListener("scroll", () => {
+            let navbar = document.getElementById("menu");
+            navbar.classList.toggle("sticky", window.scrollY > 0);
+
+            // Replace logo for the small one for responsive layout
+            let img = document.querySelector(".menu__container .menu__logo");
+            let original_logo = "./img/brand/logotipo.png";
+            let small_logo = "./img/brand/isotipo.png";
+
+            img.src = navbar.classList.contains("sticky") ? small_logo : original_logo;
+        });
     }
 }

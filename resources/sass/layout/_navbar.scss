@@ -1,0 +1,92 @@
+// navbar
+#menu {
+    padding-top: 2rem;
+    position: relative;
+    transition: all 0.1s ease;
+
+    //responsive buttons
+    .menu__responsive {
+        // display: flex;
+        display: none;
+        justify-content: space-between;
+    }
+
+    //navbar links and logo
+    .menu__container {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+
+        & > * {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .menu__brand {
+            order: 0;
+
+            &::before {
+                display: none;
+            }
+
+            .menu__logo {
+                max-height: 6rem;
+                transition: all 0.3s ease;
+            }
+        }
+
+        .menu__links {
+            order: 1;
+            justify-content: flex-end;
+        }
+
+        .menu__links--user {
+            order: 2;
+            justify-content: flex-end;
+        }
+
+        .menu__links a,
+        .menu__links--user a {
+            font-size: 1.5rem;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase !important;
+
+            &:not(:first-child) {
+                margin-left: 1rem;
+            }
+        }
+    }
+
+    // sticky
+    &.sticky {
+        background-color: $white;
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 998;
+        -webkit-box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.11);
+        -moz-box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.11);
+        box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.11);
+
+        .menu__brand {
+            order: 1;
+            justify-content: center;
+            animation-name: scaleImg;
+            animation-duration: 0.3s;
+        }
+
+        .menu__links {
+            order: 0;
+            justify-content: flex-start;
+        }
+
+        .menu__links--user {
+            order: 2;
+        }
+        .menu__container .menu__brand .menu__logo {
+            max-height: 4rem;
+        }
+    }
+}

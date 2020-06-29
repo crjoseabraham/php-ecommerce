@@ -3,11 +3,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     z-index: -1;
     visibility: hidden;
     background: rgba($color: #000000, $alpha: 0.3);
-    overflow: auto;
 
     &.active {
         visibility: visible;
@@ -15,19 +14,18 @@
 
         & .modal__content {
             opacity: 1;
-            transform: translate(-50%, 0);
         }
     }
 
     &__content {
-        position: absolute;
+        position: fixed;
         width: 50rem;
         top: 3rem;
         left: 50%;
         z-index: 1000;
         opacity: 0;
         background-color: darken($white, 2%);
-        transform: translate(-50%, 3rem);
+        transform: translate(-50%, 0);
         transition: all 0.3s ease;
 
         #close-modal {
