@@ -1,0 +1,31 @@
+.item-details {
+    --gap: 12px;
+    display: inline-flex;
+    margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
+    width: calc(100% + var(--gap));
+
+    & > * {
+        border: 1px solid red;
+        // set gap
+        margin: var(--gap) 0 0 var(--gap);
+    }
+
+    &__picture img {
+        max-width: 38rem;
+    }
+
+    &__info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        h3,
+        h4 {
+            font-weight: 400;
+        }
+
+        button {
+            margin-top: auto;
+        }
+    }
+}

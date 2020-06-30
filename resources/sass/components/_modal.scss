@@ -59,5 +59,10 @@
 
     &.large-modal .modal__content {
         width: 80rem;
+
+        .template-container {
+            padding: 4rem 6rem;
+            text-align: initial;
+        }
     }
 }
