@@ -1,8 +1,7 @@
 <?php
 namespace App\Core;
 
-use Philo\Blade\Blade;
-use App\Controller\Products as Products;
+use \Philo\Blade\Blade;
 
 class View {
 
@@ -19,28 +18,10 @@ class View {
      * @param array $params
      * @return void
      */
-    public function render($view, $params) {
-        if ($view === "layouts/home")                   // Load homepage with starter data
-            echo $this->blade->view()->make($view)->with($this->getHomeParams())->render();
-        elseif (is_null($params))                       // Load views that require no params
+    public function render($view, $params = null) {
+        if (is_null($params))   // Load views that require no parameters
             echo $this->blade->view()->make($view)->render();
-        elseif ($view === "components/item_details")    // Load modal with item details
-            echo $this->blade->view()->make($view)->with((new Products())->getItem($params["id"]))->render();
-        else                                            // Load view with one parameter
+        else                    // Load view with parameters
             echo $this->blade->view()->make($view)->with($params)->render();
-    }
-
-    /**
-     * Get the needed parameters to load the homepage properly: product list, session info, etc.
-     *
-     * @return array
-     */
-    private function getHomeParams() {
-        return [
-            "sessions" => "Sessions array goes here",
-            "products" => (new Products())->getProducts(),
-            // Just to show something different
-            "products2" => (new Products())->getNotReallyRandomProducts()
-        ];
     }
 }

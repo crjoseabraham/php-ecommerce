@@ -1,5 +1,5 @@
 <?php
-$router->get('', 'View@layouts/home');
-$router->get('login_form', 'View@components/login_form');
-$router->get('register_form', 'View@components/register_form');
-$router->get('item/{id}/details', 'View@components/item_details');
+$router->get('', 'ViewLoaders@homepage');
+$router->get('login_form', 'ViewLoaders@loginFormView');
+$router->get('register_form', 'ViewLoaders@signUpFormView');
+$router->get('item/{id}/details', 'ViewLoaders@showItemDetails');

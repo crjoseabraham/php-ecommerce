@@ -77,15 +77,10 @@ class Router {
                 $action = array_shift($this->params);
                 $params = !empty($this->params) ? $this->params : null;
 
-                // If it's a view, just render() it. The "method" is the file
-                if ($controller_object instanceof View) {
-                    $controller_object->render(...[$action, $params]);
-                } else {
-                    if (is_null($params))
+                if (is_null($params))
                         $controller_object->$action();
                     else
                         $controller_object->$action($params);
-                }
             } else {
                 throw new \Exception("Controller or method not found", 404);
             }
