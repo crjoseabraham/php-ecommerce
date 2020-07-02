@@ -1,10 +1,10 @@
 <?php
 namespace Model;
 
-use \App\Database;
-use \Controller\Auth;
-use \Controller\Token;
-use \Controller\Emails;
+use App\Database;
+use Controller\Auth;
+use Controller\Token;
+use Controller\Emails;
 
 /**
  * User class

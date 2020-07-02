@@ -1,10 +1,10 @@
 <?php
 namespace Model;
 
-use \App\Database;
-use \Controller\Token;
-use \Controller\Auth;
-use \Controller\Cookies;
+use App\Database;
+use Controller\Token;
+use Controller\Auth;
+use Controller\Cookies;
 
 /**
  * Session handler class

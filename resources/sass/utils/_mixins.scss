@@ -34,3 +34,28 @@
         transition: all $time cubic-bezier(0.19, 1, 0.22, 1);
     }
 }
+
+@mixin link-hover-effect($bg-color) {
+    &::before {
+        content: "";
+        height: 1px;
+        width: 100%;
+        background: $bg-color;
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        transition: all 0.3s ease;
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    &:hover {
+        color: $grullo;
+
+        &::before {
+            background: $grullo;
+            transform: scaleX(1);
+            transform-origin: right;
+        }
+    }
+}

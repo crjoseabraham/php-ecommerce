@@ -1,7 +1,7 @@
 <?php
 namespace App\Core;
 
-use \Philo\Blade\Blade;
+use Philo\Blade\Blade;
 
 class View {
 

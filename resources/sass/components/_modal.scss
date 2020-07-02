@@ -14,26 +14,33 @@
 
         & .modal__content {
             opacity: 1;
+            transform: scaleY(1) translate(-50%, -50%);
+
+            .template-container {
+                opacity: 1;
+            }
         }
     }
 
     &__content {
         position: fixed;
         width: 50rem;
-        top: 3rem;
+        top: 50%;
         left: 50%;
         z-index: 1000;
         opacity: 0;
         background-color: darken($white, 2%);
-        transform: translate(-50%, 0);
+        transform: scaleY(0) translate(-50%, -50%);
+        transform-origin: top;
         transition: all 0.3s ease;
+        overflow: hidden;
 
         #close-modal {
             font-size: 2.8rem;
             color: $bistre;
-            display: block;
-            float: right;
-            margin: 1rem 2rem;
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
 
             &::after {
                 content: " ";
@@ -43,8 +50,10 @@
         }
 
         .template-container {
-            padding: 8rem 6rem;
+            padding: 4rem 6rem;
             text-align: center;
+            opacity: 0;
+            transition: all 0.3s ease 0.2s;
         }
 
         .modal__title {
@@ -61,8 +70,10 @@
         width: 80rem;
 
         .template-container {
-            padding: 4rem 6rem;
+            padding: 0;
             text-align: initial;
+            display: flex;
+            height: 450px;
         }
     }
 }

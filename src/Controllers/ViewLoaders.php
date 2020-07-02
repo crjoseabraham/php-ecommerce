@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use \App\Core\View;
+use App\Core\View;
 
 class ViewLoaders {
 

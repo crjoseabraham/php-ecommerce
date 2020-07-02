@@ -1,7 +1,7 @@
 <?php
 namespace App\Model;
 
-use \App\Core\Database;
+use App\Core\Database;
 
 /**
  * Product class

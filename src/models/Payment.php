@@ -1,7 +1,7 @@
-<?php 
+<?php
 namespace Model;
 
-use \App\Database;
+use App\Database;
 
 /**
  * Payment model
@@ -75,14 +75,14 @@ class Payment extends Database
       return false;
 
     $stmt = $db->prepare("
-      SELECT 
-      `order_details`.quantity, 
-      `product`.description, 
+      SELECT
+      `order_details`.quantity,
+      `product`.description,
       `product`.price,
       `order_details`.subtotal
-      FROM `order_details` 
-      INNER JOIN `product` 
-      ON `order_details`.product_id = `product`.product_id 
+      FROM `order_details`
+      INNER JOIN `product`
+      ON `order_details`.product_id = `product`.product_id
       WHERE `order_details`.order_id = :order");
 
     $stmt->bindValue(':order', $id, \PDO::PARAM_INT);

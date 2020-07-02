@@ -1,7 +1,7 @@
 <?php
 namespace Model;
 
-use \App\Database;
+use App\Database;
 
 /**
  * Cart model class
