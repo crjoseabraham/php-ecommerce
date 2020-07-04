@@ -3,7 +3,7 @@
     <ul class="select--default">
         <li>
             <div class="option selected">
-                S
+                {{ $sizes[0] }}
             </div>
             <p class="select--title">Size</p>
             <span class="arrow"></span>
@@ -11,26 +11,13 @@
     </ul>
 
     <ul class="select--options">
+        @foreach ($sizes as $size)
         <li>
             <div class="option">
-                S
+                {{ $size }}
             </div>
         </li>
-        <li>
-            <div class="option">
-                M
-            </div>
-        </li>
-        <li>
-            <div class="option">
-                L
-            </div>
-        </li>
-        <li>
-            <div class="option">
-                XL
-            </div>
-        </li>
+        @endforeach
     </ul>
 </div>
 

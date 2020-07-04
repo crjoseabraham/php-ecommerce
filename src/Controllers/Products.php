@@ -10,12 +10,19 @@ class Products {
     }
 
     /**
-     * Retrieve all products from the database
+
+    * Retrieve all products from the database
      *
      * @return void
      */
     public function getProducts() {
-        return $this->model->getAll();
+        $products = $this->model->getAll();
+
+        foreach ($products as &$product) {
+            $product["sizes"] = explode(', ', $product["sizes"]);
+        }
+
+        return $products;
     }
 
     /**
@@ -25,7 +32,9 @@ class Products {
      * @return array
      */
     public function getItem($id) : array {
-        return $this->model->getItemById($id);
+        $product = $this->model->getItemById($id);
+        $product["sizes"] = explode(', ', $product["sizes"]);
+        return $product;
     }
 
     public function getNotReallyRandomProducts() {

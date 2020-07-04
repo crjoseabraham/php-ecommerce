@@ -3,7 +3,8 @@
     <ul class="select--default">
         <li>
             <div class="option selected">
-                S
+                <?php echo e($sizes[0]); ?>
+
             </div>
             <p class="select--title">Size</p>
             <span class="arrow"></span>
@@ -11,26 +12,14 @@
     </ul>
 
     <ul class="select--options">
+        <?php $__currentLoopData = $sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <li>
             <div class="option">
-                S
+                <?php echo e($size); ?>
+
             </div>
         </li>
-        <li>
-            <div class="option">
-                M
-            </div>
-        </li>
-        <li>
-            <div class="option">
-                L
-            </div>
-        </li>
-        <li>
-            <div class="option">
-                XL
-            </div>
-        </li>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </ul>
 </div>
 
