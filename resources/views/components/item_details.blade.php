@@ -25,6 +25,11 @@
         <label class="full" for="star1" title="Awful - 1 star"></label>
     </form>
 
-    <!-- Add to cart button -->
-    <button class="btn btn--primary add-to-cart"> Add to cart</button>
+    <!-- Options and button to add to the cart -->
+    <form action="cart/add/{{ $product_id }}" method="post" class="add-to-cart">
+        @include('components/item_options_select_boxes')
+
+        <input type="hidden" name="size" id="size" value="S">
+        <button type="submit" class="btn btn--primary"> Add to cart</button>
+    </form>
 </div>

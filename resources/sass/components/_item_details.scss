@@ -22,7 +22,11 @@
         line-height: 1.8;
     }
 
-    .add-to-cart {
-        margin-top: auto;
+    form.add-to-cart {
+        height: 100%;
+
+        button[type="submit"] {
+            margin-top: auto;
+        }
     }
 }

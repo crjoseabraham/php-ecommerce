@@ -74,6 +74,13 @@ export default class UI {
         if (event.target.parentElement.id === "close-modal") {
             this.hideModal();
         }
+        // Display select options
+        if (
+            event.target.classList.contains("select--default") ||
+            event.target.parentElement.classList.contains("select--default") ||
+            event.target.parentElement.parentElement.classList.contains("select--default")
+        )
+            this.displaySelectOptions(event.target.closest(".select-boxes__wrapper"));
     }
 
     /**
@@ -177,5 +184,19 @@ export default class UI {
         event.preventDefault();
         this.showModal(event.target.closest(".product__card").dataset.template);
         this.modal.classList.toggle("large-modal");
+    }
+
+    displaySelectOptions(parent) {
+        parent.classList.toggle("active");
+        // Select clicked option ->
+        parent.querySelectorAll(".select--options li").forEach((li) => {
+            li.addEventListener("click", this.selectOption.bind(li));
+        });
+    }
+
+    selectOption(li) {
+        document.querySelector(".option.selected").innerHTML = li.target.innerText;
+        document.querySelector(".select-boxes__wrapper").classList.remove("active");
+        document.getElementById("size").value = li.target.innerText;
     }
 }
