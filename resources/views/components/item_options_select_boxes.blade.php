@@ -12,7 +12,7 @@
         </li>
     </ul>
 
-    <ul class="select--options" data-selectbox="selectSize">
+    <ul class="select--options">
         @foreach ($sizes as $size)
         <li>
             <div class="option">
@@ -37,7 +37,7 @@
         </li>
     </ul>
 
-    <ul class="select--options" data-selectbox="selectQuantity">
+    <ul class="select--options">
         <li>
             <div class="option">
                 Ay wey
