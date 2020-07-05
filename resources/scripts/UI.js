@@ -47,7 +47,7 @@ export default class UI {
         function hideFFScrollBars(e) {
             var scrollbarHeight = 17; // Currently 17, may change with updates
             if (/firefox/i.test(navigator.userAgent)) {
-                // We only need to appy to desktop. Firefox for mobile uses
+                // We only need to apply to desktop. Firefox for mobile uses
                 // a different rendering engine (WebKit)
                 if (window.innerWidth > 575) {
                     e.target.parentNode.style.height =
@@ -74,13 +74,14 @@ export default class UI {
         if (event.target.parentElement.id === "close-modal") {
             this.hideModal();
         }
-        // Display select options
+        // Display select options if the click happens
+        // on any of the ul.select--default children
         if (
-            event.target.classList.contains("select--default") ||
-            event.target.parentElement.classList.contains("select--default") ||
-            event.target.parentElement.parentElement.classList.contains("select--default")
+            event.target.classList.contains("selected") ||
+            event.target.parentElement.classList.contains("arrow") ||
+            event.target.classList.contains("select--title")
         )
-            this.displaySelectOptions(event.target.closest(".select-boxes__wrapper"));
+            this.displaySelectOptions(event.target.closest(".select--default"));
     }
 
     /**
@@ -186,17 +187,44 @@ export default class UI {
         this.modal.classList.toggle("large-modal");
     }
 
-    displaySelectOptions(parent) {
-        parent.classList.toggle("active");
+    /**
+     * Display the custom select box options and add event listener for when the option is clicked
+     */
+    displaySelectOptions(select_default) {
+        select_default.classList.toggle("active");
         // Select clicked option ->
-        parent.querySelectorAll(".select--options li").forEach((li) => {
-            li.addEventListener("click", this.selectOption.bind(li));
+        select_default.nextElementSibling.querySelectorAll("li").forEach((li) => {
+            li.addEventListener("click", () => {
+                this.selectOption(li, select_default.id);
+            });
         });
     }
 
-    selectOption(li) {
-        document.querySelector(".option.selected").innerHTML = li.target.innerText;
-        document.querySelector(".select-boxes__wrapper").classList.remove("active");
-        document.getElementById("size").value = li.target.innerText;
+    /**
+     * Mark an option as selected and update the hidden input value
+     * @param {object} li Selected option
+     */
+    selectOption(li, target) {
+        //set text on "selected option"
+        let targetElement = document.getElementById(target);
+        targetElement.querySelector(".option.selected").innerHTML = li.querySelector(
+            ".option"
+        ).innerText;
+        //hide options box
+        targetElement.classList.remove("active");
+        //set hidden input value
+        switch (target) {
+            case "selectSize":
+                document.getElementById("size").value = li.querySelector(
+                    ".option"
+                ).innerText;
+                break;
+
+            case "selectQuantity":
+                document.getElementById("quantity").value = li.querySelector(
+                    ".option"
+                ).innerText;
+                break;
+        }
     }
 }

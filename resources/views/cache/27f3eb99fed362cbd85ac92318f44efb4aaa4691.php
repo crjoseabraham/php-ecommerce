@@ -27,9 +27,12 @@
 
     <!-- Options and button to add to the cart -->
     <form action="cart/add/<?php echo e($product_id); ?>" method="post" class="add-to-cart">
-        <?php echo $__env->make('components/item_options_select_boxes', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <div class="select-boxes-container mt-2">
+            <?php echo $__env->make('components/item_options_select_boxes', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        </div>
 
-        <input type="hidden" name="size" id="size" value="S">
+        <input type="hidden" name="size" id="size" value="<?php echo e($sizes[0]); ?>">
+        <input type="hidden" name="quantity" id="quantity" value="1">
         <button type="submit" class="btn btn--primary"> Add to cart</button>
     </form>
 </div><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/components/item_details.blade.php ENDPATH**/ ?>

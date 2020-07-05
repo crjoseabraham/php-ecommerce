@@ -27,9 +27,12 @@
 
     <!-- Options and button to add to the cart -->
     <form action="cart/add/{{ $product_id }}" method="post" class="add-to-cart">
-        @include('components/item_options_select_boxes')
+        <div class="select-boxes-container mt-2">
+            @include('components/item_options_select_boxes')
+        </div>
 
-        <input type="hidden" name="size" id="size" value="S">
+        <input type="hidden" name="size" id="size" value="{{ $sizes[0] }}">
+        <input type="hidden" name="quantity" id="quantity" value="1">
         <button type="submit" class="btn btn--primary"> Add to cart</button>
     </form>
 </div>

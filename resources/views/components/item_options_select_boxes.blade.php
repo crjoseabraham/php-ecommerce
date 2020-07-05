@@ -1,16 +1,18 @@
-<div class="select-boxes__wrapper">
-    <!-- Size selctor -->
-    <ul class="select--default">
+<!-- Size selctor -->
+<div class="select-box__wrapper">
+    <ul class="select--default" id="selectSize">
         <li>
             <div class="option selected">
                 {{ $sizes[0] }}
             </div>
+            <span class="arrow">
+                <i class="fas fa-angle-down"></i>
+            </span>
             <p class="select--title">Size</p>
-            <span class="arrow"></span>
         </li>
     </ul>
 
-    <ul class="select--options">
+    <ul class="select--options" data-selectbox="selectSize">
         @foreach ($sizes as $size)
         <li>
             <div class="option">
@@ -22,3 +24,24 @@
 </div>
 
 <!-- Quantity -->
+<div class="select-box__wrapper">
+    <ul class="select--default"  id="selectQuantity">
+        <li>
+            <div class="option selected">
+                1
+            </div>
+            <span class="arrow">
+                <i class="fas fa-angle-down"></i>
+            </span>
+            <p class="select--title">Quantity</p>
+        </li>
+    </ul>
+
+    <ul class="select--options" data-selectbox="selectQuantity">
+        <li>
+            <div class="option">
+                Ay wey
+            </div>
+        </li>
+    </ul>
+</div>
