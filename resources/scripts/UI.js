@@ -117,6 +117,20 @@ export default class UI {
                 prev: ".best-prev",
                 next: ".best-next"
             }
+            // responsive: [
+            //     {
+            //         breakpoint: 1200,
+            //         settings: {
+            //             slidesToShow: 4,
+            //             slidesToScroll: 1
+            //         },
+            //         breakpoint: 1100,
+            //         settings: {
+            //             slidesToShow: 4,
+            //             slidesToScroll: 1
+            //         }
+            //     }
+            // ]
         });
 
         new Glider(document.querySelector(".just-arrived-carousel"), {

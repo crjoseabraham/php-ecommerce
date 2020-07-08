@@ -1,6 +1,6 @@
 .product__card {
     width: 250px;
-    height: 409px !important;
+    height: auto;
     background-color: #fff;
     position: relative;
     overflow: hidden;
@@ -19,7 +19,6 @@
 
 .product__image {
     position: relative;
-    height: 309px;
 
     img {
         width: 100%;

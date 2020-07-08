@@ -1,0 +1,32 @@
+@media screen and (max-width: 900px) {
+    html {
+        font-size: 50%;
+    }
+    .container {
+        width: 90%;
+    }
+
+    header {
+        height: 80vh !important;
+    }
+
+    .main__links {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas:
+            "main main main main"
+            "main main main main"
+            "pic1 pic2 pic3 pic4";
+    }
+
+    .main-pic {
+        background-position: center 70% !important;
+    }
+
+    .glider-contain.multiple-items .glider {
+        width: calc(180px * 4);
+    }
+    .glider-contain.single-item .glider {
+        width: 180px;
+    }
+}
