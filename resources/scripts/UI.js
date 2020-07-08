@@ -91,13 +91,6 @@ export default class UI {
         window.addEventListener("scroll", () => {
             let navbar = document.getElementById("menu");
             navbar.classList.toggle("sticky", window.scrollY > 0);
-
-            // Replace logo for the small one for responsive layout
-            let img = document.querySelector(".menu__container .menu__logo");
-            let original_logo = "./img/brand/logotipo.png";
-            let small_logo = "./img/brand/isotipo.png";
-
-            img.src = navbar.classList.contains("sticky") ? small_logo : original_logo;
         });
     }
 
@@ -205,25 +198,21 @@ export default class UI {
      * @param {object} li Selected option
      */
     selectOption(li, target) {
+        let li_text_content = li.querySelector(".option").innerText;
+        let target_element = document.getElementById(target);
+
         //set text on "selected option"
-        let targetElement = document.getElementById(target);
-        targetElement.querySelector(".option.selected").innerHTML = li.querySelector(
-            ".option"
-        ).innerText;
+        target_element.querySelector(".option.selected").innerHTML = li_text_content;
         //hide options box
-        targetElement.classList.remove("active");
+        target_element.classList.remove("active");
         //set hidden input value
         switch (target) {
             case "selectSize":
-                document.getElementById("size").value = li.querySelector(
-                    ".option"
-                ).innerText;
+                document.getElementById("size").value = li_text_content;
                 break;
 
             case "selectQuantity":
-                document.getElementById("quantity").value = li.querySelector(
-                    ".option"
-                ).innerText;
+                document.getElementById("quantity").value = li_text_content;
                 break;
         }
     }

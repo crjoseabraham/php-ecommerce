@@ -22,6 +22,13 @@
         line-height: 1.8;
     }
 
+    .rating-votes {
+        color: lighten($bistre, 60%);
+        font-family: $body;
+        font-style: italic;
+        font-size: 1.2rem;
+    }
+
     form.add-to-cart {
         height: 100%;
 

@@ -38,10 +38,12 @@
     </ul>
 
     <ul class="select--options">
+        @for ($i = 1; $i <= 10; $i++)
         <li>
             <div class="option">
-                Ay wey
+                {{ $i }}
             </div>
         </li>
+        @endfor
     </ul>
 </div>

@@ -24,6 +24,8 @@
         <input type="radio" id="star1" name="rating" value="1" />
         <label class="full" for="star1" title="Awful - 1 star"></label>
     </form>
+    <!-- Rating votes count -->
+    <span class="rating-votes">Score: {{ $rating }} from 555 votes</span>
 
     <!-- Options and button to add to the cart -->
     <form action="cart/add/{{ $product_id }}" method="post" class="add-to-cart">

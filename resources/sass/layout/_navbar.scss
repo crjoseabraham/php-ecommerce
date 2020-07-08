@@ -6,7 +6,6 @@
 
     //responsive buttons
     .menu__responsive {
-        // display: flex;
         display: none;
         justify-content: space-between;
     }
@@ -18,15 +17,12 @@
         height: 100%;
 
         & > * {
-            flex: 1;
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
         }
 
         .menu__brand {
-            order: 0;
-
             &::before {
                 display: none;
             }
@@ -38,23 +34,20 @@
         }
 
         .menu__links {
-            order: 1;
             justify-content: flex-end;
         }
 
-        .menu__links--user {
-            order: 2;
-            justify-content: flex-end;
-        }
-
-        .menu__links a,
-        .menu__links--user a {
+        .menu__links a {
             font-size: 1.5rem;
             letter-spacing: 0.1rem;
             text-transform: uppercase !important;
 
             &:not(:first-child) {
-                margin-left: 1rem;
+                margin-left: 1.5rem;
+            }
+
+            &:first-child::before {
+                display: none;
             }
         }
     }
@@ -71,20 +64,10 @@
         box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.11);
 
         .menu__brand {
-            order: 1;
-            justify-content: center;
             animation-name: scaleImg;
             animation-duration: 0.3s;
         }
 
-        .menu__links {
-            order: 0;
-            justify-content: flex-start;
-        }
-
-        .menu__links--user {
-            order: 2;
-        }
         .menu__container .menu__brand .menu__logo {
             max-height: 4rem;
         }

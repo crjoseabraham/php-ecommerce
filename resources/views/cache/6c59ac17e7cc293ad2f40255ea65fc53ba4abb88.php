@@ -13,7 +13,7 @@
         </li>
     </ul>
 
-    <ul class="select--options" data-selectbox="selectSize">
+    <ul class="select--options">
         <?php $__currentLoopData = $sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <li>
             <div class="option">
@@ -39,11 +39,14 @@
         </li>
     </ul>
 
-    <ul class="select--options" data-selectbox="selectQuantity">
+    <ul class="select--options">
+        <?php for($i = 1; $i <= 10; $i++): ?>
         <li>
             <div class="option">
-                Ay wey
+                <?php echo e($i); ?>
+
             </div>
         </li>
+        <?php endfor; ?>
     </ul>
 </div><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/components/item_options_select_boxes.blade.php ENDPATH**/ ?>
