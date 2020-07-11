@@ -99,49 +99,159 @@ export default class UI {
      */
     loadCarousels() {
         new Glider(document.querySelector(".items-with-discount"), {
-            slidesToShow: 1,
+            slidesToShow: 2,
+            slidesToScroll: 2,
             scrollLock: true,
+            itemWidth: 150,
             rewind: true,
+            draggable: true,
             arrows: {
                 prev: ".glider-prev",
                 next: ".glider-next"
-            }
+            },
+            responsive: [
+                {
+                    breakpoint: 400,
+                    settings: {
+                        itemWidth: 190,
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 500,
+                    settings: {
+                        itemWidth: 160,
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 550,
+                    settings: {
+                        itemWidth: 170,
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 601,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
         });
 
         new Glider(document.querySelector(".best-sellers-carousel"), {
-            slidesToShow: 4,
-            slidesToScroll: 1,
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            itemWidth: 150,
             scrollLock: true,
+            draggable: true,
             rewind: true,
             arrows: {
                 prev: ".best-prev",
                 next: ".best-next"
-            }
-            // responsive: [
-            //     {
-            //         breakpoint: 1200,
-            //         settings: {
-            //             slidesToShow: 4,
-            //             slidesToScroll: 1
-            //         },
-            //         breakpoint: 1100,
-            //         settings: {
-            //             slidesToShow: 4,
-            //             slidesToScroll: 1
-            //         }
-            //     }
-            // ]
+            },
+            responsive: [
+                {
+                    breakpoint: 400,
+                    settings: {
+                        itemWidth: 190,
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 500,
+                    settings: {
+                        itemWidth: 160,
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 550,
+                    settings: {
+                        itemWidth: 170,
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        itemWidth: 170,
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 760,
+                    settings: {
+                        itemWidth: 190,
+                        slidesToShow: 4,
+                        slidesToScroll: 4
+                    }
+                }
+            ]
         });
 
         new Glider(document.querySelector(".just-arrived-carousel"), {
-            slidesToShow: 4,
-            slidesToScroll: 1,
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            itemWidth: 150,
             scrollLock: true,
+            draggable: true,
             rewind: true,
             arrows: {
                 prev: ".ja-prev",
                 next: ".ja-next"
-            }
+            },
+            responsive: [
+                {
+                    breakpoint: 400,
+                    settings: {
+                        itemWidth: 190,
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 499,
+                    settings: {
+                        itemWidth: 160,
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 550,
+                    settings: {
+                        itemWidth: 170,
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        itemWidth: 170,
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 760,
+                    settings: {
+                        itemWidth: 180,
+                        slidesToShow: 4,
+                        slidesToScroll: 4
+                    }
+                }
+            ]
         });
 
         this.hideFFScrollbars();
@@ -171,6 +281,7 @@ export default class UI {
             .finally(() => {
                 this.modal.classList.add("active");
                 this.body.classList.add("noscroll");
+                this.body.classList.add("blur");
             });
     }
 
@@ -179,6 +290,7 @@ export default class UI {
      */
     hideModal() {
         this.body.classList.remove("noscroll");
+        this.body.classList.remove("blur");
         this.modal.classList.remove("active");
         if (this.modal.classList.contains("large-modal"))
             this.modal.classList.remove("large-modal");

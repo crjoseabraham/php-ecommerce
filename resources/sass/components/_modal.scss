@@ -14,11 +14,6 @@
 
         & .modal__content {
             opacity: 1;
-            transform: scaleY(1) translate(-50%, -50%);
-
-            .template-container {
-                opacity: 1;
-            }
         }
     }
 
@@ -30,9 +25,8 @@
         z-index: 1000;
         opacity: 0;
         background-color: darken($white, 2%);
-        transform: scaleY(0) translate(-50%, -50%);
-        transform-origin: top;
-        transition: all 0.3s ease-in-out;
+        transform: translate(-50%, -50%);
+        transition: all 0.3s ease-out;
 
         #close-modal {
             font-size: 2.8rem;
@@ -40,19 +34,11 @@
             position: absolute;
             top: 1rem;
             right: 2rem;
-
-            &::after {
-                content: " ";
-                display: block;
-                clear: both;
-            }
         }
 
         .template-container {
             padding: 4rem 6rem;
             text-align: center;
-            opacity: 0;
-            transition: all 0.3s ease 0.2s;
         }
 
         .modal__title {
@@ -72,7 +58,7 @@
             padding: 0;
             text-align: initial;
             display: flex;
-            height: 450px;
+            height: 45rem;
         }
     }
 }

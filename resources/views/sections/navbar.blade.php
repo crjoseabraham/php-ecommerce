@@ -1,10 +1,10 @@
 <nav id="menu" class="menu">
     <div class="container menu__responsive">
-        <button id="menu-btn"><i class="fas fa-bars"></i></button>
+        <span>&nbsp;</span>
         <a href="#" class="menu__brand">
-            <img src="./img/brand/logotipo.png" alt="Company logo" class="menu__logo"/>
+            <img src="./img/brand/isotipo.png" alt="Company logo" class="menu__logo"/>
         </a>
-        <button id="cart-btn"><i class="fas fa-shopping-cart"></i></button>
+        <button id="user-btn sidebar"><i class="fas fa-user"></i></button>
     </div>
 
     <div class="container menu__container">

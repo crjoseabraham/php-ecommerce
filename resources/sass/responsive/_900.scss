@@ -3,7 +3,7 @@
         font-size: 50%;
     }
     .container {
-        width: 90%;
+        width: 97%;
     }
 
     header {
@@ -23,10 +23,65 @@
         background-position: center 70% !important;
     }
 
+    .product__card {
+        width: 180px;
+    }
     .glider-contain.multiple-items .glider {
-        width: calc(180px * 4);
+        width: calc(180px * 4 + 0.25rem * 8);
     }
     .glider-contain.single-item .glider {
         width: 180px;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    html {
+        font-size: 42%;
+    }
+    .glider-contain.multiple-items .glider {
+        width: calc(170px * 3 + 0.25rem * 6);
+    }
+    .glider-contain.single-item .glider {
+        width: 170px;
+    }
+    .product__card {
+        width: 170px;
+    }
+    .product__details .product__name {
+        font-size: 1.8rem;
+    }
+    .product__details .product__price span {
+        font-size: 2rem;
+    }
+
+    .blog {
+        flex-direction: column;
+
+        .blog-post {
+            height: auto;
+            padding: 10rem 0;
+        }
+
+        .blog-details {
+            transform: translateY(0);
+
+            .btn {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    }
+}
+
+// Rules based on device screen height
+@media screen and (min-height: 1200px) {
+    header {
+        height: 50vh !important;
+    }
+}
+
+@media screen and (max-height: 400px) {
+    header {
+        height: 100vh !important;
     }
 }
