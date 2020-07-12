@@ -127,6 +127,12 @@
 
 @media screen and (max-width: 550px) {
     // modal
+    #close-modal {
+        background-color: $white;
+        padding: 0.5rem 1rem;
+        border: 1px solid #000;
+    }
+
     .modal.large-modal .modal__content .template-container {
         flex-direction: column;
         width: 100%;
@@ -167,11 +173,14 @@
         }
 
         .rating {
-            padding-top: 1.5rem;
-        }
+            padding-top: 0;
 
-        .rating label {
-            font-size: 1.9rem;
+            .btn--mini {
+                font-size: 2rem;
+            }
+            label {
+                font-size: 1.9rem;
+            }
         }
 
         .rating-votes {
