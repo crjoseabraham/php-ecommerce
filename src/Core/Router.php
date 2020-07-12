@@ -36,7 +36,7 @@ class Router {
      * @return void
      */
     public function post(string $uri, string $controller) : void {
-        $this->routes['POST'][$this->convertToRegex($uri)] = ['controller' => $controller];
+        $this->routes['POST'][$this->convertToRegex($uri)] = array_combine(['controller', 'method'], explode('@', $controller));
     }
 
     /**
@@ -98,21 +98,17 @@ class Router {
      */
     private function setCurrentRoute($uri, $requestType) : void {
         foreach ($this->routes[$requestType] as $route => $params) {
+            if (preg_match($route, $uri, $matches)) {
+                // Set namespace
+                $this->params['controller'] = 'App\Controller\\' . $params['controller'];
+                // Set method
+                $this->params['method'] = $params['method'];
 
-        if (preg_match($route, $uri, $matches)) {
-            // Set namespace
-            $this->params['controller'] =
-            ($params['controller'] === 'View')
-            ? 'App\Core\\' . $params['controller']
-            : 'App\Controller\\' . $params['controller'];
-            // Set method
-            $this->params['method'] = $params['method'];
-
-            foreach ($matches as $key => $match) {
-            if (is_string($key))
-                $this->params[$key] = $match;
+                foreach ($matches as $key => $match) {
+                if (is_string($key))
+                    $this->params[$key] = $match;
+                }
             }
-        }
         }
     }
 }
