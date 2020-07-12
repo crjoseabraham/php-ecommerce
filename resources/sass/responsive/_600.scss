@@ -126,6 +126,68 @@
 }
 
 @media screen and (max-width: 550px) {
+    // modal
+    .modal.large-modal .modal__content .template-container {
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
+    &.large-modal .modal__content {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    // item-details modal
+    .item-details__picture {
+        width: 100%;
+        overflow: unset;
+        height: 70%;
+    }
+
+    .item-details__info {
+        padding: 3rem 4rem;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 30%;
+
+        h3 {
+            flex: 70%;
+        }
+        h4 {
+            flex: 30%;
+            font-size: 3rem;
+            line-height: 1;
+            text-align: right;
+        }
+
+        form.add-to-cart {
+            height: auto;
+        }
+
+        .rating {
+            padding-top: 1.5rem;
+        }
+
+        .rating label {
+            font-size: 1.9rem;
+        }
+
+        .rating-votes {
+            font-size: 1.8rem;
+        }
+
+        .select-boxes-container.mt-2 {
+            margin-top: 0;
+        }
+
+        .select-box__wrapper .select--options {
+            top: -250%;
+        }
+    }
+
+    // card
     .product__card {
         width: 160px;
     }
