@@ -9,6 +9,15 @@ export default class UI {
 
         // Set event listeners
         this.body.addEventListener("click", this.eventsHandler.bind(this));
+
+        document
+            .getElementById("close-popup")
+            .addEventListener("click", this.closePopup.bind(this));
+
+        document.querySelectorAll("[data-popup]").forEach((popup_pointer) => {
+            popup_pointer.addEventListener("click", this.showPopup.bind(this));
+        });
+
         document.querySelectorAll(".product__card").forEach((card) => {
             card.addEventListener("click", this.displayItemDetails.bind(this));
         });
@@ -294,6 +303,38 @@ export default class UI {
         this.modal.classList.remove("active");
         if (this.modal.classList.contains("large-modal"))
             this.modal.classList.remove("large-modal");
+    }
+
+    /**
+     * Display popup content
+     * @param {object} event Mouse Event
+     */
+    showPopup(event) {
+        event.preventDefault();
+
+        let popup_parent = document.querySelector(".menu__popup");
+        let popup_content_divs = document.querySelectorAll(".popup__content");
+
+        popup_content_divs.forEach((content_div) => {
+            if (event.target.dataset.popup === content_div.dataset.popupname) {
+                if (content_div.classList.contains("active")) {
+                    content_div.classList.remove("active");
+                    popup_parent.classList.remove("active");
+                } else {
+                    popup_parent.classList.add("active");
+                    content_div.classList.toggle("active");
+                }
+            } else content_div.classList.remove("active");
+        });
+    }
+
+    // Close the popup
+    closePopup(event) {
+        document.querySelectorAll(".popup__content").forEach((content) => {
+            content.classList.remove("active");
+        });
+
+        document.querySelector(".menu__popup").classList.remove("active");
     }
 
     /**

@@ -3,54 +3,144 @@
     padding-top: 2rem;
     position: relative;
     transition: all 0.1s ease;
+    background-color: $white;
 
     //responsive buttons
     .menu__responsive {
         display: none;
         justify-content: space-between;
         align-items: center;
-        background-color: $white;
-        //height: 7rem;
     }
 
     //navbar links and logo
-    .menu__container {
+    .menu__links {
         display: flex;
         justify-content: space-between;
-        height: 100%;
+        align-items: center;
 
-        & > * {
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .menu__brand {
+        .brand {
             &::before {
                 display: none;
             }
 
-            .menu__logo {
+            a img {
                 max-height: 6rem;
                 transition: all 0.3s ease;
             }
         }
 
-        .menu__links {
+        .links {
+            display: flex;
             justify-content: flex-end;
+
+            a {
+                font-size: 1.5rem;
+                letter-spacing: 0.1rem;
+                text-transform: uppercase !important;
+
+                &:not(:first-child) {
+                    margin-left: 1.5rem;
+                }
+
+                &:first-child::before {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    // popup content
+    .menu__popup {
+        background: $white;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 110%;
+        right: 50%;
+        z-index: -5;
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(50%, 0);
+        box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.25);
+        -webkit-box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.25);
+        -moz-box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.25);
+
+        &.active {
+            z-index: 999;
+            opacity: 1;
+            visibility: visible;
         }
 
-        .menu__links a {
-            font-size: 1.5rem;
-            letter-spacing: 0.1rem;
-            text-transform: uppercase !important;
+        button#close-popup {
+            font-size: 3.2rem;
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            color: #000;
+        }
 
-            &:not(:first-child) {
-                margin-left: 1.5rem;
+        .popup__content {
+            padding: 5rem 7rem;
+            max-height: 50rem;
+            overflow: auto;
+
+            &:not(.active) {
+                display: none;
             }
 
-            &:first-child::before {
-                display: none;
+            // login form structure
+            .popup_login {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: flex-start;
+
+                & > * {
+                    width: 50%;
+                    padding: 0 5rem;
+                }
+
+                .greeting {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    img {
+                        max-width: 70%;
+                    }
+                }
+            }
+
+            // sign up form structure
+            .popup_signup {
+                display: flex;
+                flex-direction: column;
+
+                h3,
+                p {
+                    align-self: center;
+                }
+
+                #register_form {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+
+                    .input-group {
+                        flex: 50%;
+                        display: flex;
+                        justify-content: flex-end;
+                        flex-direction: column;
+                        padding: 0 2rem;
+                    }
+
+                    button[type="submit"] {
+                        margin: 0 auto;
+                        margin-top: 2rem;
+                        padding: 1.5rem 5rem;
+                    }
+                }
             }
         }
     }
@@ -62,16 +152,9 @@
         position: sticky;
         top: 0;
         z-index: 998;
-        -webkit-box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.11);
-        -moz-box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.11);
-        box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.11);
+        border-bottom: 2px solid $eggshell;
 
-        .menu__brand {
-            animation-name: scaleImg;
-            animation-duration: 0.3s;
-        }
-
-        .menu__container .menu__brand .menu__logo {
+        .menu__links .brand a img {
             max-height: 4rem;
         }
     }

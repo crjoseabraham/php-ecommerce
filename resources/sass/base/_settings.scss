@@ -112,6 +112,13 @@ form {
         &[for="checkbox"] {
             cursor: pointer;
         }
+
+        span.warning {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: lighten(#ff0000, 10%);
+            display: block;
+        }
     }
 
     input[type="text"],
