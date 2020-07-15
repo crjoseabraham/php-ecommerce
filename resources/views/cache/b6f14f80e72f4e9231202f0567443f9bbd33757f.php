@@ -13,11 +13,15 @@
         </div>
 
         <div class="links">
-            <a href="https://github.com/crjoseabraham/shoppingcart" target="_blank" class="simple">
+            <a href="https://github.com/crjoseabraham/shoppingcart" target="_blank" class="simple icon-link">
                 <i class="fab fa-github"></i>
             </a>
-            <a href="#" class="simple" data-popup="login">Log In</a>
-            <a href="#" class="simple" data-popup="signup">Sign Up</a>
+            <a href="#" class="simple icon-link">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+            <a href="#" class="simple icon-link">
+                <i class="fas fa-user" data-popup="login"></i>
+            </a>
         </div>
     </div>
 

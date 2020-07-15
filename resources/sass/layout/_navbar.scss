@@ -41,10 +41,6 @@
                 &:not(:first-child) {
                     margin-left: 1.5rem;
                 }
-
-                &:first-child::before {
-                    display: none;
-                }
             }
         }
     }
@@ -115,6 +111,7 @@
             .popup_signup {
                 display: flex;
                 flex-direction: column;
+                align-items: center;
 
                 h3,
                 p {
@@ -126,6 +123,7 @@
                     justify-content: space-between;
                     flex-direction: row;
                     flex-wrap: wrap;
+                    max-width: 85%;
 
                     .input-group {
                         flex: 50%;
@@ -135,11 +133,35 @@
                         padding: 0 2rem;
                     }
 
-                    button[type="submit"] {
+                    .form-buttons {
+                        width: 70%;
                         margin: 0 auto;
                         margin-top: 2rem;
-                        padding: 1.5rem 5rem;
                     }
+                }
+            }
+
+            // for both
+            .form-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+
+                & > * {
+                    width: 40%;
+                }
+
+                .btn--primary {
+                    padding: 1rem 2rem;
+                    border: 1px solid #000;
+                    border-top: none;
+                }
+
+                .btn--blank {
+                    padding: 1rem 2rem;
+                    color: #000;
+                    text-align: center;
                 }
             }
         }

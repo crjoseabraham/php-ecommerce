@@ -30,8 +30,16 @@ a {
     transition: all 0.3s ease;
     position: relative;
 
+    a:focus {
+        color: $tulip !important;
+    }
+
     &.simple {
         @include link-hover-effect($bistre);
+    }
+
+    &.icon-link::before {
+        display: none;
     }
 }
 
@@ -47,27 +55,20 @@ h5 {
         font-family: $body;
         font-size: 2rem;
         text-transform: uppercase;
-        text-align: center;
-        padding: 2.5rem 0;
+        display: table;
+        margin: 0 auto;
         position: relative;
-
-        &::before,
-        &::after {
-            content: "";
-            min-width: 15rem;
-            border: 3px solid $eggshell;
-            display: inline-block;
-            position: relative;
-            bottom: 5px;
-            background: transparent;
-        }
+        padding: 1rem 0;
 
         &::before {
-            margin-right: 3rem;
-        }
-
-        &::after {
-            margin-left: 3rem;
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            display: block;
+            background-color: $peach;
         }
     }
 }

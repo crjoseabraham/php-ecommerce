@@ -1,4 +1,4 @@
-<section class="newsletter">
+<section class="container newsletter">
     <div class="newsletter__container">
         <div class="newsletter__background"></div>
         <div class="newsletter__form">

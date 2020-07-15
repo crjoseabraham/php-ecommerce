@@ -22,6 +22,13 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn--primary mt-4">Log In</button>
+        <div class="form-buttons mt-2">
+            <button type="submit" class="btn btn--primary">
+                Log In
+            </button>
+            <a href="#" class="btn btn--blank" data-popup="signup">
+                Sign Up
+            </a>
+        </div>
     </form>
 </div><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/components/login_form.blade.php ENDPATH**/ ?>

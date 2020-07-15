@@ -12,13 +12,20 @@
         </div>
 
         <div class="input-group">
-            <label for="pass">Create a password: <span class="warning">Password must contain at least 6 characters, 1 capital letter and 1 number</span></label>
+            <label for="pass">Create a password: <span class="warning">At least: 6 characters long, 1 capital letter and 1 number</span></label>
             <input type="password" name="password" id="pass">
 
             <label for="passconf">Confirm your password:</label>
             <input type="password" name="password_confirmation" id="passconf">
         </div>
 
-        <button type="submit" class="btn btn--primary">Sign Up</button>
+        <div class="form-buttons mt-2">
+            <a href="#" class="btn btn--blank" data-popup="login">
+                <i class="fas fa-long-arrow-alt-left"></i> Go Back
+            </a>
+            <button type="submit" class="btn btn--primary">
+                Sign Up
+            </button>
+        </div>
     </form>
 </div><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/components/register_form.blade.php ENDPATH**/ ?>

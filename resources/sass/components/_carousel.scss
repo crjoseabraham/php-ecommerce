@@ -1,9 +1,6 @@
-.glider-contain.single-item .glider {
-    width: 260px;
-}
-
-.glider-contain.multiple-items .glider {
-    width: calc(260px * 4);
+.glider-contain.single-item,
+.glider-contain.single-item .product__card.glider-slide {
+    width: 29.5rem;
 }
 
 .glider-track {
@@ -11,23 +8,40 @@
 }
 
 .glider-slide {
-    width: 255px;
     margin: 0 0.25rem;
 }
 
 .glider-next,
 .glider-next:focus,
 .glider-prev,
-.glider-next:focus {
+.glider-prev:focus {
     color: $tulip;
 }
 
+.glider-next,
 .glider-prev {
-    left: 0;
+    font-size: 3rem;
+    text-transform: uppercase;
+    top: 40%;
+    background-color: $white;
+    border-radius: 100%;
+    padding: 0.6rem 1.214rem;
+}
+
+.glider-prev {
+    left: 1rem;
+
+    i {
+        margin-right: 2px;
+    }
 }
 
 .glider-next {
-    right: 0;
+    right: 1rem;
+
+    i {
+        margin-left: 2px;
+    }
 }
 
 @-moz-document url-prefix() {

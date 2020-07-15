@@ -1,7 +1,7 @@
 footer {
     width: 100%;
-    background-color: $bistre;
-    padding: 5rem 20rem;
+    background-color: lighten($bistre, 80%);
+    padding: 7rem 0;
 
     .footer-menu {
         display: flex;
@@ -11,9 +11,8 @@ footer {
 
     .footer-category {
         flex: 1;
-
         h5 {
-            color: $eggshell;
+            color: $bistre;
             text-transform: uppercase;
             font-family: $body;
             font-weight: 500;
@@ -22,18 +21,14 @@ footer {
         }
 
         a {
-            color: $grullo;
+            color: darken($grullo, 15%);
             display: table;
             padding-top: 1.5rem;
         }
     }
 
-    .brand {
-        flex: 1;
-
-        img {
-            max-width: 18rem;
-        }
+    .brand img {
+        max-width: 18rem;
     }
 
     .company-info {
@@ -53,14 +48,14 @@ footer {
                 transition: color 0.3s ease;
 
                 &:hover {
-                    color: $eggshell;
+                    color: $bistre;
                 }
             }
         }
 
         .disclaimer {
             width: 75%;
-            color: $grullo;
+            color: darken($grullo, 15%);
             text-align: center;
             margin: 2rem auto;
             font-size: 1.4rem;
@@ -68,6 +63,6 @@ footer {
     }
 
     hr {
-        border: 1px solid $grullo;
+        border: 1px solid darken($grullo, 15%);
     }
 }

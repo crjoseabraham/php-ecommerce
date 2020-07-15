@@ -2,7 +2,7 @@
     <div class="carousel-group">
         <h4 class="section-title">Best Sellers</h4>
 
-        <div class="glider-contain multiple-items">
+        <div class="glider-contain multiple-items mt-2">
             <div class="best-sellers-carousel glider-wrap">
                 <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <?php echo $__env->make('components.product_card', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -21,7 +21,7 @@
     <div class="carousel-group">
         <h4 class="section-title">New Arrivals</h4>
 
-        <div class="glider-contain multiple-items">
+        <div class="glider-contain multiple-items mt-2">
             <div class="just-arrived-carousel glider-wrap">
                 <?php $__currentLoopData = $products2; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <?php echo $__env->make('components.product_card', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
