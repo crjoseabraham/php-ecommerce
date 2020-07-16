@@ -1,7 +1,7 @@
-@import "utils/variables";
-@import "utils/helpers";
-@import "utils/keyframes";
-@import "utils/mixins";
+@import "abstracts/variables";
+@import "abstracts/helpers";
+@import "abstracts/keyframes";
+@import "abstracts/mixins";
 @import "base/settings";
 @import "base/typography";
 @import "components/buttons";
@@ -9,9 +9,7 @@
 @import "components/cart";
 @import "components/modal";
 @import "components/product_card";
-@import "components/item_details";
-@import "components/star_system";
-@import "components/select_box";
+//@import "components/star_system";
 @import "layout/banner";
 @import "layout/blog";
 @import "layout/footer";

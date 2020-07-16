@@ -37,9 +37,6 @@
         <!-- Footer -->
         @include('sections.footer')
 
-        <!-- Modal -->
-        @include('components.modal')
-
         <script
             src="https://kit.fontawesome.com/eea5dcc8ef.js"
             crossorigin="anonymous"

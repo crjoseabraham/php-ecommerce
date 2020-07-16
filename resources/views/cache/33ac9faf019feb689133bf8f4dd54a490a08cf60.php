@@ -37,9 +37,6 @@
         <!-- Footer -->
         <?php echo $__env->make('sections.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-        <!-- Modal -->
-        <?php echo $__env->make('components.modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
         <script
             src="https://kit.fontawesome.com/eea5dcc8ef.js"
             crossorigin="anonymous"

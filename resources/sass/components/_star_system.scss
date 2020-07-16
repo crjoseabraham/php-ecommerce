@@ -36,3 +36,25 @@
 .rating > input:checked ~ label:hover ~ label {
     color: #ffed85;
 }
+
+/*
+-----> STAR RATING SYSTEM HTML MARKUP
+<form action="rate-item/{{ $product_id }}" class="rating">
+    <button type="submit" class="btn btn--mini ml-2">Submit Vote</button>
+
+    <input type="radio" id="star5" name="rating" value="5" />
+    <label class="full" for="star5" title="Awesome - 5 stars"></label>
+
+    <input type="radio" id="star4" name="rating" value="4" />
+    <label class="full" for="star4" title="Good - 4 stars"></label>
+
+    <input type="radio" id="star3" name="rating" value="3" />
+    <label class="full" for="star3" title="It's Ok - 3 stars"></label>
+
+    <input type="radio" id="star2" name="rating" value="2" />
+    <label class="full" for="star2" title="Bad - 2 stars"></label>
+
+    <input type="radio" id="star1" name="rating" value="1" />
+    <label class="full" for="star1" title="Awful - 1 star"></label>
+</form>
+*/
