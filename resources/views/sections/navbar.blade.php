@@ -17,7 +17,7 @@
                 <i class="fab fa-github"></i>
             </a>
             <a href="#" class="simple icon-link">
-                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-shopping-cart" data-popup="cart"></i>
             </a>
             <a href="#" class="simple icon-link">
                 <i class="fas fa-user" data-popup="login"></i>
@@ -34,6 +34,8 @@
         <div class="popup__content" data-popupname="signup">
             @include('components/register_form')
         </div>
-        {{-- <div class="popup__content" data-template="cart"></div> --}}
+        <div class="popup__content" data-popupname="cart">
+            @include('components/cart')
+        </div>
     </div>
 </nav>

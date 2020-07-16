@@ -34,12 +34,12 @@
             justify-content: flex-end;
 
             a {
-                font-size: 1.5rem;
+                font-size: 2rem;
                 letter-spacing: 0.1rem;
                 text-transform: uppercase !important;
 
                 &:not(:first-child) {
-                    margin-left: 1.5rem;
+                    margin-left: 3rem;
                 }
             }
         }
@@ -76,8 +76,8 @@
         }
 
         .popup__content {
-            padding: 5rem 7rem;
-            max-height: 50rem;
+            padding: 4rem 6rem 9rem 6rem;
+            max-height: 80vh;
             overflow: auto;
 
             &:not(.active) {

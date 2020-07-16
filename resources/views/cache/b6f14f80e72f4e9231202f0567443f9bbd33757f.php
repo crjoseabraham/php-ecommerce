@@ -17,7 +17,7 @@
                 <i class="fab fa-github"></i>
             </a>
             <a href="#" class="simple icon-link">
-                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-shopping-cart" data-popup="cart"></i>
             </a>
             <a href="#" class="simple icon-link">
                 <i class="fas fa-user" data-popup="login"></i>
@@ -34,6 +34,8 @@
         <div class="popup__content" data-popupname="signup">
             <?php echo $__env->make('components/register_form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
-        
+        <div class="popup__content" data-popupname="cart">
+            <?php echo $__env->make('components/cart', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        </div>
     </div>
 </nav><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/sections/navbar.blade.php ENDPATH**/ ?>
