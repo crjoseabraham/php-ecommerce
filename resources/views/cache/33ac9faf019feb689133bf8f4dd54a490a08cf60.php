@@ -13,6 +13,9 @@
     </head>
 
     <body id="bodyJsPointer">
+        <!-- Overlay -->
+        <div id="overlay"></div>
+        
         <!-- Navigation bar -->
         <?php echo $__env->make('sections.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

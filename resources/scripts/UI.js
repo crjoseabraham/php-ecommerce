@@ -43,7 +43,6 @@ export default class UI {
         }
     }
 
-
     // -------------------------
     // SHOW OR HIDE UI ELEMENTS
 
@@ -56,6 +55,7 @@ export default class UI {
 
         let popup_parent = document.querySelector(".menu__popup");
         let popup_content_divs = document.querySelectorAll(".popup__content");
+        let overlay = document.getElementById("overlay");
 
         popup_content_divs.forEach((content_div) => {
             if (event.target.dataset.popup === content_div.dataset.popupname) {
@@ -63,11 +63,18 @@ export default class UI {
                     content_div.classList.remove("active");
                     popup_parent.classList.remove("active");
                 } else {
+                    overlay.classList.add("active");
+                    this.body.classList.add("noscroll");
                     popup_parent.classList.add("active");
                     content_div.classList.toggle("active");
                 }
             } else content_div.classList.remove("active");
         });
+
+        if (!popup_parent.classList.contains("active")) {
+            overlay.classList.remove("active");
+            this.body.classList.remove("noscroll");
+        }
     }
 
     // Close the popup
@@ -77,6 +84,8 @@ export default class UI {
         });
 
         document.querySelector(".menu__popup").classList.remove("active");
+        overlay.classList.remove("active");
+        this.body.classList.remove("noscroll");
     }
 
     // ---------------------------------------
@@ -105,7 +114,7 @@ export default class UI {
             draggable: true,
             arrows: {
                 prev: ".glider-prev",
-                next: ".glider-next"
+                next: ".glider-next",
             },
             responsive: [
                 {
@@ -113,33 +122,33 @@ export default class UI {
                     settings: {
                         itemWidth: 190,
                         slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
+                        slidesToScroll: 2,
+                    },
                 },
                 {
                     breakpoint: 500,
                     settings: {
                         itemWidth: 160,
                         slidesToShow: 3,
-                        slidesToScroll: 3
-                    }
+                        slidesToScroll: 3,
+                    },
                 },
                 {
                     breakpoint: 550,
                     settings: {
                         itemWidth: 170,
                         slidesToShow: 3,
-                        slidesToScroll: 3
-                    }
+                        slidesToScroll: 3,
+                    },
                 },
                 {
                     breakpoint: 601,
                     settings: {
                         slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ]
+                        slidesToScroll: 1,
+                    },
+                },
+            ],
         });
 
         new Glider(document.querySelector(".best-sellers-carousel"), {
@@ -151,7 +160,7 @@ export default class UI {
             rewind: true,
             arrows: {
                 prev: ".best-prev",
-                next: ".best-next"
+                next: ".best-next",
             },
             responsive: [
                 {
@@ -159,42 +168,42 @@ export default class UI {
                     settings: {
                         itemWidth: 190,
                         slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
+                        slidesToScroll: 2,
+                    },
                 },
                 {
                     breakpoint: 500,
                     settings: {
                         itemWidth: 160,
                         slidesToShow: 3,
-                        slidesToScroll: 3
-                    }
+                        slidesToScroll: 3,
+                    },
                 },
                 {
                     breakpoint: 550,
                     settings: {
                         itemWidth: 170,
                         slidesToShow: 3,
-                        slidesToScroll: 3
-                    }
+                        slidesToScroll: 3,
+                    },
                 },
                 {
                     breakpoint: 600,
                     settings: {
                         itemWidth: 170,
                         slidesToShow: 3,
-                        slidesToScroll: 3
-                    }
+                        slidesToScroll: 3,
+                    },
                 },
                 {
                     breakpoint: 760,
                     settings: {
                         itemWidth: 190,
                         slidesToShow: 4,
-                        slidesToScroll: 4
-                    }
-                }
-            ]
+                        slidesToScroll: 4,
+                    },
+                },
+            ],
         });
 
         new Glider(document.querySelector(".just-arrived-carousel"), {
@@ -206,7 +215,7 @@ export default class UI {
             rewind: true,
             arrows: {
                 prev: ".ja-prev",
-                next: ".ja-next"
+                next: ".ja-next",
             },
             responsive: [
                 {
@@ -214,42 +223,42 @@ export default class UI {
                     settings: {
                         itemWidth: 190,
                         slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
+                        slidesToScroll: 2,
+                    },
                 },
                 {
                     breakpoint: 499,
                     settings: {
                         itemWidth: 160,
                         slidesToShow: 3,
-                        slidesToScroll: 3
-                    }
+                        slidesToScroll: 3,
+                    },
                 },
                 {
                     breakpoint: 550,
                     settings: {
                         itemWidth: 170,
                         slidesToShow: 3,
-                        slidesToScroll: 3
-                    }
+                        slidesToScroll: 3,
+                    },
                 },
                 {
                     breakpoint: 600,
                     settings: {
                         itemWidth: 170,
                         slidesToShow: 3,
-                        slidesToScroll: 3
-                    }
+                        slidesToScroll: 3,
+                    },
                 },
                 {
                     breakpoint: 760,
                     settings: {
                         itemWidth: 180,
                         slidesToShow: 4,
-                        slidesToScroll: 4
-                    }
-                }
-            ]
+                        slidesToScroll: 4,
+                    },
+                },
+            ],
         });
 
         this.hideFFScrollbars();
