@@ -4,7 +4,7 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, iste!</p>
             <h1>New pieces & Back in stock</h1>
         </div>
-        <span class="btn btn--blank mt-2">Go shopping!</span>
+        <span class="btn btn--blank mt-2">Start Shopping</span>
         {{-- Photo by Rowan Chestnut on Unsplash --}}
     </a>
     <a href="#" class="pic-1 cover" style="background-image: url(img/pic-1.jpg);">

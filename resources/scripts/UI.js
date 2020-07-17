@@ -109,7 +109,7 @@ export default class UI {
             slidesToShow: 2,
             slidesToScroll: 2,
             scrollLock: true,
-            itemWidth: 150,
+            itemWidth: 155,
             rewind: true,
             draggable: true,
             arrows: {
@@ -118,9 +118,17 @@ export default class UI {
             },
             responsive: [
                 {
+                    breakpoint: 320,
+                    settings: {
+                        itemWidth: 197,
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                    },
+                },
+                {
                     breakpoint: 400,
                     settings: {
-                        itemWidth: 190,
+                        itemWidth: 197,
                         slidesToShow: 2,
                         slidesToScroll: 2,
                     },
@@ -154,7 +162,7 @@ export default class UI {
         new Glider(document.querySelector(".best-sellers-carousel"), {
             slidesToShow: 2,
             slidesToScroll: 2,
-            itemWidth: 150,
+            itemWidth: 172,
             scrollLock: true,
             draggable: true,
             rewind: true,
@@ -166,7 +174,7 @@ export default class UI {
                 {
                     breakpoint: 400,
                     settings: {
-                        itemWidth: 190,
+                        itemWidth: 197,
                         slidesToShow: 2,
                         slidesToScroll: 2,
                     },
@@ -209,7 +217,7 @@ export default class UI {
         new Glider(document.querySelector(".just-arrived-carousel"), {
             slidesToShow: 2,
             slidesToScroll: 2,
-            itemWidth: 150,
+            itemWidth: 172,
             scrollLock: true,
             draggable: true,
             rewind: true,
@@ -221,7 +229,7 @@ export default class UI {
                 {
                     breakpoint: 400,
                     settings: {
-                        itemWidth: 190,
+                        itemWidth: 197,
                         slidesToShow: 2,
                         slidesToScroll: 2,
                     },

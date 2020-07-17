@@ -4,7 +4,7 @@
         font-size: 59%;
     }
     .container {
-        width: 1100px;
+        max-width: 1100px;
     }
     .item-details__picture {
         flex: 51%;
@@ -20,7 +20,7 @@
         font-size: 55%;
     }
     .container {
-        width: 1000px;
+        max-width: 1000px;
     }
     .product__card {
         width: 230px;
@@ -36,13 +36,10 @@
 // 1000
 @media screen and (max-width: 1000px) {
     .container {
-        width: 900px;
+        max-width: 900px;
     }
     .product__card {
         width: 200px;
-    }
-    .item-details__picture {
-        flex: 60%;
     }
     .glider-contain.multiple-items .glider {
         width: calc(200px * 4);
