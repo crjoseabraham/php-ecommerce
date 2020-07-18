@@ -33,28 +33,6 @@
         .popup__content {
             max-height: 90vh;
             padding: 4rem 2rem;
-
-            & > div > * {
-                width: 100% !important;
-            }
-
-            .popup_login > *,
-            .popup_signup > * {
-                padding: 0;
-            }
-
-            .popup_signup #register_form {
-                max-width: 100%;
-                flex-direction: column;
-
-                .input-group {
-                    padding: 0;
-                }
-
-                .form-buttons {
-                    width: 100%;
-                }
-            }
         }
     }
 

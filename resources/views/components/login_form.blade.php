@@ -5,30 +5,43 @@
         <img class="mt-2" src="./dist/img/login.svg" alt="Secure login">
     </div>
 
-    <form action="login" method="post" id="login_form">
-        <label for="login_email">Email</label>
-        <input type="email" name="login_email" id="login_email">
-
-        <label for="login_pass">Password</label>
-        <input type="password" name="login_password" id="login_pass">
-
-        <div class="inline-sb mt-2">
-            <div class="inline-group">
-                <input type="checkbox" name="remember_me" id="checkbox">
-                <label for="checkbox">Keep me signed in</label>
+    <form action="login" method="post" id="login_form" class="mt-2">
+        <!-- Email -->
+        <div class="form-group">
+            <label for="login_email">Email address</label>
+            <div class="input-group">
+                <input type="email" name="email" id="login_email">
             </div>
-            <div class="inline">
-                <a href="#" class="simple">I forgot my password</a>
-            </div>
+            <ul class="input-errors"></ul>
         </div>
 
-        <div class="form-buttons mt-2">
+        <!-- Password -->
+        <div class="form-group">
+            <label for="loginpass">Password</label>
+            <div class="input-group">
+                <input type="password" name="password" id="loginpass">
+            </div>
+            <ul class="input-errors"></ul>
+        </div>
+
+        <!-- Remember me & Forgotten Password -->
+        <div class="form-group" id="login_options">
+            <label>
+                <input class="form-checkbox" type="checkbox" name="remember_me" id="remember_me">
+                Remember me
+            </label>
+
+            <a href="#" class="simple">I forgot my password</a>
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-buttons">
             <button type="submit" class="btn btn--primary">
                 Log In
             </button>
-            <a href="#" class="btn btn--blank" data-popup="signup">
+            <button type="button" class="btn btn--blank" data-popup="signup">
                 Sign Up
-            </a>
+            </button>
         </div>
     </form>
 </div>

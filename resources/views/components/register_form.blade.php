@@ -1,31 +1,56 @@
 <div class="popup_signup">
     <h3>Become a Member</h3>
-    <p class="mt-2">Become a Member — you'll enjoy exclusive deals, offers, invites and rewards.</p>
 
-    <form action="signup" method="post" id="register_form">
-        <div class="input-group">
+    <form action="signup" method="post" id="register_form" class="mt-2">
+        <!-- Name -->
+        <div class="form-group">
             <label for="signup_name">What's your name?</label>
-            <input type="text" name="name" id="signup_name" placeholder="Monica Hall">
-
-            <label for="signup_email">Your email:</label>
-            <input type="email" name="email" id="signup_email" placeholder="e.g. monicahall@piedpiper.com">
+            <div class="input-group">
+                <input type="text" name="name" id="signup_name" placeholder="Monica Hall">
+                <i class="validation-status fas fa-times-circle"></i>
+            </div>
+            <ul class="input-errors">
+                <li>This field is required</li>
+                <li>Name can only contain letters</li>
+            </ul>
         </div>
 
-        <div class="input-group">
-            <label for="pass">Create a password: <span class="warning">At least: 6 characters long, 1 capital letter and 1 number</span></label>
-            <input type="password" name="password" id="pass">
-
-            <label for="passconf">Confirm your password:</label>
-            <input type="password" name="passwordConfirmation" id="passconf">
+        <!-- Email -->
+        <div class="form-group">
+            <label for="signup_email">Email address</label>
+            <div class="input-group">
+                <input type="email" name="email" id="signup_email" placeholder="monicahall@piedpiper.com">
+                <i class="validation-status fas fa-times-circle"></i>
+            </div>
+            <ul class="input-errors"></ul>
         </div>
 
-        <div class="form-buttons mt-2">
-            <a href="#" class="btn btn--blank" data-popup="login">
-                <i class="fas fa-long-arrow-alt-left"></i> Go Back
-            </a>
-            <button type="submit" class="btn btn--primary">
-                Sign Up
-            </button>
+        <!-- Password -->
+        <div class="form-group">
+            <label for="pass">Create your password</label>
+            <div class="input-group">
+                <input type="password" name="password" id="pass">
+                <i class="validation-status fas fa-times-circle"></i>
+            </div>
+            <ul class="input-errors"></ul>
         </div>
+
+        <!-- Password Confirmation -->
+        <div class="form-group">
+            <label for="passconf">Confirm password</label>
+            <div class="input-group">
+                <input type="password" name="passwordConfirmation" id="passconf">
+                <i class="validation-status fas fa-times-circle"></i>
+            </div>
+            <ul class="input-errors"></ul>
+        </div>
+
+        <!-- Buttons -->
+        <button type="button" class="btn btn--blank" data-popup="login">
+            <i class="fas fa-long-arrow-alt-left"></i> Go Back
+        </button>
+        <button type="submit" class="btn btn--primary">
+            Sign Up
+        </button>
     </form>
 </div>

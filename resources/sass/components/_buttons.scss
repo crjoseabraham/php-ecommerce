@@ -14,6 +14,7 @@ button {
     &--blank {
         color: $white;
         border: 1px solid currentColor;
+        padding: 1.3rem 2rem;
         @include btn-hover-effect(50px, 550ms, 0.4);
     }
 
@@ -37,7 +38,7 @@ button {
     }
 
     &--primary {
-        padding: 1.3rem 0;
+        padding: 1.3rem 2rem;
         font-size: 1.6rem;
         font-weight: 500;
         border: none;

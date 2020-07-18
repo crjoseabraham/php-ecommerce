@@ -20,11 +20,11 @@
                 <i class="fas fa-shopping-cart" data-popup="cart"></i>
             </a>
             <a href="#" class="simple icon-link">
-                <i class="fas fa-user" data-popup="signup"></i>
+                <i class="fas fa-user" data-popup="login"></i>
             </a>
         </div>
     </div>
-    
+
     <div class="container menu__popup">
         <button id="close-popup" class="btn btn--link"><i class="fas fa-times"></i></button>
 

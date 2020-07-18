@@ -83,6 +83,11 @@
                 display: none;
             }
 
+            h3 {
+                font-size: 24px;
+                text-align: center;
+            }
+
             // login form structure
             .popup_login {
                 display: flex;
@@ -92,75 +97,17 @@
 
                 & > * {
                     width: 50%;
-                    padding: 0 5rem;
                 }
 
                 .greeting {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                    padding-right: 3rem;
 
                     img {
                         max-width: 70%;
                     }
-                }
-            }
-
-            // sign up form structure
-            .popup_signup {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                h3,
-                p {
-                    align-self: center;
-                }
-
-                #register_form {
-                    display: flex;
-                    justify-content: space-between;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    max-width: 85%;
-
-                    .input-group {
-                        flex: 50%;
-                        display: flex;
-                        justify-content: flex-end;
-                        flex-direction: column;
-                        padding: 0 2rem;
-                    }
-
-                    .form-buttons {
-                        width: 70%;
-                        margin: 0 auto;
-                        margin-top: 2rem;
-                    }
-                }
-            }
-
-            // for both
-            .form-buttons {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                align-items: center;
-
-                & > * {
-                    width: 40%;
-                }
-
-                .btn--primary {
-                    padding: 1rem 2rem;
-                    border: 1px solid #000;
-                    border-top: none;
-                }
-
-                .btn--blank {
-                    padding: 1rem 2rem;
-                    color: #000;
-                    text-align: center;
                 }
             }
         }

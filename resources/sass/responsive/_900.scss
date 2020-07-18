@@ -38,6 +38,31 @@
     html {
         font-size: 42%;
     }
+    form {
+        .form-group {
+            grid-column: span 2;
+        }
+
+        &#register_form button {
+            width: 100%;
+            margin: 0 !important;
+            font-size: 16px;
+        }
+
+        &#login_form button {
+            margin: 0 !important;
+            font-size: 16px;
+        }
+    }
+    #menu .menu__popup .popup__content .popup_login {
+        & > * {
+            width: 100%;
+        }
+
+        .greeting img {
+            display: none;
+        }
+    }
     .glider-contain.multiple-items .glider {
         width: calc(170px * 3 + 0.25rem * 6);
     }
