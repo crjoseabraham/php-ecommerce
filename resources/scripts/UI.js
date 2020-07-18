@@ -1,13 +1,23 @@
 export default class UI {
-    constructor(HttpRequest) {
+    constructor(HttpRequest, FormValidations) {
         // For HTTP Requests
         this.http = HttpRequest;
+        // For validating forms before submitting
+        this.validate_form = FormValidations;
 
         // UI elements
         this.modal = document.getElementById("modal");
         this.body = document.getElementById("bodyJsPointer");
+        this.forms = document.querySelectorAll("form");
 
         // Set event listeners
+        this.forms.forEach((form) => {
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                this.validate_form.process(form);
+            });
+        });
+
         document.querySelectorAll("[data-popup]").forEach((popup_pointer) => {
             popup_pointer.addEventListener("click", this.showPopup.bind(this));
         });

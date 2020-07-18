@@ -5,10 +5,10 @@
     <form action="signup" method="post" id="register_form">
         <div class="input-group">
             <label for="signup_name">What's your name?</label>
-            <input type="text" name="signup_name" id="signup_name" placeholder="Monica Hall">
+            <input type="text" name="name" id="signup_name" placeholder="Monica Hall">
 
             <label for="signup_email">Your email:</label>
-            <input type="email" name="signup_email" id="signup_email" placeholder="e.g. monicahall@piedpiper.com">
+            <input type="email" name="email" id="signup_email" placeholder="e.g. monicahall@piedpiper.com">
         </div>
 
         <div class="input-group">
@@ -16,7 +16,7 @@
             <input type="password" name="password" id="pass">
 
             <label for="passconf">Confirm your password:</label>
-            <input type="password" name="password_confirmation" id="passconf">
+            <input type="password" name="passwordConfirmation" id="passconf">
         </div>
 
         <div class="form-buttons mt-2">

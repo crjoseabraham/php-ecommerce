@@ -5,6 +5,6 @@ class Users {
 
     public function register() {
         extract($_POST);
-        echo $name;
+        var_dump($_POST);
     }
 }
