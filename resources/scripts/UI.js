@@ -1,9 +1,9 @@
+import FormValidations from "./FormValidations";
+
 export default class UI {
-    constructor(HttpRequest, FormValidations) {
+    constructor(HttpRequest) {
         // For HTTP Requests
         this.http = HttpRequest;
-        // For validating forms before submitting
-        this.validate_form = FormValidations;
 
         // UI elements
         this.modal = document.getElementById("modal");
@@ -11,12 +11,7 @@ export default class UI {
         this.forms = document.querySelectorAll("form");
 
         // Set event listeners
-        this.forms.forEach((form) => {
-            form.addEventListener("submit", (event) => {
-                event.preventDefault();
-                this.validate_form.process(form);
-            });
-        });
+        this.loadFormEvents();
 
         document.querySelectorAll("[data-popup]").forEach((popup_pointer) => {
             popup_pointer.addEventListener("click", this.showPopup.bind(this));
@@ -102,6 +97,27 @@ export default class UI {
     // THINGS THAT MUST BE LOADED ON STARTUP
 
     /**
+     * Load Event listeners for the forms
+     */
+    loadFormEvents() {
+        this.forms.forEach((form) => {
+            if (form.id === "register_form") {
+                let validations_class = new FormValidations(this, form);
+                form.querySelectorAll("input").forEach((input) => {
+                    input.addEventListener("blur", () => {
+                        validations_class.validateField(input);
+                    });
+                });
+            }
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                let validations_class = new FormValidations(this, form);
+                validations_class.validateForm();
+            });
+        });
+    }
+
+    /**
      * Make navbar sticky on scroll
      */
     stickyNav() {
@@ -124,7 +140,7 @@ export default class UI {
             draggable: true,
             arrows: {
                 prev: ".glider-prev",
-                next: ".glider-next",
+                next: ".glider-next"
             },
             responsive: [
                 {
@@ -132,41 +148,41 @@ export default class UI {
                     settings: {
                         itemWidth: 197,
                         slidesToShow: 2,
-                        slidesToScroll: 2,
-                    },
+                        slidesToScroll: 2
+                    }
                 },
                 {
                     breakpoint: 400,
                     settings: {
                         itemWidth: 197,
                         slidesToShow: 2,
-                        slidesToScroll: 2,
-                    },
+                        slidesToScroll: 2
+                    }
                 },
                 {
                     breakpoint: 500,
                     settings: {
                         itemWidth: 160,
                         slidesToShow: 3,
-                        slidesToScroll: 3,
-                    },
+                        slidesToScroll: 3
+                    }
                 },
                 {
                     breakpoint: 550,
                     settings: {
                         itemWidth: 170,
                         slidesToShow: 3,
-                        slidesToScroll: 3,
-                    },
+                        slidesToScroll: 3
+                    }
                 },
                 {
                     breakpoint: 601,
                     settings: {
                         slidesToShow: 1,
-                        slidesToScroll: 1,
-                    },
-                },
-            ],
+                        slidesToScroll: 1
+                    }
+                }
+            ]
         });
 
         new Glider(document.querySelector(".best-sellers-carousel"), {
@@ -178,7 +194,7 @@ export default class UI {
             rewind: true,
             arrows: {
                 prev: ".best-prev",
-                next: ".best-next",
+                next: ".best-next"
             },
             responsive: [
                 {
@@ -186,42 +202,42 @@ export default class UI {
                     settings: {
                         itemWidth: 197,
                         slidesToShow: 2,
-                        slidesToScroll: 2,
-                    },
+                        slidesToScroll: 2
+                    }
                 },
                 {
                     breakpoint: 500,
                     settings: {
                         itemWidth: 160,
                         slidesToShow: 3,
-                        slidesToScroll: 3,
-                    },
+                        slidesToScroll: 3
+                    }
                 },
                 {
                     breakpoint: 550,
                     settings: {
                         itemWidth: 170,
                         slidesToShow: 3,
-                        slidesToScroll: 3,
-                    },
+                        slidesToScroll: 3
+                    }
                 },
                 {
                     breakpoint: 600,
                     settings: {
                         itemWidth: 170,
                         slidesToShow: 3,
-                        slidesToScroll: 3,
-                    },
+                        slidesToScroll: 3
+                    }
                 },
                 {
                     breakpoint: 760,
                     settings: {
                         itemWidth: 190,
                         slidesToShow: 4,
-                        slidesToScroll: 4,
-                    },
-                },
-            ],
+                        slidesToScroll: 4
+                    }
+                }
+            ]
         });
 
         new Glider(document.querySelector(".just-arrived-carousel"), {
@@ -233,7 +249,7 @@ export default class UI {
             rewind: true,
             arrows: {
                 prev: ".ja-prev",
-                next: ".ja-next",
+                next: ".ja-next"
             },
             responsive: [
                 {
@@ -241,42 +257,42 @@ export default class UI {
                     settings: {
                         itemWidth: 197,
                         slidesToShow: 2,
-                        slidesToScroll: 2,
-                    },
+                        slidesToScroll: 2
+                    }
                 },
                 {
                     breakpoint: 499,
                     settings: {
                         itemWidth: 160,
                         slidesToShow: 3,
-                        slidesToScroll: 3,
-                    },
+                        slidesToScroll: 3
+                    }
                 },
                 {
                     breakpoint: 550,
                     settings: {
                         itemWidth: 170,
                         slidesToShow: 3,
-                        slidesToScroll: 3,
-                    },
+                        slidesToScroll: 3
+                    }
                 },
                 {
                     breakpoint: 600,
                     settings: {
                         itemWidth: 170,
                         slidesToShow: 3,
-                        slidesToScroll: 3,
-                    },
+                        slidesToScroll: 3
+                    }
                 },
                 {
                     breakpoint: 760,
                     settings: {
                         itemWidth: 180,
                         slidesToShow: 4,
-                        slidesToScroll: 4,
-                    },
-                },
-            ],
+                        slidesToScroll: 4
+                    }
+                }
+            ]
         });
 
         this.hideFFScrollbars();

@@ -6,13 +6,13 @@
     </div>
 
     <form action="login" method="post" id="login_form" class="mt-2">
+        <p class="input-errors login">Invalid e-mail or password</p>
         <!-- Email -->
         <div class="form-group">
             <label for="login_email">Email address</label>
             <div class="input-group">
-                <input type="email" name="email" id="login_email">
+                <input type="email" name="email" id="login_email" autofocus>
             </div>
-            <ul class="input-errors"></ul>
         </div>
 
         <!-- Password -->
@@ -21,7 +21,6 @@
             <div class="input-group">
                 <input type="password" name="password" id="loginpass">
             </div>
-            <ul class="input-errors"></ul>
         </div>
 
         <!-- Remember me & Forgotten Password -->

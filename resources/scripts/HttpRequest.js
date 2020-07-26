@@ -23,4 +23,9 @@ export default class HttpRequest {
             this.request.send();
         });
     }
+
+    /**
+     * POST request
+     */
+    post() {}
 }

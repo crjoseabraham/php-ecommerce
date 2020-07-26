@@ -4,7 +4,10 @@ namespace App\Controller;
 class Users {
 
     public function register() {
-        extract($_POST);
+        echo "true";
+    }
+
+    public function userExists() {
         var_dump($_POST);
     }
 }

@@ -6,13 +6,12 @@
         <div class="form-group">
             <label for="signup_name">What's your name?</label>
             <div class="input-group">
-                <input type="text" name="name" id="signup_name" placeholder="Monica Hall">
+                <input type="text" name="name" id="signup_name" placeholder="Monica Hall" autofocus>
                 <i class="validation-status fas fa-times-circle"></i>
             </div>
-            <ul class="input-errors">
-                <li>This field is required</li>
-                <li>Name can only contain letters</li>
-            </ul>
+            <p class="input-errors">
+                Name can only contain letters and must be at least 2 characters long
+            </p>
         </div>
 
         <!-- Email -->
@@ -22,7 +21,8 @@
                 <input type="email" name="email" id="signup_email" placeholder="monicahall@piedpiper.com">
                 <i class="validation-status fas fa-times-circle"></i>
             </div>
-            <ul class="input-errors"></ul>
+            <p class="input-errors"> Invalid email address </p>
+            <p class="input-errors email-taken">This email is already registered</p>
         </div>
 
         <!-- Password -->
@@ -32,7 +32,9 @@
                 <input type="password" name="password" id="pass">
                 <i class="validation-status fas fa-times-circle"></i>
             </div>
-            <ul class="input-errors"></ul>
+            <p class="input-errors">
+                Password needs at least: 4 characters, 1 uppercase letter, 1 lowercase letter, 1 number
+            </p>
         </div>
 
         <!-- Password Confirmation -->
@@ -42,7 +44,7 @@
                 <input type="password" name="passwordConfirmation" id="passconf">
                 <i class="validation-status fas fa-times-circle"></i>
             </div>
-            <ul class="input-errors"></ul>
+            <p class="input-errors">Password and confirmation don't match</p>
         </div>
 
         <!-- Buttons -->

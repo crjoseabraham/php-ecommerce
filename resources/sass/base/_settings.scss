@@ -153,6 +153,7 @@ form {
     .form-group.correct {
         .validation-status {
             color: #00c853;
+            display: block;
         }
     }
 
@@ -186,11 +187,24 @@ form {
         }
     }
 
-    .input-errors {
-        font-size: 12px;
+    .input-errors.login {
+        font-size: 14px;
+        font-weight: 500;
+        margin: 1rem auto 0 auto;
+        display: none;
+        position: relative;
+        color: darken($tulip, 15%);
+        width: 100%;
+        text-align: center;
+
+        &.active {
+            display: block;
+        }
+    }
+    .input-errors:not(.login) {
+        font-size: 13px;
         margin: 1rem auto 0 auto;
         padding: 5px;
-        padding-left: 20px;
         background-color: darken($tulip, 15%);
         border-radius: 3px;
         display: none;
