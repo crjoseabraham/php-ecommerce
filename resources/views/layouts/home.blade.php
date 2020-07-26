@@ -15,7 +15,7 @@
     <body id="bodyJsPointer">
         <!-- Overlay -->
         <div id="overlay"></div>
-        
+
         <!-- Navigation bar -->
         @include('sections.navbar')
 

@@ -11,6 +11,21 @@ button {
     transition: all 0.3s ease;
     cursor: pointer;
 
+    &--icon {
+        font-size: 2rem;
+        color: $bistre;
+        padding: 0;
+        background: transparent;
+        border: none;
+        margin-left: 3rem;
+        transition: all 0.3s ease;
+        @include link-hover-effect($bistre);
+
+        &::before {
+            display: none;
+        }
+    }
+
     &--blank {
         color: $white;
         border: 1px solid currentColor;

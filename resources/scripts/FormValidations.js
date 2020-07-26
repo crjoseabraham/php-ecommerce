@@ -64,7 +64,7 @@ export default class FormValidations extends HttpRequest {
         } else {
             let regex = this.regex[input.name];
 
-            if (regex.test(input.value)) {
+            if (regex.test(input.value.trim())) {
                 // Hide errors, display "correct" status
                 input.closest(".form-group").classList.remove("incorrect");
                 input.parentElement.nextElementSibling.classList.remove("active");

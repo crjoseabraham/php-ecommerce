@@ -23,15 +23,13 @@ define('ERROR', 'danger');
 define('LOGIN_REQUIRED', 'You need to be logged in to perform that action');
 define('LOGIN_ERROR', 'Email and password combination is wrong');
 define('REGISTRATION_ERROR', 'Something went wrong with your registration');
-define('NAME_MISSING', 'Name is required');
-define('NAME_INVALID', 'Name can contain only letters');
-define('EMAIL_INVALID', 'Invalid email');
-define('EMAIL_EXISTS', 'Email address already exists');
+
+define('INVALID_NAME', 'Name can only contain letters and spaces and must be at least 2 characters long');
+define('INVALID_EMAIL', 'Invalid email address');
+define('INVALID_PASS', 'Password needs at least: 4 characters, 1 uppercase letter, 1 lowercase letter, 1 number');
+define('EMAIL_TAKEN', 'This email is already registered');
 define('EMAIL_DOESNT_EXISTS', 'The email address you entered is not in our database');
-define('PASSWORDS_DONT_MATCH', 'Password must match confirmation');
-define('PASSWORD_TOO_SHORT', 'Password must be at least 6 characters long');
-define('PASSWORD_NEEDS_LETTER', 'Password needs at least one letter');
-define('PASSWORD_NEEDS_NUMBER', 'Password needs at least one number');
+define('PASS_MATCH_ERR', 'Password must match confirmation');
 
 // Product notifications
 define('REVIEW_SUBMITTED', 'Your review was submitted successfully');

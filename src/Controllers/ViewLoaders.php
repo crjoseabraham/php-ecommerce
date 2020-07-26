@@ -12,12 +12,11 @@ class ViewLoaders {
 
     /**
      * Load homepage with all parameters needed
-     *
      * @return void
      */
     public function homepage() {
         $this->view->render("layouts/home", [
-            "sessions" => "Sessions array goes here",
+            "session" => $_SESSION,
             "products" => $this->products->getProducts(),
             // Just to show something different
             "products2" => $this->products->getNotReallyRandomProducts()
@@ -26,7 +25,6 @@ class ViewLoaders {
 
     /**
      * Sign In form (modal)
-     *
      * @return void
      */
     public function loginFormView() {
@@ -35,7 +33,6 @@ class ViewLoaders {
 
     /**
      * Sign Up form (modal)
-     *
      * @return void
      */
     public function signUpFormView() {
@@ -44,7 +41,6 @@ class ViewLoaders {
 
     /**
      * Load the view for the modal with an item's data
-     *
      * @param array $params Array containing the clicked product's ID
      * @return void
      */
