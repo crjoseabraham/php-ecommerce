@@ -5,13 +5,15 @@ use App\Core\Database;
 //use App\Controller\Token;
 
 class User extends Database {
-
-    public function __construct(string $name, string $email, string $password) {
-        if ($this->createUser($name, $email, $password)) {
-            $user = $this->getUserByEmail($email);
-            foreach ($user as $key => $value) {
-                $this->$key = $value;
-            }
+    /**
+     * Set $this->* values for the user whose session will be set
+     * @param array $user
+     * @return void
+     */
+    public function setCurrentUser(string $email) : void {
+        $user = $this->getUserByEmail($email);
+        foreach ($user as $key => $value) {
+            $this->$key = $value;
         }
     }
 
@@ -33,14 +35,14 @@ class User extends Database {
      * Register a new user
      * @param  array  $data   Name, email and password to register
      */
-    public function createUser(string $name, string $email, string $passw) {
+    public function createUser(array $data) {
         $db = static::getDB();
-        $hashed_password = password_hash($passw, PASSWORD_BCRYPT);
+        $hashed_password = password_hash($data["password"], PASSWORD_BCRYPT);
         $stmt = $db->prepare("INSERT INTO user (`email`, `name`, `password`) VALUES (:e, :n, :p);");
-        $stmt->bindValue(':e', $email, \PDO::PARAM_STR);
-        $stmt->bindValue(':n', $name, \PDO::PARAM_STR);
+        $stmt->bindValue(':e', $data["email"], \PDO::PARAM_STR);
+        $stmt->bindValue(':n', $data["name"], \PDO::PARAM_STR);
         $stmt->bindValue(':p', $hashed_password, \PDO::PARAM_STR);
-        return $stmt->execute();
+        $stmt->execute();
     }
 
     /**
@@ -53,6 +55,21 @@ class User extends Database {
         $stmt = $db->prepare("SELECT * FROM `user` WHERE `email` = :email;");
         $stmt->bindValue(':email', $email, \PDO::PARAM_STR);
         return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_ASSOC) : false;
+    }
+
+    /**
+     * Search for match between passed email and password
+     * @param string $email
+     * @param string $password
+     * @return boolean
+     */
+    public function getUserByCredentials(string $email, string $password) : bool {
+        $db = static::getDB();
+        $stmt = $db->prepare("SELECT * FROM `user` WHERE `email` = :email;");
+        $stmt->bindValue(':email', $email, \PDO::PARAM_STR);
+        $stmt->execute();
+        $results = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return password_verify($password, $results["password"]);
     }
 
   // /**

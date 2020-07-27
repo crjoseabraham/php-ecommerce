@@ -5,5 +5,5 @@ $router->get('register_form', 'ViewLoaders@signUpFormView');
 $router->get('item/{id}/details', 'ViewLoaders@showItemDetails');
 $router->get('start-session/user/{id}', 'Sessions@startNew');
 
-$router->post('signup', 'Auth@signUp');
+$router->post('auth', 'Auth@auth');
 $router->post('logout', 'Sessions@logOut');

@@ -1,7 +1,7 @@
 <div class="popup_signup">
     <h3>Become a Member</h3>
 
-    <form action="signup" method="post" id="register_form" class="mt-2">
+    <form action="auth" method="post" id="register_form" class="mt-2">
         <!-- Name -->
         <div class="form-group">
             <label for="signup_name">What's your name?</label>

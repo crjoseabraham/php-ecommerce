@@ -28,33 +28,24 @@ export default class FormValidations extends HttpRequest {
 
         if (this.noErrors()) {
             this.form.submit();
+            this.form.reset();
         }
     }
 
     validateLogin() {
+        delete this.form_fields.remember_me;
+
         if (
-            this.regex.email.test(this.form_inputs[0].value) &&
-            this.regex.password.test(this.form_inputs[1].value)
+            !this.regex.email.test(this.form_inputs[0].value) ||
+            !this.regex.password.test(this.form_inputs[1].value)
         ) {
-            // const data = new FormData(this.form);
-            // const url = this.baseURL + "user-exists";
-            // fetch(url, {
-            //     method: "POST",
-            //     body: data
-            // })
-            //     .then(function (response) {
-            //         if (response.ok) {
-            //             return response.text();
-            //         } else {
-            //             throw "Error en la llamada Ajax";
-            //         }
-            //     })
-            //     .then(function (texto) {
-            //         console.log(texto);
-            //     })
-            //     .catch(function (err) {
-            //         console.log(err);
-            //     });
+            this.form.querySelector(".input-errors.login").classList.add("active");
+            this.form_fields[this.form_inputs[0].name] = false;
+            this.form_fields[this.form_inputs[1].name] = false;
+        } else {
+            this.form.querySelector(".input-errors.login").classList.remove("active");
+            this.form_fields[this.form_inputs[0].name] = true;
+            this.form_fields[this.form_inputs[1].name] = true;
         }
     }
 
@@ -124,3 +115,23 @@ export default class FormValidations extends HttpRequest {
         return true;
     }
 }
+
+// const data = new FormData(this.form);
+// const url = this.baseURL + "user-exists";
+// fetch(url, {
+//     method: "POST",
+//     body: data
+// })
+//     .then(function (response) {
+//         if (response.ok) {
+//             return response.text();
+//         } else {
+//             throw "Error en la llamada Ajax";
+//         }
+//     })
+//     .then(function (texto) {
+//         console.log(texto);
+//     })
+//     .catch(function (err) {
+//         console.log(err);
+//     });
