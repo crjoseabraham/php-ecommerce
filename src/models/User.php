@@ -2,19 +2,22 @@
 namespace App\Model;
 
 use App\Core\Database;
-//use App\Controller\Token;
 
 class User extends Database {
+
     /**
-     * Set $this->* values for the user whose session will be set
-     * @param array $user
+     * Register a new user
+     * @param  array  $data   Name, email and password to register
      * @return void
      */
-    public function setCurrentUser(string $email) : void {
-        $user = $this->getUserByEmail($email);
-        foreach ($user as $key => $value) {
-            $this->$key = $value;
-        }
+    public function createUser(array $data) : void {
+        $db = static::getDB();
+        $hashed_password = password_hash($data["password"], PASSWORD_BCRYPT);
+        $stmt = $db->prepare("INSERT INTO user (`email`, `name`, `password`) VALUES (:e, :n, :p);");
+        $stmt->bindValue(':e', $data["email"], \PDO::PARAM_STR);
+        $stmt->bindValue(':n', $data["name"], \PDO::PARAM_STR);
+        $stmt->bindValue(':p', $hashed_password, \PDO::PARAM_STR);
+        $stmt->execute();
     }
 
     /**
@@ -32,25 +35,23 @@ class User extends Database {
     }
 
     /**
-     * Register a new user
-     * @param  array  $data   Name, email and password to register
+     * Find a user in the database by a passed ID
+     * @param string $id    ID to look for in the DB
+     * @return mixed        User array if found, false otherwise
      */
-    public function createUser(array $data) {
+    public static function getUserById(string $id) {
         $db = static::getDB();
-        $hashed_password = password_hash($data["password"], PASSWORD_BCRYPT);
-        $stmt = $db->prepare("INSERT INTO user (`email`, `name`, `password`) VALUES (:e, :n, :p);");
-        $stmt->bindValue(':e', $data["email"], \PDO::PARAM_STR);
-        $stmt->bindValue(':n', $data["name"], \PDO::PARAM_STR);
-        $stmt->bindValue(':p', $hashed_password, \PDO::PARAM_STR);
-        $stmt->execute();
+        $stmt = $db->prepare("SELECT * FROM `user` WHERE `id` = :id;");
+        $stmt->bindValue(':id', $id, \PDO::PARAM_STR);
+        return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_ASSOC) : false;
     }
 
     /**
      * Find a user in the database by a submitted email
      * @param string $email
-     * @return void
+     * @return mixed
      */
-    public function getUserByEmail(string $email) {
+    public static function getUserByEmail(string $email) {
         $db = static::getDB();
         $stmt = $db->prepare("SELECT * FROM `user` WHERE `email` = :email;");
         $stmt->bindValue(':email', $email, \PDO::PARAM_STR);
@@ -71,31 +72,6 @@ class User extends Database {
         $results = $stmt->fetch(\PDO::FETCH_ASSOC);
         return password_verify($password, $results["password"]);
     }
-
-  // /**
-  //  * Get a user's data by passed id
-  //  * @param  string $id    ID to check
-  //  * @return mixed         Object if records found, false if not
-  //  */
-  // public function findById($id)
-  // {
-  //   $db = static::getDB();
-  //   $stmt = $db->prepare("SELECT * FROM `user` WHERE id = :id;");
-  //   $stmt->bindValue(':id', $id, \PDO::PARAM_STR);
-  //   return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_OBJ) : false;
-  // }
-
-  // /**
-  //  * Search for certain email in the database for another user that's not the current user. Used as valdiation when users want to edit their e-mail address
-  //  */
-  // public function findByEmailExceptCurrent($email)
-  // {
-  //   $db = static::getDB();
-  //   $stmt = $db->prepare("SELECT * FROM `user` WHERE email = :email AND NOT id = :id");
-  //   $stmt->bindValue(':email', $email, \PDO::PARAM_STR);
-  //   $stmt->bindValue(':id', $_SESSION['user_id'], \PDO::PARAM_STR);
-  //   return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_OBJ) : false;
-  // }
 
   // /**
   //  * Get a user's data by the password_reset_hash column
@@ -121,28 +97,6 @@ class User extends Database {
   //     {
   //        return $user;
   //     }
-  //   }
-
-  //   return false;
-  // }
-
-  // /**
-  //  * Register a new user
-  //  * @param  array  $data   Name, email and password to register
-  //  * @return boolean        True if insert was successful, False if not
-  //  */
-  // public function registerUser($data) : bool
-  // {
-  //   $db = static::getDB();
-  //   $hashed_password = password_hash($data['password'], PASSWORD_BCRYPT);
-  //   $stmt = $db->prepare("INSERT INTO user (`email`, `name`, `password`) VALUES (:e, :n, :p);");
-  //   $stmt->bindValue(':e', $data['email'], \PDO::PARAM_STR);
-  //   $stmt->bindValue(':n', $data['name'], \PDO::PARAM_STR);
-  //   $stmt->bindValue(':p', $hashed_password, \PDO::PARAM_STR);
-  //   if ($stmt->execute())
-  //   {
-  //     // Now create user's associated cart and return true if everything ok.
-  //     return Cart::createNewCart($this->findByEmail($data['email'])) ? true : false;
   //   }
 
   //   return false;

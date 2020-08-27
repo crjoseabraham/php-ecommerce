@@ -16,6 +16,7 @@ class ViewLoaders {
      */
     public function homepage() {
         $this->view->render("layouts/home", [
+            "user" => Auth::getUser(),
             "session" => $_SESSION,
             "products" => $this->products->getProducts(),
             // Just to show something different

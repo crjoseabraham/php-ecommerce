@@ -48,8 +48,11 @@ class Router {
         // Escape forward slashes
         $uri = \preg_replace('/\//', '\\/', $uri);
 
-        // Convert parameter {item}
-        $uri = preg_replace('/\{(id)\}/', '(?P<\1>\d+)', $uri);
+        // Convert parameter for item ID, user ID, etc
+        $uri = preg_replace('/\{(id||item||user)\}/', '(?P<\1>\d+)', $uri);
+
+        // Convert a boolean parameter
+        $uri = preg_replace('/\{(bool||remember)\}/', '(?P<\1>(1||0))', $uri);
 
         // Convert parameter {token}
         //$uri = preg_replace('/\{(token)\}/', '(?P<\1>[\da-f]+)', $uri);

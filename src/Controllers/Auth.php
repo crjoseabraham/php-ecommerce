@@ -2,12 +2,9 @@
 namespace App\Controller;
 
 use App\Model\User;
+use App\Model\Session;
 
 class Auth {
-
-    public function __construct() {
-        $this->user = new User();
-    }
 
     /**
      * Determine if user is trying to sign in or sign up and perform the corresponding actions
@@ -28,18 +25,114 @@ class Auth {
         else
             $validation_result = $this->validateLogin($_POST);
 
-        // If there are no errors, create user or start session
+        // If there are no errors, sign up or sign in
         if (empty($validation_result)) {
             if ($isRegistration)
-                $this->user->createUser($_POST);
-
-            $this->user->setCurrentUser($_POST["email"]);
-            redirect("/start-session/user/" . $this->user->id);
+                $this->signup($_POST);
+            else
+                $this->login($_POST);
         } else {
+            // TODO: else Flash notification and redirect home
             var_dump($validation_result);
             die();
         }
-        // TODO: else Flash notification and redirect home
+    }
+
+    /**
+     * Get the current logged-in user, from the session or the remember-me cookie
+     *
+     * @return mixed The user model or null if not logged in
+     */
+    public static function getUser()
+    {
+        if (isset($_SESSION['user']))
+            return User::getUserById($_SESSION['user']);
+        else {
+            if (static::loginFromCookie())
+                return User::getUserById($_SESSION['user']);
+        }
+    }
+
+    /**
+     * Sign Up a new user
+     *
+     * @param array $data POST data
+     * @return void
+     */
+    private function signup(array $data) : void {
+        $user_model = new User;
+        $user_model->createUser($data);
+        $user = User::getUserByEmail($data['email']);
+        if ($user) {
+            new Session($user['id']);
+            redirect("/");
+        } else
+            die("SOMETHING WENT WRONG WITH THE REGISTRATION");
+    }
+
+    /**
+     * Log In a user
+     *
+     * @param array $data POST data
+     * @return void
+     */
+    private function login(array $post) : void {
+        $user = User::getUserByEmail($post['email']);
+        $session_model = new Session($user['id']);
+        if (isset($post['remember_me'])) {
+            $session_model->rememberLogin();
+            Cookies::set('remember_me', $session_model->remember_token, $session_model->expiry_timestamp, '/');
+        }
+        redirect("/");
+    }
+
+    /**
+     * Log In a user by making use of the data stored in a cookie
+     *
+     * @return boolean      Result of operation
+     */
+    public static function loginFromCookie() : bool {
+        $cookie = $_COOKIE['remember_me'] ?? false;
+
+        if ($cookie) {
+            $remembered_login = Session::findRememberedLogin($cookie);
+            // If cookie was found and hasn't expired, then restore the session
+            if ($remembered_login && !Cookies::hasExpired($remembered_login['expires_at'])) {
+                $old_session = Session::findSessionById($remembered_login['session_id']);
+                Session::restoreSession($old_session);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Log Out a user, destroy the session and delete the login cookie
+     *
+     * @return void
+     */
+    public function logout() : void {
+        Session::destroySession();
+        if (Cookies::findCookie("remember_me"))
+            $this->forgetLogin();
+
+        redirect("/");
+    }
+
+    /**
+     * Delete all data related to a remembered login in the used device
+     *
+     * @return void
+     */
+    public function forgetLogin() : void {
+        $remembered_login = Session::findRememberedLogin(Cookies::findCookie("remember_me"));
+
+        if ($remembered_login) {
+            Session::deleteRememberedLogin($remembered_login['token_hash']);
+            Cookies::deleteSessionCookie();
+        } else
+            die("SOMETHING WENT WRONG.");
     }
 
     /**
@@ -87,7 +180,7 @@ class Auth {
      * @param string $password
      * @return void
      */
-    public function validateLogin(array $data) {
+    private function validateLogin(array $data) {
         $errors = [];
         $regex = [
             "email" => "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z]+$/",
@@ -103,7 +196,8 @@ class Auth {
             $errors[] = INVALID_EMAIL;
         elseif (preg_match($regex["password"], $data["password"])) {
             // Do email and password match with the database records?
-            $user = $this->user->getUserByCredentials($data["email"], $data["password"]);
+            $user_model = new User();
+            $user = $user_model->getUserByCredentials($data["email"], $data["password"]);
             if ($user === false)
                 $errors[] = LOGIN_ERROR;
         } else
