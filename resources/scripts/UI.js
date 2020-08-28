@@ -100,20 +100,14 @@ export default class UI {
      * Load Event listeners for the forms
      */
     loadFormEvents() {
-        this.forms.forEach((form) => {
-            if (form.id === "register_form") {
-                let validations_class = new FormValidations(this, form);
-                form.querySelectorAll("input").forEach((input) => {
-                    input.addEventListener("blur", () => {
-                        validations_class.validateField(input);
-                    });
-                });
+        this.body.addEventListener("submit", (event) => {
+            event.preventDefault();
+            // Login gets validated in the backend anyway
+            if (event.target.id === "login_form") event.target.submit();
+            else {
+                let validations_class = new FormValidations(event.target);
+                validations_class.validateSubmit();
             }
-            form.addEventListener("submit", (event) => {
-                event.preventDefault();
-                let validations_class = new FormValidations(this, form);
-                validations_class.validateForm();
-            });
         });
     }
 

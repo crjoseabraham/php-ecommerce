@@ -25,6 +25,17 @@ class ViewLoaders {
     }
 
     /**
+     * Load page "Forgot my password"
+     * @return void
+     */
+    public function forgottenPassword() {
+        $this->view->render("layouts/forget_password", [
+            "user" => Auth::getUser(),
+            "session" => $_SESSION
+        ]);
+    }
+
+    /**
      * Sign In form (modal)
      * @return void
      */

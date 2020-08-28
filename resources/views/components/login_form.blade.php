@@ -6,7 +6,7 @@
     </div>
 
     <form action="auth" method="post" id="login_form" class="mt-2">
-        <p class="input-errors login">Invalid e-mail or password</p>
+        {{-- <p class="input-errors login">Invalid e-mail or password</p> --}}
         <!-- Email -->
         <div class="form-group">
             <label for="login_email">Email address</label>
@@ -30,7 +30,7 @@
                 Remember me
             </label>
 
-            <a href="#" class="simple">I forgot my password</a>
+            <a href="forgotten-password" class="simple">I forgot my password</a>
         </div>
 
         <!-- Buttons -->

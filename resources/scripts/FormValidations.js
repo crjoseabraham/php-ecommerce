@@ -1,80 +1,54 @@
-import HttpRequest from "./HttpRequest";
+//import HttpRequest from "./HttpRequest";
 
-export default class FormValidations extends HttpRequest {
-    constructor(UI, form) {
-        super();
-        this.ui_class = UI;
+export default class FormValidations {
+    constructor(form) {
         this.form = form;
-        this.form_inputs = this.form.querySelectorAll("input");
         this.form_fields = new Object();
+        this.form_inputs = this.form.querySelectorAll('input:not([type="checkbox"])');
+
+        this.form_inputs.forEach((input) => {
+            this.form_fields[input.name] = false;
+        });
+
         this.regex = {
             name: /^[a-zA-ZÀ-ÿ ]{2,60}$/,
             email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z]+$/,
             password: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,}$/
         };
-        this.form_inputs.forEach((input) => {
-            this.form_fields[input.name] = false;
-        });
     }
 
-    validateForm() {
-        if (this.form.id !== "login_form") {
-            this.form_inputs.forEach((input) => {
-                if (input.name === "passwordConfirmation")
-                    this.validatePasswordConfirmation();
-                else this.validateField(input);
-            });
-        } else this.validateLogin();
+    /**
+     * Utility: check if form was filled correctly
+     */
+    noErrors() {
+        for (let key in this.form_fields) {
+            if (!this.form_fields[key]) return false;
+        }
+        return true;
+    }
+
+    /**
+     * Validate a form after clicking "submit" button
+     */
+    validateSubmit() {
+        this.form_inputs.forEach((input) => {
+            let regex = this.regex[input.name];
+            if (input.name === "passwordConfirmation")
+                this.validatePasswordConfirmation();
+            else {
+                if (regex.test(input.value.trim())) this.form_fields[input.name] = true;
+            }
+        });
 
         if (this.noErrors()) {
             this.form.submit();
             this.form.reset();
-        }
+        } else this.displayStatus();
     }
 
-    validateLogin() {
-        delete this.form_fields.remember_me;
-
-        if (
-            !this.regex.email.test(this.form_inputs[0].value) ||
-            !this.regex.password.test(this.form_inputs[1].value)
-        ) {
-            this.form.querySelector(".input-errors.login").classList.add("active");
-            this.form_fields[this.form_inputs[0].name] = false;
-            this.form_fields[this.form_inputs[1].name] = false;
-        } else {
-            this.form.querySelector(".input-errors.login").classList.remove("active");
-            this.form_fields[this.form_inputs[0].name] = true;
-            this.form_fields[this.form_inputs[1].name] = true;
-        }
-    }
-
-    validateField(input) {
-        if (input.name === "passwordConfirmation") {
-            this.validatePasswordConfirmation();
-        } else {
-            let regex = this.regex[input.name];
-
-            if (regex.test(input.value.trim())) {
-                // Hide errors, display "correct" status
-                input.closest(".form-group").classList.remove("incorrect");
-                input.parentElement.nextElementSibling.classList.remove("active");
-                input.closest(".form-group").classList.add("correct");
-                input.nextElementSibling.classList.remove("fa-times-circle");
-                input.nextElementSibling.classList.add("fa-check-circle");
-                this.form_fields[input.name] = true;
-            } else {
-                // Hide "correct" status, display errors
-                input.closest(".form-group").classList.remove("correct");
-                input.closest(".form-group").classList.add("incorrect");
-                input.parentElement.nextElementSibling.classList.add("active");
-                input.nextElementSibling.classList.add("fa-times-circle");
-                input.nextElementSibling.classList.remove("fa-check-circle");
-                this.form_fields[input.name] = false;
-            }
-        }
-    }
-
+    /**
+     * Validate password confirmation
+     */
     validatePasswordConfirmation() {
         let password_confirmation = Array.from(this.form_inputs).find(
             (input) => input.id === "passconf"
@@ -107,13 +81,53 @@ export default class FormValidations extends HttpRequest {
         }
     }
 
-    // Utility: check if form was filled correctly
-    noErrors() {
-        for (let key in this.form_fields) {
-            if (!this.form_fields[key]) return false;
-        }
-        return true;
+    /**
+     * Display Incorrect/Correct status and message
+     */
+    displayStatus() {
+        this.form_inputs.forEach((input) => {
+            if (!this.form_fields[input.name]) {
+                input.closest(".form-group").classList.remove("correct");
+                input.closest(".form-group").classList.add("incorrect");
+                input.parentElement.nextElementSibling.classList.add("active");
+                input.nextElementSibling.classList.add("fa-times-circle");
+                input.nextElementSibling.classList.remove("fa-check-circle");
+            } else {
+                input.closest(".form-group").classList.remove("incorrect");
+                input.parentElement.nextElementSibling.classList.remove("active");
+                input.closest(".form-group").classList.add("correct");
+                input.nextElementSibling.classList.remove("fa-times-circle");
+                input.nextElementSibling.classList.add("fa-check-circle");
+            }
+        });
     }
+
+    // ____________________
+    // validateField(input) {
+    //     if (input.name === "passwordConfirmation") {
+    //         this.validatePasswordConfirmation();
+    //     } else {
+    //         let regex = this.regex[input.name];
+
+    //         if (regex.test(input.value.trim())) {
+    //             // Hide errors, display "correct" status
+    //             input.closest(".form-group").classList.remove("incorrect");
+    //             input.parentElement.nextElementSibling.classList.remove("active");
+    //             input.closest(".form-group").classList.add("correct");
+    //             input.nextElementSibling.classList.remove("fa-times-circle");
+    //             input.nextElementSibling.classList.add("fa-check-circle");
+    //             this.form_fields[input.name] = true;
+    //         } else {
+    //             // Hide "correct" status, display errors
+    //             input.closest(".form-group").classList.remove("correct");
+    //             input.closest(".form-group").classList.add("incorrect");
+    //             input.parentElement.nextElementSibling.classList.add("active");
+    //             input.nextElementSibling.classList.add("fa-times-circle");
+    //             input.nextElementSibling.classList.remove("fa-check-circle");
+    //             this.form_fields[input.name] = false;
+    //         }
+    //     }
+    // }
 }
 
 // const data = new FormData(this.form);

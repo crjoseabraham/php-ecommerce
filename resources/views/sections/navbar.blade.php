@@ -1,7 +1,7 @@
 <nav id="menu" class="menu">
     <div class="container menu__responsive">
         <button><i class="fas fa-bars"></i></button>
-        <a href="#" class="menu__brand">
+        <a href="/shoppingcart" class="menu__brand">
             <img src="./img/brand/isotipo.png" alt="Company logo" class="menu__logo"/>
         </a>
         <button><i class="fas fa-user"></i></button>
@@ -9,7 +9,7 @@
 
     <div class="container menu__links">
         <div class="brand">
-            <a href="#"> <img src="./img/brand/logotipo.png" alt="Company logo"/> </a>
+            <a href="/shoppingcart"> <img src="./img/brand/logotipo.png" alt="Company logo"/> </a>
         </div>
 
         <div class="links">

@@ -98,27 +98,36 @@ section {
 // Forms
 form:not(.link-form) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 2rem;
+    width: 100%;
 
-    button {
-        width: 45%;
-        //padding: 1rem 2rem;
+    &.two-col-form {
+        grid-template-columns: 1fr 1fr;
 
-        &.btn--blank {
+        .btn--blank {
             margin-left: auto;
-            color: $bistre;
-            background: transparent;
-        }
-
-        &.btn--primary {
-            margin-right: auto;
         }
     }
 
-    &#login_form {
-        grid-template-columns: 1fr;
+    button {
+        width: 45%;
 
+        &.btn--blank {
+            color: $bistre;
+            background: transparent;
+        }
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    &#login_form {
+        // Remember me checkbox and Forgot your password? (inline)
         .form-group#login_options {
             display: flex;
             justify-content: space-between;
@@ -127,13 +136,6 @@ form:not(.link-form) {
             a {
                 font-size: 15px;
             }
-        }
-
-        .form-buttons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
         }
     }
 
