@@ -1,0 +1,111 @@
+<?php
+namespace App\Controller;
+
+class Validations {
+    /**
+     * Store all the errors found
+     * @var array
+     */
+    static $errors = [];
+
+    /**
+     * Regular expressions for making validations
+     * @var array
+     */
+    static $regex = [
+        "name" => "/^[a-zA-ZÀ-ÿ ]{2,60}$/",
+        "email" => "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z]+$/",
+        "password" => "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,}$/"
+    ];
+
+    /**
+     * Loop through all the values in $_POST and validate them with the correct method
+     *
+     * @param array $data       $_POST data to check
+     * @param boolean $isLogin  An error message will change for the login form
+     * @return array            Return the $errors array to handle them later
+     */
+    public static function processForm(array $data, bool $isLogin = false) : array {
+        foreach ($data as $key => $value) {
+            $value = trim($value);
+            $value = htmlspecialchars($value);
+
+            if ($key === "password" && $isLogin)
+                self::$key($value, $isLogin);
+            elseif ($key === "passwordConfirmation")
+                self::$key($data['password'], $data['passwordConfirmation']);
+            else
+                self::$key($value);
+        }
+
+        return self::$errors;
+    }
+
+    /**
+     * Get the $errors variable
+     *
+     * @return array
+     */
+    public static function getErrors() : array {
+        return self::$errors;
+    }
+
+    /**
+     * Store a passed string in $errors
+     *
+     * @return void
+     */
+    public static function setError(string $message) : void {
+        self::$errors[] = $message;
+    }
+
+    /**
+     * Validate a user's name
+     *
+     * @param string $name
+     * @return void
+     */
+    public static function name(string $name) : void {
+        if (!preg_match(self::$regex["name"], $name))
+            self::$errors[] = INVALID_NAME;
+    }
+
+    /**
+     * Validate an email address
+     *
+     * @param string $email
+     * @return void
+     */
+    public static function email(string $email) : void {
+        $filtered_email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        if (
+            filter_var($filtered_email, FILTER_VALIDATE_EMAIL) === false ||
+            !preg_match(self::$regex["email"], $filtered_email)
+        )
+            self::$errors[] = INVALID_EMAIL;
+    }
+
+    /**
+     * Verify a password contains at least 4 characters, 1 uppercase letter, 1 lowercase letter, 1 number
+     *
+     * @param string $password
+     * @param boolean $isLogin     The error message will change if it's the login form
+     * @return void
+     */
+    public static function password(string $password, bool $isLogin = false) : void {
+        if (!preg_match(self::$regex["password"], $password))
+            self::$errors[] = $isLogin ? LOGIN_ERROR : INVALID_PASS;
+    }
+
+    /**
+     * Verify that password matches the confirmation field
+     *
+     * @param string $password
+     * @param string $confirmation
+     * @return void
+     */
+    public static function passwordConfirmation(string $password, string $confirmation) : void {
+        if ($password !== $confirmation)
+            self::$errors[] = PASS_MATCH_ERR;
+    }
+}

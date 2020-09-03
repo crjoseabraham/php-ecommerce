@@ -1,0 +1,1 @@
+<?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/email_templates/resetpass_txt.blade.php ENDPATH**/ ?>

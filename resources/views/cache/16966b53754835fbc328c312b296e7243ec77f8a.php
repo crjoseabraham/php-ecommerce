@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="dist/assets/styles/glider.min.css" />
         <link rel="stylesheet" href="dist/assets/styles/main.css" />
         <title>
-            Recover your password | About the fit
+            Create a new password | About the fit
         </title>
     </head>
 
@@ -21,24 +21,35 @@
 
         <!-- Actual content -->
         <div class="container">
-            <div class="forget-password__form">
-                <h2 class="black">Forgot your password?</h2>
-                <p>Please enter the email address you used to create your account, and we'll send you a link to reset your password.</p>
-                <form action="request-password-reset" method="post">
+            <div class="reset-password__form">
+                <h2 class="black">Create a new password</h2>
+                <p>Enter your new password and confirm. The password needs at least: <br> <strong class="tulip">4 characters, 1 uppercase letter, 1 lowercase letter, 1 number</strong></p>
+                <form action="update-forgotten-password_<?php echo e($id); ?>-<?php echo e($token); ?>" method="post">
+                    <!-- Password -->
                     <div class="form-group">
-                        <label for="fp_email">Email address</label>
+                        <label for="rp_pass">New password</label>
                         <div class="input-group">
-                            <input type="email" name="email" id="fp_email" autofocus>
+                            <input type="password" name="password" id="rp_pass" autofocus>
                             <i class="validation-status fas fa-times-circle"></i>
                         </div>
                         <p class="input-errors">
-                            The email address you entered is invalid or it wasn't found in our database.
+                            The password doesn't have the required characters to be valid.
                         </p>
+                    </div>
+
+                    <!-- Password Confirmation -->
+                    <div class="form-group">
+                        <label for="rp_conf">Confirm password</label>
+                        <div class="input-group">
+                            <input type="password" name="passwordConfirmation" id="rp_conf">
+                            <i class="validation-status fas fa-times-circle"></i>
+                        </div>
+                        <p class="input-errors">Password and confirmation don't match</p>
                     </div>
 
                     <div class="form-buttons">
                         <button type="submit" class="btn btn--primary">
-                            Send link
+                            Update password
                         </button>
                     </div>
                 </form>
@@ -52,7 +63,7 @@
             src="https://kit.fontawesome.com/eea5dcc8ef.js"
             crossorigin="anonymous"
         ></script>
-        <script src="dist/assets/js/glider.min.js"></script>
+        
         <script src="dist/assets/js/app.js"></script>
     </body>
-</html><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/layouts/forget_password.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/layouts/reset_password.blade.php ENDPATH**/ ?>

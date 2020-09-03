@@ -36,6 +36,24 @@ class ViewLoaders {
     }
 
     /**
+     * Page with the form to create a new password in case user forgot it
+     * It is restricted if the link has expired or wasn't found
+     * @param array $params     Array with user's ID and pass reset token
+     * @return void
+     */
+    public function resetPasswordForm($params) : void {
+        $user = \App\Model\User::getUserByPasswordResetToken($params['token']);
+
+        if (!$user || !(strtotime($user['password_reset_expires_at']) < time())) {
+            // Token expired. Redirect home
+            redirect("/");
+        } else {
+            // Token is still valid. Proceed
+            $this->view->render("layouts/reset_password", $params);
+        }
+    }
+
+    /**
      * Sign In form (modal)
      * @return void
      */

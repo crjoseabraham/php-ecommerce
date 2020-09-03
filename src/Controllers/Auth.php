@@ -13,27 +13,21 @@ class Auth {
      * @return void
      */
     public function auth() {
-        foreach ($_POST as $key => $value) {
-            $key = trim($value);
-            $key = htmlspecialchars($value);
-        }
-
         $isRegistration = isset($_POST["name"]) && isset($_POST["passwordConfirmation"]);
 
-        if ($isRegistration)
-            $validation_result = $this->validateSignUpForm($_POST);
-        else
-            $validation_result = $this->validateLogin($_POST);
+        if ($isRegistration) {
+            $this->validateSignUpForm($_POST);
+            $method = "signup";
+        }
+        else {
+            $this->validateLogin($_POST);
+            $method = "login";
+        }
 
-        // If there are no errors, sign up or sign in
-        if (empty($validation_result)) {
-            if ($isRegistration)
-                $this->signup($_POST);
-            else
-                $this->login($_POST);
+        if (empty(Validations::getErrors())) {
+            $this->$method($_POST);
         } else {
-            // TODO: else Flash notification and redirect home
-            var_dump($validation_result);
+            var_dump(Validations::getErrors());
             die();
         }
     }
@@ -136,41 +130,87 @@ class Auth {
     }
 
     /**
-     * Validate data from sign up form
-     * @param array $data $_POST values
-     * @return array Array with errors
+     * User submitted an email address to recover their password
+     * Verify that email address and proceed to email the link
+     *
+     * @return void
      */
-    private function validateSignUpForm(array $data) : array {
-        $errors = [];
-        $regex = [
-            "name" => "/^[a-zA-ZÀ-ÿ ]{2,60}$/",
-            "email" => "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z]+$/",
-            "password" => "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,}$/"
-        ];
+    public function requestPasswordReset() : void {
+        $form_validation_errors = Validations::processForm($_POST);
 
-        // Validate Name
-        if (!preg_match($regex["name"], $data["name"]))
-            $errors[] = INVALID_NAME;
-
-        // Validate Email - is it a valid email? is it available?
-        $data["name"] = filter_var($data["email"], FILTER_SANITIZE_EMAIL);
-        if (
-            filter_var($data["name"], FILTER_VALIDATE_EMAIL) === false ||
-            !preg_match($regex["email"], $data["name"])
-        )
-            $errors[] = INVALID_EMAIL;
-
-        if (User::isEmailAvailable($data["name"]) === false) {
-            $errors[] = EMAIL_TAKEN;
-        } else {
-            // Validate Password
-            if (!preg_match($regex["password"], $data["password"]))
-                $errors[] = INVALID_PASS;
-            if ($data["password"] !== $data["passwordConfirmation"])
-                $errors[] = PASS_MATCH_ERR;
+        if (empty($form_validation_errors)) {
+            if (User::isEmailInDatabase($_POST['email'])) {
+                $user_model = new User();
+                $user = User::getUserByEmail($_POST['email']);
+                if ($user_model->startPasswordReset($user))
+                    $user_model->sendPasswordResetEmail(User::getUserByEmail($_POST['email']));
+                else
+                    die("ERROR");
+            } else
+                Validations::setError(EMAIL_DOESNT_EXISTS);
         }
 
-        return $errors;
+        // Flash errors here if any and then
+        redirect("/");
+    }
+
+    /**
+     * User submitted the form to create a new password and replace the forgotten one
+     *
+     * @param array $params     From the URL it is passed: token and user's ID
+     * @return void
+     */
+    public function updateForgottenPassword($params) : void {
+        $form_validation_errors = Validations::processForm($_POST);
+
+        if (empty($form_validation_errors)) {
+            $user = User::getUserByPasswordResetToken($params['token']);
+
+            if ($user && strtotime($user['password_reset_expires_at']) > time()) {
+                $user_model = new User();
+                $execution_result = $user_model->updateForgottenPassword($params['id'], $_POST['password']);
+                // SUCCESS
+                redirect('/');
+            } else {
+                die("TOKEN HAS EXPIRED");
+                redirect('/forgotten-password');
+            }
+        }
+        else
+            var_dump($form_validation_errors);
+    }
+
+    /**
+     * Verify that the passed token actually exists and it hasn't expired
+     *
+     * @param array $params     From the URL it is passed: token
+     * @return void
+     */
+    public function validateResetPasswordToken(array $params) : void {
+        $token = $params['token'];
+        $user = User::getUserByPasswordResetToken($token);
+
+        if (strtotime($user['password_reset_expires_at']) < time()) {
+            // Token expired. Tell user to request a new one
+            redirect("/forgotten-password");
+        } else {
+            // Token is still valid. Proceed
+            redirect("/reset-password-form-{$user['id']}-{$token}");
+        }
+    }
+
+    /**
+     * Validate data from sign up form
+     * @param array $data $_POST values
+     * @return void
+     */
+    private function validateSignUpForm(array $data) : void {
+        $form_validation_errors = Validations::processForm($data);
+
+        if (empty($form_validation_errors)) {
+            if (User::isEmailInDatabase($data['email']))
+                Validations::setError(EMAIL_TAKEN);
+        }
     }
 
     /**
@@ -181,28 +221,15 @@ class Auth {
      * @return void
      */
     private function validateLogin(array $data) {
-        $errors = [];
-        $regex = [
-            "email" => "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z]+$/",
-            "password" => "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,}$/"
-        ];
+        $form_validation_errors = Validations::processForm($data, true);
 
-        // Validate Email - is it a valid email?
-        $data["email"] = filter_var($data["email"], FILTER_SANITIZE_EMAIL);
-        if (
-            filter_var($data["email"], FILTER_VALIDATE_EMAIL) === false ||
-            !preg_match($regex["email"], $data["email"])
-        )
-            $errors[] = INVALID_EMAIL;
-        elseif (preg_match($regex["password"], $data["password"])) {
-            // Do email and password match with the database records?
-            $user_model = new User();
-            $user = $user_model->getUserByCredentials($data["email"], $data["password"]);
-            if ($user === false)
-                $errors[] = LOGIN_ERROR;
-        } else
-            $errors[] = INVALID_PASS;
-
-        return $errors;
+        if (empty($form_validation_errors)) {
+            if (!User::isEmailInDatabase($data['email']))
+                Validations::setError(EMAIL_DOESNT_EXISTS);
+            else {
+                if (!User::credentialsAreCorrect($data["email"], $data["password"]))
+                    Validations::setError(LOGIN_ERROR);
+            }
+        }
     }
 }

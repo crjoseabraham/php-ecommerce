@@ -51,10 +51,10 @@ export default class FormValidations {
      */
     validatePasswordConfirmation() {
         let password_confirmation = Array.from(this.form_inputs).find(
-            (input) => input.id === "passconf"
+            (input) => input.name === "passwordConfirmation"
         );
         let password_input = Array.from(this.form_inputs).find(
-            (input) => input.id === "pass"
+            (input) => input.name === "password"
         );
 
         if (

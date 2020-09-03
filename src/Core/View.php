@@ -19,9 +19,13 @@ class View {
      * @return void
      */
     public function render($view, $params = null) {
+        echo $this->getTemplate($view, $params);
+    }
+
+    public function getTemplate($view, $params = null) {
         if (is_null($params))   // Load views that require no parameters
-            echo $this->blade->view()->make($view)->render();
+            return $this->blade->view()->make($view)->render();
         else                    // Load view with parameters
-            echo $this->blade->view()->make($view)->with($params)->render();
+            return $this->blade->view()->make($view)->with($params)->render();
     }
 }

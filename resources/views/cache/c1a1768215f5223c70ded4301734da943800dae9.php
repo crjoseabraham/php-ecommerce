@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="dist/assets/styles/glider.min.css" />
         <link rel="stylesheet" href="dist/assets/styles/main.css" />
         <title>
-            Recover your password | About the fit
+            Create a new password | About the fit
         </title>
     </head>
 
@@ -22,8 +22,8 @@
         <!-- Actual content -->
         <div class="container">
             <div class="forget-password__form">
-                <h2 class="black">Forgot your password?</h2>
-                <p>Please enter the email address you used to create your account, and we'll send you a link to reset your password.</p>
+                <h2 class="black">Create a new password</h2>
+                <p>Enter your new password and confirm. The password needs at least: <strong>4 characters, 1 uppercase letter, 1 lowercase letter, 1 number</strong></p>
                 <form action="request-password-reset" method="post">
                     <div class="form-group">
                         <label for="fp_email">Email address</label>
@@ -55,4 +55,4 @@
         <script src="dist/assets/js/glider.min.js"></script>
         <script src="dist/assets/js/app.js"></script>
     </body>
-</html><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/layouts/forget_password.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/layouts/reset_passw_form.blade.php ENDPATH**/ ?>

@@ -1,18 +1,15 @@
 <?php
 define('URLROOT', 'http://localhost/shoppingcart');
 define('SECRET_KEY', 'RYdC5cmDUbgglwwMLTUrcBzs6HXG5NBZ');
+define('BRAND_NAME', 'About the Fit');
+define('BRAND_EMAIL', '');
+define('BRAND_EMAIL_PASS', '');
 
 // Database config values
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'shoppingcart');
-
-// Email credentials
-define('EMAIL_HOST', '');
-define('EMAIL_USER', '');
-define('EMAIL_NAME', '');
-define('EMAIL_PASS', '');
 
 // Flash message types
 define('SUCCESS', 'success');

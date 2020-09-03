@@ -55,7 +55,7 @@ class Router {
         $uri = preg_replace('/\{(bool||remember)\}/', '(?P<\1>(1||0))', $uri);
 
         // Convert parameter {token}
-        //$uri = preg_replace('/\{(token)\}/', '(?P<\1>[\da-f]+)', $uri);
+        $uri = preg_replace('/\{(token)\}/', '(?P<\1>[\da-f]+)', $uri);
 
         // Add start and end delimeter
         $uri = '/^' . $uri . '$/i';
