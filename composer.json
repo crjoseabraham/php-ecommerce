@@ -17,10 +17,7 @@
             "App\\Core\\": "src/Core",
             "App\\Controller\\": [
                 "src/Controllers",
-                "src/Controllers/Auth",
-                "src/Controllers/Payments",
-                "src/Controllers/Products",
-                "src/Controllers/Users"
+                "src/Controllers/Helpers"
             ],
             "App\\Model\\": "src/models"
         }
