@@ -13,6 +13,9 @@
     </head>
 
     <body id="bodyJsPointer">
+        <!-- Notification -->
+        <?php echo $__env->make('components.notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
         <!-- Overlay -->
         <div id="overlay"></div>
 

@@ -27,8 +27,8 @@ class Auth {
         if (empty(Validations::getErrors())) {
             $this->$method($_POST);
         } else {
-            var_dump(Validations::getErrors());
-            die();
+            Flash::addMessage(Validations::getErrors(), ERROR);
+            redirect('/');
         }
     }
 
@@ -37,8 +37,7 @@ class Auth {
      *
      * @return mixed The user model or null if not logged in
      */
-    public static function getUser()
-    {
+    public static function getUser() {
         if (isset($_SESSION['user']))
             return User::getUserById($_SESSION['user']);
         else {
@@ -57,11 +56,11 @@ class Auth {
         $user_model = new User;
         $user_model->createUser($data);
         $user = User::getUserByEmail($data['email']);
-        if ($user) {
+        if ($user)
             new Session($user['id']);
-            redirect("/");
-        } else
-            die("SOMETHING WENT WRONG WITH THE REGISTRATION");
+        else
+            Flash::addMessage(REGISTRATION_ERROR, ERROR);
+        redirect("/");
     }
 
     /**
@@ -126,7 +125,7 @@ class Auth {
             Session::deleteRememberedLogin($remembered_login['token_hash']);
             Cookies::deleteSessionCookie();
         } else
-            die("SOMETHING WENT WRONG.");
+            Flash::addMessage(ERROR_MESSAGE, ERROR);
     }
 
     /**
@@ -142,15 +141,21 @@ class Auth {
             if (User::isEmailInDatabase($_POST['email'])) {
                 $user_model = new User();
                 $user = User::getUserByEmail($_POST['email']);
-                if ($user_model->startPasswordReset($user))
+                if ($user_model->startPasswordReset($user)) {
                     $user_model->sendPasswordResetEmail(User::getUserByEmail($_POST['email']));
+                    Flash::addMessage(RECOVER_PASSWORD_EMAIL);
+                }
                 else
-                    die("ERROR");
-            } else
-                Validations::setError(EMAIL_DOESNT_EXISTS);
+                    Flash::addMessage(ERROR_MESSAGE, ERROR);
+            } else {
+                Flash::addMessage(EMAIL_DOESNT_EXISTS, ERROR);
+                redirect("/forgotten-password");
+            }
+        } else {
+            Flash::addMessage($form_validation_errors, ERROR);
+            redirect("/forgotten-password");
         }
 
-        // Flash errors here if any and then
         redirect("/");
     }
 
@@ -169,15 +174,20 @@ class Auth {
             if ($user && strtotime($user['password_reset_expires_at']) > time()) {
                 $user_model = new User();
                 $execution_result = $user_model->updateForgottenPassword($params['id'], $_POST['password']);
-                // SUCCESS
+                Flash::addMessage(
+                    $execution_result ? DATA_UPDATED : ERROR_MESSAGE,
+                    $execution_result ? SUCCESS : ERROR
+                );
                 redirect('/');
             } else {
-                die("TOKEN HAS EXPIRED");
+                Flash::addMessage(RECOVER_TOKEN_EXPIRED, ERROR);
                 redirect('/forgotten-password');
             }
         }
-        else
-            var_dump($form_validation_errors);
+        else {
+            Flash::addMessage($form_validation_errors, ERROR);
+            redirect("/");
+        }
     }
 
     /**
@@ -192,6 +202,7 @@ class Auth {
 
         if (strtotime($user['password_reset_expires_at']) < time()) {
             // Token expired. Tell user to request a new one
+            Flash::addMessage(RECOVER_TOKEN_EXPIRED, ERROR);
             redirect("/forgotten-password");
         } else {
             // Token is still valid. Proceed
@@ -207,10 +218,8 @@ class Auth {
     private function validateSignUpForm(array $data) : void {
         $form_validation_errors = Validations::processForm($data);
 
-        if (empty($form_validation_errors)) {
-            if (User::isEmailInDatabase($data['email']))
-                Validations::setError(EMAIL_TAKEN);
-        }
+        if (User::isEmailInDatabase($data['email']))
+            Validations::setError(EMAIL_TAKEN);
     }
 
     /**

@@ -13,6 +13,9 @@
     </head>
 
     <body id="bodyJsPointer">
+        <!-- Notification -->
+        @include('components.notification')
+
         <!-- Overlay -->
         <div id="overlay"></div>
 

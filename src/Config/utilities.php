@@ -28,26 +28,3 @@ function redirect(string $file) : void {
     header('Location: ' . URLROOT . $file, true, 303);
     exit;
 }
-
-/**
- * Set flash message
- * @param         $message Message sent to the user
- * @param  string $type    Success message, warning, error, etc.
- */
-function flash($message, string $type = SUCCESS) : void {
-    if (!isset($_SESSION['flash_notification']))
-        $_SESSION['flash_notification'] = ['message' => $message, 'type' => $type];
-}
-
-/**
- * Get flash message
- * @return  array Array containing message body and type
- */
-function getFlashNotification() {
-    if (isset($_SESSION['flash_notification'])) {
-        $message = $_SESSION['flash_notification'];
-        unset($_SESSION['flash_notification']);
-
-        return $message;
-    }
-}

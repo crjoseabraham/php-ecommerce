@@ -11,17 +11,20 @@ export default class UI {
         this.forms = document.querySelectorAll("form");
 
         // Set event listeners
-        this.loadFormEvents();
-
         document.querySelectorAll("[data-popup]").forEach((popup_pointer) => {
             popup_pointer.addEventListener("click", this.showPopup.bind(this));
         });
 
+        // Close popup or notification
         document
             .getElementById("close-popup")
             .addEventListener("click", this.closePopup.bind(this));
+        document
+            .getElementById("close-notification")
+            .addEventListener("click", this.closeNotification);
 
         // Load other elements on startup
+        this.loadFormEvents();
         this.loadCarousels();
         this.stickyNav();
     }
@@ -91,6 +94,11 @@ export default class UI {
         document.querySelector(".menu__popup").classList.remove("active");
         overlay.classList.remove("active");
         this.body.classList.remove("noscroll");
+    }
+
+    // Close the notification
+    closeNotification() {
+        document.querySelector(".notification").style.display = "none";
     }
 
     // ---------------------------------------

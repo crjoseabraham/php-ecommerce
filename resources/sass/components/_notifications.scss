@@ -1,0 +1,52 @@
+.notification {
+    font-family: $body;
+    width: 350px;
+    box-shadow: 0px 1px 10px #ccc;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    padding: 1.5rem 3rem;
+    position: fixed;
+    top: 9rem;
+    right: 5.5%;
+    z-index: 9999;
+    animation: fadeRight 5s;
+    animation-fill-mode: forwards;
+
+    &__title {
+        font-weight: 500;
+        font-size: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #eee;
+
+        &.notification__success {
+            color: $green;
+        }
+        &.notification__info {
+            color: $yellow;
+        }
+        &.notification__danger {
+            color: darken($tulip, 15%);
+        }
+
+        &-close {
+            font-size: 13px;
+            color: #ccc;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__body {
+        padding-top: 8px;
+        font-weight: 500;
+        font-size: 14px;
+        color: lighten($bistre, 30%);
+    }
+}

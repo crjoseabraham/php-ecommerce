@@ -2,8 +2,8 @@
 define('URLROOT', 'http://localhost/shoppingcart');
 define('SECRET_KEY', 'RYdC5cmDUbgglwwMLTUrcBzs6HXG5NBZ');
 define('BRAND_NAME', 'About the Fit');
-define('BRAND_EMAIL', '');
-define('BRAND_EMAIL_PASS', '');
+define('BRAND_EMAIL', 'aboutthefit.php@gmail.com');
+define('BRAND_EMAIL_PASS', 'zlnF3X4cM%Z4on53');
 
 // Database config values
 define('DB_HOST', 'localhost');
@@ -13,7 +13,7 @@ define('DB_NAME', 'shoppingcart');
 
 // Flash message types
 define('SUCCESS', 'success');
-define('INFO', 'warning');
+define('INFO', 'info');
 define('ERROR', 'danger');
 
 // User authentication notifications
@@ -44,5 +44,5 @@ define('VOTE_ERROR', 'Sorry but you can rate an item only once per session');
 // User profile notifications
 define('NO_CHANGES', 'No changes to make');
 define('DATA_UPDATED', 'Your information was updated successfully');
-define('RECOVER_PASSWORD_EMAIL', 'We sent you an email to help you recover your password');
-define('RECOVER_TOKEN_EXPIRED', 'Sorry but the link for recovering your password has expired. Please get a new one by clicking the "Forgot your password?" option');
+define('RECOVER_PASSWORD_EMAIL', 'We sent you an email with a link to recover your password');
+define('RECOVER_TOKEN_EXPIRED', 'It seems like the link to recover your password has expired. Please ask for a new one in "Forgot my password"');
