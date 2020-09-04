@@ -16,16 +16,15 @@
             <a href="https://github.com/crjoseabraham/shoppingcart" target="_blank" class="simple icon-link">
                 <i class="fab fa-github"></i>
             </a>
-            <a href="#" class="simple icon-link">
-                <i class="fas fa-shopping-cart" data-popup="cart"></i>
-            </a>
-            <a href="#" class="simple icon-link">
-                <i class="fas fa-user" data-popup="<?php echo e(isset($session["user"]) ? "user" : "login"); ?>"></i>
+            <a href="#" class="simple" data-popup="cart"> Cart (0) </a>
+            <a href="#" class="simple" data-popup="<?php echo e(isset($session["user"]) ? "user" : "login"); ?>">
+                <?php echo e(isset($session["user"]) ? "Profile" : "Sign In"); ?>
+
             </a>
             <?php if(isset($session["user"])): ?>
             <form action="logout" method="post" class="link-form">
-                <button type="submit" class="btn btn--icon">
-                    <i class="fas fa-power-off"></i>
+                <button type="submit" class="btn btn--simple">
+                    Log Out
                 </button>
             </form>
             <?php endif; ?>

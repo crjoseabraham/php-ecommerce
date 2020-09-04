@@ -52,6 +52,15 @@ button {
         background: transparent;
     }
 
+    &--simple {
+        background: transparent;
+        border: none;
+        padding: 0;
+        font-size: 1.6rem;
+        position: relative;
+        @include link-hover-effect($bistre);
+    }
+
     &--primary {
         padding: 1.3rem 2rem;
         font-size: 1.6rem;

@@ -6,8 +6,8 @@ export default class UI {
         this.http = HttpRequest;
 
         // UI elements
-        this.modal = document.getElementById("modal");
         this.body = document.getElementById("bodyJsPointer");
+        this.notification = document.querySelector(".notification");
         this.forms = document.querySelectorAll("form");
 
         // Set event listeners
@@ -19,9 +19,13 @@ export default class UI {
         document
             .getElementById("close-popup")
             .addEventListener("click", this.closePopup.bind(this));
-        document
-            .getElementById("close-notification")
-            .addEventListener("click", this.closeNotification);
+
+        if (this.notification !== null) {
+            this.notification.addEventListener(
+                "click",
+                this.closeNotification.bind(this)
+            );
+        }
 
         // Load other elements on startup
         this.loadFormEvents();
@@ -97,8 +101,9 @@ export default class UI {
     }
 
     // Close the notification
-    closeNotification() {
-        document.querySelector(".notification").style.display = "none";
+    closeNotification(event) {
+        if (event.target.id === "close-notification")
+            document.querySelector(".notification").style.display = "none";
     }
 
     // ---------------------------------------

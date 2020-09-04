@@ -34,11 +34,16 @@
             justify-content: flex-end;
 
             a {
-                font-size: 2rem;
+                font-size: 1.6rem;
+                text-transform: uppercase;
 
                 &:not(:first-child) {
                     margin-left: 3rem;
                 }
+            }
+
+            form.link-form {
+                margin-left: 3rem;
             }
         }
     }

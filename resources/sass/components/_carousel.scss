@@ -20,12 +20,17 @@
 
 .glider-next,
 .glider-prev {
-    font-size: 3rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    font-size: 4.3rem;
     text-transform: uppercase;
     top: 40%;
-    background-color: $white;
     border-radius: 100%;
     padding: 0.6rem 1.214rem;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.6);
+        color: darken($tulip, 17%);
+    }
 }
 
 .glider-prev {

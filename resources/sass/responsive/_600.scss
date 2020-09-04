@@ -21,12 +21,14 @@
         max-height: 4rem;
     }
 
-    #menu .menu__links .links a {
-        font-size: 2rem;
+    #menu .menu__links .links a,
+    #menu .menu__links .links form.link-form button.btn--simple {
+        font-size: 1.4rem;
+    }
 
-        &:not(:first-child) {
-            margin-left: 2rem;
-        }
+    #menu .menu__links .links a:not(:first-child),
+    #menu .menu__links .links form.link-form {
+        margin-left: 2rem;
     }
 
     #menu .menu__popup {
