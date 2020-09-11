@@ -124,6 +124,10 @@
                             </button>
                         </form>
                     </div>
+
+                    <div class="mt-2 profile-delete">
+                        <a href="confirm-delete-account" class="simple red">Delete your account</a>
+                    </div>
                 </div>
             </div>
 

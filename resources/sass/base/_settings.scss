@@ -176,7 +176,7 @@ form:not(.link-form) {
         font-family: $body;
         width: 100%;
         background: $white;
-        border: 1px solid #000;
+        border: 1px solid lighten($bistre, 50%);
         height: 40px;
         line-height: 40px;
         padding: 0 4rem 0 1rem;

@@ -178,14 +178,17 @@ class User extends Database {
         $stmt->bindValue(':user', $user, \PDO::PARAM_INT);
         $stmt->execute();
     }
-  // /**
-  //  * Delete user account
-  //  */
-  // public function deleteUserAccount()
-  // {
-  //   $db = static::getDB();
-  //   $stmt = $db->prepare("DELETE FROM `user` WHERE `id` = :id");
-  //   $stmt->bindValue(':id', $_SESSION['user_id'], \PDO::PARAM_INT);
-  //   return $stmt->execute();
-  // }
+
+    /**
+     * Delete a user's account from database
+     *
+     * @param integer $user     ID of the user
+     * @return boolean          Result of execution
+     */
+    public function deleteUser(int $user) : bool {
+    $db = static::getDB();
+    $stmt = $db->prepare("DELETE FROM `user` WHERE `id` = :id");
+    $stmt->bindValue(':id', $user, \PDO::PARAM_INT);
+    return $stmt->execute();
+    }
 }

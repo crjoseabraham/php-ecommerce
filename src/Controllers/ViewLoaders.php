@@ -83,4 +83,12 @@ class ViewLoaders {
                 'session' => $_SESSION
             ]);
     }
+
+    public function deleteAccountForm() : void {
+        if (is_null(Auth::getUser())) {
+            Flash::addMessage(LOGIN_REQUIRED, ERROR);
+            redirect('/');
+        } else
+            $this->view->render("layouts/profile_delete", ['session' => $_SESSION]);
+    }
 }

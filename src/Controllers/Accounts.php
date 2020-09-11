@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Model\User;
+use App\Model\Session;
 
 class Accounts {
 
@@ -60,5 +61,25 @@ class Accounts {
             Flash::addMessage($validation_errors, ERROR);
 
         redirect('/profile');
+    }
+
+    /**
+     * Delete user's account
+     *
+     * @return void
+     */
+    public function delete() {
+        $auth = new Auth;
+        $user = new User;
+        $user_id = $_SESSION['user'];
+
+        Session::destroySession();
+        if (Cookies::findCookie("remember_me"))
+            $auth->forgetLogin();
+
+        if (!$user->deleteUser($user_id))
+            Flash::addMessage(ERROR_MESSAGE, ERROR);
+
+        redirect('/');
     }
 }
