@@ -157,27 +157,26 @@ class User extends Database {
      * @param string $new_password      New password
      * @return boolean                  Result of execution
      */
-    public function updateForgottenPassword(int $user, string $new_password) : bool {
+    public function changePassword(int $user, string $new_password) : bool {
         $hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
         $db = static::getDB();
         $stmt = $db->prepare("UPDATE `user` SET `password` = :new_pass WHERE `id` = :user");
         $stmt->bindValue(':new_pass', $hashed_password, \PDO::PARAM_STR);
         $stmt->bindValue(':user', $user, \PDO::PARAM_INT);
-
-        return $stmt->execute() ? $this->clearPasswordResetColumns($user) : false;
+        return $stmt->execute();
     }
 
     /**
      * Clear password reset columns in 'user' table: password_reset_hash & expiry time
      *
      * @param integer $user         User's ID
-     * @return boolean              Result of execution
+     * @return void
      */
-    public function clearPasswordResetColumns(int $user) : bool {
+    public function clearPasswordResetColumns(int $user) : void {
         $db = static::getDB();
         $stmt = $db->prepare("UPDATE `user` SET `password_reset_hash` = null, password_reset_expires_at = null WHERE `id` = :user");
         $stmt->bindValue(':user', $user, \PDO::PARAM_INT);
-        return $stmt->execute();
+        $stmt->execute();
     }
   // /**
   //  * Delete user account

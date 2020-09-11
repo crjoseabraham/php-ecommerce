@@ -173,7 +173,8 @@ class Auth {
 
             if ($user && strtotime($user['password_reset_expires_at']) > time()) {
                 $user_model = new User();
-                $execution_result = $user_model->updateForgottenPassword($params['id'], $_POST['password']);
+                $execution_result = $user_model->changePassword($params['id'], $_POST['password']);
+                $user_model->clearPasswordResetColumns($user['id']);
                 Flash::addMessage(
                     $execution_result ? DATA_UPDATED : ERROR_MESSAGE,
                     $execution_result ? SUCCESS : ERROR
