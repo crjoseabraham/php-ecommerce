@@ -89,6 +89,32 @@ class User extends Database {
     }
 
     /**
+     * Update a user's name or email (or both) coming from profile page
+     *
+     * @param array $data       $_POST data
+     * @return boolean          Result of execution
+     */
+    public function updateBasicInfo(array $data) : bool {
+        $db = static::getDB();
+        $array_size = count($data);
+        $iterator = 1;
+        $sql = "UPDATE `user` SET ";
+
+        foreach ($data as $key => $value) {
+            $sql .= $iterator < count($data) ? "`{$key}` = :{$key}, " : "`{$key}` = :{$key} ";
+            $iterator++;
+        }
+
+        $stmt = $db->prepare($sql . "WHERE `id` = {$_SESSION['user']}");
+
+        foreach ($data as $key => $value) {
+            $stmt->bindValue(":{$key}", $value, \PDO::PARAM_STR);
+        }
+
+        return $stmt->execute();
+    }
+
+    /**
      * Start password reset process by generating a "reset token" and its expiry time
      *
      * @param array $user   Found user data

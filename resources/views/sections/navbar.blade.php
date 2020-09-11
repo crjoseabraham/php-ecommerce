@@ -17,7 +17,11 @@
                 <i class="fab fa-github"></i>
             </a>
             <a href="#" class="simple" data-popup="cart"> Cart (0) </a>
-            <a href="#" class="simple" data-popup="{{ isset($session["user"]) ? "user" : "login" }}">
+            <a
+                href="{{ isset($session["user"]) ? "profile" : '#' }}"
+                class="simple"
+                {{ !isset($session["user"]) ? "data-popup=login" : '' }}
+            >
                 {{ isset($session["user"]) ? "Profile" : "Sign In" }}
             </a>
             @if (isset($session["user"]))

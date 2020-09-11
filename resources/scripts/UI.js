@@ -9,6 +9,7 @@ export default class UI {
         this.body = document.getElementById("bodyJsPointer");
         this.notification = document.querySelector(".notification");
         this.forms = document.querySelectorAll("form");
+        this.profile_parent = document.getElementById("profile-content-parent");
 
         // Set event listeners
         document.querySelectorAll("[data-popup]").forEach((popup_pointer) => {
@@ -24,6 +25,13 @@ export default class UI {
             this.notification.addEventListener(
                 "click",
                 this.closeNotification.bind(this)
+            );
+        }
+
+        if (this.profile_parent !== null) {
+            this.profile_parent.addEventListener(
+                "click",
+                this.profileContentChanger.bind(this)
             );
         }
 
@@ -98,6 +106,45 @@ export default class UI {
         document.querySelector(".menu__popup").classList.remove("active");
         overlay.classList.remove("active");
         this.body.classList.remove("noscroll");
+    }
+
+    // Profile page tabs system
+    profileContentChanger(event) {
+        // If a <li> was clicked
+        if (event.target.classList.contains("profile-content__option")) {
+            let menu_options = Array.from(
+                document
+                    .querySelector(".profile-content__menu")
+                    .getElementsByTagName("li")
+            );
+            let containers = Array.from(
+                document
+                    .querySelector(".profile-content__body")
+                    .getElementsByClassName("profile-template")
+            );
+
+            // If it has "active" do nothing, if not, toggle "active"
+            if (!event.target.classList.contains("active")) {
+                // Find correct <div> for the clicked <li>
+                let corresponding_div = containers.find(
+                    (div) => div.dataset.action === event.target.dataset.action
+                );
+                // Remove "active" from the others <div> and <li>
+                menu_options.forEach((li) => {
+                    if (li.dataset.action !== event.target.dataset.action) {
+                        li.classList.remove("active");
+                    }
+                });
+                containers.forEach((div) => {
+                    if (div.dataset.action !== event.target.dataset.action) {
+                        div.classList.remove("active");
+                    }
+                });
+                // Finally, add the "active" state to the correct elements
+                corresponding_div.classList.add("active");
+                event.target.classList.add("active");
+            }
+        }
     }
 
     // Close the notification

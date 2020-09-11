@@ -70,11 +70,17 @@ class ViewLoaders {
     }
 
     /**
-     * Load the view for the modal with an item's data
-     * @param array $params Array containing the clicked product's ID
+     * Profile page
      * @return void
      */
-    public function showItemDetails($params) {
-        $this->view->render("components/item_details", $this->products->getItem($params["id"]));
+    public function profile() : void {
+        if (is_null(Auth::getUser())) {
+            Flash::addMessage(LOGIN_REQUIRED, ERROR);
+            redirect('/');
+        } else
+            $this->view->render("layouts/profile", [
+                'user' => Auth::getUser(),
+                'session' => $_SESSION
+            ]);
     }
 }

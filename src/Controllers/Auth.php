@@ -225,11 +225,12 @@ class Auth {
     /**
      * Validate the data sent from the login form
      * Make validations and reject if necessary, before consulting the DB
-     * @param string $email
-     * @param string $password
+     * @param array $data   POST data...
      * @return void
      */
     private function validateLogin(array $data) {
+        if (isset($data['remember_me']))    unset($data['remember_me']);
+
         $form_validation_errors = Validations::processForm($data, true);
 
         if (empty($form_validation_errors)) {

@@ -17,7 +17,12 @@
                 <i class="fab fa-github"></i>
             </a>
             <a href="#" class="simple" data-popup="cart"> Cart (0) </a>
-            <a href="#" class="simple" data-popup="<?php echo e(isset($session["user"]) ? "user" : "login"); ?>">
+            <a
+                href="<?php echo e(isset($session["user"]) ? "profile" : '#'); ?>"
+                class="simple"
+                <?php echo e(!isset($session["user"]) ? "data-popup=login" : ''); ?>
+
+            >
                 <?php echo e(isset($session["user"]) ? "Profile" : "Sign In"); ?>
 
             </a>
