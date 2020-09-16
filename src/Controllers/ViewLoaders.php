@@ -6,8 +6,8 @@ use App\Core\View;
 class ViewLoaders {
 
     public function __construct() {
-        $this->view = new View();
-        $this->products = new Products();
+        $this->view = new View;
+        $this->products = new Products;
     }
 
     /**
@@ -84,11 +84,29 @@ class ViewLoaders {
             ]);
     }
 
+    /**
+     * "Delete account" confirmation page
+     *
+     * @return void
+     */
     public function deleteAccountForm() : void {
         if (is_null(Auth::getUser())) {
             Flash::addMessage(LOGIN_REQUIRED, ERROR);
             redirect('/');
         } else
             $this->view->render("layouts/profile_delete", ['session' => $_SESSION]);
+    }
+
+    /**
+     * Certain product's details page
+     *
+     * @param array $params     Item's ID passed in the URL
+     * @return void
+     */
+    public function productDetails($params) : void {
+        $this->view->render("layouts/product_details", [
+            'session' => $_SESSION,
+            'product' => $this->products->getItem($params['item'])
+        ]);
     }
 }

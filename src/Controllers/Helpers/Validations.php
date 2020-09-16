@@ -9,6 +9,15 @@ class Validations {
     static $errors = [];
 
     /**
+     * Sizes to loop through for the verification
+     * @var array
+     */
+    static $sizes = [
+        "clothes" => ["S", "M", "L", "XL"],
+        "shoes" => [4.5, 5.5, 6, 7, 8, 8.5, 9.5, 10]
+    ];
+
+    /**
      * Regular expressions for making validations
      * @var array
      */
@@ -107,5 +116,41 @@ class Validations {
     public static function passwordConfirmation(string $password, string $confirmation) : void {
         if ($password !== $confirmation)
             self::$errors[] = PASS_MATCH_ERR;
+    }
+
+    /**
+     * Verify if the size passed is either a string value cotained in $sizes["clothes"]
+     * or a float value from the ones in $sizes["shoes"]
+     *
+     * @param string $size
+     * @return void
+     */
+    public static function size(string $size) : void {
+        $iterator = 0;
+
+        if (is_float($size)) {
+            foreach (self::$sizes["shoes"] as $shoe_size) {
+                if ($size === $shoe_size) $iterator++;
+            }
+        }
+        elseif (is_string($size)) {
+            foreach (self::$sizes["clothes"] as $clothing_size) {
+                if ($size === $clothing_size) $iterator++;
+            }
+        }
+
+        if (!$iterator)
+            self::$errors[] = SIZE_ERROR;
+    }
+
+    /**
+     * Verify that the user selected a size number between 1 and 20
+     *
+     * @param integer $qty
+     * @return void
+     */
+    public static function quantity(int $qty) : void {
+        if (!(is_int($qty) && ($qty >= 1 && $qty <= 20)))
+            self::$errors[] = QUANTITY_ERROR;
     }
 }

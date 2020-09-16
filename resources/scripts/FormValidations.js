@@ -31,19 +31,41 @@ export default class FormValidations {
      * Validate a form after clicking "submit" button
      */
     validateSubmit() {
-        this.form_inputs.forEach((input) => {
-            let regex = this.regex[input.name];
-            if (input.name === "passwordConfirmation")
-                this.validatePasswordConfirmation();
-            else {
-                if (regex.test(input.value.trim())) this.form_fields[input.name] = true;
-            }
-        });
+        if (this.form.id === "add-to-cart") {
+            this.validateAddToCart();
+        } else {
+            this.form_inputs.forEach((input) => {
+                let regex = this.regex[input.name];
+                if (input.name === "passwordConfirmation")
+                    this.validatePasswordConfirmation();
+                else {
+                    if (regex.test(input.value.trim()))
+                        this.form_fields[input.name] = true;
+                }
+            });
+        }
 
         if (this.noErrors()) {
             this.form.submit();
             this.form.reset();
-        } else this.displayStatus();
+        } else {
+            if (this.form.id !== "add-to-cart") this.displayStatus();
+        }
+    }
+
+    /**
+     * Validate "Add to cart form"
+     */
+    validateAddToCart() {
+        let checked = Array.from(this.form_inputs).find((input) => input.checked);
+        let child = this.form_inputs[0];
+
+        if (checked === undefined) {
+            child.parentElement.nextElementSibling.classList.add("active");
+        } else {
+            child.parentElement.nextElementSibling.classList.remove("active");
+            this.form_fields.size = true;
+        }
     }
 
     /**

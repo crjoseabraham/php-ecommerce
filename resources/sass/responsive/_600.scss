@@ -107,19 +107,6 @@
         width: 18rem;
     }
 
-    // BEST SELLERS
-    .section-title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &::before,
-        &::after {
-            min-width: 100%;
-            height: 0;
-        }
-    }
-
     // PRODUCT CARD
     .product__card {
         width: 170px;

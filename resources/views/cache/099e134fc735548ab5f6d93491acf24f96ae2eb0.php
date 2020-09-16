@@ -142,7 +142,6 @@
             src="https://kit.fontawesome.com/eea5dcc8ef.js"
             crossorigin="anonymous"
         ></script>
-        
         <script src="dist/assets/js/app.js"></script>
     </body>
 </html><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/layouts/profile.blade.php ENDPATH**/ ?>

@@ -42,7 +42,9 @@ define('RECOVER_TOKEN_EXPIRED', 'It seems like the link to recover your password
 // define('REVIEW_SUBMITTED', 'Your review was submitted successfully');
 // define('REVIEW_DELETED', 'Your review was deleted');
 
-// // Cart notifications
+// Cart notifications
+define('QUANTITY_ERROR', 'Quantity must be an integer number between 1 and 20');
+define('SIZE_ERROR', 'It seems like you entered an invalid size');
 // define('ITEM_ADDED', 'Item added to your cart');
 // define('ITEM_REMOVED', 'Item removed from your cart');
 // define('ERROR_MESSAGE', 'Something went wrong. Please try again');
