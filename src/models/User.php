@@ -21,6 +21,9 @@ class User extends Database {
         $stmt->bindValue(':n', $data["name"], \PDO::PARAM_STR);
         $stmt->bindValue(':p', $hashed_password, \PDO::PARAM_STR);
         $stmt->execute();
+        // Create user's cart
+        $cart_model = new Cart;
+        $cart_model->createCart($db->lastInsertId());
     }
 
     /**

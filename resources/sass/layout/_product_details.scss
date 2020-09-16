@@ -13,8 +13,21 @@
         padding: 0 5rem;
         max-width: 50%;
 
-        h2 {
-            font-weight: normal;
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            h2.price-to-show {
+                font-weight: normal;
+
+                & + h3 {
+                    font-weight: normal;
+                    color: lighten($bistre, 30%);
+                    font-size: 1.5rem;
+                    padding-left: 6px;
+                }
+            }
         }
 
         .stars {

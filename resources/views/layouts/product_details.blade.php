@@ -37,7 +37,18 @@
                         <i class="fas fa-star"></i>
                         | <a href="#" class="simple">Write a review</a>
                     </div>
-                    <h2 class="sans mt-2">${{ $product["price"] }}</h2>
+                    <div class="product-price mt-2">
+                        @if ($product['discount'] > 0)
+                        <h2 class="price-to-show sans">
+                            ${{ $product["price"] - ($product["price"] * ($product["discount"] / 100)) }}
+                        </h2>
+                        <h3 class="original-price sans">
+                            (lowered from ${{ $product["price"] }})
+                        </h3>
+                        @else
+                        <h2 class="price-to-show sans">${{ $product["price"] }}</h2>
+                        @endif
+                    </div>
                     <p class="description mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatum excepturi ex sequi impedit odio voluptas eaque, doloremque deleniti assumenda!</p>
 
                     <!-- "Add to cart" form start -->

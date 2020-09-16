@@ -37,7 +37,19 @@
                         <i class="fas fa-star"></i>
                         | <a href="#" class="simple">Write a review</a>
                     </div>
-                    <h2 class="sans mt-2">$<?php echo e($product["price"]); ?></h2>
+                    <div class="product-price mt-2">
+                        <?php if($product['discount'] > 0): ?>
+                        <h2 class="price-to-show sans">
+                            $<?php echo e($product["price"] - ($product["price"] * ($product["discount"] / 100))); ?>
+
+                        </h2>
+                        <h3 class="original-price sans">
+                            (lowered from $<?php echo e($product["price"]); ?>)
+                        </h3>
+                        <?php else: ?>
+                        <h2 class="price-to-show sans">$<?php echo e($product["price"]); ?></h2>
+                        <?php endif; ?>
+                    </div>
                     <p class="description mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatum excepturi ex sequi impedit odio voluptas eaque, doloremque deleniti assumenda!</p>
 
                     <!-- "Add to cart" form start -->

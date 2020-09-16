@@ -16,4 +16,4 @@ $router->post('update-forgotten-password_{id}-{token}', 'Auth@updateForgottenPas
 $router->post('update-profile/basic', 'Accounts@updateBasic');
 $router->post('update-profile/password', 'Accounts@updatePassword');
 $router->post('delete-account', 'Accounts@delete');
-$router->post('add-to-cart.{item}', 'Products@addToCart');
+$router->post('add-to-cart.{item}', 'Products@validateAddingForm');
