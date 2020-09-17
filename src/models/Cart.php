@@ -23,11 +23,11 @@ class Cart extends Database {
      *
      * @return mixed    Array if ev. ok, false if error
      */
-    public function getCart() {
+    public static function getCart() {
         $db = static::getDB();
-        $stmt = $db->prepare("SELECT `cart`.`user_id`, `cart_items`.* FROM `cart_items` LEFT JOIN `cart` ON `cart_items`.`cart_id` = `cart`.id AND `cart`.`user_id` = :u;");
+        $stmt = $db->prepare("SELECT `cart_items`.`product_id`, `product`.`description`, `product`.`price`, `cart_items`.`quantity`, `cart_items`.`size`, `product`.`discount`, `cart_items`.`subtotal` FROM `user` RIGHT JOIN `cart` ON `user`.`id` = `cart`.`user_id` RIGHT JOIN `cart_items` ON `cart`.`id` = `cart_items`.`cart_id` INNER JOIN `product` ON `cart_items`.`product_id` = `product`.`product_id` WHERE `user`.`id` = :u");
         $stmt->bindValue(':u', $_SESSION['user'], \PDO::PARAM_INT);
-        return $stmt->execute() ? $stmt->fetch(\PDO::FETCH_ASSOC) : false;
+        return $stmt->execute() ? $stmt->fetchAll(\PDO::FETCH_OBJ) : false;
     }
 
     /**

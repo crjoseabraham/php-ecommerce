@@ -1,20 +1,76 @@
 .popup__content[data-popupname="cart"] {
-
-    h1 {
-        color: black !important;
-    }
-
-    // Fixed buttons at bottom
+    // Fixed buttons at the bottom
     .cart-action-buttons {
+        background: $white;
+        border-top: 2px solid $eggshell;
+        padding: 1.5rem 6rem;
         width: 100%;
         position: fixed;
         bottom: 0;
         left: 0;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        background: $white;
-        padding: 1.5rem 5rem;
-        border-top: 2px solid $eggshell;
+
+        .cart-form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            button {
+                width: fit-content;
+            }
+        }
+
+        span.cart-total {
+            text-align: center;
+            font-weight: 500;
+            font-size: 2rem;
+
+            span {
+                padding-left: 2rem;
+            }
+        }
+    }
+
+    .cart-content {
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 1.5rem;
+
+            caption {
+                font-size: 2rem;
+                font-style: italic;
+                font-family: $heading;
+                text-align: left;
+                padding-bottom: 1rem;
+            }
+
+            thead th {
+                font-weight: 500;
+                text-align: left;
+            }
+
+            th,
+            td {
+                padding: 0.5rem 2rem;
+            }
+
+            tr {
+                border-bottom: 1px solid lighten($bistre, 70%);
+
+                img {
+                    max-height: 70px;
+                }
+            }
+        }
+
+        .cart-item-info {
+            span.description {
+                font-weight: 500;
+            }
+            span.extra {
+                display: flex;
+                flex-direction: column;
+            }
+        }
     }
 }

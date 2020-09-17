@@ -16,7 +16,9 @@
             <a href="https://github.com/crjoseabraham/shoppingcart" target="_blank" class="simple icon-link">
                 <i class="fab fa-github"></i>
             </a>
-            <a href="#" class="simple" data-popup="cart"> Cart (0) </a>
+            <a href="#" class="simple" data-popup="cart">
+                Cart {{ isset($session["user"]) ? "(".count(App\Controller\Products::getCart()).")" : "" }}
+            </a>
             <a
                 href="{{ isset($session["user"]) ? "profile" : '#' }}"
                 class="simple"

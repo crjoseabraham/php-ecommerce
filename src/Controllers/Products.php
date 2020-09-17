@@ -12,19 +12,21 @@ class Products {
     }
 
     /**
-
     * Retrieve all products from the database
-     *
-     * @return void
-     */
+    *
+    * @return void
+    */
     public function getProducts() {
         $products = $this->product_model->getAll();
-
         foreach ($products as &$product) {
             $product["sizes"] = explode(', ', $product["sizes"]);
         }
 
         return $products;
+    }
+
+    public static function getCart() {
+        return Cart::getCart();
     }
 
     /**
