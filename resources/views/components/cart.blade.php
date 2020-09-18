@@ -10,7 +10,7 @@
         <caption>Your shopping cart</caption>
         <thead>
             <tr>
-                <th>&nbsp;</th>
+                <th class="image-thead">&nbsp;</th>
                 <th>Item</th>
                 <th>Price</th>
                 <th>Quantity</th>
@@ -21,10 +21,10 @@
         <tbody>
             @foreach ($cart as $item)
             <tr>
-                <td data-label="Image">
+                <td class="image-tbody">
                     <img src="./img/product/{{ $item->product_id }}.jpg" alt="{{ $item->description }}">
                 </td>
-                <td data-label="Item">
+                <td class="cart-item-details">
                     <div class="cart-item-info">
                         <span class="description"> {{ $item->description }} </span>
                         <span class="extra">
@@ -32,21 +32,23 @@
                         </span>
                     </div>
                 </td>
-                <td data-label="Price">
+                <td>
                     @if ($item->discount > 0)
-                        ${{ $item->price - ($item->price * ($item->discount / 100)) }}
+                        ${{ round($item->price - ($item->price * ($item->discount / 100)), 2) }}
                     @else
                         ${{ $item->price }}
                     @endif
                 </td>
-                <td data-label="Qty">
+                <td data-label="Quantity:&nbsp;">
                     {{ $item->quantity }}
                 </td>
-                <td data-label="Subtotal">
+                <td class="cart-subtotal">
                     ${{ $item->subtotal }}
                 </td>
-                <td data-label="RemoveButton">
-                    <i class="fas fa-times-circle red"></i>
+                <td class="cart-remove-btn">
+                    <button class="remove-btn" id="cart-remove-btn" data-item="{{ $item->product_id }}">
+                        Remove
+                    </button>
                 </td>
             </tr>
             @endforeach
@@ -61,7 +63,7 @@
     <form action="proceed-checkout" method="post" class="cart-form">
         <span class="cart-total">
             <i class="fas fa-shopping-bag"></i>
-            Total items: <span>${{ $item->subtotal }}</span>
+            Total items: <span>${{ round(array_sum(array_column((array) $cart, 'subtotal')), 2) }}</span>
         </span>
         <button type="submit" class="btn btn--primary">Proceed to checkout</button>
     </form>

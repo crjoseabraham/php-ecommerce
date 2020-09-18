@@ -104,6 +104,6 @@ class Products {
      * @return float
      */
     public function calculateSubtotal($quantity, $item) : float {
-        return $quantity * ($item['price'] - ($item['price'] * ($item['discount'] / 100)));
+        return round($quantity * ($item['price'] - ($item['price'] * ($item['discount'] / 100))), 2);
     }
 }

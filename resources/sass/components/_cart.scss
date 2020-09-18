@@ -63,6 +63,9 @@
             }
         }
 
+        .cart-item-details {
+            width: 100%;
+        }
         .cart-item-info {
             span.description {
                 font-weight: 500;
@@ -70,6 +73,86 @@
             span.extra {
                 display: flex;
                 flex-direction: column;
+            }
+        }
+
+        .remove-btn {
+            cursor: pointer;
+            color: #ffffff;
+            background: darken($tulip, 10%);
+            padding: 2px 1.5rem;
+            border-radius: 10px;
+            text-transform: uppercase;
+            border: none;
+            font-size: 1.4rem;
+            display: block;
+            width: fit-content;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: darken($tulip, 20%);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #menu .menu__popup .popup__content[data-popupname="cart"] {
+        padding: 4rem 2rem 8rem 2rem !important;
+    }
+    .cart-action-buttons {
+        padding: 1rem 1.8rem !important;
+    }
+
+    .cart-content table {
+        caption {
+            font-size: 2.4rem !important;
+            padding-left: 2rem;
+        }
+        th.image-thead,
+        td.image-tbody {
+            display: none;
+        }
+        thead {
+            display: none;
+        }
+        tbody tr {
+            padding: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+
+            td {
+                max-width: 75%;
+                font-size: 1.8rem;
+                width: 100%;
+                display: flex;
+                align-items: center;
+
+                &::before {
+                    content: attr(data-label);
+                }
+
+                &.cart-subtotal,
+                &.cart-remove-btn {
+                    width: fit-content;
+                    font-size: 2rem;
+                    font-weight: 500;
+                    width: 20%;
+                    position: absolute;
+                    text-align: right;
+                }
+
+                &.cart-subtotal {
+                    top: 2rem;
+                    right: 0;
+                }
+
+                &.cart-remove-btn {
+                    bottom: 3.2rem;
+                    right: 1rem;
+                    font-size: 2.5rem;
+                }
             }
         }
     }

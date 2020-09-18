@@ -10,7 +10,7 @@
         <caption>Your shopping cart</caption>
         <thead>
             <tr>
-                <th>&nbsp;</th>
+                <th class="image-thead">&nbsp;</th>
                 <th>Item</th>
                 <th>Price</th>
                 <th>Quantity</th>
@@ -21,10 +21,10 @@
         <tbody>
             <?php $__currentLoopData = $cart; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
-                <td data-label="Image">
+                <td class="image-tbody">
                     <img src="./img/product/<?php echo e($item->product_id); ?>.jpg" alt="<?php echo e($item->description); ?>">
                 </td>
-                <td data-label="Item">
+                <td class="cart-item-details">
                     <div class="cart-item-info">
                         <span class="description"> <?php echo e($item->description); ?> </span>
                         <span class="extra">
@@ -33,25 +33,27 @@
                         </span>
                     </div>
                 </td>
-                <td data-label="Price">
+                <td>
                     <?php if($item->discount > 0): ?>
-                        $<?php echo e($item->price - ($item->price * ($item->discount / 100))); ?>
+                        $<?php echo e(round($item->price - ($item->price * ($item->discount / 100)), 2)); ?>
 
                     <?php else: ?>
                         $<?php echo e($item->price); ?>
 
                     <?php endif; ?>
                 </td>
-                <td data-label="Qty">
+                <td data-label="Quantity:&nbsp;">
                     <?php echo e($item->quantity); ?>
 
                 </td>
-                <td data-label="Subtotal">
+                <td class="cart-subtotal">
                     $<?php echo e($item->subtotal); ?>
 
                 </td>
-                <td data-label="RemoveButton">
-                    <i class="fas fa-times-circle red"></i>
+                <td class="cart-remove-btn">
+                    <button class="remove-btn" id="cart-remove-btn" data-item="<?php echo e($item->product_id); ?>">
+                        Remove
+                    </button>
                 </td>
             </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -66,7 +68,7 @@
     <form action="proceed-checkout" method="post" class="cart-form">
         <span class="cart-total">
             <i class="fas fa-shopping-bag"></i>
-            Total items: <span>$<?php echo e($item->subtotal); ?></span>
+            Total items: <span>$<?php echo e(round(array_sum(array_column((array) $cart, 'subtotal')), 2)); ?></span>
         </span>
         <button type="submit" class="btn btn--primary">Proceed to checkout</button>
     </form>
