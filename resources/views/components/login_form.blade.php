@@ -13,6 +13,7 @@
             <div class="input-group">
                 <input type="email" name="email" id="login_email" autofocus>
             </div>
+            <p class="input-errors"> Invalid email address </p>
         </div>
 
         <!-- Password -->
@@ -21,6 +22,7 @@
             <div class="input-group">
                 <input type="password" name="password" id="loginpass">
             </div>
+            <p class="input-errors"> The password you entered doesn't meet our password requirements. Which also means it's probably incorrect. </p>
         </div>
 
         <!-- Remember me & Forgotten Password -->
@@ -38,7 +40,7 @@
             <button type="submit" class="btn btn--primary">
                 Log In
             </button>
-            <button type="button" class="btn btn--blank" data-popup="signup">
+            <button type="button" class="btn btn--blank" data-action="signup">
                 Sign Up
             </button>
         </div>

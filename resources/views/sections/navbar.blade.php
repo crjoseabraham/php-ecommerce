@@ -1,28 +1,22 @@
 <nav id="menu" class="menu">
-    <div class="container menu__responsive">
-        <button><i class="fas fa-bars"></i></button>
-        <a href="/shoppingcart" class="menu__brand">
-            <img src="./img/brand/isotipo.png" alt="Company logo" class="menu__logo"/>
-        </a>
-        <button><i class="fas fa-user"></i></button>
-    </div>
-
     <div class="container menu__links">
         <div class="brand">
-            <a href="/shoppingcart"> <img src="./img/brand/logotipo.png" alt="Company logo"/> </a>
+            <a href="/shoppingcart">
+                <img src="./img/brand/logotipo.png" alt="Company logo"/>
+            </a>
         </div>
 
         <div class="links">
             <a href="https://github.com/crjoseabraham/shoppingcart" target="_blank" class="simple icon-link">
                 <i class="fab fa-github"></i>
             </a>
-            <a href="#" class="simple" data-popup="cart">
+            <a href="#" class="simple" data-action="cart">
                 Cart {{ isset($session["user"]) ? "(".count(App\Controller\Products::getCart()).")" : "" }}
             </a>
             <a
                 href="{{ isset($session["user"]) ? "profile" : '#' }}"
                 class="simple"
-                {{ !isset($session["user"]) ? "data-popup=login" : '' }}
+                {{ !isset($session["user"]) ? "data-action=login" : '' }}
             >
                 {{ isset($session["user"]) ? "Profile" : "Sign In" }}
             </a>
@@ -40,16 +34,13 @@
         <button id="close-popup" class="btn btn--link">
             <i class="fas fa-times"></i>
         </button>
-        <div class="popup__content" data-popupname="user">
-            Hello, user with the id {{ $session["user"] }}
-        </div>
-        <div class="popup__content" data-popupname="login">
+        <div class="popup__content" data-action="login">
             @include('components/login_form')
         </div>
-        <div class="popup__content" data-popupname="signup">
+        <div class="popup__content" data-action="signup">
             @include('components/register_form')
         </div>
-        <div class="popup__content" data-popupname="cart">
+        <div class="popup__content" data-action="cart">
             @include('components/cart')
         </div>
     </div>

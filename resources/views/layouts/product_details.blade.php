@@ -40,7 +40,7 @@
                     <div class="product-price mt-2">
                         @if ($product['discount'] > 0)
                         <h2 class="price-to-show sans">
-                            ${{ $product["price"] - ($product["price"] * ($product["discount"] / 100)) }}
+                            ${{ round($product["price"] - ($product["price"] * ($product["discount"] / 100)), 2) }}
                         </h2>
                         <h3 class="original-price sans">
                             (lowered from ${{ $product["price"] }})

@@ -17,3 +17,4 @@ $router->post('update-profile/basic', 'Accounts@updateBasic');
 $router->post('update-profile/password', 'Accounts@updatePassword');
 $router->post('delete-account', 'Accounts@delete');
 $router->post('add-to-cart.{item}', 'Products@validateAddingForm');
+$router->post('remove-item', 'Products@removeFromCart');

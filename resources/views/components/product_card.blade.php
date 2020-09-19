@@ -7,9 +7,6 @@
             </span>
             @endif
             <img src="./img/product/{{ $item["product_id"] }}.jpg" alt="{{ $item["description"]}}">
-            <button class="btn btn--primary">
-                View details
-            </button>
         </div>
 
         <div class="product__card-details-container">
@@ -17,7 +14,7 @@
             <div class="price-container">
                 @if ($item["discount"] > 0)
                     <span class="price-with-discount">
-                        ${{ $item["price"] - ($item["price"] * ($item["discount"] / 100)) }}
+                        ${{ round($item["price"] - ($item["price"] * ($item["discount"] / 100)), 2) }}
                     </span>
                     <span class="original-price">(lowered from ${{ $item["price"] }})</span>
                 @else

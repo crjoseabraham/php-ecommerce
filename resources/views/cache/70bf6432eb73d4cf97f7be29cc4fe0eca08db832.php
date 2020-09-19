@@ -7,9 +7,6 @@
             </span>
             <?php endif; ?>
             <img src="./img/product/<?php echo e($item["product_id"]); ?>.jpg" alt="<?php echo e($item["description"]); ?>">
-            <button class="btn btn--primary">
-                View details
-            </button>
         </div>
 
         <div class="product__card-details-container">
@@ -17,7 +14,7 @@
             <div class="price-container">
                 <?php if($item["discount"] > 0): ?>
                     <span class="price-with-discount">
-                        $<?php echo e($item["price"] - ($item["price"] * ($item["discount"] / 100))); ?>
+                        $<?php echo e(round($item["price"] - ($item["price"] * ($item["discount"] / 100)), 2)); ?>
 
                     </span>
                     <span class="original-price">(lowered from $<?php echo e($item["price"]); ?>)</span>

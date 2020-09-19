@@ -22,7 +22,6 @@
                 <i class="validation-status fas fa-times-circle"></i>
             </div>
             <p class="input-errors"> Invalid email address </p>
-            <p class="input-errors email-taken">This email is already registered</p>
         </div>
 
         <!-- Password -->
@@ -48,7 +47,7 @@
         </div>
 
         <!-- Buttons -->
-        <button type="button" class="btn btn--blank" data-popup="login">
+        <button type="button" class="btn btn--blank" data-action="login">
             <i class="fas fa-long-arrow-alt-left"></i> Go Back
         </button>
         <button type="submit" class="btn btn--primary">

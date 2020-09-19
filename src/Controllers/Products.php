@@ -97,6 +97,11 @@ class Products {
         Flash::addMessage(ITEM_ADDED);
     }
 
+    public function removeFromCart() {
+        $cart = $this->cart_model->getUsersCartId();
+        var_dump($_POST);
+    }
+
     /**
      * Get product's subtotal by calculating its price with the discount
      *

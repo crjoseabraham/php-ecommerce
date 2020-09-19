@@ -40,7 +40,7 @@
                     <div class="product-price mt-2">
                         <?php if($product['discount'] > 0): ?>
                         <h2 class="price-to-show sans">
-                            $<?php echo e($product["price"] - ($product["price"] * ($product["discount"] / 100))); ?>
+                            $<?php echo e(round($product["price"] - ($product["price"] * ($product["discount"] / 100)), 2)); ?>
 
                         </h2>
                         <h3 class="original-price sans">

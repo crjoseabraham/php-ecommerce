@@ -24,7 +24,7 @@
 
         <!-- Actual content -->
         <div class="container profile-container">
-            <div class="profile-content" id="profile-content-parent">
+            <div class="profile-content">
                 <ul class="profile-content__menu">
                     <li class="profile-content__option active" data-action="basic_info">Basic Information</li>
                     <li class="profile-content__option" data-action="change_pass">Change password</li>

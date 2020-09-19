@@ -26,7 +26,11 @@
                 </td>
                 <td class="cart-item-details">
                     <div class="cart-item-info">
-                        <span class="description"> {{ $item->description }} </span>
+                        <span class="description">
+                            <a href="product_details.{{ $item->product_id }}" class="simple">
+                                {{ $item->description }}
+                            </a>
+                        </span>
                         <span class="extra">
                             Size: {{ $item->size }}. Product code: {{ $item->product_id }}
                         </span>
@@ -46,7 +50,7 @@
                     ${{ $item->subtotal }}
                 </td>
                 <td class="cart-remove-btn">
-                    <button class="remove-btn" id="cart-remove-btn" data-item="{{ $item->product_id }}">
+                    <button type="submit" class="remove-btn" data-item="{{ $item->product_id }}">
                         Remove
                     </button>
                 </td>

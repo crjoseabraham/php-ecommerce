@@ -4,10 +4,6 @@ export default class HttpRequest {
         this.baseURL = "http://localhost/shoppingcart/";
     }
 
-    /**
-     * GET method
-     * @param {string} resource URL for the request
-     */
     get(resource) {
         return new Promise((resolve, reject) => {
             this.request.addEventListener("readystatechange", () => {
@@ -24,8 +20,5 @@ export default class HttpRequest {
         });
     }
 
-    /**
-     * POST request
-     */
     post() {}
 }

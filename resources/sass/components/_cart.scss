@@ -1,4 +1,4 @@
-.popup__content[data-popupname="cart"] {
+.popup__content[data-action="cart"] {
     // Fixed buttons at the bottom
     .cart-action-buttons {
         background: $white;
@@ -82,7 +82,6 @@
             background: darken($tulip, 10%);
             padding: 2px 1.5rem;
             border-radius: 10px;
-            text-transform: uppercase;
             border: none;
             font-size: 1.4rem;
             display: block;
@@ -97,7 +96,7 @@
 }
 
 @media screen and (max-width: 600px) {
-    #menu .menu__popup .popup__content[data-popupname="cart"] {
+    #menu .menu__popup .popup__content[data-action="cart"] {
         padding: 4rem 2rem 8rem 2rem !important;
     }
     .cart-action-buttons {

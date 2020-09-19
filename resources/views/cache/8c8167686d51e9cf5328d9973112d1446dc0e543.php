@@ -26,7 +26,12 @@
                 </td>
                 <td class="cart-item-details">
                     <div class="cart-item-info">
-                        <span class="description"> <?php echo e($item->description); ?> </span>
+                        <span class="description">
+                            <a href="product_details.<?php echo e($item->product_id); ?>" class="simple">
+                                <?php echo e($item->description); ?>
+
+                            </a>
+                        </span>
                         <span class="extra">
                             Size: <?php echo e($item->size); ?>. Product code: <?php echo e($item->product_id); ?>
 
@@ -51,7 +56,7 @@
 
                 </td>
                 <td class="cart-remove-btn">
-                    <button class="remove-btn" id="cart-remove-btn" data-item="<?php echo e($item->product_id); ?>">
+                    <button type="submit" class="remove-btn" data-item="<?php echo e($item->product_id); ?>">
                         Remove
                     </button>
                 </td>
