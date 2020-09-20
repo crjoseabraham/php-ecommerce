@@ -8,6 +8,7 @@ $router->get('reset-password-form-{id}-{token}', 'ViewLoaders@resetPasswordForm'
 $router->get('profile', 'ViewLoaders@profile');
 $router->get('confirm-delete-account', 'ViewLoaders@deleteAccountForm');
 $router->get('product_details.{item}', 'ViewLoaders@productDetails');
+$router->get('get-cart', 'Products@echoCart');
 
 $router->post('auth', 'Auth@auth');
 $router->post('logout', 'Auth@logout');

@@ -29,6 +29,10 @@ class Products {
         return Cart::getCart();
     }
 
+    public static function echoCart() {
+        echo json_encode(Cart::getCart());
+    }
+
     /**
      * Retrieve the data of an specific product by its ID
      *
@@ -99,7 +103,7 @@ class Products {
 
     public function removeFromCart() {
         $cart = $this->cart_model->getUsersCartId();
-        var_dump($_POST);
+        echo $this->cart_model->deleteItem($cart, $_POST['item']);
     }
 
     /**

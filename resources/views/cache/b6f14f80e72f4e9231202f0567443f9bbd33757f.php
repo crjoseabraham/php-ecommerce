@@ -11,8 +11,7 @@
                 <i class="fab fa-github"></i>
             </a>
             <a href="#" class="simple" data-action="cart">
-                Cart <?php echo e(isset($session["user"]) ? "(".count(App\Controller\Products::getCart()).")" : ""); ?>
-
+                Cart (<span id='cart-counter'><?php echo e(isset($session["user"]) ? count(App\Controller\Products::getCart()) : "0"); ?></span>)
             </a>
             <a
                 href="<?php echo e(isset($session["user"]) ? "profile" : '#'); ?>"

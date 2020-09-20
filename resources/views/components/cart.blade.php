@@ -4,7 +4,7 @@
 @endphp
 
 <div class="cart-content">
-    @if (isset($cart))
+    @if (isset($cart) && count($cart) > 0)
     <!-- Start cart format -->
     <table>
         <caption>Your shopping cart</caption>
@@ -20,7 +20,7 @@
         </thead>
         <tbody>
             @foreach ($cart as $item)
-            <tr>
+            <tr data-item="{{ $item->product_id }}">
                 <td class="image-tbody">
                     <img src="./img/product/{{ $item->product_id }}.jpg" alt="{{ $item->description }}">
                 </td>
@@ -58,17 +58,18 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="cart-action-buttons">
+        <form action="proceed-checkout" method="post" class="cart-form">
+            <span class="cart-total">
+                <i class="fas fa-shopping-bag"></i>
+                Total items: $<span id="total-items">{{ round(array_sum(array_column((array) $cart, 'subtotal')), 2) }}</span>
+            </span>
+            <button type="submit" class="btn btn--primary">Proceed to checkout</button>
+        </form>
+    </div>
     <!-- Endof cart format -->
     @else
     Your cart is empty we
     @endif
-</div>
-<div class="cart-action-buttons">
-    <form action="proceed-checkout" method="post" class="cart-form">
-        <span class="cart-total">
-            <i class="fas fa-shopping-bag"></i>
-            Total items: <span>${{ round(array_sum(array_column((array) $cart, 'subtotal')), 2) }}</span>
-        </span>
-        <button type="submit" class="btn btn--primary">Proceed to checkout</button>
-    </form>
 </div>

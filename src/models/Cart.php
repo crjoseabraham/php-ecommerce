@@ -103,14 +103,14 @@ class Cart extends Database {
      *
      * @param int $cart         Cart ID
      * @param int $item         Item ID
-     * @return void
+     * @return boolean
      */
-    public function deleteItem(int $cart, int $item) : void {
+    public function deleteItem(int $cart, int $item) : bool {
         $db = static::getDB();
         $stmt = $db->prepare("DELETE FROM `cart_items` WHERE `cart_id` = :c AND `product_id` = :i");
         $stmt->bindValue(':c', $cart, \PDO::PARAM_INT);
         $stmt->bindValue(':i', $item, \PDO::PARAM_INT);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
 //   /**

@@ -1,9 +1,12 @@
-import Core from "./Core";
+import CartUI from "./CartUI";
+import Carousels from "./Carousels";
 import FormValidations from "./FormValidations";
 
-export default class UserInterface extends Core {
+export default class UserInterface {
     constructor() {
-        super();
+        this.Carousels = new Carousels();
+        this.CartUI = new CartUI();
+
         // DOM Pointers
         this.DOM = {
             body: document.getElementById("bodyJsPointer"),
@@ -24,6 +27,7 @@ export default class UserInterface extends Core {
         this.notificationListener();
         this.DOM.navbar.addEventListener("click", this.navbarListener.bind(this));
         this.DOM.body.addEventListener("submit", this.formListener.bind(this));
+        this.CartUI.eventListeners();
         if (!(this.DOM.profile === null))
             this.DOM.profile.addEventListener("click", this.profileListener.bind(this));
     }

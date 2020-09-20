@@ -4,7 +4,7 @@
 ?>
 
 <div class="cart-content">
-    <?php if(isset($cart)): ?>
+    <?php if(isset($cart) && count($cart) > 0): ?>
     <!-- Start cart format -->
     <table>
         <caption>Your shopping cart</caption>
@@ -20,7 +20,7 @@
         </thead>
         <tbody>
             <?php $__currentLoopData = $cart; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <tr>
+            <tr data-item="<?php echo e($item->product_id); ?>">
                 <td class="image-tbody">
                     <img src="./img/product/<?php echo e($item->product_id); ?>.jpg" alt="<?php echo e($item->description); ?>">
                 </td>
@@ -64,17 +64,18 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>
     </table>
+
+    <div class="cart-action-buttons">
+        <form action="proceed-checkout" method="post" class="cart-form">
+            <span class="cart-total">
+                <i class="fas fa-shopping-bag"></i>
+                Total items: $<span id="total-items"><?php echo e(round(array_sum(array_column((array) $cart, 'subtotal')), 2)); ?></span>
+            </span>
+            <button type="submit" class="btn btn--primary">Proceed to checkout</button>
+        </form>
+    </div>
     <!-- Endof cart format -->
     <?php else: ?>
     Your cart is empty we
     <?php endif; ?>
-</div>
-<div class="cart-action-buttons">
-    <form action="proceed-checkout" method="post" class="cart-form">
-        <span class="cart-total">
-            <i class="fas fa-shopping-bag"></i>
-            Total items: <span>$<?php echo e(round(array_sum(array_column((array) $cart, 'subtotal')), 2)); ?></span>
-        </span>
-        <button type="submit" class="btn btn--primary">Proceed to checkout</button>
-    </form>
 </div><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/components/cart.blade.php ENDPATH**/ ?>
