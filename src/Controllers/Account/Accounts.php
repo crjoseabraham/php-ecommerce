@@ -84,7 +84,6 @@ class Accounts {
         redirect('/profile');
     }
 
-
     /**
      * Delete user's account
      *
@@ -99,7 +98,6 @@ class Accounts {
 
         $user_model = new User($user->name, $user->email, $user->password);
         $user_model->delete($user->id);
-
         redirect('/');
     }
 }

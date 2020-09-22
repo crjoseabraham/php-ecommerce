@@ -2,7 +2,6 @@
 namespace App\Controller\Account;
 
 use App\Controller\Helper\Flash;
-use App\Controller\Helper\Token;
 use App\Controller\Helper\Validations;
 use App\Model\User;
 use App\Model\Password;
