@@ -1,6 +1,6 @@
 @php
     // Get messages array
-    $notifications = \App\Controller\Flash::getMessages();
+    $notifications = \App\Controller\Helper\Flash::getMessages();
 @endphp
 
 @if (!is_null($notifications))

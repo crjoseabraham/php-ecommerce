@@ -1,6 +1,9 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Merchandise;
 
+use App\Controller\Account\Auth;
+use App\Controller\Helper\Flash;
+use App\Controller\Helper\Validations;
 use App\Model\Product;
 use App\Model\Cart;
 

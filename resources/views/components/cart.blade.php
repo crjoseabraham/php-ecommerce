@@ -1,6 +1,6 @@
 @php
     if (isset($session["user"]))
-        $cart = App\Controller\Products::getCart();
+        $cart = App\Controller\Merchandise\Products::getCart();
 @endphp
 
 <div class="cart-content">

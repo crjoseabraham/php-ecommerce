@@ -11,7 +11,7 @@
                 <i class="fab fa-github"></i>
             </a>
             <a href="#" class="simple" data-action="cart">
-                Cart (<span id='cart-counter'>{{ isset($session["user"]) ? count(App\Controller\Products::getCart()) : "0" }}</span>)
+                Cart (<span id='cart-counter'>{{ isset($session["user"]) ? count(App\Controller\Merchandise\Products::getCart()) : "0" }}</span>)
             </a>
             <a
                 href="{{ isset($session["user"]) ? "profile" : '#' }}"

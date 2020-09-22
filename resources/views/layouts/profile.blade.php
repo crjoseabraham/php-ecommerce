@@ -38,19 +38,19 @@
                                 <td class="cell-title">
                                     ID:
                                 </td>
-                                <td>{{ $user['id'] }}</td>
+                                <td>{{ $user->id }}</td>
                             </tr>
                             <tr>
                                 <td class="cell-title">
                                     Name:
                                 </td>
-                                <td>{{ $user['name'] }}</td>
+                                <td>{{ $user->name }}</td>
                             </tr>
                             <tr>
                                 <td class="cell-title">
                                     Email:
                                 </td>
-                                <td>{{ $user['email'] }}</td>
+                                <td>{{ $user->email }}</td>
                             </tr>
                             <tr>
                                 <td class="cell-title">
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <label for="edit_name">Name</label>
                                 <div class="input-group">
-                                    <input type="text" name="name" id="edit_name" value="{{ $user['name'] }}">
+                                    <input type="text" name="name" id="edit_name" value="{{ $user->name }}">
                                     <i class="validation-status fas fa-times-circle"></i>
                                 </div>
                                 <p class="input-errors">
@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <label for="edit_email">Email address</label>
                                 <div class="input-group">
-                                    <input type="email" name="email" id="edit_email" value="{{ $user['email'] }}">
+                                    <input type="email" name="email" id="edit_email" value="{{ $user->email }}">
                                     <i class="validation-status fas fa-times-circle"></i>
                                 </div>
                                 <p class="input-errors"> Invalid email address </p>
@@ -96,7 +96,7 @@
                     <div class="profile-template" data-action="change_pass">
                         <h5>Want to change your password?</h5>
                         <p class="center">Password needs at least: 4 characters, 1 uppercase letter, 1 lowercase letter, 1 number</p>
-                        <form action="update-profile/password" method="post" class="mt-2">
+                        <form action="update-profile/password/{{ $user->id }}" method="post" class="mt-2">
                             <!-- New Pass -->
                             <div class="form-group">
                                 <label for="edit_pass">New password</label>

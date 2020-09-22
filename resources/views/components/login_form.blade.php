@@ -5,9 +5,7 @@
         <img class="mt-2" src="./dist/img/login.svg" alt="Secure login">
     </div>
 
-    <form action="auth" method="post" id="login_form" class="mt-2">
-        {{-- <p class="input-errors login">Invalid e-mail or password</p> --}}
-        <!-- Email -->
+    <form action="login" method="post" id="login_form" class="mt-2">
         <div class="form-group">
             <label for="login_email">Email address</label>
             <div class="input-group">

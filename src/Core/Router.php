@@ -84,9 +84,8 @@ class Router {
                         $controller_object->$action();
                     else
                         $controller_object->$action($params);
-            } else {
+            } else
                 throw new \Exception("Controller or method not found", 404);
-            }
         } catch (\Exception $message) {
             die($message);
         }
@@ -103,7 +102,7 @@ class Router {
         foreach ($this->routes[$requestType] as $route => $params) {
             if (preg_match($route, $uri, $matches)) {
                 // Set namespace
-                $this->params['controller'] = 'App\Controller\\' . $params['controller'];
+                $this->params['controller'] = '\App\Controller\\' . $params['controller'];
                 // Set method
                 $this->params['method'] = $params['method'];
 

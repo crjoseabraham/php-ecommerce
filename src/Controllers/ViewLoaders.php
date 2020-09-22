@@ -2,11 +2,17 @@
 namespace App\Controller;
 
 use App\Core\View;
+use App\Controller\Helper\Flash;
+use App\Controller\Account\Accounts;
+use App\Controller\Account\Passwords;
+use App\Controller\Merchandise\Products;
+use App\Model\User;
 
 class ViewLoaders {
-
     public function __construct() {
         $this->view = new View;
+        $this->accounts = new Accounts;
+        $this->passwords = new Passwords;
         $this->products = new Products;
     }
 
@@ -16,11 +22,11 @@ class ViewLoaders {
      */
     public function homepage() {
         $this->view->render("layouts/home", [
-            "user" => Auth::getUser(),
-            "session" => $_SESSION,
-            "products" => $this->products->getProducts(),
+            "user" => $this->accounts->getLoggedUser(),
+            "session" => $_SESSION
+            //"products" => $this->products->getProducts(),
             // Just to show something different
-            "products2" => $this->products->getNotReallyRandomProducts()
+            //"products2" => $this->products->getNotReallyRandomProducts()
         ]);
     }
 
@@ -30,83 +36,72 @@ class ViewLoaders {
      */
     public function forgottenPassword() {
         $this->view->render("layouts/forget_password", [
-            "user" => Auth::getUser(),
+            "user" => $this->accounts->getLoggedUser(),
             "session" => $_SESSION
         ]);
     }
 
     /**
      * Page with the form to create a new password in case user forgot it
-     * It is restricted if the link has expired or wasn't found
+     * This page will be restricted for logged users or if the token expired
      * @param array $params     Array with user's ID and pass reset token
      * @return void
      */
-    public function resetPasswordForm($params) : void {
-        $user = \App\Model\User::getUserByPasswordResetToken($params['token']);
+    public function resetPasswordForm($params): void {
+        $user = User::findById(htmlspecialchars($params['id']));
 
-        if (!$user || !(strtotime($user['password_reset_expires_at']) < time())) {
-            // Token expired. Redirect home
-            redirect("/");
+        if (!is_null($this->accounts->getLoggedUser())) {
+            Flash::addMessage(NOT_ALLOWED, ERROR);
+            redirect('/');
+        } elseif ($this->passwords->resetTokenHasExpired($user->password_reset_expires_at)) {
+            Flash::addMessage(RECOVER_TOKEN_EXPIRED, ERROR);
+            redirect('/');
         } else {
-            // Token is still valid. Proceed
             $this->view->render("layouts/reset_password", $params);
         }
     }
 
     /**
-     * Sign In form (modal)
-     * @return void
-     */
-    public function loginFormView() {
-        $this->view->render("components/login_form");
-    }
-
-    /**
-     * Sign Up form (modal)
-     * @return void
-     */
-    public function signUpFormView() {
-        $this->view->render("components/register_form");
-    }
-
-    /**
      * Profile page
+     * Restricted to non-logged users
      * @return void
      */
     public function profile() : void {
-        if (is_null(Auth::getUser())) {
+        if (is_null($this->accounts->getLoggedUser())) {
             Flash::addMessage(LOGIN_REQUIRED, ERROR);
             redirect('/');
         } else
             $this->view->render("layouts/profile", [
-                'user' => Auth::getUser(),
+                'user' => $this->accounts->getLoggedUser(),
                 'session' => $_SESSION
             ]);
     }
 
     /**
      * "Delete account" confirmation page
+     * Restricted for non-logged users
      *
      * @return void
      */
     public function deleteAccountForm() : void {
-        if (is_null(Auth::getUser())) {
+        if (is_null($this->accounts->getLoggedUser())) {
             Flash::addMessage(LOGIN_REQUIRED, ERROR);
             redirect('/');
         } else
             $this->view->render("layouts/profile_delete", ['session' => $_SESSION]);
     }
 
-    /**
-     * Certain product's details page
-     *
-     * @param array $params     Item's ID passed in the URL
-     * @return void
-     */
-    public function productDetails($params) : void {
-        $this->view->render("layouts/product_details", [
-            'session' => $_SESSION,
-            'product' => $this->products->getItem($params['item'])
-        ]);
-    }
+    // /**
+    //  * Certain product's details page
+    //  *
+    //  * @param array $params     Item's ID passed in the URL
+    //  * @return void
+    //  */
+    // public function productDetails($params) : void {
+    //     $this->view->render("layouts/product_details", [
+    //         'session' => $_SESSION,
+    //         'product' => $this->products->getItem($params['item'])
+    //     ]);
+
+    // }
 }

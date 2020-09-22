@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Helper;
 
 class Validations {
     /**
@@ -31,23 +31,20 @@ class Validations {
      * Loop through all the values in $_POST and validate them with the correct method
      *
      * @param array $data       $_POST data to check
-     * @param boolean $isLogin  An error message will change for the login form
-     * @return array            Return the $errors array to handle them later
+     * @return void
      */
-    public static function processForm(array $data, bool $isLogin = false) : array {
+    public static function processForm(array $data) : void {
+        self::$errors = array();
+
         foreach ($data as $key => $value) {
             $value = trim($value);
             $value = htmlspecialchars($value);
 
-            if ($key === "password" && $isLogin)
-                self::$key($value, $isLogin);
-            elseif ($key === "passwordConfirmation")
+            if ($key === 'passwordConfirmation')
                 self::$key($data['password'], $data['passwordConfirmation']);
             else
                 self::$key($value);
         }
-
-        return self::$errors;
     }
 
     /**
@@ -98,12 +95,11 @@ class Validations {
      * Verify a password contains at least 4 characters, 1 uppercase letter, 1 lowercase letter, 1 number
      *
      * @param string $password
-     * @param boolean $isLogin     The error message will change if it's the login form
      * @return void
      */
-    public static function password(string $password, bool $isLogin = false) : void {
+    public static function password(string $password) : void {
         if (!preg_match(self::$regex["password"], $password))
-            self::$errors[] = $isLogin ? LOGIN_ERROR : INVALID_PASS;
+            self::$errors[] = LOGIN_PASSW_ERROR;
     }
 
     /**

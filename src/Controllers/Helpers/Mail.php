@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Helper;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -20,7 +20,7 @@ class Mail {
         $mail = new PHPMailer(true);
 
         try {
-            $mail->SMTPDebug = 3;               //Enable SMTP debugging.
+            $mail->SMTPDebug = 0;
             $mail->isSMTP();                    //Set PHPMailer to use SMTP.
             $mail->Host = "smtp.gmail.com";     //Set SMTP host name
             $mail->SMTPAuth = true;             //Because SMTP host requires authentication to send email
