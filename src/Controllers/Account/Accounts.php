@@ -5,8 +5,9 @@ use App\Controller\Account\Passwords;
 use App\Controller\Helper\Cookies;
 use App\Controller\Helper\Flash;
 use App\Controller\Helper\Validations;
-use App\Model\User;
-use App\Model\Session;
+use App\Model\Merchandise\Cart;
+use App\Model\Authentication\User;
+use App\Model\Authentication\Session;
 
 class Accounts {
 
@@ -30,7 +31,9 @@ class Accounts {
                 Passwords::hash($_POST['password'])
             );
             if (!$user::isEmailInDatabase($_POST['email'])) {
-                $user->create();
+                $new_user_id = $user->create();
+                $cart = new Cart();
+                $cart->create($new_user_id);
                 $user->setCurrentUser();
                 $session = new Session($user->id);
                 $session->registerStart();

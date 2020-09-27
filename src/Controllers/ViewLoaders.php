@@ -6,7 +6,8 @@ use App\Controller\Helper\Flash;
 use App\Controller\Account\Accounts;
 use App\Controller\Account\Passwords;
 use App\Controller\Merchandise\Products;
-use App\Model\User;
+use App\Controller\Merchandise\CartOperations;
+use App\Model\Authentication\User;
 
 class ViewLoaders {
     public function __construct() {
@@ -14,6 +15,11 @@ class ViewLoaders {
         $this->accounts = new Accounts;
         $this->passwords = new Passwords;
         $this->products = new Products;
+        $this->cart = new CartOperations();
+        $this->default_params = [
+            "user" => $this->accounts->getLoggedUser(),
+            "session" => $_SESSION
+        ];
     }
 
     /**
@@ -21,13 +27,11 @@ class ViewLoaders {
      * @return void
      */
     public function homepage() {
-        $this->view->render("layouts/home", [
-            "user" => $this->accounts->getLoggedUser(),
-            "session" => $_SESSION
-            //"products" => $this->products->getProducts(),
-            // Just to show something different
-            //"products2" => $this->products->getNotReallyRandomProducts()
-        ]);
+        $this->view->render("layouts/home", array_merge($this->default_params, [
+            "cart" => isset($_SESSION['user']) ? $this->cart->get() : null,
+            "products" => $this->products->get(),
+            "products2" => $this->products->getAllWith('`product_id` > 1017')
+        ]));
     }
 
     /**
@@ -35,10 +39,7 @@ class ViewLoaders {
      * @return void
      */
     public function forgottenPassword() {
-        $this->view->render("layouts/forget_password", [
-            "user" => $this->accounts->getLoggedUser(),
-            "session" => $_SESSION
-        ]);
+        $this->view->render("layouts/forget_password", $this->default_params);
     }
 
     /**
@@ -71,10 +72,7 @@ class ViewLoaders {
             Flash::addMessage(LOGIN_REQUIRED, ERROR);
             redirect('/');
         } else
-            $this->view->render("layouts/profile", [
-                'user' => $this->accounts->getLoggedUser(),
-                'session' => $_SESSION
-            ]);
+            $this->view->render("layouts/profile", $this->default_params);
     }
 
     /**
@@ -91,17 +89,18 @@ class ViewLoaders {
             $this->view->render("layouts/profile_delete", ['session' => $_SESSION]);
     }
 
-    // /**
-    //  * Certain product's details page
-    //  *
-    //  * @param array $params     Item's ID passed in the URL
-    //  * @return void
-    //  */
-    // public function productDetails($params) : void {
-    //     $this->view->render("layouts/product_details", [
-    //         'session' => $_SESSION,
-    //         'product' => $this->products->getItem($params['item'])
-    //     ]);
+    /**
+     * Certain product's details page
+     *
+     * @param array $params     Item's ID passed in the URL
+     * @return void
+     */
+    public function productDetails($params) : void {
+        $this->view->render("layouts/product_details", [
+            'session' => $_SESSION,
+            'item' => $this->products->get($params['item'], false),
+            "cart" => isset($_SESSION['user']) ? $this->cart->get() : null
+        ]);
 
-    // }
+    }
 }

@@ -3,11 +3,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require("autoprefixer");
 
 module.exports = {
-    entry: "./resources/scripts/index.js",
+    entry: ["babel-polyfill", "./resources/scripts/index.js"],
     output: {
         filename: "app.js",
         path: path.resolve(__dirname, "dist", "assets", "js"),
-        publicPath: "./dist/assets"
+        publicPath: "./dist/assets",
     },
     module: {
         rules: [
@@ -17,9 +17,9 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-env"]
-                    }
-                }
+                        presets: ["@babel/preset-env"],
+                    },
+                },
             },
             {
                 test: /\.scss$/,
@@ -31,19 +31,19 @@ module.exports = {
                         loader: "postcss-loader",
                         options: {
                             autoprefixer: {
-                                browser: ["last 4 versions"]
+                                browser: ["last 4 versions"],
                             },
-                            plugins: () => [autoprefixer]
-                        }
+                            plugins: () => [autoprefixer],
+                        },
                     },
-                    "sass-loader"
-                ]
-            }
-        ]
+                    "sass-loader",
+                ],
+            },
+        ],
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "../styles/[name].css"
-        })
-    ]
+            filename: "../styles/[name].css",
+        }),
+    ],
 };

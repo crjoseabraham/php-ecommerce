@@ -1,121 +1,49 @@
 <?php
 namespace App\Controller\Merchandise;
 
-use App\Controller\Account\Auth;
-use App\Controller\Helper\Flash;
-use App\Controller\Helper\Validations;
-use App\Model\Product;
-use App\Model\Cart;
+use App\Model\Merchandise\Product;
 
 class Products {
 
-    public function __construct() {
-        $this->product_model = new Product;
-        $this->cart_model = new Cart;
-    }
-
     /**
-    * Retrieve all products from the database
-    *
-    * @return void
-    */
-    public function getProducts() {
-        $products = $this->product_model->getAll();
-        foreach ($products as &$product) {
-            $product["sizes"] = explode(', ', $product["sizes"]);
-        }
-
-        return $products;
-    }
-
-    public static function getCart() {
-        return Cart::getCart();
-    }
-
-    public static function echoCart() {
-        echo json_encode(Cart::getCart());
-    }
-
-    /**
-     * Retrieve the data of an specific product by its ID
+     * Get all products or a specific one by its ID
+     * By default it gets all products
      *
-     * @param int $id
-     * @return mixed    Array if item found, false otherwise
+     * @param mixed $id     Item ID
+     * @param boolean $all  True for getting all records, False for only one
+     * @return mixed
      */
-    public function getItem($id) {
-        $product = $this->product_model->getItemById($id);
-        if (!!$product)
-            $product["sizes"] = explode(', ', $product["sizes"]);
+    public function get($id = null, $all = true) {
+        $result = $all ? Product::get() : Product::get($id, false);
+        // Convert sizes to array
+        if (is_array($result) > 0) {
+            foreach ($result as &$item) {
+                $item->sizes = explode(', ', $item->sizes);
+            }
+        } else
+            $result->sizes = explode(', ', $result->sizes);
 
-        return $product;
+        return $result;
     }
 
     /**
-     * Test items for the secondary carousel
+     * Get all items that pass the provided condition
+     * Example: get all items with discount
      *
-     * @return void
+     * @param string $condition     Example: "`discount` > 0"
+     * @return mixed
      */
-    public function getNotReallyRandomProducts() {
-        return $this->product_model->getTestItems();
+    public function getAllWith(string $condition) {
+        return Product::getAllWith($condition);
     }
 
     /**
-     * Called after submitting form in product details page
-     * Perform validations for that form and call the "add" method if everything's right
+     * Calculate an item's final price after applying the discount
      *
-     * @param array $params     $_POST data
-     * @return void
+     * @param object $item      Item object with its price and discount value
+     * @return float            Final price with 2 decimals
      */
-    public function validateAddingForm($params) {
-        if (is_null(Auth::getUser())) {
-            Flash::addMessage(LOGIN_REQUIRED, ERROR);
-        } else {
-            if (!!$this->getItem($params['item'])) {
-                $form_validation_errors = Validations::processForm($_POST);
-                if (empty($form_validation_errors))
-                    $this->addItemToCart($params['item'], $_POST['size'], $_POST['quantity']);
-                else
-                    Flash::addMessage($form_validation_errors, ERROR);
-            } else
-                Flash::addMessage(ERROR_MESSAGE, ERROR);
-        }
-        redirect("/product_details.{$params['item']}");
-    }
-
-    /**
-     * Add an item to the user's cart. At this point, the data is fully validated
-     *
-     * @param integer $item_id      Item's ID
-     * @param mixed $size           Could be string if it's clothing size or float if it's shoe size
-     * @param integer $quantity     How many units of the item will be added
-     * @return void
-     */
-    public function addItemToCart(int $item_id, $size, int $quantity) : void {
-        $cart = $this->cart_model->getUsersCartId();
-        $subtotal = $this->calculateSubtotal($quantity, $this->getItem($item_id));
-        // Check if item is already in the user's cart
-        if (!!$this->cart_model->findItemInCart($item_id))
-            // UPDATE quantity and size because it already exists
-            $this->cart_model->updateItem($cart, $item_id, $size, $quantity, $subtotal);
-        else
-            // INSERT item in the cart
-            $this->cart_model->addItem($cart, $item_id, $size, $quantity, $subtotal);
-
-        Flash::addMessage(ITEM_ADDED);
-    }
-
-    public function removeFromCart() {
-        $cart = $this->cart_model->getUsersCartId();
-        echo $this->cart_model->deleteItem($cart, $_POST['item']);
-    }
-
-    /**
-     * Get product's subtotal by calculating its price with the discount
-     *
-     * @param array $item
-     * @return float
-     */
-    public function calculateSubtotal($quantity, $item) : float {
-        return round($quantity * ($item['price'] - ($item['price'] * ($item['discount'] / 100))), 2);
+    public static function calculateDiscount(object $item): float {
+        return round($item->price - ($item->price * ($item->discount / 100)), 2);
     }
 }

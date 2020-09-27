@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="dist/assets/styles/glider.min.css" />
         <link rel="stylesheet" href="dist/assets/styles/main.css" />
         <title>
-            <?php echo e($product['description']); ?> | About the Fit
+            <?php echo e($item->description); ?> | About the Fit
         </title>
     </head>
 
@@ -24,11 +24,11 @@
         <div class="container">
             <div class="product-container">
                 <div class="product-container__img">
-                    <img src="./img/product/<?php echo e($product["product_id"]); ?>.jpg" alt="<?php echo e($product["description"]); ?>">
+                    <img src="./img/product/<?php echo e($item->product_id); ?>.jpg" alt="<?php echo e($item->description); ?>">
                 </div>
                 <div class="product-container__details">
-                    <h2 class="sans"><?php echo e($product["description"]); ?></h2>
-                    <p class="product-code">Code: <?php echo e($product["product_id"]); ?></p>
+                    <h2 class="sans"><?php echo e($item->description); ?></h2>
+                    <p class="product-code">Code: <?php echo e($item->product_id); ?></p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -38,27 +38,27 @@
                         | <a href="#" class="simple">Write a review</a>
                     </div>
                     <div class="product-price mt-2">
-                        <?php if($product['discount'] > 0): ?>
+                        <?php if($item->discount > 0): ?>
                         <h2 class="price-to-show sans">
-                            $<?php echo e(round($product["price"] - ($product["price"] * ($product["discount"] / 100)), 2)); ?>
+                            $<?php echo e(App\Controller\Merchandise\Products::calculateDiscount($item)); ?>
 
                         </h2>
                         <h3 class="original-price sans">
-                            (lowered from $<?php echo e($product["price"]); ?>)
+                            (lowered from $<?php echo e($item->price); ?>)
                         </h3>
                         <?php else: ?>
-                        <h2 class="price-to-show sans">$<?php echo e($product["price"]); ?></h2>
+                        <h2 class="price-to-show sans">$<?php echo e($item->price); ?></h2>
                         <?php endif; ?>
                     </div>
                     <p class="description mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatum excepturi ex sequi impedit odio voluptas eaque, doloremque deleniti assumenda!</p>
 
                     <!-- "Add to cart" form start -->
-                    <form action="add-to-cart.<?php echo e($product["product_id"]); ?>" method="post" id="add-to-cart">
-                        <?php if(!empty($product["sizes"])): ?>
+                    <form action="add-to-cart.<?php echo e($item->product_id); ?>" method="post" id="add-to-cart">
+                        <?php if(!empty($item->sizes)): ?>
                         <div class="sizes mt-2 form-group">
                             <h5 class="details-title sans">Select your size:</h5> <br>
                             <div class="input-group">
-                            <?php $__currentLoopData = $product["sizes"]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $item->sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <input type="radio" name="size" id="size-<?php echo e($size); ?>" value="<?php echo e($size); ?>">
                                 <label for="size-<?php echo e($size); ?>"><?php echo e($size); ?></label>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -3,8 +3,8 @@ namespace App\Controller\Account;
 
 use App\Controller\Helper\Flash;
 use App\Controller\Helper\Validations;
-use App\Model\User;
-use App\Model\Password;
+use App\Model\Authentication\User;
+use App\Model\Authentication\Password;
 
 class Passwords {
 

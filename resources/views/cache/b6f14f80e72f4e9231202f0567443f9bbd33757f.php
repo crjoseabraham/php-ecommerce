@@ -11,7 +11,8 @@
                 <i class="fab fa-github"></i>
             </a>
             <a href="#" class="simple" data-action="cart">
-                Cart (<span id='cart-counter'><?php echo e(isset($session["user"]) ? count(App\Controller\Merchandise\Products::getCart()) : "0"); ?></span>)
+                <i class="fas fa-shopping-bag"></i>
+                Cart
             </a>
             <a
                 href="<?php echo e(isset($session["user"]) ? "profile" : '#'); ?>"

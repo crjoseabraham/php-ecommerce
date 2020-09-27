@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="dist/assets/styles/glider.min.css" />
         <link rel="stylesheet" href="dist/assets/styles/main.css" />
         <title>
-            {{ $product['description'] }} | About the Fit
+            {{ $item->description }} | About the Fit
         </title>
     </head>
 
@@ -24,11 +24,11 @@
         <div class="container">
             <div class="product-container">
                 <div class="product-container__img">
-                    <img src="./img/product/{{ $product["product_id"] }}.jpg" alt="{{ $product["description"]}}">
+                    <img src="./img/product/{{ $item->product_id }}.jpg" alt="{{ $item->description }}">
                 </div>
                 <div class="product-container__details">
-                    <h2 class="sans">{{ $product["description"] }}</h2>
-                    <p class="product-code">Code: {{ $product["product_id"] }}</p>
+                    <h2 class="sans">{{ $item->description }}</h2>
+                    <p class="product-code">Code: {{ $item->product_id }}</p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -38,26 +38,26 @@
                         | <a href="#" class="simple">Write a review</a>
                     </div>
                     <div class="product-price mt-2">
-                        @if ($product['discount'] > 0)
+                        @if ($item->discount > 0)
                         <h2 class="price-to-show sans">
-                            ${{ round($product["price"] - ($product["price"] * ($product["discount"] / 100)), 2) }}
+                            ${{ App\Controller\Merchandise\Products::calculateDiscount($item) }}
                         </h2>
                         <h3 class="original-price sans">
-                            (lowered from ${{ $product["price"] }})
+                            (lowered from ${{ $item->price }})
                         </h3>
                         @else
-                        <h2 class="price-to-show sans">${{ $product["price"] }}</h2>
+                        <h2 class="price-to-show sans">${{ $item->price }}</h2>
                         @endif
                     </div>
                     <p class="description mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatum excepturi ex sequi impedit odio voluptas eaque, doloremque deleniti assumenda!</p>
 
                     <!-- "Add to cart" form start -->
-                    <form action="add-to-cart.{{ $product["product_id"] }}" method="post" id="add-to-cart">
-                        @if (!empty($product["sizes"]))
+                    <form action="add-to-cart.{{ $item->product_id }}" method="post" id="add-to-cart">
+                        @if (!empty($item->sizes))
                         <div class="sizes mt-2 form-group">
                             <h5 class="details-title sans">Select your size:</h5> <br>
                             <div class="input-group">
-                            @foreach ($product["sizes"] as $size)
+                            @foreach ($item->sizes as $size)
                                 <input type="radio" name="size" id="size-{{ $size }}" value="{{ $size }}">
                                 <label for="size-{{ $size }}">{{ $size }}</label>
                             @endforeach

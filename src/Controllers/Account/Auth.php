@@ -5,8 +5,8 @@ use App\Controller\Helper\Cookies;
 use App\Controller\Helper\Flash;
 use App\Controller\Helper\Token;
 use App\Controller\Helper\Validations;
-use App\Model\User;
-use App\Model\Session;
+use App\Model\Authentication\User;
+use App\Model\Authentication\Session;
 
 class Auth {
 

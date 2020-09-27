@@ -1,5 +1,5 @@
 <?php
-namespace App\Model;
+namespace App\Model\Authentication;
 
 use App\Core\Database;
 
@@ -28,7 +28,7 @@ class User extends Database {
      *
      * @return void
      */
-    public function create(): void {
+    public function create(): int {
         $db = static::getDB();
         $stmt = $db->prepare("INSERT INTO user (`email`, `name`, `password`, `created_at`) VALUES (:e, :n, :p, :d)");
         $stmt->bindValue(':e', $this->email, \PDO::PARAM_STR);
@@ -36,6 +36,7 @@ class User extends Database {
         $stmt->bindValue(':p', $this->password, \PDO::PARAM_STR);
         $stmt->bindValue(':d', date('Y-m-d H:i:s'), \PDO::PARAM_STR);
         $stmt->execute();
+        return $db->lastInsertId();
     }
 
     /**

@@ -13,7 +13,7 @@ export default class UserInterface {
             notification: document.querySelector(".notification"),
             overlay: document.getElementById("overlay"),
             navbar: document.getElementById("menu"),
-            profile: document.querySelector(".profile-container")
+            profile: document.querySelector(".profile-container"),
         };
     }
 
@@ -25,11 +25,17 @@ export default class UserInterface {
 
     loadEventListeners() {
         this.notificationListener();
-        this.DOM.navbar.addEventListener("click", this.navbarListener.bind(this));
+        this.DOM.navbar.addEventListener(
+            "click",
+            this.navbarListener.bind(this)
+        );
         this.DOM.body.addEventListener("submit", this.formListener.bind(this));
         this.CartUI.eventListeners();
         if (!(this.DOM.profile === null))
-            this.DOM.profile.addEventListener("click", this.profileListener.bind(this));
+            this.DOM.profile.addEventListener(
+                "click",
+                this.profileListener.bind(this)
+            );
     }
 
     stickyNavbar() {
@@ -96,8 +102,18 @@ export default class UserInterface {
     }
 
     showPopup(event) {
+        if (event.target.dataset.action === "cart") {
+            this.CartUI.getCart()
+                .then((data) => {
+                    this.CartUI.renderCart(data);
+                    this.CartUI.calculateTotal(data);
+                })
+                .catch((err) => console.log(err));
+        }
         let popup = this.DOM.navbar.querySelector(".menu__popup");
-        let containers = Array.from(this.DOM.navbar.querySelectorAll(".popup__content"));
+        let containers = Array.from(
+            this.DOM.navbar.querySelectorAll(".popup__content")
+        );
         let correct_container = containers.find(
             (div) => div.dataset.action === event.target.dataset.action
         );
@@ -123,7 +139,9 @@ export default class UserInterface {
 
     hidePopup() {
         let popup = this.DOM.navbar.querySelector(".menu__popup");
-        let containers = Array.from(this.DOM.navbar.querySelectorAll(".popup__content"));
+        let containers = Array.from(
+            this.DOM.navbar.querySelectorAll(".popup__content")
+        );
 
         containers.forEach((container) => {
             container.classList.remove("active");
@@ -142,7 +160,9 @@ export default class UserInterface {
 
     profileTabChanger(event) {
         let menu_options = Array.from(
-            document.querySelector(".profile-content__menu").getElementsByTagName("li")
+            document
+                .querySelector(".profile-content__menu")
+                .getElementsByTagName("li")
         );
         let containers = Array.from(
             document

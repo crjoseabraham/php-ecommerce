@@ -14,7 +14,7 @@ class Validations {
      */
     static $sizes = [
         "clothes" => ["S", "M", "L", "XL"],
-        "shoes" => [4.5, 5.5, 6, 7, 8, 8.5, 9.5, 10]
+        "shoes" => ["4.5", "5.5", "6", "7", "8", "8.5", "9.5", "10"]
     ];
 
     /**
@@ -124,14 +124,13 @@ class Validations {
     public static function size(string $size) : void {
         $iterator = 0;
 
-        if (is_float($size)) {
+        foreach (self::$sizes["clothes"] as $clothing_size) {
+            if ($size === $clothing_size) $iterator++;
+        }
+
+        if ($iterator === 0) {
             foreach (self::$sizes["shoes"] as $shoe_size) {
                 if ($size === $shoe_size) $iterator++;
-            }
-        }
-        elseif (is_string($size)) {
-            foreach (self::$sizes["clothes"] as $clothing_size) {
-                if ($size === $clothing_size) $iterator++;
             }
         }
 

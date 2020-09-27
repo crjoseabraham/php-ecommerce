@@ -1,9 +1,24 @@
 .popup__content[data-action="cart"] {
+    // 404
+    .cart-content.empty {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 3.2rem;
+        color: #bbb;
+
+        i {
+            font-size: 4.5rem;
+            padding-bottom: 2rem;
+            margin-top: 2rem;
+        }
+    }
     // Fixed buttons at the bottom
-    .cart-action-buttons {
+    .cart-footer {
         background: $white;
         border-top: 2px solid $eggshell;
-        padding: 1.5rem 6rem;
+        padding: 1.5rem 8rem;
         width: 100%;
         position: fixed;
         bottom: 0;
@@ -22,10 +37,10 @@
         span.cart-total {
             text-align: center;
             font-weight: 500;
-            font-size: 2rem;
+            font-size: 1.8rem;
 
-            span {
-                padding-left: 2rem;
+            i {
+                font-size: 1.4rem;
             }
         }
     }
@@ -40,7 +55,7 @@
                 font-size: 2rem;
                 font-style: italic;
                 font-family: $heading;
-                text-align: left;
+                text-align: center;
                 padding-bottom: 1rem;
             }
 
@@ -54,12 +69,12 @@
                 padding: 0.5rem 2rem;
             }
 
-            tr {
+            tr:not(:last-child) {
                 border-bottom: 1px solid lighten($bistre, 70%);
+            }
 
-                img {
-                    max-height: 70px;
-                }
+            tr img {
+                max-height: 70px;
             }
         }
 
