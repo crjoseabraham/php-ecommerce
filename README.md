@@ -1,109 +1,72 @@
-# Shopping cart app with PHP & JS ES6
+# 🛒 Ecommerce site built using pure PHP & vanilla JavaScript
 
-This is a basic shopping cart made without frameworks, my goal was to learn how to code a functional app with the fundamentals of OOP with the MVC architecture and also how to setup a modern development environment.
+This project is an ecommerce wesbite built without any frameworks. My goal was to learn how to code a functional application to learn fundamentals of OOP and the MVC architecture while setting up a somewhat modern development environment.
 
 Feel free to read, use, fork, comment, critique or help in any way.
 
-### This project was built using:
+## ⚒️ This project was built using:
 
- - PHP7
- - JavaScript ES6
- - Composer packages like:
-	 - Twig: template engine
-	 - mPDF: a .pdf files generator
-	 - PHPMailer: to send emails
- - Webpack
- - Babel
- - Sass
+-   PHP7
+-   JavaScript ES6
+-   Composer packages like:
+    -   philo/laravel-blade as the template engine
+    -   PHPMailer: to send emails
+-   Webpack & Babel
+-   Sass
 
-## Installation
+## ⚙️Installation
 
 If you want to test this project on your local machine, you have to follow these steps:
 
- 1. **Download the code**
- You can whether download the .zip file or run `git clone https://github.com/crjoseabraham/shoppingcart.git`
- 
- 2. **Install dependencies**
- Then, install all dependencies by running: 
- `composer install`
- and 
- `npm install`
+1.  **Download the code**
+    You can either download the .zip file or run `git clone https://github.com/crjoseabraham/shoppingcart.git`
 
-3. **Import database**
-Go to your database manager (phpmyadmin, heidiSQL or whatever) and import the .sql file that's located in the `data` folder. The `CREATE DATABASE` command is included already.
+2.  **Install dependencies**
+    Then, install all dependencies by running:
+    `npm install` and `composer install`
 
-4. **Update credentials !important**
-In order to get everything working you may need to do some changes in the file that's located in [src/app/import/constants.php](https://github.com/crjoseabraham/shoppingcart/blob/version-2.0/src/app/import/constants.php) like in these lines:
-	```
-	define('URLROOT', 'http://localhost/shoppingcart');
-	
-	// Database config values
-	define('DB_HOST', 'localhost');
-	define('DB_USER', 'root');
-	define('DB_PASS', '');
-	define('DB_NAME', 'shoppingcart');	
-	
-	// Email credentials
-	define('EMAIL_HOST', '');
-	define('EMAIL_USER', '');
-	define('EMAIL_NAME', '');
-	define('EMAIL_PASS', '');
-	```
-	Another thing you may want to change or even delete is the timezone I set in [public/index.php](https://github.com/crjoseabraham/shoppingcart/blob/version-2.0/public/index.php) because I used my timezone
-	
-	`date_default_timezone_set('America/Caracas');`
-	
-## Tester account
+3.  **Import database**
+    Go to your database manager (phpmyadmin, heidiSQL or whatever) and import the .sql file located in `resources/data/`. The `CREATE DATABASE` command is included already.
 
-If you feel lazy and don't want to sign up, you can log in with a tester account that's already in the database:
+4.  **Update credentials !important**
+    In order to get everything working you may need to do some changes in the file `src/Config/constants.php`
 
- - **Email:** tester@gmail.com
- - **Password:** abc123
+    ````
+        define('URLROOT', 'http://localhost/shoppingcart');
+        define('BRAND_NAME', 'About the Fit');
+        define('BRAND_EMAIL', '');
+        define('BRAND_EMAIL_PASS', '');
 
-~~At least it's not user: admin and pass: admin~~
+        // Database config values
+        define('DB_HOST', 'localhost');
+        define('DB_USER', 'root');
+        define('DB_PASS', '');
+        define('DB_NAME', 'shoppingcart');
+        ```
 
-## Version 1.0
+        And the project base URL in `resources/scripts/CartUI.js` which is set up for localhost.
 
-There's a much simpler version of this project. Without dependencies and more vanilla, you can check it out in the branch [version 1.0](https://github.com/crjoseabraham/shoppingcart/tree/master)
+        An small thing you may want to change or even delete is the timezone I set in [public/index.php](https://github.com/crjoseabraham/shoppingcart/blob/version-2.0/public/index.php) because I used my timezone
 
-## Project structure
-```
-shoppingcart/
-    assets/		# Uncompiled and raw SCSS and JavaScript code
-    data/		# SQL database file
-    node_modules/	# Node.js front-end dependencies
-    public/		# Publicly accessible files
-        css/		# Final and compiled styles
-        img/		# Images used
-        js/		# Final and compiled scripts
-        index.php	# Application start point
-    src/		# PHP source code
-        app/		# Database and Router classes
-            import/	# Essentials files imported at the beginning:
-		        # config constants, routes, utility functions
-        controllers/	# Controller classes
-        models/		# Model classes
-        views/		# HTML templates
-    vendor/		# Composer files and 3rd party libraries
-    .gitignore		# Files and folders to be ignored by git commands
-    .htaccess		# To redirect the start point to public/ folder
-    composer.json	# Composer dependency file
-    composer.lock	# Composer lockfile
-    package-lock.json	# Dependency lockfile
-    package.json	# NPM dependency file
-    webpack.config.js	# Webpack configuration file
-```
+        `date_default_timezone_set('America/Caracas');`
+    ````
 
-## Goals achieved
+## 📝 ToDo List:
 
- - [x] Learn how to work with the OOP paradigm
- - [x] Understand how to apply the MVC architecture and its hows and whys
- - [x] How to work with sessions and cookies in PHP
- - [x] Implement user authentication (logging in, logging out, update user's password, recover password function, hide/show content for non logged in users.
- - [x] Work with third party libraries
- - [x] Generate PDF reports
- - [x] Practice modern JavaScript and transpile it using Webpack and Babel
- - [x] In general: work with PHP, JS, SASS and tie it all together to have a functional application
+-   [ ] Implement checkout with PayPal/Stripe API
+-   [ ] User reviews and product rating
+-   [ ] Deployment
 
-## Author
+## 🏆 Goals achieved
+
+-   [x] Learn how to work with the OOP paradigm
+-   [x] Understand how to apply the MVC architecture and its hows and whys
+-   [x] How to work with sessions and cookies in PHP
+-   [x] Implement user authentication (logging in, logging out, update user's password, recover password function, hide/show content for non logged in users.
+-   [x] Work with third party libraries
+-   [x] Practice modern JavaScript and transpile it using Webpack and Babel
+-   [x] In general: work with PHP, JS, SASS and tie it all together to have a functional application
+
+### Author
+
 José Abraham Castillo
