@@ -1,4 +1,4 @@
-# 🛒 Ecommerce site built using pure PHP & vanilla JavaScript
+# 🛒 Ecommerce site built using pure PHP & vanilla JS
 
 This project is an ecommerce wesbite built without any frameworks. My goal was to learn how to code a functional application to learn fundamentals of OOP and the MVC architecture while setting up a somewhat modern development environment.
 
@@ -31,7 +31,7 @@ If you want to test this project on your local machine, you have to follow these
 4.  **Update credentials !important**
     In order to get everything working you may need to do some changes in the file `src/Config/constants.php`
 
-    ````
+    ```
         define('URLROOT', 'http://localhost/shoppingcart');
         define('BRAND_NAME', 'About the Fit');
         define('BRAND_EMAIL', '');
@@ -42,30 +42,27 @@ If you want to test this project on your local machine, you have to follow these
         define('DB_USER', 'root');
         define('DB_PASS', '');
         define('DB_NAME', 'shoppingcart');
-        ```
+    ```
 
-        And the project base URL in `resources/scripts/CartUI.js` which is set up for localhost.
+    And the project base URL in `resources/scripts/CartUI.js` which is set up for localhost.
 
-        An small thing you may want to change or even delete is the timezone I set in [public/index.php](https://github.com/crjoseabraham/shoppingcart/blob/version-2.0/public/index.php) because I used my timezone
+    An small thing you may want to change or even delete is the timezone I set in [public/index.php](https://github.com/crjoseabraham/shoppingcart/blob/version-2.0/public/index.php) because I used my timezone
 
-        `date_default_timezone_set('America/Caracas');`
-    ````
+    `date_default_timezone_set('America/Caracas');`
 
 ## 📝 ToDo List:
 
 -   [ ] Implement checkout with PayPal/Stripe API
--   [ ] User reviews and product rating
 -   [ ] Deployment
 
 ## 🏆 Goals achieved
 
--   [x] Learn how to work with the OOP paradigm
--   [x] Understand how to apply the MVC architecture and its hows and whys
+-   [x] Learn the principles of OOP and how to apply the MVC architecture
 -   [x] How to work with sessions and cookies in PHP
--   [x] Implement user authentication (logging in, logging out, update user's password, recover password function, hide/show content for non logged in users.
+-   [x] Implement user authentication (logging in, logging out, remember session, recover passwords, etc.).
 -   [x] Work with third party libraries
 -   [x] Practice modern JavaScript and transpile it using Webpack and Babel
--   [x] In general: work with PHP, JS, SASS and tie it all together to have a functional application
+-   [x] Basics of version control with Git (work with repos, commits, branching and merging).
 
 ### Author
 

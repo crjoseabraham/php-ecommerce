@@ -29,14 +29,6 @@
                 <div class="product-container__details">
                     <h2 class="sans"><?php echo e($item->description); ?></h2>
                     <p class="product-code">Code: <?php echo e($item->product_id); ?></p>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        | <a href="#" class="simple">Write a review</a>
-                    </div>
                     <div class="product-price mt-2">
                         <?php if($item->discount > 0): ?>
                         <h2 class="price-to-show sans">
@@ -86,12 +78,6 @@
                         </button>
                     </form>
                 </div>
-            </div>
-
-            <hr class="mt-4">
-
-            <div class="product-reviews">
-                Reviews go here we
             </div>
         </div>
         <!--                Product details end                 -->

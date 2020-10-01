@@ -30,10 +30,6 @@
             }
         }
 
-        .stars {
-            margin-top: 1rem;
-        }
-
         p.description {
             color: lighten($bistre, 40%);
             font-size: 15px;
@@ -94,7 +90,12 @@
     .product-container {
         place-content: flex-start center;
 
+        &__img {
+            order: 1;
+        }
+
         &__details {
+            order: 0;
             padding: 2.2rem;
             max-width: 100%;
         }
