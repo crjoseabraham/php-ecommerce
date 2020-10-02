@@ -4,12 +4,15 @@ define('SECRET_KEY', 'RYdC5cmDUbgglwwMLTUrcBzs6HXG5NBZ');
 define('BRAND_NAME', 'About the Fit');
 define('BRAND_EMAIL', 'aboutthefit.php@gmail.com');
 define('BRAND_EMAIL_PASS', 'zlnF3X4cM%Z4on53');
-
 // Database config values
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'shoppingcart');
+// Paypal constants
+define('PAYPAL_CLIENT_ID', '');
+define('PAYPAL_SECRET', '');
+define('PAYPAL_MODE', 'sandbox');
 
 // Flash message types
 define('SUCCESS', 'success');

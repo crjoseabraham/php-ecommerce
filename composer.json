@@ -27,6 +27,7 @@
     },
     "require": {
         "philo/laravel-blade": "^3.1",
-        "phpmailer/phpmailer": "^6.1"
+        "phpmailer/phpmailer": "^6.1",
+        "paypal/rest-api-sdk-php": "^1.14"
     }
 }
