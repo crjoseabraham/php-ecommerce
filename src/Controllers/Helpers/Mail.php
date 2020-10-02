@@ -17,6 +17,8 @@ class Mail {
      * @return void
      */
     public static function send($to, $subject, $text, $html) {
+        $brand_email = $_ENV['BRAND_EMAIL'];
+        $brand_email_pass = $_ENV['BRAND_EMAIL_PASS'];
         $mail = new PHPMailer(true);
 
         try {
@@ -25,12 +27,12 @@ class Mail {
             $mail->Host = "smtp.gmail.com";     //Set SMTP host name
             $mail->SMTPAuth = true;             //Because SMTP host requires authentication to send email
             //Provide username and password
-            $mail->Username = BRAND_EMAIL;
-            $mail->Password = BRAND_EMAIL_PASS;
+            $mail->Username = $brand_email;
+            $mail->Password = $brand_email_pass;
             $mail->SMTPSecure = "tls";          //If SMTP requires TLS encryption then set it
             $mail->Port = 587;                  //Set TCP port to connect to
-            $mail->From = BRAND_EMAIL;
-            $mail->FromName = BRAND_NAME;
+            $mail->From = $brand_email;
+            $mail->FromName = $brand_email_pass;
 
             // Destination info
             $mail->addAddress($to);

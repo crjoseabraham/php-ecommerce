@@ -11,6 +11,7 @@ class Token {
      * @var string
      */
     protected $token;
+    protected $secret_key = $_ENV['SECRET_KEY'];
 
     public function __construct($token_value = null) {
         $this->token = $token_value ? $token_value : bin2hex(random_bytes(16));
@@ -29,6 +30,6 @@ class Token {
      * @return string
      */
     public function getHash() {
-        return hash_hmac('sha256', $this->token, SECRET_KEY);
+        return hash_hmac('sha256', $this->token, $this->secret_key);
     }
 }
