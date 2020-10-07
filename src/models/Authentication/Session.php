@@ -6,7 +6,6 @@ use App\Core\Database;
 class Session extends Database {
 
     public function __construct(int $user) {
-        echo "here";
         session_regenerate_id(true);
         $_SESSION['id'] = session_id();
         $_SESSION['user'] = $user;

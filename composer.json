@@ -17,12 +17,12 @@
             "App\\Core\\": "src/Core",
             "App\\Controller\\": "src/Controllers",
             "App\\Controller\\Account\\": "src/Controllers/Account",
+            "App\\Controller\\Checkout\\": "src/Controllers/Checkout",
             "App\\Controller\\Helper\\": "src/Controllers/Helpers",
             "App\\Controller\\Merchandise\\": "src/Controllers/Merchandise",
             "App\\Model\\": "src/Models",
             "App\\Model\\Authentication\\": "src/Models/Authentication",
             "App\\Model\\Merchandise\\": "src/Models/Merchandise"
-
         }
     },
     "require": {

@@ -10,25 +10,17 @@
             <a href="https://github.com/crjoseabraham/shoppingcart" target="_blank" class="simple icon-link">
                 <i class="fab fa-github"></i>
             </a>
-            <a href="#" class="simple" data-action="cart">
-                <i class="fas fa-shopping-bag"></i>
-                Cart
-            </a>
-            <a
-                href="<?php echo e(isset($session["user"]) ? "profile" : '#'); ?>"
-                class="simple"
-                <?php echo e(!isset($session["user"]) ? "data-action=login" : ''); ?>
-
-            >
-                <?php echo e(isset($session["user"]) ? "Profile" : "Sign In"); ?>
-
-            </a>
+            <a href="explore" class="simple">Explore</a>
             <?php if(isset($session["user"])): ?>
-            <form action="logout" method="post" class="link-form">
-                <button type="submit" class="btn btn--simple">
-                    Log Out
-                </button>
-            </form>
+                <a href="cart-checkout" class="simple">Cart</a>
+                <a href="profile" class="simple">Profile</a>
+                <form action="logout" method="post" class="link-form">
+                    <button type="submit" class="btn btn--simple">
+                        Log Out
+                    </button>
+                </form>
+            <?php else: ?>
+                <a href="#" class="simple" data-action="login">Sign In</a>
             <?php endif; ?>
         </div>
     </div>
@@ -42,9 +34,6 @@
         </div>
         <div class="popup__content" data-action="signup">
             <?php echo $__env->make('components/register_form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        </div>
-        <div class="popup__content" data-action="cart">
-            <?php echo $__env->make('components/cart', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
     </div>
 </nav><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/sections/navbar.blade.php ENDPATH**/ ?>

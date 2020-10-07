@@ -1,13 +1,11 @@
 <?php if(isset($user)): ?>
 <div class="cart-content"> </div>
 <div class="cart-footer">
-    <form action="proceed-checkout" method="post" class="cart-form">
-        <span class="cart-total">
-            <i class="fas fa-shopping-bag"></i>
-            Total items: $<span id="total-items"></span>
-        </span>
-        <button type="submit" class="btn btn--primary">Proceed to checkout</button>
-    </form>
+    <span class="cart-total">
+        <i class="fas fa-shopping-bag"></i>
+        Total items: $<span id="total-items"></span>
+    </span>
+    <a href="checkout-page" class="btn btn--primary">Proceed to checkout</a>
 </div>
 <?php else: ?>
 <div class="cart-content empty">

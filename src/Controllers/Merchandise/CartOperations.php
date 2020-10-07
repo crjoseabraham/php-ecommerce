@@ -23,14 +23,6 @@ class CartOperations {
     }
 
     /**
-     * Get cart as JSON for AJAX calls
-     * @return string Cart items as JSON
-     */
-    public function getJSON() {
-        echo json_encode($this->cart->get());
-    }
-
-    /**
      * Add an item to the cart or update its values if it's there already
      * @param array $params     Item's ID
      * @return void
@@ -57,6 +49,29 @@ class CartOperations {
     }
 
     /**
+     * Change the quantity for a product from the cart page
+     *
+     * @return void
+     */
+    public function changeQuantity(): void {
+        $subtotal = $this->calculateSubtotal(
+            intval($_POST['quantity']),
+            $this->products->get($_POST['item'], false)
+        );
+
+        $this->cart->update(intval($_POST['item']), $_POST, $subtotal);
+        echo json_encode(["subtotal" => $subtotal, "cart_total" => $this->calculateTotal()]);
+    }
+
+    /**
+     * Remove item from cart
+     */
+    public function remove() {
+        $this->cart->remove(intval($_POST['item']));
+        echo json_encode(["cart_total" => $this->calculateTotal()]);
+    }
+
+    /**
      * Perform validations before adding an item to the cart
      * @param  int    $item_id The item ID
      * @param  array  $post    $_POST data
@@ -80,15 +95,22 @@ class CartOperations {
      * @param  object $item     The item object
      * @return float            Item's subtotal rounded to 2 decimals
      */
-    private function calculateSubtotal(int $quantity, object $item) : float {
+    private function calculateSubtotal(int $quantity, object $item): float {
         return round($quantity * ($item->price - ($item->price * ($item->discount / 100))), 2);
     }
 
     /**
-     * Remove item from cart
+     * Get current user's cart total amount
+     *
+     * @return float            Cart total rounded to 2 decimals
      */
-    public function remove() {
-        $this->cart->remove(intval($_POST['item']));
-        echo json_encode(true);
+    private function calculateTotal(): float {
+        $cart = $this->get();
+        $amount = 0;
+        foreach($cart as $item) {
+            $amount += $item->subtotal;
+        }
+
+        return round($amount, 2);
     }
 }

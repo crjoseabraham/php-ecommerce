@@ -51,7 +51,7 @@ class Password extends Database {
      */
     public function emailResetLink(object $user): void {
         $view_class = new View();
-        $url = URLROOT . '/password/reset/' . $user->password_reset_hash;
+        $url = $_ENV['URLROOT'] . '/password/reset/' . $user->password_reset_hash;
         $text = $view_class->getTemplate("email_templates/resetpass_txt", ["url" => $url]);
         $html = $view_class->getTemplate("email_templates/resetpass_html", ["url" => $url]);
 

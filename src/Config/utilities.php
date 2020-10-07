@@ -25,6 +25,6 @@ function getMethod() : string {
  * @param  string $file Path to desired page
  */
 function redirect(string $file) : void {
-    header('Location: ' . URLROOT . $file, true, 303);
+    header('Location: ' . $_ENV['URLROOT'] . $file, true, 303);
     exit;
 }

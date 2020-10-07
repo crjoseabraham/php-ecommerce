@@ -1,0 +1,189 @@
+.cart-checkout {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+
+    // CART STYLES
+    .cart-content {
+        flex: 65%;
+        padding: 5rem 5rem 3rem 0;
+
+        table.cart {
+            width: 100%;
+            margin-top: 2rem;
+            border-collapse: collapse;
+
+            thead {
+                border-bottom: 1px solid $eggshell;
+
+                tr th {
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                    text-align: left;
+                    padding: 1.5rem 0;
+                }
+            }
+
+            tbody {
+                border-bottom: 1px solid $eggshell;
+
+                tr td {
+                    padding: 1.5rem 0;
+
+                    .product__details {
+                        display: flex;
+
+                        img {
+                            max-height: 100px;
+                        }
+
+                        &-info {
+                            margin-left: 10px;
+                            display: flex;
+                            flex-wrap: wrap;
+
+                            & > * {
+                                width: 100%;
+                            }
+                            h5 {
+                                font-family: $body;
+                                font-size: 1.4rem;
+                                font-weight: 500;
+                            }
+                            p {
+                                font-size: 1.4rem;
+                            }
+                            button.remove-item {
+                                font-family: $body;
+                                padding: 0;
+                                border: none;
+                                background: transparent;
+                                color: lighten(red, 10%);
+                                cursor: pointer;
+                                align-self: flex-end;
+                                width: auto;
+
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                    }
+
+                    .product__quantity {
+                        display: flex;
+
+                        .qty-controls {
+                            display: flex;
+                            flex-direction: column;
+
+                            button {
+                                font-size: 1.6rem;
+                                border: none;
+                                background: transparent;
+
+                                &#control-up {
+                                    color: $tulip;
+                                }
+                                &#control-down {
+                                    padding-top: 5px;
+                                    color: lighten($bistre, 70%);
+                                }
+                            }
+                        }
+
+                        #qty-field {
+                            max-width: 75px;
+                            text-align: center;
+                            border: none;
+                            background: transparent;
+                            font-size: 1.8rem;
+                            font-weight: 500;
+                        }
+                    }
+
+                    .product__price {
+                        font-size: 2rem;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+
+        .cart-subtotal {
+            margin-top: 2rem;
+            width: 100%;
+            background: lighten($tulip, 20%);
+            padding: 4rem;
+            font-size: 1.8rem;
+
+            span.amount {
+                font-weight: 500;
+                float: right;
+            }
+        }
+    }
+
+    // PAYMENT SETTINGS STYLES
+    .payment-content {
+        flex: 35%;
+        background: #f9f9f9;
+        padding: 5rem 3rem;
+
+        &-container {
+            position: sticky;
+            top: 8.5rem;
+            left: 0;
+            z-index: 2;
+        }
+
+        table.order-details {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 4rem;
+
+            tr td {
+                font-size: 1.6rem;
+                padding: 1rem 0;
+
+                &.strong,
+                &.strong + td {
+                    font-weight: bold;
+                }
+            }
+
+            tr:last-child {
+                border-top: 1px solid $eggshell;
+            }
+
+            tr td:last-child {
+                text-align: right;
+            }
+        }
+
+        #pay {
+            display: block;
+            margin-top: 3rem;
+        }
+    }
+
+    h4 {
+        font-size: 2.4rem;
+        font-family: $body;
+        color: lighten($bistre, 10%);
+        font-weight: 500;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .cart-checkout {
+        & > * {
+            flex: 100% !important;
+        }
+
+        .cart-content {
+            padding: 0;
+            padding-bottom: 4rem;
+        }
+    }
+}

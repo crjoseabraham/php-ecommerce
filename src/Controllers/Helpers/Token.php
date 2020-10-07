@@ -11,10 +11,11 @@ class Token {
      * @var string
      */
     protected $token;
-    protected $secret_key = $_ENV['SECRET_KEY'];
+    protected $secret_key;
 
     public function __construct($token_value = null) {
         $this->token = $token_value ? $token_value : bin2hex(random_bytes(16));
+        $this->secret_key = $_ENV['SECRET_KEY'];
     }
 
     /**

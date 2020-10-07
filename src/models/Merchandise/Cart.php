@@ -84,10 +84,17 @@ class Cart extends Database {
      * @return void
      */
     public function update(int $id, array $data, float $subtotal): void {
+        $sql = "UPDATE `cart_items` SET ";
+
+        if (isset($data['size']))
+            $sql .= "`size` = :si, ";
+        $sql .= "`quantity` = :q, `subtotal` = :su WHERE `cart_id` = :c AND `product_id` = :i";
+
         $db = static::getDB();
         $cart = $this->getId($db);
-        $stmt = $db->prepare("UPDATE `cart_items` SET `size` = :si, `quantity` = :q, `subtotal` = :su WHERE `cart_id` = :c AND `product_id` = :i");
-        $stmt->bindValue(':si', $data['size'], \PDO::PARAM_STR);
+        $stmt = $db->prepare($sql);
+        if (isset($data['size']))
+            $stmt->bindValue(':si', $data['size'], \PDO::PARAM_STR);
         $stmt->bindValue(':q', $data['quantity'], \PDO::PARAM_INT);
         $stmt->bindValue(':su', $subtotal, \PDO::PARAM_STR);
         $stmt->bindValue(':c', $cart, \PDO::PARAM_INT);

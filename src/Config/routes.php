@@ -9,6 +9,7 @@ $router->get('profile', 'ViewLoaders@profile');
 $router->get('confirm-delete-account', 'ViewLoaders@deleteAccountForm');
 $router->get('product_details.{item}', 'ViewLoaders@productDetails');
 $router->get('get-cart', 'Merchandise\CartOperations@getJSON');
+$router->get('cart-checkout', 'ViewLoaders@cartPage');
 
 $router->post('signup', 'Account\Accounts@create');
 $router->post('login', 'Account\Auth@login');
@@ -19,4 +20,5 @@ $router->post('update-profile/basic', 'Account\Accounts@updateBasic');
 $router->post('update-profile/password/{id}', 'Account\Passwords@change');
 $router->post('delete-account', 'Account\Accounts@delete');
 $router->post('add-to-cart.{item}', 'Merchandise\CartOperations@add');
+$router->post('change-quantity', 'Merchandise\CartOperations@changeQuantity');
 $router->post('remove-item', 'Merchandise\CartOperations@remove');

@@ -103,4 +103,15 @@ class ViewLoaders {
         ]);
 
     }
+
+    public function cartPage(): void {
+        if (is_null($this->accounts->getLoggedUser())) {
+            Flash::addMessage(LOGIN_REQUIRED, ERROR);
+            redirect('/');
+        } else {
+            $this->view->render("layouts/cart_checkout_page", array_merge($this->default_params, [
+                "cart" => $this->cart->get()
+            ]));
+        }
+    }
 }
