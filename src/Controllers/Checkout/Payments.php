@@ -1,8 +1,8 @@
 <?php
 namespace App\Controller\Checkout;
 
-use Paypal\Auth\OAuthTokenCredential;
-use Paypal\Rest\ApiContext;
+use PayPal\Rest\ApiContext;
+use PayPal\Auth\OAuthTokenCredential;
 
 class Payments {
 
@@ -44,5 +44,8 @@ class Payments {
      *
      * @return void
      */
-    public function payWithPayPal() {}
+    public function confirm() {
+        var_dump($_POST);
+        die();
+    }
 }

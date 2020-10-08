@@ -3,6 +3,17 @@
     flex-wrap: wrap;
     margin-top: 3rem;
 
+    p.empty-cart {
+        font-size: 5rem;
+        text-align: center;
+        color: #ccc;
+        padding-top: 10rem;
+
+        span.small-text {
+            font-size: 2rem;
+        }
+    }
+
     // CART STYLES
     .cart-content {
         flex: 65%;
@@ -116,10 +127,11 @@
             background: lighten($tulip, 20%);
             padding: 4rem;
             font-size: 1.8rem;
+            display: flex;
+            justify-content: space-between;
 
-            span.amount {
+            p {
                 font-weight: 500;
-                float: right;
             }
         }
     }
@@ -161,9 +173,17 @@
             }
         }
 
+        #shipping {
+            border: 1px solid $bistre;
+            padding: 0.7rem 1.2rem;
+            font-family: $body;
+            font-size: 1.5rem;
+        }
+
         #pay {
             display: block;
             margin-top: 3rem;
+            width: 100%;
         }
     }
 

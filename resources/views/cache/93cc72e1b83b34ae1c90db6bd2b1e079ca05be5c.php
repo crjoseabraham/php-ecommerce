@@ -34,6 +34,13 @@
             <div class="cart-content">
                 <h4>Your Shopping Cart</h4>
 
+                <?php if(count($cart) < 1): ?>
+                <p class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i> <br>
+                    Your cart is empty <br>
+                    <span class="small-text">Explore the store and add what you like to your cart</span>
+                </p>
+                <?php else: ?>
                 <table class="cart">
                     <thead>
                         <tr>
@@ -81,41 +88,53 @@
 
                 <div class="cart-subtotal">
                     Order subtotal:
-                    <span class="amount" id="cart-total">
-                        $<?php echo e($amount); ?>
+                    <p>
+                        $
+                        <span class="amount" id="cart-total">
+                            <?php echo e($amount); ?>
 
-                    </span>
+                        </span>
+                    </p>
                 </div>
+                <?php endif; ?>
             </div>
             <!-- Right side: Payment -->
             <div class="payment-content">
                 <div class="payment-content-container">
                     <h4>Order Summary</h4>
+                    <form action="confirm-order" id="start-payment" method="post">
+                        <table class="order-details">
+                            <tbody>
+                                <tr>
+                                    <td>Cart subtotal</td>
+                                    <td>$<span id="payment-cart-total"> <?php echo e($amount); ?> </span></td>
+                                </tr>
+                                <tr>
+                                    <td>Shipping</td>
+                                    <td>
+                                        <select name="shipping" id="shipping">
+                                            <option value="0" selected>Pick up at store</option>
+                                            <option value="7">Delivery (+7% fee)</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tax</td>
+                                    <td>$ <span id="tax">0</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="strong">Order Total</td>
+                                    <td>$<span id="order-total"><?php echo e($amount); ?></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    <table class="order-details">
-                        <tbody>
-                            <tr>
-                                <td>Cart subtotal</td>
-                                <td>$<span class="amount" id="cart-total"> <?php echo e($amount); ?> </span></td>
-                            </tr>
-                            <tr>
-                                <td>Shipping</td>
-                                <td>Ehm?</td>
-                            </tr>
-                            <tr>
-                                <td>Tax</td>
-                                <td>$.00</td>
-                            </tr>
-                            <tr>
-                                <td class="strong">Order Total</td>
-                                <td>$.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <button class="btn btn--primary" id="pay">
-                        Pay with &nbsp;<i class="fab fa-paypal"></i> PayPal
-                    </button>
+                        <?php if(count($cart) > 0): ?>
+                        <button type="submit" class="btn btn--primary" id="pay">
+                            Pay with &nbsp;<i class="fab fa-paypal"></i> PayPal
+                        </button>
+                        <?php endif; ?>
+                    </form>
                 </div>
             </div>
         </div>

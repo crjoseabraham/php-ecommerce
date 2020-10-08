@@ -22,3 +22,4 @@ $router->post('delete-account', 'Account\Accounts@delete');
 $router->post('add-to-cart.{item}', 'Merchandise\CartOperations@add');
 $router->post('change-quantity', 'Merchandise\CartOperations@changeQuantity');
 $router->post('remove-item', 'Merchandise\CartOperations@remove');
+$router->post('confirm-order', 'Checkout\Payments@confirm');

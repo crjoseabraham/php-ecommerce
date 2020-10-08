@@ -11,8 +11,12 @@ export default class CartUI {
     }
 
     eventListeners() {
-        if (this.parent !== null)
+        if (this.parent !== null) {
             this.parent.addEventListener("click", this.parentEventHandler.bind(this));
+            this.parent
+                .querySelector("#shipping")
+                .addEventListener("change", this.setShippingOption);
+        }
     }
 
     parentEventHandler(event) {
@@ -43,7 +47,14 @@ export default class CartUI {
                     row.querySelector("#product-price").innerHTML = `$${data.subtotal}`;
                     this.parent.querySelector(
                         ".cart-subtotal .amount"
-                    ).innerHTML = `$${data.cart_total}`;
+                    ).innerHTML = `${data.cart_total}`;
+                    document.getElementById(
+                        "payment-cart-total"
+                    ).innerHTML = `${data.cart_total}`;
+                    document.getElementById(
+                        "order-total"
+                    ).innerHTML = `${data.cart_total}`;
+                    this.setShippingOption();
                 })
                 .catch((error) => {
                     console.error(error);
@@ -79,7 +90,12 @@ export default class CartUI {
                 this.cart_table.deleteRow(row.rowIndex);
                 this.parent.querySelector(
                     ".cart-subtotal .amount"
-                ).innerHTML = `$${data.cart_total}`;
+                ).innerHTML = `${data.cart_total}`;
+                document.getElementById(
+                    "payment-cart-total"
+                ).innerHTML = `${data.cart_total}`;
+                document.getElementById("order-total").innerHTML = `${data.cart_total}`;
+                this.setShippingOption();
             })
             .catch((error) => {
                 console.error(error);
@@ -102,5 +118,29 @@ export default class CartUI {
         );
         const data = await response.json();
         return data;
+    }
+
+    setShippingOption() {
+        let order_total = document.getElementById("order-total");
+        let order_total_value = parseFloat(
+            document.querySelector(".cart-subtotal .amount").innerHTML
+        );
+        let option = document.getElementById("shipping");
+        let total = 0;
+        let tax = 0;
+
+        switch (parseInt(option.value)) {
+            case 0:
+                total = order_total_value;
+                break;
+
+            case 7:
+                tax = (order_total_value * 0.07).toFixed(2);
+                total = (order_total_value + order_total_value * 0.07).toFixed(2);
+                break;
+        }
+
+        order_total.innerText = total;
+        document.getElementById("tax").innerText = tax;
     }
 }
