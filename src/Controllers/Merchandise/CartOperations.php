@@ -104,7 +104,7 @@ class CartOperations {
      *
      * @return float            Cart total rounded to 2 decimals
      */
-    private function calculateTotal(): float {
+    public function calculateTotal(): float {
         $cart = $this->get();
         $amount = 0;
         foreach($cart as $item) {
@@ -112,5 +112,15 @@ class CartOperations {
         }
 
         return round($amount, 2);
+    }
+
+    /**
+     * Empty the user's cart
+     *
+     * @param integer $user_id
+     * @return void
+     */
+    public function emptyCart(int $user_id) {
+        $this->cart->empty($user_id);
     }
 }

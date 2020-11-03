@@ -104,6 +104,10 @@ class ViewLoaders {
 
     }
 
+    /**
+     * Load user's cart
+     * @return void
+     */
     public function cartPage(): void {
         if (is_null($this->accounts->getLoggedUser())) {
             Flash::addMessage(LOGIN_REQUIRED, ERROR);

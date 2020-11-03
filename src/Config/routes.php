@@ -10,6 +10,8 @@ $router->get('confirm-delete-account', 'ViewLoaders@deleteAccountForm');
 $router->get('product_details.{item}', 'ViewLoaders@productDetails');
 $router->get('get-cart', 'Merchandise\CartOperations@getJSON');
 $router->get('cart-checkout', 'ViewLoaders@cartPage');
+$router->get('payment_success_{id}', 'Checkout\Orders@completed');
+$router->get('payment_cancelled_{id}', 'Checkout\Orders@cancelled');
 
 $router->post('signup', 'Account\Accounts@create');
 $router->post('login', 'Account\Auth@login');
@@ -22,4 +24,4 @@ $router->post('delete-account', 'Account\Accounts@delete');
 $router->post('add-to-cart.{item}', 'Merchandise\CartOperations@add');
 $router->post('change-quantity', 'Merchandise\CartOperations@changeQuantity');
 $router->post('remove-item', 'Merchandise\CartOperations@remove');
-$router->post('confirm-order', 'Checkout\Payments@confirm');
+$router->post('payment-process', 'Checkout\Orders@checkout');

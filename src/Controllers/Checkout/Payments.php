@@ -1,51 +1,48 @@
 <?php
 namespace App\Controller\Checkout;
 
-use PayPal\Rest\ApiContext;
-use PayPal\Auth\OAuthTokenCredential;
+use Omnipay\Omnipay;
 
 class Payments {
 
-    /**
-     * Paypal Configuration variable
-     *
-     * @var array
-     */
-    protected $paypal_config;
+    public function new() {}
 
     /**
-     * Initialize API Context variable
-     *
-     * @var object
+     * Set up PayPal Checkout gateway
+     * @return void
      */
-    protected $apiContext;
-
-    public function __construct() {
-        $this->paypal_config = [
-            'client_id' => $_ENV['PAYPAL_CLIENT_ID'],
-            'secret' => $_ENV['PAYPAL_SECRET'],
-            'settings' => [
-                'mode' => $_ENV['PAYPAL_MODE'],
-                'http.ConnectionTimeOut' => 30,
-                'log.LogEnabled' => false
-            ]
-        ];
-
-        $this->apiContext = new ApiContext(
-            new OAuthTokenCredential(
-                $this->paypal_config['client_id'],
-                $this->paypal_config['secret']
-            )
-        );
+    public function gateway() {
+        $gateway = Omnipay::create('PayPal_Express');
+        $gateway->setUsername($_ENV['PAYPAL_USERNAME']);
+        $gateway->setPassword($_ENV['PAYPAL_PASSWORD']);
+        $gateway->setSignature($_ENV['PAYPAL_SIGNATURE']);
+        $gateway->setTestMode(true); // Set false for production
+        return $gateway;
     }
 
     /**
-     * Process payment with PayPal. Coming from the form
-     *
+     * Execute purchase process
+     * @param array $parameters
      * @return void
      */
-    public function confirm() {
-        var_dump($_POST);
-        die();
+    public function purchase(array $parameters) {
+        $response = $this->gateway()
+            ->purchase($parameters)
+            ->send();
+
+        return $response;
+    }
+
+    /**
+     * After payment process is completed
+     * @param array $parameters
+     * @return void
+     */
+    public function complete(array $parameters) {
+        $response = $this->gateway()
+            ->completePurchase($parameters)
+            ->send();
+
+        return $response;
     }
 }

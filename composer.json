@@ -28,7 +28,8 @@
     "require": {
         "philo/laravel-blade": "^3.1",
         "phpmailer/phpmailer": "^6.1",
-        "paypal/rest-api-sdk-php": "^1.14",
-        "vlucas/phpdotenv": "^5.2"
+        "vlucas/phpdotenv": "^5.2",
+        "league/omnipay": "^3.0",
+        "omnipay/paypal": "^3.0"
     }
 }

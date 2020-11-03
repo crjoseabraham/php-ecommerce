@@ -4,8 +4,9 @@
 @endphp
 
 @if (!is_null($notifications))
+<div class="notification-container">
     @foreach ($notifications as $notification)
-    <div class="notification">
+    <div class="notification" data-type="{{ $notification['type'] }}">
         <!-- Notification title and icon -->
         <div class="notification__title notification__{{ $notification['type'] }}">
             <div class="notification__title-text">
@@ -40,4 +41,5 @@
         </div>
     </div>
     @endforeach
+</div>
 @endif

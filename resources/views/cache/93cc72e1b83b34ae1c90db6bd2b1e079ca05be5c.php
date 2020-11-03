@@ -102,7 +102,7 @@
             <div class="payment-content">
                 <div class="payment-content-container">
                     <h4>Order Summary</h4>
-                    <form action="confirm-order" id="start-payment" method="post">
+                    <form action="payment-process" id="start-payment" method="post">
                         <table class="order-details">
                             <tbody>
                                 <tr>

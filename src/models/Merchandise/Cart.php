@@ -114,4 +114,16 @@ class Cart extends Database {
         $stmt->bindValue(':user', $_SESSION['user'], \PDO::PARAM_INT);
         $stmt->execute();
     }
+
+    /**
+     * Delete all records from `cart_items` for a user
+     * @param integer $user
+     * @return void
+     */
+    public function empty(int $user): void {
+        $db = static::getDB();
+        $stmt = $db->prepare("DELETE `cart_items` FROM `cart_items` LEFT JOIN `cart` ON `cart_items`.`cart_id` = `cart`.`id` WHERE `cart`.`user_id` = :user");
+        $stmt->bindValue(':user', $user, \PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }

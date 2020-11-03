@@ -4,8 +4,9 @@
 ?>
 
 <?php if(!is_null($notifications)): ?>
+<div class="notification-container">
     <?php $__currentLoopData = $notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <div class="notification">
+    <div class="notification" data-type="<?php echo e($notification['type']); ?>">
         <!-- Notification title and icon -->
         <div class="notification__title notification__<?php echo e($notification['type']); ?>">
             <div class="notification__title-text">
@@ -41,4 +42,5 @@
         </div>
     </div>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+</div>
 <?php endif; ?><?php /**PATH C:\xampp\htdocs\shoppingcart\resources\views/components/notification.blade.php ENDPATH**/ ?>

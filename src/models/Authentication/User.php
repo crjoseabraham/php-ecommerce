@@ -30,7 +30,7 @@ class User extends Database {
      */
     public function create(): int {
         $db = static::getDB();
-        $stmt = $db->prepare("INSERT INTO user (`email`, `name`, `password`, `created_at`) VALUES (:e, :n, :p, :d)");
+        $stmt = $db->prepare("INSERT INTO `user` (`email`, `name`, `password`, `created_at`) VALUES (:e, :n, :p, :d)");
         $stmt->bindValue(':e', $this->email, \PDO::PARAM_STR);
         $stmt->bindValue(':n', $this->name, \PDO::PARAM_STR);
         $stmt->bindValue(':p', $this->password, \PDO::PARAM_STR);
