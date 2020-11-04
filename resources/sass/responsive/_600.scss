@@ -75,6 +75,15 @@
         }
     }
 
+    // PROFILE
+    .profile-container .profile-content {
+        width: 100%;
+
+        table.purchases {
+            table-layout: fixed;
+        }
+    }
+
     // OFFERS
     .special-offers {
         flex-direction: column;

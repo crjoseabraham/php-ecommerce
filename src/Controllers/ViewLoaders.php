@@ -5,6 +5,7 @@ use App\Core\View;
 use App\Controller\Helper\Flash;
 use App\Controller\Account\Accounts;
 use App\Controller\Account\Passwords;
+use App\Controller\Checkout\Orders;
 use App\Controller\Merchandise\Products;
 use App\Controller\Merchandise\CartOperations;
 use App\Model\Authentication\User;
@@ -72,7 +73,9 @@ class ViewLoaders {
             Flash::addMessage(LOGIN_REQUIRED, ERROR);
             redirect('/');
         } else
-            $this->view->render("layouts/profile", $this->default_params);
+            $this->view->render("layouts/profile", array_merge($this->default_params, [
+                "orders" => Orders::get()
+            ]));
     }
 
     /**

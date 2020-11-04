@@ -32,6 +32,15 @@ class Orders {
     }
 
     /**
+     * Get all orders for a specified user
+     * @param int $id
+     * @return void
+     */
+    public static function get() {
+        return Order::getAll();
+    }
+
+    /**
      * Find an order by its ID
      * @param string $order_id
      * @return void

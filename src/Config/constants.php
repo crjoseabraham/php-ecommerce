@@ -33,4 +33,4 @@ define('ITEM_ADDED', 'Item added to your cart');
 // Purchase notifications
 define('PURCHASE_COMPLETED', 'Your payment was successfully completed. We emailed you the details of your purchase ♥');
 define('PURCHASE_CANCELLED', 'Operation cancelled by user');
-define('PURCHASE_PROFILEMSG', 'You can access to any of your transactions in the "Profile" page');
+define('PURCHASE_PROFILEMSG', 'You can access to any of your transactions at the end of the Profile page');

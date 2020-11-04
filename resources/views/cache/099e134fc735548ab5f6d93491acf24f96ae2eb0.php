@@ -12,12 +12,9 @@
         </title>
     </head>
 
-    <body id="bodyJsPointer">
+    <body id="bodyJsPointer" class="light-grey">
         <!-- Notification -->
         <?php echo $__env->make('components.notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-        <!-- Overlay -->
-        <div id="overlay"></div>
 
         <!-- Navigation bar -->
         <?php echo $__env->make('sections.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -25,44 +22,40 @@
         <!-- Actual content -->
         <div class="container profile-container">
             <div class="profile-content">
-                <ul class="profile-content__menu">
-                    <li class="profile-content__option active" data-action="basic_info">Basic Information</li>
-                    <li class="profile-content__option" data-action="change_pass">Change password</li>
-                </ul>
-                <div class="profile-content__body">
-                    <!-- ALWAYS VISIBLE -->
-                    <div class="profile-user-data">
-                        <h5>Account information:</h5>
-                        <table>
-                            <tr>
-                                <td class="cell-title">
-                                    ID:
-                                </td>
-                                <td><?php echo e($user->id); ?></td>
-                            </tr>
-                            <tr>
-                                <td class="cell-title">
-                                    Name:
-                                </td>
-                                <td><?php echo e($user->name); ?></td>
-                            </tr>
-                            <tr>
-                                <td class="cell-title">
-                                    Email:
-                                </td>
-                                <td><?php echo e($user->email); ?></td>
-                            </tr>
-                            <tr>
-                                <td class="cell-title">
-                                    Registered:
-                                </td>
-                                <td>Sep 17, 2020</td>
-                            </tr>
+                <!-- Account info -->
+                <div class="content-section">
+                    <div class="content-title">
+                        <span>Account Information</span>
+                    </div>
+                    <div class="content-body">
+                        <table class="account-info">
+                            <tbody>
+                                <tr>
+                                    <td class="title">Account ID:</td>
+                                    <td><?php echo e($user->id); ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Name:</td>
+                                    <td><?php echo e($user->name); ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Email Address:</td>
+                                    <td><?php echo e($user->email); ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Member since:</td>
+                                    <td>Random date</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
-                    <!-- Basic Info -->
-                    <div class="profile-template active" data-action="basic_info">
-                        <h5>Edit your data:</h5>
+                </div>
+                <!-- Edit basic info -->
+                <div class="content-section">
+                    <div class="content-title">
+                        <span>Edit basic information</span>
+                    </div>
+                    <div class="content-body">
                         <form action="update-profile/basic" method="post">
                             <!-- Name -->
                             <div class="form-group">
@@ -92,10 +85,14 @@
                             </button>
                         </form>
                     </div>
-                    <!-- Change Password -->
-                    <div class="profile-template" data-action="change_pass">
-                        <h5>Want to change your password?</h5>
-                        <p class="center">Password needs at least: 4 characters, 1 uppercase letter, 1 lowercase letter, 1 number</p>
+                </div>
+                <!-- Change pass -->
+                <div class="content-section">
+                    <div class="content-title">
+                        <span>Change your password</span>
+                    </div>
+                    <div class="content-body">
+                        <p>Password needs at least: 4 characters, 1 uppercase letter, 1 lowercase letter, 1 number</p>
                         <form action="update-profile/password/<?php echo e($user->id); ?>" method="post" class="mt-2">
                             <!-- New Pass -->
                             <div class="form-group">
@@ -124,14 +121,39 @@
                             </button>
                         </form>
                     </div>
-
-                    <div class="mt-2 profile-delete">
-                        <a href="confirm-delete-account" class="simple red">Delete your account</a>
+                </div>
+                <!-- Purchases -->
+                <div class="content-section">
+                    <div class="content-title">
+                        <span>Purchase history</span>
+                    </div>
+                    <div class="content-body">
+                        <?php if(empty($orders)): ?>
+                            Your purchases will be listed with full detail below. For now, there's nothing here.
+                        <?php else: ?>
+                            <table class="purchases">
+                                <thead>
+                                    <tr>
+                                        <td>#ID</td>
+                                        <td>Date/Time</td>
+                                        <td>Amount</td>
+                                        <td>Print</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr>
+                                        <td><?php echo e($order->id); ?></td>
+                                        <td><?php echo e($order->created_at); ?></td>
+                                        <td>$<?php echo e($order->amount); ?></td>
+                                        <td><i class="fas fa-file-download"></i></td>
+                                    </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </tbody>
+                            </table>
+                        <?php endif; ?>
                     </div>
                 </div>
-            </div>
-
-            <div class="profile-content">
             </div>
         </div>
 

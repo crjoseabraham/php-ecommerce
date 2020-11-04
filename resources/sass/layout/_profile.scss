@@ -1,86 +1,101 @@
 .profile-container {
     margin-top: 5rem;
+    padding: 5rem;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
 
     .profile-content {
+        background-color: $white;
+        padding: 4rem;
+        width: 70%;
         box-shadow: 0px 3px 10px 0px rgba(230, 230, 230, 1);
-        flex: 2;
+        border-radius: 10px;
 
-        &:first-child {
-            flex: 1;
+        .content-section:not(:first-child) {
+            margin-top: 8rem;
         }
 
-        &:nth-child(2) {
-            margin-left: 2rem;
-        }
+        .content-title {
+            font-family: $heading;
+            font-size: 3.5rem;
+            font-style: italic;
+            position: relative;
+            width: fit-content;
 
-        // MENU
-        &__menu {
-            list-style: none;
-            display: flex;
+            span {
+                position: relative;
+                z-index: 20;
+            }
 
-            li.profile-content__option {
-                flex: 1;
-                padding: 2rem 0;
-                cursor: pointer;
-                text-align: center;
-                text-transform: uppercase;
-                font-weight: 500;
-                background: #eee;
-                transition: all 0.3s ease;
-                border-top: 2px solid transparent;
-
-                &.active {
-                    background: $white;
-                    border-top: 2px solid $peach;
-                }
-
-                &:not(.active):hover {
-                    background: darken(#eee, 15%);
-                }
+            &::before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                border: 7px solid lighten($tulip, 10%);
+                z-index: 15;
             }
         }
 
-        // BOX CONTENT
-        &__body {
-            padding: 0 3rem;
-            padding-bottom: 4rem;
+        div.content-body {
+            font-size: 2rem;
+            padding-top: 2rem;
 
-            .profile-template {
-                display: none;
-
-                &.active {
-                    display: block;
-                }
-            }
-
-            h5 {
-                text-transform: uppercase;
-                font-family: $body;
-                color: $tulip;
-                padding-bottom: 1rem;
-                margin-top: 3rem;
-            }
-
-            table {
+            table.account-info {
                 width: 100%;
 
                 td {
-                    padding: 3px 0;
-                }
+                    padding: 0.5rem;
 
-                td:not(.cell-title) {
-                    text-align: right;
-                }
+                    &.title {
+                        font-weight: 600;
+                    }
 
-                td.cell-title {
-                    font-weight: 500;
+                    &:not(.title) {
+                        text-align: right;
+                    }
                 }
             }
 
-            form button {
+            table.purchases {
                 width: 100%;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                border-collapse: collapse;
+                border-style: hidden; /* hide standard table (collapsed) border */
+                box-shadow: 0 0 0 1px #ccc; /* this draws the table border  */
+
+                td {
+                    padding: 1rem;
+
+                    &:last-child {
+                        text-align: center;
+                    }
+                }
+
+                thead {
+                    tr {
+                        //border: 1px solid #ccc;
+                    }
+                    tr td {
+                        font-weight: 600;
+                    }
+                }
+                tbody {
+                    tr td {
+                        font-size: 1.7rem;
+                        border: 1px solid #ccc;
+                        border-bottom: 1px solid transparent;
+                        word-wrap: break-word;
+
+                        i.fa-file-download {
+                            color: $grullo;
+                            cursor: pointer;
+                        }
+                    }
+                }
             }
         }
     }

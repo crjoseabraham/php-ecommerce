@@ -36,6 +36,19 @@ class Order extends Database {
     }
 
     /**
+     * Return all orders for X user
+     * @param int $user
+     * @return void
+     */
+    public static function getAll() {
+        $db = static::getDB();
+        $stmt = $db->prepare("SELECT * FROM `orders` WHERE `user` = :user");
+        $stmt->bindValue(':user', $_SESSION['user'], \PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_OBJ) ?? null;
+    }
+
+    /**
      * Update an order status and set payment transaction ID
      * @param string $order_id
      * @param string $transaction_id
