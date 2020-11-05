@@ -30,6 +30,7 @@
         "phpmailer/phpmailer": "^6.1",
         "vlucas/phpdotenv": "^5.2",
         "league/omnipay": "^3.0",
-        "omnipay/paypal": "^3.0"
+        "omnipay/paypal": "^3.0",
+        "mpdf/mpdf": "^8.0"
     }
 }
