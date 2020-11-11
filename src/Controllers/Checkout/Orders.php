@@ -2,6 +2,7 @@
 namespace App\Controller\Checkout;
 
 use App\Controller\Helper\Flash;
+use App\Controller\Helper\PDF;
 use App\Controller\Merchandise\CartOperations;
 use App\Model\Checkout\Order;
 
@@ -136,5 +137,25 @@ class Orders {
     public function cancelled(array $params) {
         Flash::addMessage(PURCHASE_CANCELLED, INFO);
         redirect('/cart-checkout');
+    }
+
+    /**
+     * From User's profile page, download receipt
+     */
+    public function printInvoice(array $params) {
+        $invoice = [
+            'details' => Order::getOrderById($params['id']),
+            'items' => Order::getOrderItems($params['id']),
+        ];
+
+        $pdf = new PDF;
+        $pdf->create(
+            'Purchase details',
+            dirname(dirname(dirname(__DIR__))) . '\dist\assets\styles\invoice.css',
+            'layouts/invoice',
+            $invoice
+        );
+
+        $pdf->print("orderno_{$params['id']}.pdf");
     }
 }

@@ -49,6 +49,35 @@ class Order extends Database {
     }
 
     /**
+     * Get an order by its ID
+     *
+     * @param string $invoice_id
+     * @return void
+     */
+    public static function getOrderById(string $invoice_id) {
+        $db = static::getDB();
+        $stmt = $db->prepare("SELECT * FROM `orders` WHERE `orders`.`id` = :id AND `orders`.`user` = :user");
+        $stmt->bindValue(':id', $invoice_id, \PDO::PARAM_STR);
+        $stmt->bindValue(':user', $_SESSION['user'], \PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_OBJ) ?? null;
+    }
+
+    /**
+     * Get an order items by the order's ID
+     *
+     * @param string $invoice_id
+     * @return void
+     */
+    public static function getOrderItems(string $invoice_id) {
+        $db = static::getDB();
+        $stmt = $db->prepare("SELECT `product`.`description`, `order_items`.* FROM `order_items` INNER JOIN `product` ON `order_items`.`product_id` = `product`.`product_id` WHERE `order_id` = :id");
+        $stmt->bindValue(':id', $invoice_id, \PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_OBJ) ?? null;
+    }
+
+    /**
      * Update an order status and set payment transaction ID
      * @param string $order_id
      * @param string $transaction_id

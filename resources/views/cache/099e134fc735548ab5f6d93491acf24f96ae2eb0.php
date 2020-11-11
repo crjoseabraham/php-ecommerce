@@ -146,7 +146,13 @@
                                         <td><?php echo e($order->id); ?></td>
                                         <td><?php echo e($order->created_at); ?></td>
                                         <td>$<?php echo e($order->amount); ?></td>
-                                        <td><i class="fas fa-file-download"></i></td>
+                                        <td>
+                                            <form action="print-invoice-<?php echo e($order->id); ?>/<?php echo e($_SESSION['user']); ?>" method="post" target="_blank">
+                                                <button type="submit" class="btn btn--icon" style="margin-left: 0; width: 100%; text-align: center;">
+                                                    <i class="fas fa-file-download"></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>

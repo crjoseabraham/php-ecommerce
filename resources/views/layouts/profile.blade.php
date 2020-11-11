@@ -146,7 +146,13 @@
                                         <td>{{ $order->id }}</td>
                                         <td>{{ $order->created_at }}</td>
                                         <td>${{ $order->amount }}</td>
-                                        <td><i class="fas fa-file-download"></i></td>
+                                        <td>
+                                            <form action="print-invoice-{{ $order->id}}/{{ $_SESSION['user'] }}" method="post" target="_blank">
+                                                <button type="submit" class="btn btn--icon" style="margin-left: 0; width: 100%; text-align: center;">
+                                                    <i class="fas fa-file-download"></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

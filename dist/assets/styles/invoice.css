@@ -1,0 +1,74 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: linear-gradient(to right top, #fff, #fed1bd);
+}
+table {
+    width: 100%;
+}
+/* HEADER */
+.header table {
+    width: 100%;
+}
+.header table td {
+    padding: 1em 0;
+}
+.brand-logo {
+    max-width: 120px;
+}
+/* CONTENT */
+.content {
+    background-color: #eeeeee;
+    border: 1px solid #312c26;
+    padding: 1em 2em;
+}
+h1 {
+    font-family: serif;
+    font-size: 40px;
+    text-align: center;
+    font-style: italic;
+}
+
+.content p {
+    font-size: 16px;
+    line-height: 1;
+}
+.content p strong {
+    padding-right: 10px;
+}
+
+/* Table of items */
+table.purchases {
+    font-family: sans-serif;
+    width: 100%;
+    border-radius: 5px;
+    border-collapse: collapse;
+    border-style: hidden;
+    box-shadow: 0 0 0 1px #ccc;
+}
+table.purchases td {
+    vertical-align: top;
+    border-left: 0.1mm solid #bbb;
+    border-right: 0.1mm solid #bbb;
+}
+table.purchases thead td {
+    background-color: #dddddd;
+    text-align: center;
+    border: 0.1mm solid #bbb;
+    font-variant: small-caps;
+}
+table.purchases td.blanktotal {
+    border: 0.1mm solid #bbb;
+    border: 0mm none #bbb;
+    border-top: 0.1mm solid #bbb;
+    border-right: 0.1mm solid #bbb;
+}
+table.purchases td.totals {
+    text-align: right;
+    border: 0.1mm solid #bbb;
+}

@@ -25,3 +25,4 @@ $router->post('add-to-cart.{item}', 'Merchandise\CartOperations@add');
 $router->post('change-quantity', 'Merchandise\CartOperations@changeQuantity');
 $router->post('remove-item', 'Merchandise\CartOperations@remove');
 $router->post('payment-process', 'Checkout\Orders@checkout');
+$router->post('print-invoice-{id}/{user}', 'Checkout\Orders@printInvoice');
