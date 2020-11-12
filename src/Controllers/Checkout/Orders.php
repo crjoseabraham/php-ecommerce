@@ -4,6 +4,7 @@ namespace App\Controller\Checkout;
 use App\Controller\Helper\Flash;
 use App\Controller\Helper\PDF;
 use App\Controller\Merchandise\CartOperations;
+use App\Model\Authentication\User;
 use App\Model\Checkout\Order;
 
 class Orders {
@@ -118,7 +119,8 @@ class Orders {
             $order_model->submitOrderDetails($order->user, $order->id);
             $cart_operations = new CartOperations;
             $cart_operations->emptyCart($order->user);
-            // 3. email
+            // 3. email invoice
+            $this->emailInvoice(['id' => $order->id]);
             // 4. redirect
             Flash::addMessage(PURCHASE_COMPLETED);
             Flash::addMessage(PURCHASE_PROFILEMSG, INFO);
@@ -157,5 +159,35 @@ class Orders {
         );
 
         $pdf->print("orderno_{$params['id']}.pdf");
+    }
+
+    /**
+     * Create invoice .pdf file and email it to the user
+     * @param array $params Order ID
+     * @return void
+     */
+    public function emailInvoice(array $params) {
+        // Invoice data for the PDF
+        $invoice = [
+            'details' => Order::getOrderById($params['id']),
+            'items' => Order::getOrderItems($params['id']),
+        ];
+
+        $pdf = new PDF;
+        $pdf->create(
+            'Purchase details',
+            dirname(dirname(dirname(__DIR__))) . '\dist\assets\styles\invoice.css',
+            'layouts/invoice',
+            $invoice
+        );
+
+        // Email data
+        $user = User::findById($_SESSION['user']);
+        $to = $user->email;
+        $subject = 'Purchase details - About the Fit';
+        $text = "Hi {$user->name}. Your order no. {$params['id']} has been processed successfully. The details have been attached.";
+        $html = "Hi {$user->name}. Your order no. <b>{$params['id']}</b> has been processed successfully. The details have been attached.";
+
+        $pdf->email($to, $subject, $text, $html, "orderno_{$params['id']}.pdf");
     }
 }

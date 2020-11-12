@@ -31,12 +31,13 @@
         padding-top: 7px;
 
         p.description {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
+            font-weight: 500;
             text-align: center;
         }
 
         div.price-container {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             text-align: center;
             padding-top: 6px;
             font-weight: 500;
@@ -45,7 +46,7 @@
             justify-content: center;
 
             span.price-with-discount {
-                color: $tulip;
+                color: $bistre;
 
                 & + .original-price {
                     font-size: 1.2rem;
@@ -54,7 +55,7 @@
                 }
             }
             .original-price {
-                color: $tulip;
+                color: $bistre;
             }
         }
     }

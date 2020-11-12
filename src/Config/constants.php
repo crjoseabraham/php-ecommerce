@@ -31,6 +31,6 @@ define('QUANTITY_ERROR', 'Quantity must be an integer number between 1 and 20');
 define('SIZE_ERROR', 'It seems like you entered an invalid size');
 define('ITEM_ADDED', 'Item added to your cart');
 // Purchase notifications
-define('PURCHASE_COMPLETED', 'Your payment was successfully completed. We emailed you the details of your purchase ♥');
+define('PURCHASE_COMPLETED', 'Your payment was successfully completed ♥');
 define('PURCHASE_CANCELLED', 'Operation cancelled by user');
-define('PURCHASE_PROFILEMSG', 'You can access to any of your transactions at the end of the Profile page');
+define('PURCHASE_PROFILEMSG', 'An email with all details has been sent');

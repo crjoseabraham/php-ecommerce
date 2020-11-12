@@ -19,6 +19,15 @@ class PDF {
         $this->view = new View;
     }
 
+    /**
+     * Create a .pdf document
+     *
+     * @param string $title
+     * @param string $css_path
+     * @param string $template
+     * @param array $params
+     * @return void
+     */
     public function create($title, $css_path = null, $template, $params = null) {
         $this->mpdf->SetTitle($title);
 
@@ -33,9 +42,28 @@ class PDF {
         $this->mpdf->WriteHTML($html, HTMLParserMode::HTML_BODY);
     }
 
+    /**
+     * Print a .pdf document created previously
+     *
+     * @param string $filename
+     * @return void
+     */
     public function print(string $filename) {
-        $this->mpdf->Output($filename, 'I');
+        $this->mpdf->Output($filename, 'D');
     }
 
-    public function email() {}
+    /**
+     * Email a .pdf document created previously
+     *
+     * @param string $to
+     * @param string $subject
+     * @param string $text
+     * @param string $html
+     * @param string $filename
+     * @return void
+     */
+    public function email($to, $subject, $text, $html, $filename) {
+        $pdf_string = $this->mpdf->Output('', 'S');
+        Mail::send($to, $subject, $text, $html, $pdf_string, $filename);
+    }
 }

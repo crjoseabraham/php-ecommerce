@@ -16,7 +16,7 @@ class Mail {
      * @param string $html      Full HTML version of the content
      * @return void
      */
-    public static function send($to, $subject, $text, $html) {
+    public static function send($to, $subject, $text, $html, $attachment = null, $attachment_title = null) {
         $brand_email = $_ENV['BRAND_EMAIL'];
         $brand_email_pass = $_ENV['BRAND_EMAIL_PASS'];
         $mail = new PHPMailer(true);
@@ -32,7 +32,7 @@ class Mail {
             $mail->SMTPSecure = "tls";          //If SMTP requires TLS encryption then set it
             $mail->Port = 587;                  //Set TCP port to connect to
             $mail->From = $brand_email;
-            $mail->FromName = $brand_email_pass;
+            $mail->FromName = 'About The Fit';
 
             // Destination info
             $mail->addAddress($to);
@@ -40,6 +40,11 @@ class Mail {
             $mail->Subject = $subject;
             $mail->Body = $html;
             $mail->AltBody = $text;
+
+            // Attachment
+            if ($attachment !== null)
+                $mail->addStringAttachment($attachment, $attachment_title);
+
             $mail->send();
         } catch (Exception $e) {
             die("Mailer Error: " . $mail->ErrorInfo);
