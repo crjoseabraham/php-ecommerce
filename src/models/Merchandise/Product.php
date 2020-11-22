@@ -40,4 +40,16 @@ class Product extends Database {
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_OBJ) ?? null;
     }
+
+    /**
+     * Get all categories
+     *
+     * @return void
+     */
+    public static function getCategories() {
+        $db = static::getDB();
+        $stmt = $db->prepare("SELECT * FROM `categories`");
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? null;
+    }
 }

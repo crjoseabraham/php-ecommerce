@@ -54,6 +54,9 @@ class Router {
         // Convert parameter {token}
         $uri = preg_replace('/\{(token)\}/', '(?P<\1>[\da-f]+)', $uri);
 
+        // Convert parameter {category}
+        $uri = preg_replace('/\{(category)\}/', '(?P<\1>[a-z]+)', $uri);
+
         // Add start and end delimeter
         $uri = '/^' . $uri . '$/i';
 

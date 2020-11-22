@@ -12,6 +12,7 @@ $router->get('get-cart', 'Merchandise\CartOperations@getJSON');
 $router->get('cart-checkout', 'ViewLoaders@cartPage');
 $router->get('payment_success_{id}', 'Checkout\Orders@completed');
 $router->get('payment_cancelled_{id}', 'Checkout\Orders@cancelled');
+$router->get('explore-{category}', 'ViewLoaders@explore');
 
 $router->post('signup', 'Account\Accounts@create');
 $router->post('login', 'Account\Auth@login');

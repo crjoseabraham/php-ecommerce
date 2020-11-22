@@ -84,6 +84,13 @@
         }
     }
 
+    // EXPLORE
+    .explore_page {
+        &__items {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
     // OFFERS
     .special-offers {
         flex-direction: column;

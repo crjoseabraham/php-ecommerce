@@ -46,4 +46,13 @@ class Products {
     public static function calculateDiscount(object $item): float {
         return round($item->price - ($item->price * ($item->discount / 100)), 2);
     }
+
+    /**
+     * Get all items categories
+     *
+     * @return void
+     */
+    public function getCategories() {
+        return Product::getCategories();
+    }
 }

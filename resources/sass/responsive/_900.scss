@@ -34,6 +34,19 @@
     }
 }
 
+.explore_page {
+    &__sidebar {
+        flex: 20%;
+    }
+    &__items {
+        flex: 80%;
+
+        & > a {
+            margin: 0px;
+        }
+    }
+}
+
 @media screen and (max-width: 760px) {
     html {
         font-size: 42%;

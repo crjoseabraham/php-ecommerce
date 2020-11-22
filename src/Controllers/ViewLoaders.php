@@ -121,4 +121,27 @@ class ViewLoaders {
             ]));
         }
     }
+
+    /**
+     * Explore page
+     * @param array $params
+     * @return void
+     */
+    public function explore(array $params) {
+        // Get all categories
+        $categories = $this->products->getCategories();
+        $category_index = array_search(ucfirst($params['category']), array_column($categories, 'name'));
+        // Find the corresponding ID in the database for the category
+        $selected_category_id = $category_index === false ? 0 : intval($categories[$category_index]['id']);
+        // Select products based on category
+        $products = $selected_category_id === 0
+                        ? $this->products->get()
+                        : $this->products->getAllWith("`category` = {$selected_category_id}");
+        // Render view
+        $this->view->render("layouts/explore", array_merge($this->default_params, [
+            "items" => $products,
+            "categories" => $categories,
+            "selected_category" => $selected_category_id
+        ]));
+    }
 }

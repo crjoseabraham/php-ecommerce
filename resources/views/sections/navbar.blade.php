@@ -10,7 +10,7 @@
             <a href="https://github.com/crjoseabraham/shoppingcart" target="_blank" class="simple icon-link">
                 <i class="fab fa-github"></i>
             </a>
-            <a href="explore" class="simple">Explore</a>
+            <a href="explore-all" class="simple">Explore</a>
             @if (isset($session["user"]))
                 <a href="cart-checkout" class="simple">Cart</a>
                 <a href="profile" class="simple">Profile</a>
