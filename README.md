@@ -50,10 +50,10 @@ If you want to test this project on your local machine, you have to follow these
         PAYPAL_SECRET
     ```
 
-    And change the project base URL in `resources/scripts/CartUI.js` which is set up for localhost
+    And change the project base URL in [resources/scripts/CartUI.js](https://github.com/crjoseabraham/ecommerce-NoFramework/blob/master/resources/scripts/CartUI.js) which is set up for localhost
     **(lines 77 and 116)**.
 
-    An small thing you may want to change or even delete is the timezone I set in [public/index.php](https://github.com/crjoseabraham/shoppingcart/blob/version-2.0/public/index.php) because I used my timezone
+    An small thing you may want to change or even delete is the timezone I set in [public/index.php](https://github.com/crjoseabraham/ecommerce-NoFramework/blob/master/dist/index.php) because I used my timezone
 
     `date_default_timezone_set('America/Caracas');`
 
