@@ -2,7 +2,11 @@
     <div class="container menu__links">
         <div class="brand">
             <a href="/shoppingcart">
-                <img src="./img/brand/logotipo.png" alt="Company logo"/>
+                <picture>
+                    <source srcset="./img/brand/isotipo.png" media="(max-width: 768px)">
+                    <source srcset="./img/brand/logotipo.png" media="(min-width: 769px)">
+                    <img src="./img/brand/logotipo.png" alt="Company logo">
+                </picture>
             </a>
         </div>
 
