@@ -9,7 +9,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/crjoseabraham/shoppingcart.git"
+        "url": "git+https://github.com/crjoseabraham/ecommerce-NoFramework.git"
     },
     "keywords": [
         "ecommerce",
@@ -21,9 +21,9 @@
     "author": "Jose Abraham Castillo",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/crjoseabraham/shoppingcart/issues"
+        "url": "https://github.com/crjoseabraham/ecommerce-NoFramework/issues"
     },
-    "homepage": "https://github.com/crjoseabraham/shoppingcart#readme",
+    "homepage": "https://github.com/crjoseabraham/ecommerce-NoFramework#readme",
     "devDependencies": {
         "@babel/core": "^7.9.0",
         "@babel/preset-env": "^7.9.0",
